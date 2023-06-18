@@ -1,0 +1,44 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+  </PropertyGroup>
+	<!-- Copy all resources to the build output directy except when building in publish mode, to have them exist in a debug/release build, but not have them packed into an executable when publishing -->
+	<Target Name="CopyResources" Condition="'$(Configuration)'!='Publish'" AfterTargets="Build">
+		<Message Text="Copy resource files" Importance="High" />
+		<Message Text="Files: @(ResourceFiles)" Importance="High" />
+		<Message Text="directory: $(OutDir)" Importance="High" />
+		<Copy SourceFiles="@(ResourceFiles)" DestinationFolder="$(OutDir)Resources\%(RecursiveDir)" SkipUnchangedFiles="true" />
+	</Target>
+
+	<!-- Copy all resources to the published output -->
+	<Target Name="CopyResourcesPublish" Condition="'$(Configuration)'=='Publish' OR '$(Configuration)'=='Release'" AfterTargets="Publish">
+		<Message Text="Copy resource files" Importance="High" />
+		<Message Text="Files: @(ResourceFiles)" Importance="High" />
+		<Message Text="Directory: $(PublishDir)" Importance="High" />
+		<Copy SourceFiles="@(ResourceFiles)" DestinationFolder="$(PublishDir)Resources\%(RecursiveDir)" SkipUnchangedFiles="true" />
+		<!-- <Message Text="Moving Readme: $(PublishDir)" Importance="High" />
+      <Message Text="Solution Dir: $(SolutionDir)" Importance="High" />
+    <Copy SourceFiles="$(SolutionDir)README.md" DestinationFiles="$(PublishDir)README.txt" />-->
+	</Target>
+	<ItemGroup>
+		<ResourceFiles Include="$(SolutionDir)..\src\Erd-Tools\src\Erd-Tools\Resources\**\*.*" />
+	</ItemGroup>
+	<ItemGroup>
+	  <None Remove="ConsumableIDS.txt" />
+	</ItemGroup>
+	<ItemGroup>
+	  <EmbeddedResource Include="ConsumableIDS.txt" />
+	</ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Erd-Tools\src\Erd-Tools\Erd-Tools.csproj" />
+    <ProjectReference Include="..\Erd-Tools\src\PropertyHook\PropertyHook\PropertyHook.csproj" />
+    <ProjectReference Include="..\Erd-Tools\src\SoulsFormats\SoulsFormats\SoulsFormats.csproj" />
+  </ItemGroup>
+
+</Project>

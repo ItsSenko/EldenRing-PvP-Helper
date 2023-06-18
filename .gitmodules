@@ -1,0 +1,3 @@
+[submodule "Erd-Tools"]
+	path = Erd-Tools
+	url = https://github.com/Nordgaren/Erd-Tools
