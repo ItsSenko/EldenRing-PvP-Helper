@@ -91,6 +91,9 @@ namespace ERPvPHelper
 
             ChrType type = (ChrType)ChrTypeSelection.SelectedItem;
             player.ChrType = type.ChrID;
+
+            if (type.ChrID != 0)
+                logger.Log("Please note that if you do not change back to normal before quiting. You character will save as this the next time you open the game.");
         }
 
         private void CustomColor_Click(object sender, EventArgs e)
