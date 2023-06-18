@@ -9,6 +9,9 @@ This is a tool to give a better experience in pvp in [seamless co-op](https://ww
 ![OtherOptions](https://i.imgur.com/ZJgTFfo.png)
 ![RedBadGirl](https://i.imgur.com/KscBzaS.png) ![BlueBadGirl](https://i.imgur.com/v4fDnZ2.png)
 
+## Questions or Concerns?
+Message me on discord at senkopur. Or sumbit an issue!
+
 # Features
 ### Base PvP Settings
 - No Dead Toggle
