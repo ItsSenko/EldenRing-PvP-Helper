@@ -6,16 +6,9 @@
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
-    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+    <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
+	  
   </PropertyGroup>
-	<!-- Copy all resources to the build output directy except when building in publish mode, to have them exist in a debug/release build, but not have them packed into an executable when publishing -->
-	<Target Name="CopyResources" Condition="'$(Configuration)'!='Publish'" AfterTargets="Build">
-		<Message Text="Copy resource files" Importance="High" />
-		<Message Text="Files: @(ResourceFiles)" Importance="High" />
-		<Message Text="directory: $(OutDir)" Importance="High" />
-		<Copy SourceFiles="@(ResourceFiles)" DestinationFolder="$(OutDir)Resources\%(RecursiveDir)" SkipUnchangedFiles="true" />
-	</Target>
-
 	<!-- Copy all resources to the published output -->
 	<Target Name="CopyResourcesPublish" Condition="'$(Configuration)'=='Publish' OR '$(Configuration)'=='Release'" AfterTargets="Publish">
 		<Message Text="Copy resource files" Importance="High" />
@@ -27,7 +20,7 @@
     <Copy SourceFiles="$(SolutionDir)README.md" DestinationFiles="$(PublishDir)README.txt" />-->
 	</Target>
 	<ItemGroup>
-		<ResourceFiles Include="$(SolutionDir)..\src\Erd-Tools\src\Erd-Tools\Resources\**\*.*" />
+		<ResourceFiles Include="D:\Github\EldenRing-PvP-Helper\Erd-Tools\src\Erd-Tools\Resources\**\*.*" />
 	</ItemGroup>
 	<ItemGroup>
 	  <None Remove="ConsumableIDS.txt" />
@@ -35,6 +28,26 @@
 	<ItemGroup>
 	  <EmbeddedResource Include="ConsumableIDS.txt" />
 	</ItemGroup>
+
+	<ItemGroup>
+		<Content Update="keystone.dll">
+			<CopyToPublishDirectory>Never</CopyToPublishDirectory>
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+		</Content>
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Update="C:\Users\eleme\.nuget\packages\keystoneengine.csharp\0.9.1.1\build\x64\keystone.dll">
+			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Update="C:\Users\eleme\.nuget\packages\keystoneengine.csharp\0.9.1.1\build\x86\keystone.dll">
+			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+	
   <ItemGroup>
     <ProjectReference Include="..\Erd-Tools\src\Erd-Tools\Erd-Tools.csproj" />
     <ProjectReference Include="..\Erd-Tools\src\PropertyHook\PropertyHook\PropertyHook.csproj" />
