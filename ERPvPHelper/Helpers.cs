@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace ERPvPHelper
 {
-    internal class BitHelper
+    internal class Helpers
     {
         public static byte SetBit(byte b, int bitIndex, bool value)
         {
@@ -30,6 +31,23 @@ namespace ERPvPHelper
             }
 
             return ((value & (1 << bitNumber)) != 0);
+        }
+        public static string GetEmbededResource(string item)
+        {
+            Assembly assembly = Assembly.GetCallingAssembly();
+            string resourceName = $"ERPvPHelper.{item}";
+
+            using (Stream? stream = assembly.GetManifestResourceStream(resourceName))
+            {
+                if (stream == null)
+                    throw new NullReferenceException($"Could not find embedded resource: {item} in the {Assembly.GetCallingAssembly().GetName()} assembly");
+
+                using (StreamReader reader = new StreamReader(stream))
+                {
+                    return reader.ReadToEnd();
+                }
+            }
+
         }
     }
 }

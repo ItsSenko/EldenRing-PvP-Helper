@@ -48,14 +48,14 @@ namespace ERPvPHelper
             hook.OnUnhooked += OnUnhooked;
 
             var assembly = Assembly.GetExecutingAssembly();
-            var resourceName = "ERPvPHelper.ConsumableIDS.txt";
+            var resourceName = "ERPvPHelper.Resources.ConsumableIDS.txt";
             using (Stream stream = assembly.GetManifestResourceStream(resourceName))
             using(StreamReader reader = new StreamReader(stream))
             {
                 consumableIds = EnumerateLines(reader).Select(x => Convert.ToInt32(x)).ToList();
             }
         }
-        IEnumerable<string> EnumerateLines(TextReader reader)
+        public static IEnumerable<string> EnumerateLines(TextReader reader)
         {
             string line;
 
@@ -82,9 +82,9 @@ namespace ERPvPHelper
 
         private void OnHooked(object? sender, PHEventArgs e)
         {
-            logger.Log("Has Attached to Elden Ring, grabbing player...");
+            logger.Log("Attached to Elden Ring");
             player = new Player(hook.PlayerIns, hook);
-            logger.Log("Player located.");
+            logger.Log("Created new Player");
 
             logger.Log("Creating Pointers...");
             ChrFlags = hook.CreateChildPointer(hook.PlayerIns, new int[] { 0x190, 0x0 });
@@ -107,30 +107,30 @@ namespace ERPvPHelper
             int noFpConsumeBitIndex = 2;
             int noStaminaConsumeBitIndex = 3;
 
-            while (hook.Hooked)
+            while (hook.Loaded)
             {
                 form.Invoke(new Action(() =>
                 {
                     byte chrFlagsByte = ChrFlags.ReadByte(chrFlagsOffset);
 
-                    if (NoDeadToggle.Checked != BitHelper.IsBitSet(chrFlagsByte, noDeadBitIndex))
+                    if (NoDeadToggle.Checked != Helpers.IsBitSet(chrFlagsByte, noDeadBitIndex))
                     {
-                        ChrFlags.WriteByte(chrFlagsOffset, BitHelper.SetBit(chrFlagsByte, noDeadBitIndex, NoDeadToggle.Checked));
+                        ChrFlags.WriteByte(chrFlagsOffset, Helpers.SetBit(chrFlagsByte, noDeadBitIndex, NoDeadToggle.Checked));
                     }
 
-                    if (NoDamageToggle.Checked != BitHelper.IsBitSet(chrFlagsByte, noDamageBitIndex))
+                    if (NoDamageToggle.Checked != Helpers.IsBitSet(chrFlagsByte, noDamageBitIndex))
                     {
-                        ChrFlags.WriteByte(chrFlagsOffset, BitHelper.SetBit(chrFlagsByte, noDamageBitIndex, NoDamageToggle.Checked));
+                        ChrFlags.WriteByte(chrFlagsOffset, Helpers.SetBit(chrFlagsByte, noDamageBitIndex, NoDamageToggle.Checked));
                     }
 
-                    if (NoFPConsumeToggle.Checked != BitHelper.IsBitSet(chrFlagsByte, noFpConsumeBitIndex))
+                    if (NoFPConsumeToggle.Checked != Helpers.IsBitSet(chrFlagsByte, noFpConsumeBitIndex))
                     {
-                        ChrFlags.WriteByte(chrFlagsOffset, BitHelper.SetBit(chrFlagsByte, noFpConsumeBitIndex, NoFPConsumeToggle.Checked));
+                        ChrFlags.WriteByte(chrFlagsOffset, Helpers.SetBit(chrFlagsByte, noFpConsumeBitIndex, NoFPConsumeToggle.Checked));
                     }
 
-                    if (NoStamLossToggle.Checked != BitHelper.IsBitSet(chrFlagsByte, noStaminaConsumeBitIndex))
+                    if (NoStamLossToggle.Checked != Helpers.IsBitSet(chrFlagsByte, noStaminaConsumeBitIndex))
                     {
-                        ChrFlags.WriteByte(chrFlagsOffset, BitHelper.SetBit(chrFlagsByte, noStaminaConsumeBitIndex, NoStamLossToggle.Checked));
+                        ChrFlags.WriteByte(chrFlagsOffset, Helpers.SetBit(chrFlagsByte, noStaminaConsumeBitIndex, NoStamLossToggle.Checked));
                     }
                 }));
                 Thread.Sleep(10000);
@@ -142,7 +142,15 @@ namespace ERPvPHelper
         public void SetMana(string newMana)
         {
             if (!hook.Hooked)
+            {
+                logger.Log("You have not attached to Elden Ring. Please attach first.", Logger.LogType.Error);
                 return;
+            }
+            if (!hook.Loaded)
+            {
+                logger.Log("Your character has not been loaded. Please load a save.", Logger.LogType.Error);
+                return;
+            }
 
             int newSetMana;
             if (!int.TryParse(newMana, out newSetMana))
@@ -166,7 +174,15 @@ namespace ERPvPHelper
         public void SetHealth(string newHealth)
         {
             if (!hook.Hooked)
+            {
+                logger.Log("You have not attached to Elden Ring. Please attach first.", Logger.LogType.Error);
                 return;
+            }
+            if (!hook.Loaded)
+            {
+                logger.Log("Your character has not been loaded. Please load a save.", Logger.LogType.Error);
+                return;
+            }
 
             int newSetHealth;
             if (!int.TryParse(newHealth, out newSetHealth))
@@ -193,7 +209,8 @@ namespace ERPvPHelper
         {
             while (hook.Hooked)
             {
-                form.Invoke(new Action(() => { ManaBox.Text = player.Fp.ToString(); }));
+                if (hook.Loaded)
+                    form.Invoke(new Action(() => { ManaBox.Text = player.Fp.ToString(); }));
 
                 Thread.Sleep(3000);
             }
@@ -202,7 +219,8 @@ namespace ERPvPHelper
         {
             while (hook.Hooked)
             {
-                form.Invoke(new Action(() => { HealthBox.Text = player.Hp.ToString(); }));
+                if (hook.Loaded)
+                    form.Invoke(new Action(() => { HealthBox.Text = player.Hp.ToString(); }));
 
                 Thread.Sleep(3000);
             }
@@ -213,32 +231,36 @@ namespace ERPvPHelper
             {
                 if (!hook.Hooked)
                     return;
-                int anim = animPointer.ReadInt32(0x90);
-                if (anim == 70000 || anim == 70010)
+                if (hook.Loaded)
                 {
-                    form.Invoke(new Action(() => {
+                    int anim = animPointer.ReadInt32(0x90);
+                    if (anim == 70000 || anim == 70010)
+                    {
+                        form.Invoke(new Action(() =>
+                        {
+                            byte b = ChrFlags.ReadByte(0x19B);
+
+                            ChrFlags.WriteByte(0x19B, Helpers.SetBit(b, 0, true));
+                        }));
+                        if (tempPlayer.Hp <= 1)
+                        {
+                            Thread.Sleep(1000);
+                            Revive(tempPlayer);
+                        }
+                    }
+                    else
+                    {
                         byte b = ChrFlags.ReadByte(0x19B);
 
-                        ChrFlags.WriteByte(0x19B, BitHelper.SetBit(b, 0, true));
-                    }));
-                    if (tempPlayer.Hp <= 1)
+                        ChrFlags.WriteByte(0x19B, Helpers.SetBit(b, 0, false));
+                    }
+
+                    if (tempPlayer.Hp == 0)
                     {
                         Thread.Sleep(1000);
                         Revive(tempPlayer);
+                        logger.Log("Revived Player.");
                     }
-                }
-                else
-                {
-                    byte b = ChrFlags.ReadByte(0x19B);
-
-                    ChrFlags.WriteByte(0x19B, BitHelper.SetBit(b, 0, false));
-                }
-
-                if (tempPlayer.Hp == 0)
-                {
-                    Thread.Sleep(1000);
-                    Revive(tempPlayer);
-                    logger.Log("Revived Player.");
                 }
             }
 
@@ -249,7 +271,15 @@ namespace ERPvPHelper
         public void HealToMax()
         {
             if (!hook.Hooked)
+            {
+                logger.Log("You have not attached to Elden Ring. Please attach first.", Logger.LogType.Error);
                 return;
+            }
+            if (!hook.Loaded)
+            {
+                logger.Log("Your character has not been loaded. Please load a save.", Logger.LogType.Error);
+                return;
+            }
             int hpBefore = player.Hp;
             player.Hp = player.HpMax;
 
@@ -259,7 +289,16 @@ namespace ERPvPHelper
         public void RefillFPToMax()
         {
             if (!hook.Hooked)
+            {
+                logger.Log("You have not attached to Elden Ring. Please attach first.", Logger.LogType.Error);
                 return;
+            }
+            if (!hook.Loaded)
+            {
+                logger.Log("Your character has not been loaded. Please load a save.", Logger.LogType.Error);
+                return;
+            }
+
             int fpBefore = player.Fp;
             player.Fp = player.FpMax;
 
@@ -277,12 +316,19 @@ namespace ERPvPHelper
         {
             if (!hook.Hooked)
             {
-                NoDeadToggle.Checked = false;
+                logger.Log("You have not attached to Elden Ring. Please attach first.", Logger.LogType.Error);
+                NoDeadToggle.CheckState = CheckState.Unchecked;
+                return;
+            }
+            if (!hook.Loaded)
+            {
+                logger.Log("Your character has not been loaded. Please load a save.", Logger.LogType.Error);
+                NoDeadToggle.CheckState = CheckState.Unchecked;
                 return;
             }
             byte b = ChrFlags.ReadByte(0x19B);
 
-            ChrFlags.WriteByte(0x19B, BitHelper.SetBit(b, 0, NoDeadToggle.Checked));
+            ChrFlags.WriteByte(0x19B, Helpers.SetBit(b, 0, NoDeadToggle.Checked));
 
             logger.Log($"No Dead Toggled {NoDeadToggle.Checked}.");
         }
@@ -290,36 +336,37 @@ namespace ERPvPHelper
         {
             if (!hook.Hooked)
             {
-                NoFPConsumeToggle.Checked = false;
+                logger.Log("You have not attached to Elden Ring. Please attach first.", Logger.LogType.Error);
+                NoFPConsumeToggle.CheckState = CheckState.Unchecked;
+                return;
+            }
+            if (!hook.Loaded)
+            {
+                logger.Log("Your character has not been loaded. Please load a save.", Logger.LogType.Error);
+                NoFPConsumeToggle.CheckState = CheckState.Unchecked;
                 return;
             }
             byte b = ChrFlags.ReadByte(0x19B);
-            var bitIndex = 2;
 
-            if (NoFPConsumeToggle.Checked)
-                b |= (byte)(1 << bitIndex);
-            else
-                b &= (byte)~(1 << bitIndex);
-
-            ChrFlags.WriteByte(0x19B, b);
+            ChrFlags.WriteByte(0x19B, Helpers.SetBit(b, 2, NoFPConsumeToggle.Checked));
             logger.Log($"No FP Loss Toggle {NoFPConsumeToggle.Checked}");
         }
         public void NoDamagetoggle()
         {
             if (!hook.Hooked)
             {
-                NoDamageToggle.Checked = false;
+                logger.Log("You have not attached to Elden Ring. Please attach first.", Logger.LogType.Error);
+                NoDamageToggle.CheckState = CheckState.Unchecked;
+                return;
+            }
+            if (!hook.Loaded)
+            {
+                logger.Log("Your character has not been loaded. Please load a save.", Logger.LogType.Error);
+                NoDamageToggle.CheckState = CheckState.Unchecked;
                 return;
             }
             byte b = ChrFlags.ReadByte(0x19B);
-            var bitIndex = 1;
-
-            if (NoDamageToggle.Checked)
-                b |= (byte)(1 << bitIndex);
-            else
-                b &= (byte)~(1 << bitIndex);
-
-            ChrFlags.WriteByte(0x19B, b);
+            ChrFlags.WriteByte(0x19B, Helpers.SetBit(b, 1, NoDamageToggle.Checked));
 
             logger.Log($"No Damage Toggled {NoDamageToggle.Checked}");
         }
@@ -327,34 +374,42 @@ namespace ERPvPHelper
         {
             if (!hook.Hooked)
             {
-                NoStamLossToggle.Checked = false;
+                logger.Log("You have not attached to Elden Ring. Please attach first.", Logger.LogType.Error);
+                NoStamLossToggle.CheckState = CheckState.Unchecked;
+                return;
+            }
+            if (!hook.Loaded)
+            {
+                logger.Log("Your character has not been loaded. Please load a save.", Logger.LogType.Error);
+                NoStamLossToggle.CheckState = CheckState.Unchecked;
                 return;
             }
             byte b = ChrFlags.ReadByte(0x19B);
-            var bitIndex = 3;
+            ChrFlags.WriteByte(0x19B, Helpers.SetBit(b, 3, NoStamLossToggle.Checked));
 
-            if (NoStamLossToggle.Checked)
-                b |= (byte)(1 << bitIndex);
-            else
-                b &= (byte)~(1 << bitIndex);
-
-            ChrFlags.WriteByte(0x19B, b);
             logger.Log($"No Stam Loss Toggled {NoStamLossToggle.Checked}");
         }
         private List<Row> savedRows = new List<Row>();
         public List<int> consumableIds = new();
-        private string conIdsPath = "D:/Projects VS/ERPvPHelper/ConsumableIDS.txt";
         public void InfiniteConsumablesToggle()
         {
-            if (!hook.Hooked) 
+            if (!hook.Hooked)
             {
-                NoGoodsConsumeToggle.Checked = false;
+                logger.Log("You have not attached to Elden Ring. Please attach first.", Logger.LogType.Error);
+                NoGoodsConsumeToggle.CheckState = CheckState.Unchecked;
                 return;
             }
+            if (!hook.Loaded)
+            {
+                logger.Log("Your character has not been loaded. Please load a save.", Logger.LogType.Error);
+                NoGoodsConsumeToggle.CheckState = CheckState.Unchecked;
+                return;
+            }
+
             logger.Log($"Changing consumbables 'isConsume' param to {(NoGoodsConsumeToggle.Checked ? "0" : "1")}..");
 
             /*byte noConsumeChrParam = hook.PlayerIns.ReadByte(0x522);
-            hook.PlayerIns.WriteByte(0x522, BitHelper.SetBit(noConsumeChrParam, 0, NoGoodsConsumeToggle.Checked));*/
+            hook.PlayerIns.WriteByte(0x522, Helpers.SetBit(noConsumeChrParam, 0, NoGoodsConsumeToggle.Checked));*/
 
             var bitIndex = 7;
             var consumeOffset = hook.EquipParamGoods.Fields[40].FieldOffset;
@@ -365,7 +420,7 @@ namespace ERPvPHelper
                 var dataOffset = row.DataOffset;
 
                 byte b = row.Param.Pointer.ReadByte(dataOffset + consumeOffset);
-                b = BitHelper.SetBit(b, bitIndex, NoGoodsConsumeToggle.Checked ? false : true);
+                b = Helpers.SetBit(b, bitIndex, NoGoodsConsumeToggle.Checked ? false : true);
 
                 row.Param.Pointer.WriteByte(dataOffset + consumeOffset, b);
                 //Log($"Made isConsume {(NoGoodsConsumeToggle.Checked ? "false" : "true")} for {row.Name}");
@@ -377,9 +432,17 @@ namespace ERPvPHelper
         {
             if (!hook.Hooked)
             {
-                AutoReviveToggle.Checked = false;
+                logger.Log("You have not attached to Elden Ring. Please attach first.", Logger.LogType.Error);
+                AutoReviveToggle.CheckState = CheckState.Unchecked;
                 return;
             }
+            if (!hook.Loaded)
+            {
+                logger.Log("Your character has not been loaded. Please load a save.", Logger.LogType.Error);
+                AutoReviveToggle.CheckState = CheckState.Unchecked;
+                return;
+            }
+
             if (AutoReviveToggle.Checked)
                 Task.Run(new Action(() => AutoReviveTimer(player)));
 
@@ -390,9 +453,17 @@ namespace ERPvPHelper
         {
             if (!hook.Hooked)
             {
-                SeamlessAnimChangeToggle.Checked = false;
+                logger.Log("You have not attached to Elden Ring. Please attach first.", Logger.LogType.Error);
+                SeamlessAnimChangeToggle.CheckState = CheckState.Unchecked;
                 return;
             }
+            if (!hook.Loaded)
+            {
+                logger.Log("Your character has not been loaded. Please load a save.", Logger.LogType.Error);
+                SeamlessAnimChangeToggle.CheckState = CheckState.Unchecked;
+                return;
+            }
+
             var seamlessRuleBook = hook.EquipParamGoods.Rows[8];
             var consumeOffset = seamlessRuleBook.Param.Fields[28].FieldOffset;
             var dataOffset = seamlessRuleBook.DataOffset;
@@ -414,9 +485,17 @@ namespace ERPvPHelper
         {
             if (!hook.Hooked)
             {
-                MadHealToggle.Checked = false;
+                logger.Log("You have not attached to Elden Ring. Please attach first.", Logger.LogType.Error);
+                MadHealToggle.CheckState = CheckState.Unchecked;
                 return;
             }
+            if (!hook.Loaded)
+            {
+                logger.Log("Your character has not been loaded. Please load a save.", Logger.LogType.Error);
+                MadHealToggle.CheckState = CheckState.Unchecked;
+                return;
+            }
+
             int[] larIds = new int[] { 10673000, 10673001, 10673002, 10673010, 10673011, 10673012, 10673013 };
             Param bulletParam = hook.Params.FirstOrDefault(x => x.Name == "Bullet");
             var sfxBulletOffset = bulletParam.Fields.FirstOrDefault(x => x.InternalName.Contains("sfxId_Bullet"));

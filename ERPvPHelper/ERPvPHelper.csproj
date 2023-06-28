@@ -9,6 +9,9 @@
     <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
 	  
   </PropertyGroup>
+	<ItemGroup>
+		<ResourceFiles Include="D:\Github\ErdTools\Erd-Tools\src\Erd-Tools\Resources\**\*.*" />
+	</ItemGroup>
 	<!-- Copy all resources to the published output -->
 	<Target Name="CopyResourcesPublish" Condition="'$(Configuration)'=='Publish' OR '$(Configuration)'=='Release'" AfterTargets="Publish">
 		<Message Text="Copy resource files" Importance="High" />
@@ -19,32 +22,39 @@
       <Message Text="Solution Dir: $(SolutionDir)" Importance="High" />
     <Copy SourceFiles="$(SolutionDir)README.md" DestinationFiles="$(PublishDir)README.txt" />-->
 	</Target>
+	
 	<ItemGroup>
-		<ResourceFiles Include="D:\Github\EldenRing-PvP-Helper\Erd-Tools\src\Erd-Tools\Resources\**\*.*" />
-	</ItemGroup>
-	<ItemGroup>
+	  <None Remove="Blacklist.json" />
 	  <None Remove="ConsumableIDS.txt" />
+	  <None Remove="MapEventFlagIds.txt" />
+	  <None Remove="Resources\AddRunes.asm" />
 	</ItemGroup>
 	<ItemGroup>
-	  <EmbeddedResource Include="ConsumableIDS.txt" />
+	  <EmbeddedResource Include="Resources\AddRunes.asm" />
+	  <EmbeddedResource Include="Resources\Blacklist.json" />
+	  <EmbeddedResource Include="Resources\ConsumableIDS.txt" />
+	  <EmbeddedResource Include="Resources\MapEventFlagIds.txt" />
+	</ItemGroup>
+	<ItemGroup>
+	  <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<Content Update="keystone.dll">
-			<CopyToPublishDirectory>Never</CopyToPublishDirectory>
-			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>Always</CopyToPublishDirectory>
+			<ExcludeFromSingleFile>false</ExcludeFromSingleFile>
 		</Content>
 	</ItemGroup>
 
 	<ItemGroup>
 		<None Update="C:\Users\eleme\.nuget\packages\keystoneengine.csharp\0.9.1.1\build\x64\keystone.dll">
-			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
 	</ItemGroup>
 
 	<ItemGroup>
 		<None Update="C:\Users\eleme\.nuget\packages\keystoneengine.csharp\0.9.1.1\build\x86\keystone.dll">
-			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
 	</ItemGroup>
 	
@@ -52,6 +62,15 @@
     <ProjectReference Include="..\Erd-Tools\src\Erd-Tools\Erd-Tools.csproj" />
     <ProjectReference Include="..\Erd-Tools\src\PropertyHook\PropertyHook\PropertyHook.csproj" />
     <ProjectReference Include="..\Erd-Tools\src\SoulsFormats\SoulsFormats\SoulsFormats.csproj" />
+  </ItemGroup>
+	
+  <ItemGroup>
+    <Compile Update="Features\BuildPrefabMaker.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Features\Settings.cs">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
 
 </Project>

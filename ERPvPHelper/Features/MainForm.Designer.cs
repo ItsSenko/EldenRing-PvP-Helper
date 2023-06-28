@@ -350,6 +350,7 @@
             this.SettingsBtn.TabIndex = 7;
             this.SettingsBtn.Text = "Settings";
             this.SettingsBtn.UseVisualStyleBackColor = true;
+            this.SettingsBtn.Click += new System.EventHandler(this.SettingsBtn_Click);
             // 
             // BuildCreationBtn
             // 
@@ -362,6 +363,7 @@
             this.BuildCreationBtn.TabIndex = 8;
             this.BuildCreationBtn.Text = "Build Creation";
             this.BuildCreationBtn.UseVisualStyleBackColor = true;
+            this.BuildCreationBtn.Click += new System.EventHandler(this.BuildCreationBtn_Click);
             // 
             // OtherOptBtn
             // 

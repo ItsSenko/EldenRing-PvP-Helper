@@ -17,6 +17,11 @@ namespace ERPvPHelper
         public MainForm()
         {
             InitializeComponent();
+            var directory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), $"Elden Ring PvPHelper/Builds/");
+            if (!Directory.Exists(directory))
+            {
+                Directory.CreateDirectory(directory);
+            }
         }
         private ErdHook hook;
         private BasePvPSettings pvpSettings;
@@ -33,6 +38,7 @@ namespace ERPvPHelper
             Func<Process, bool> func = process => process.ProcessName == "eldenring";
 
             hook = new(1, 100, func);
+            SettingsForm.dHitbox = hook.RegisterRelativeAOB("0F 29 74 24 40 0F 1F", 12, 16, 0);
             pvpSettings = new(this, hook, logger);
 
             hook.OnHooked += OnHooked;
@@ -54,8 +60,6 @@ namespace ERPvPHelper
             pvpSettings.HealthBox = HealthBox;
 
             logger.Log("Form loaded.");
-            this.TopLevel = true;
-            this.TopMost = true;
         }
 
         private void OnUnhooked(object? sender, PHEventArgs e)
@@ -155,9 +159,14 @@ namespace ERPvPHelper
         {
             if (!pvpSettings.hook.Hooked)
             {
-                logger.Log("The game is not attached. Attach the game first");
+                logger.Log("The game is not attached. Attach the game first", Logger.LogType.Error);
                 return;
             }
+            if (!pvpSettings.hook.Loaded)
+            {
+                logger.Log("Your character is not loaded yet. Please load into a save first.", Logger.LogType.Error);
+                return;
+            }    
 
             if (otherOptForm != null)
             {
@@ -169,6 +178,49 @@ namespace ERPvPHelper
 
             otherOptForm.StartPosition = FormStartPosition.CenterScreen;
             otherOptForm.Show();
+        }
+        BuildCreationForm buildCreationForm;
+        private void BuildCreationBtn_Click(object sender, EventArgs e)
+        {
+            /*logger.Log("Sorry, build creation is not implemented yet.", Logger.LogType.Warning);
+            return;*/
+            if (!pvpSettings.hook.Hooked)
+            {
+                logger.Log("The game is not attached. Attach the game first", Logger.LogType.Error);
+                return;
+            }
+            if (!pvpSettings.hook.Loaded)
+            {
+                logger.Log("Your character is not loaded yet. Please load into a save first.", Logger.LogType.Error);
+                return;
+            }
+
+            if (buildCreationForm != null)
+            {
+                buildCreationForm.Close();
+                buildCreationForm = null;
+            }
+
+            buildCreationForm = new BuildCreationForm(pvpSettings.hook, pvpSettings.player, logger);
+
+            buildCreationForm.StartPosition = FormStartPosition.CenterScreen;
+            buildCreationForm.Show();
+        }
+        private SettingsForm settings = null;
+        private void SettingsBtn_Click(object sender, EventArgs e)
+        {
+            if (!hook.Loaded)
+            {
+                logger.Log("You have not attached Elden Ring", Logger.LogType.Error);
+            }
+            if (settings != null)
+            {
+                settings.Close();
+                settings = null;
+            }
+
+            settings = new(hook, logger);
+            settings.Show();
         }
     }
 }

@@ -28,7 +28,7 @@ namespace ERPvPHelper
 
             this.LogsBox.ScrollBars = RichTextBoxScrollBars.None;
         }
-        public void Log(string str)
+        public void Log(string str, LogType type = LogType.Normal)
         {
             form.Invoke(new Action(() =>
             {
@@ -47,10 +47,28 @@ namespace ERPvPHelper
                 LogsBox.AppendText($"\n{SystemTime} [PvP");
                 LogsBox.SelectionColor = Color.Magenta;
                 LogsBox.AppendText($"Helper] ");
-                LogsBox.SelectionColor = Color.DarkGray;
+                LogsBox.SelectionColor = getLogTypeColor(type);
                 LogsBox.AppendText($"{str}");
                 LogsBox.SelectionColor = LogsBox.ForeColor;
             }));
+        }
+        public enum LogType
+        {
+            Normal,
+            Warning,
+            Error,
+            Success
+        }
+        private Color getLogTypeColor(LogType type)
+        {
+            switch(type)
+            {
+                case LogType.Normal: return Color.DarkGray;
+                case LogType.Warning: return Color.Yellow;
+                case LogType.Error: return Color.Red;
+                case LogType.Success: return Color.LightGreen;
+                default: return Color.DarkGray;
+            }
         }
         public void LogEmpty(string str)
         {
