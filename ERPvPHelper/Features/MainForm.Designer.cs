@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.TitleLabel = new System.Windows.Forms.Label();
             this.AuthorLabel = new System.Windows.Forms.Label();
             this.TitleGroup = new System.Windows.Forms.GroupBox();
@@ -73,7 +74,7 @@
             this.AuthorLabel.AutoSize = true;
             this.AuthorLabel.Font = new System.Drawing.Font("Gabriola", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.AuthorLabel.ForeColor = System.Drawing.Color.Purple;
-            this.AuthorLabel.Location = new System.Drawing.Point(107, 80);
+            this.AuthorLabel.Location = new System.Drawing.Point(107, 69);
             this.AuthorLabel.Name = "AuthorLabel";
             this.AuthorLabel.Size = new System.Drawing.Size(113, 45);
             this.AuthorLabel.TabIndex = 1;
@@ -363,7 +364,7 @@
             this.BuildCreationBtn.TabIndex = 8;
             this.BuildCreationBtn.Text = "Build Creation";
             this.BuildCreationBtn.UseVisualStyleBackColor = true;
-            this.BuildCreationBtn.Click += new System.EventHandler(this.BuildCreationBtn_Click);
+            //this.BuildCreationBtn.Click += new System.EventHandler(this.BuildCreationBtn_Click);
             // 
             // OtherOptBtn
             // 
@@ -393,6 +394,7 @@
             this.Controls.Add(this.BasicInfoGroup);
             this.Controls.Add(this.TitleGroup);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.Name = "MainForm";
             this.Text = "ER PvP Helper";

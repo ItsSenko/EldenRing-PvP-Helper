@@ -9,6 +9,7 @@ using SoulsFormats;
 using static Erd_Tools.Models.Param;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Linq;
 
 namespace ERPvPHelper
 {
@@ -74,6 +75,20 @@ namespace ERPvPHelper
         private void OnHooked(object? sender, PropertyHook.PHEventArgs e)
         {
             Invoke(new Action(() => { LoadingLabel.Text = "Attached!"; }));
+            Invoke(() => 
+            {
+                bool hasSeamless = false;
+                foreach(ProcessModule module in hook.Process.Modules)
+                {
+                    if (module.ModuleName == "elden_ring_seamless_coop.dll")
+                        hasSeamless = true;
+                }
+
+                if (!hasSeamless)
+                    BuildCreationBtn.Click += (s, e) => { logger.Log("Please use seamless to use the build creator, this is done for your safety.", Logger.LogType.Error); };
+                else
+                    BuildCreationBtn.Click += BuildCreationBtn_Click;
+            });
         }
 
         private void ManaBox_KeyPress(object? sender, KeyEventArgs e)
@@ -212,6 +227,7 @@ namespace ERPvPHelper
             if (!hook.Loaded)
             {
                 logger.Log("You have not attached Elden Ring", Logger.LogType.Error);
+                return;
             }
             if (settings != null)
             {

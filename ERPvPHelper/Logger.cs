@@ -32,12 +32,6 @@ namespace ERPvPHelper
         {
             form.Invoke(new Action(() =>
             {
-                if (str.Length > 79)
-                {
-                    Log(str.Substring(0, 79));
-                    Log(str.Substring(79));
-                    return;
-                }
                 string SystemTime = DateTime.Now.ToString("[" + "h:mm:ss" + "]");
                 sw.WriteLine($"{SystemTime} [PvPHelper] {str}");
                 LogsBox.SelectionStart = LogsBox.TextLength;

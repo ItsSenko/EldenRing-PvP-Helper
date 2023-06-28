@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ItemOptions));
             this.InfusionBox = new System.Windows.Forms.ComboBox();
             this.AshOfWarBox = new System.Windows.Forms.ComboBox();
             this.DeleteBtn = new System.Windows.Forms.Button();
@@ -117,6 +118,8 @@
             this.Controls.Add(this.DeleteBtn);
             this.Controls.Add(this.AshOfWarBox);
             this.Controls.Add(this.InfusionBox);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ItemOptions";
             this.Text = "Item Options";
             this.ResumeLayout(false);

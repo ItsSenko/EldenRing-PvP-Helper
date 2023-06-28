@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OtherOptionsForm));
             this.ChrTypeLabel = new System.Windows.Forms.Label();
             this.ChrTypeSelection = new System.Windows.Forms.ComboBox();
             this.TestBtn = new System.Windows.Forms.Button();
@@ -97,6 +98,7 @@
             this.Controls.Add(this.ChrTypeSelection);
             this.Controls.Add(this.ChrTypeLabel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "OtherOptionsForm";
             this.Text = "Other Options";
             this.Load += new System.EventHandler(this.OtherOptionsForm_Load);

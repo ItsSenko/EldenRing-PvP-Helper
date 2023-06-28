@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MassItemGib));
             this.AllMeleeWeaponsBtn = new System.Windows.Forms.Button();
             this.AllConsumeBtn = new System.Windows.Forms.Button();
             this.AllArmorBtn = new System.Windows.Forms.Button();
@@ -288,6 +289,7 @@
             this.Controls.Add(this.AllMeleeWeaponsBtn);
             this.ForeColor = System.Drawing.Color.Purple;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MassItemGib";
             this.Text = "MassItemGib";
             ((System.ComponentModel.ISupportInitialize)(this.UpgradeLevel)).EndInit();

@@ -83,17 +83,37 @@ namespace ERPvPHelper
             this.TopLevel = true;
             this.TopMost = true;
         }
-
+        private bool firstTimeChanging = true;
+        private bool shouldRun = false;
         private void ChrTypeSelection_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (!hook.Hooked)
                 return;
+            if (!shouldRun)
+            {
+                shouldRun = true;
+                return;
+            }
+            if (firstTimeChanging)
+            {
+                DialogResult result = MessageBox.Show("Please know that by not changing your ChrType back to normal you are at high risk of being banned online. If you plan to use this character outside of offline and/or seamless I recommended clicking cancel. Clicking ok, you understand this risk.", "PLEASE DONT BE STUPID", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+                if (result != DialogResult.OK)
+                {
+                    shouldRun = false;
+                    ChrTypeSelection.SelectedIndex = 0;
+                    return;
+                }
+
+                firstTimeChanging = false;
+            }
 
             ChrType type = (ChrType)ChrTypeSelection.SelectedItem;
             player.ChrType = type.ChrID;
 
             if (type.ChrID != 0)
+            {
                 logger.Log("Please note that if you do not change back to normal before quiting. You character will save as this the next time you open the game.");
+            }
         }
 
         private void CustomColor_Click(object sender, EventArgs e)

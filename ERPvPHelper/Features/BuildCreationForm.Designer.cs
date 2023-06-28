@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BuildCreationForm));
             this.StatsBox = new System.Windows.Forms.GroupBox();
             this.ArcaneLabel = new System.Windows.Forms.Label();
             this.FaithLabel = new System.Windows.Forms.Label();
@@ -258,6 +259,7 @@
             this.AllInvasionZonesBtn.TabIndex = 8;
             this.AllInvasionZonesBtn.Text = "All Invasion Zones";
             this.AllInvasionZonesBtn.UseVisualStyleBackColor = true;
+            this.AllInvasionZonesBtn.Click += new System.EventHandler(this.AllInvasionZonesBtn_Click);
             // 
             // ItemGibBtn
             // 
@@ -421,6 +423,7 @@
             this.Controls.Add(this.PlayerNameLabel);
             this.Controls.Add(this.StatsBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "BuildCreationForm";
             this.Text = "Build Creation";
             this.Load += new System.EventHandler(this.BuildCreationForm_Load);

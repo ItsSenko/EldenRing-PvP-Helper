@@ -342,6 +342,11 @@ namespace ERPvPHelper
 
             hook.AddRunes((int)RunesBox.Value);
         }
+
+        private void AllInvasionZonesBtn_Click(object sender, EventArgs e)
+        {
+            logger.Log("Sorry, Invasion zones are not implemented yet.", Logger.LogType.Warning);
+        }
     }
 
 }
