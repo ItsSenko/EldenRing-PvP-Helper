@@ -11,7 +11,7 @@ This is a tool to give a better experience in pvp in [seamless co-op](https://ww
 ![BuildCreation](https://i.imgur.com/zlXXo13.png) ![ItemGib](https://i.imgur.com/6paUzmV.png) ![MassItemGib](https://i.imgur.com/iNsukKu.png) ![Build Maker](https://i.imgur.com/qQtSAPw.png)
 
 ## Questions or Concerns?
-Message me on discord at senkopur. Or sumbit an issue!
+Join the [Discord!](https://discord.com/invite/VmyGAS24Gf)
 
 # Features
 ### Base PvP Settings
