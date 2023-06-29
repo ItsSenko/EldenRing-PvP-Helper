@@ -8,6 +8,7 @@ This is a tool to give a better experience in pvp in [seamless co-op](https://ww
 ![MainMenu](https://i.imgur.com/4YnpTB8.png) 
 ![OtherOptions](https://i.imgur.com/ZJgTFfo.png)
 ![RedBadGirl](https://i.imgur.com/KscBzaS.png) ![BlueBadGirl](https://i.imgur.com/v4fDnZ2.png)
+![BuildCreation](https://i.imgur.com/zlXXo13.png) ![ItemGib](https://i.imgur.com/6paUzmV.png) ![MassItemGib](https://i.imgur.com/iNsukKu.png) ![Build Maker](https://i.imgur.com/qQtSAPw.png)
 
 ## Questions or Concerns?
 Message me on discord at senkopur. Or sumbit an issue!
@@ -43,21 +44,9 @@ Message me on discord at senkopur. Or sumbit an issue!
 
 ## Upcoming Features
 ### Build Creation
-- ItemGib
-  - Mass Item Gib
-  - Give all Weapons at specified weapon level
-  - Give specified weapon at specified weapon level with a specified ash of war and affinity
-  - Give all Golden Seeds
-  - Give all Sacred Tears
-  - Give all Maps
-  - Give Max Runes
-- Unlock all Graces
-- Unlock all Invasion Zones
-- Show Current Stats
 - Upgrading Costs no Materials
 
 ### Settings
-- Show Hitboxes
 - (possibly) Free Cam
 
 
