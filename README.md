@@ -28,7 +28,7 @@ Join the [Discord!](https://discord.com/invite/VmyGAS24Gf)
 - Set your Health
 - Set your Mana
 ### Settings
-- Not Implemented Yet.
+- Show Hitboxes
 ### Other Options
 - Change ChrType
   - Yellow Phantom/Co-op Member
@@ -36,7 +36,15 @@ Join the [Discord!](https://discord.com/invite/VmyGAS24Gf)
   - Blue Phantom/Hunter
 - Customize Character Type Color
 ### Build Creation
-- Not Implemented Yet.
+- The Build Creator
+   - All Flash Upgrades
+   - All Talisman Pouches
+   - All Memory Stones
+   - All Maps/Graces
+   - ItemGib
+   - MassItemGib
+   - Loadout Builder
+   - RuneGib
 
 ## Credits
 - Thank you to [Nordgaren](https://github.com/Nordgaren) for the library [Erd-Tools](https://github.com/Nordgaren/Erd-Tools). This helped a lot with development. As well as their controbutions with programming help and helping me understand more about modding Elden Ring!
