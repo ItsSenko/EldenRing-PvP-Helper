@@ -2,7 +2,7 @@
 
 This is a tool to give a better experience in pvp in [seamless co-op](https://www.nexusmods.com/eldenring/mods/510)! It also helps with making future pvp builds!
 
-[![Discord Server](https://img.shields.io/discord/914575394735284344?color=purple&label=Discord&style=plastic)](https://discord.gg/fxpPgHqwUr) [![Twitter Follow](https://img.shields.io/twitter/follow/SenkoPur?style=social&labelColor=%23a200ed&color=%23000000)](https://twitter.com/intent/follow?original_referer=https%3A%2F%2Fgithub.com%2FItsSenko&screen_name=SenkoPur)
+[![Discord Server](https://img.shields.io/discord/1123789049728090122?style=plastic&label=Discord&color=purple)](https://discord.gg/VmyGAS24Gf) [![Twitter Follow](https://img.shields.io/twitter/follow/SenkoPur?style=social&labelColor=%23a200ed&color=%23000000)](https://twitter.com/intent/follow?original_referer=https%3A%2F%2Fgithub.com%2FItsSenko&screen_name=SenkoPur)
 
 ### Please note that this is meant for seamless co-op and not the base game! Using this tool in the base game will likely get you banned. I am not responsible if you get banned using this tool.
 ![MainMenu](https://i.imgur.com/4YnpTB8.png) 
