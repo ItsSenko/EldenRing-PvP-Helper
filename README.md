@@ -1,6 +1,6 @@
 # Senko's PvP Helper for Elden Ring
 
-This is a tool to give a better experience in pvp in [seamless co-op](https://www.nexusmods.com/eldenring/mods/510)! It also helps with making future pvp builds!
+This is a tool to give a better experience in pvp in [seamless co-op](https://www.nexusmods.com/eldenring/mods/510)! It also helps with making future pvp builds! If you would like to use the helper offline without seamless co-op, I recommend using [this mod](https://www.nexusmods.com/eldenring/mods/90).
 
 [![Discord Server](https://img.shields.io/discord/1123789049728090122?style=plastic&label=Discord&color=purple)](https://discord.gg/VmyGAS24Gf) [![Twitter Follow](https://img.shields.io/twitter/follow/SenkoPur?style=social&labelColor=%23a200ed&color=%23000000)](https://twitter.com/intent/follow?original_referer=https%3A%2F%2Fgithub.com%2FItsSenko&screen_name=SenkoPur)
 
