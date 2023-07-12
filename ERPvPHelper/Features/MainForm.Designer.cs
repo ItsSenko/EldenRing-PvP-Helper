@@ -364,7 +364,6 @@
             this.BuildCreationBtn.TabIndex = 8;
             this.BuildCreationBtn.Text = "Build Creation";
             this.BuildCreationBtn.UseVisualStyleBackColor = true;
-            //this.BuildCreationBtn.Click += new System.EventHandler(this.BuildCreationBtn_Click);
             // 
             // OtherOptBtn
             // 
@@ -398,7 +397,6 @@
             this.KeyPreview = true;
             this.Name = "MainForm";
             this.Text = "ER PvP Helper";
-            this.TopMost = true;
             this.Load += new System.EventHandler(this.Form1_Load);
             this.TitleGroup.ResumeLayout(false);
             this.TitleGroup.PerformLayout();

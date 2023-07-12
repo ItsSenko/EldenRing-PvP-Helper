@@ -80,6 +80,10 @@
     "ItemID": 702000
   },
   {
+    "CatName": "Armor",
+    "ItemID": 920000
+  },
+  {
     "CatName": "Consumables",
     "ItemID": 3300
   },
@@ -122,5 +126,9 @@
   {
     "CatName": "Merchant Items",
     "ItemID": 8934
+  },
+  {
+    "CatName": "Talismans",
+    "ItemID": 6100
   }
 ]

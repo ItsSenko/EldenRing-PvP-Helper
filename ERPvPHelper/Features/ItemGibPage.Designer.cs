@@ -205,6 +205,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ItemGibPage";
             this.Text = "Item Gib";
+            this.Load += new System.EventHandler(this.ItemGibPage_Load);
             ((System.ComponentModel.ISupportInitialize)(this.QuantityBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.UpgradeBox)).EndInit();
             this.ResumeLayout(false);

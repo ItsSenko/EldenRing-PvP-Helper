@@ -28,10 +28,14 @@
 	  <None Remove="ConsumableIDS.txt" />
 	  <None Remove="MapEventFlagIds.txt" />
 	  <None Remove="Resources\AddRunes.asm" />
+	  <None Remove="Resources\Builds\SimpleArcaneBuild.json" />
+	  <None Remove="Resources\Builds\SimpleStrengthBuild.json" />
 	</ItemGroup>
 	<ItemGroup>
 	  <EmbeddedResource Include="Resources\AddRunes.asm" />
 	  <EmbeddedResource Include="Resources\Blacklist.json" />
+	  <EmbeddedResource Include="Resources\Builds\SimpleArcaneBuild.json" />
+	  <EmbeddedResource Include="Resources\Builds\SimpleStrengthBuild.json" />
 	  <EmbeddedResource Include="Resources\ConsumableIDS.txt" />
 	  <EmbeddedResource Include="Resources\MapEventFlagIds.txt" />
 	</ItemGroup>
@@ -56,6 +60,10 @@
 		<None Update="C:\Users\eleme\.nuget\packages\keystoneengine.csharp\0.9.1.1\build\x86\keystone.dll">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
+		<None Update="Settings.settings">
+		  <Generator>SettingsSingleFileGenerator</Generator>
+		  <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+		</None>
 	</ItemGroup>
 	
   <ItemGroup>
@@ -68,8 +76,13 @@
     <Compile Update="Features\BuildPrefabMaker.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Features\Settings.cs">
+    <Compile Update="Features\SettingsForm.cs">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Settings.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
   </ItemGroup>
 

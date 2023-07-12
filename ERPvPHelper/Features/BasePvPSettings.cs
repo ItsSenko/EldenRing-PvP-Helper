@@ -20,9 +20,6 @@ namespace ERPvPHelper
         public ErdHook hook { get; set; }
         private Logger? logger { get; set; }
         public Player? player { get; private set; }
-        public PHPointer? ChrFlags { get; private set; }
-        public PHPointer? idleAnimation { get; private set; }
-        public PHPointer? animPointer { get; private set; }
 
         #region From Controls
         public CheckBox? NoDeadToggle { get; set; }
@@ -87,9 +84,6 @@ namespace ERPvPHelper
             logger.Log("Created new Player");
 
             logger.Log("Creating Pointers...");
-            ChrFlags = hook.CreateChildPointer(hook.PlayerIns, new int[] { 0x190, 0x0 });
-            idleAnimation = hook.CreateChildPointer(hook.PlayerIns, new int[] { 0x190, 0x58 });
-            animPointer = hook.CreateChildPointer(hook.PlayerIns, new int[] { 0x190, 0x80});
             logger.Log("Pointers Created");
 
             logger.Log("Starting Loops...");
@@ -111,26 +105,26 @@ namespace ERPvPHelper
             {
                 form.Invoke(new Action(() =>
                 {
-                    byte chrFlagsByte = ChrFlags.ReadByte(chrFlagsOffset);
+                    byte chrFlagsByte = CustomPointers.ChrFlags.ReadByte(chrFlagsOffset);
 
                     if (NoDeadToggle.Checked != Helpers.IsBitSet(chrFlagsByte, noDeadBitIndex))
                     {
-                        ChrFlags.WriteByte(chrFlagsOffset, Helpers.SetBit(chrFlagsByte, noDeadBitIndex, NoDeadToggle.Checked));
+                        CustomPointers.ChrFlags.WriteByte(chrFlagsOffset, Helpers.SetBit(chrFlagsByte, noDeadBitIndex, NoDeadToggle.Checked));
                     }
 
                     if (NoDamageToggle.Checked != Helpers.IsBitSet(chrFlagsByte, noDamageBitIndex))
                     {
-                        ChrFlags.WriteByte(chrFlagsOffset, Helpers.SetBit(chrFlagsByte, noDamageBitIndex, NoDamageToggle.Checked));
+                        CustomPointers.ChrFlags.WriteByte(chrFlagsOffset, Helpers.SetBit(chrFlagsByte, noDamageBitIndex, NoDamageToggle.Checked));
                     }
 
                     if (NoFPConsumeToggle.Checked != Helpers.IsBitSet(chrFlagsByte, noFpConsumeBitIndex))
                     {
-                        ChrFlags.WriteByte(chrFlagsOffset, Helpers.SetBit(chrFlagsByte, noFpConsumeBitIndex, NoFPConsumeToggle.Checked));
+                        CustomPointers.ChrFlags.WriteByte(chrFlagsOffset, Helpers.SetBit(chrFlagsByte, noFpConsumeBitIndex, NoFPConsumeToggle.Checked));
                     }
 
                     if (NoStamLossToggle.Checked != Helpers.IsBitSet(chrFlagsByte, noStaminaConsumeBitIndex))
                     {
-                        ChrFlags.WriteByte(chrFlagsOffset, Helpers.SetBit(chrFlagsByte, noStaminaConsumeBitIndex, NoStamLossToggle.Checked));
+                        CustomPointers.ChrFlags.WriteByte(chrFlagsOffset, Helpers.SetBit(chrFlagsByte, noStaminaConsumeBitIndex, NoStamLossToggle.Checked));
                     }
                 }));
                 Thread.Sleep(10000);
@@ -233,14 +227,14 @@ namespace ERPvPHelper
                     return;
                 if (hook.Loaded)
                 {
-                    int anim = animPointer.ReadInt32(0x90);
+                    int anim = CustomPointers.animPointer.ReadInt32(0x90);
                     if (anim == 70000 || anim == 70010)
                     {
                         form.Invoke(new Action(() =>
                         {
-                            byte b = ChrFlags.ReadByte(0x19B);
+                            byte b = CustomPointers.ChrFlags.ReadByte(0x19B);
 
-                            ChrFlags.WriteByte(0x19B, Helpers.SetBit(b, 0, true));
+                            CustomPointers.ChrFlags.WriteByte(0x19B, Helpers.SetBit(b, 0, true));
                         }));
                         if (tempPlayer.Hp <= 1)
                         {
@@ -250,9 +244,9 @@ namespace ERPvPHelper
                     }
                     else
                     {
-                        byte b = ChrFlags.ReadByte(0x19B);
+                        byte b = CustomPointers.ChrFlags.ReadByte(0x19B);
 
-                        ChrFlags.WriteByte(0x19B, Helpers.SetBit(b, 0, false));
+                        CustomPointers.ChrFlags.WriteByte(0x19B, Helpers.SetBit(b, 0, false));
                     }
 
                     if (tempPlayer.Hp == 0)
@@ -308,7 +302,7 @@ namespace ERPvPHelper
         {
             currPlayer.Hp = currPlayer.HpMax;
             currPlayer.Fp = currPlayer.FpMax;
-            idleAnimation.WriteInt32(0x18, 0);
+            CustomPointers.idleAnimation.WriteInt32(0x18, 0);
         }
         #endregion
         #region Toggles
@@ -326,9 +320,9 @@ namespace ERPvPHelper
                 NoDeadToggle.CheckState = CheckState.Unchecked;
                 return;
             }
-            byte b = ChrFlags.ReadByte(0x19B);
+            byte b = CustomPointers.ChrFlags.ReadByte(0x19B);
 
-            ChrFlags.WriteByte(0x19B, Helpers.SetBit(b, 0, NoDeadToggle.Checked));
+            CustomPointers.ChrFlags.WriteByte(0x19B, Helpers.SetBit(b, 0, NoDeadToggle.Checked));
 
             logger.Log($"No Dead Toggled {NoDeadToggle.Checked}.");
         }
@@ -346,9 +340,9 @@ namespace ERPvPHelper
                 NoFPConsumeToggle.CheckState = CheckState.Unchecked;
                 return;
             }
-            byte b = ChrFlags.ReadByte(0x19B);
+            byte b = CustomPointers.ChrFlags.ReadByte(0x19B);
 
-            ChrFlags.WriteByte(0x19B, Helpers.SetBit(b, 2, NoFPConsumeToggle.Checked));
+            CustomPointers.ChrFlags.WriteByte(0x19B, Helpers.SetBit(b, 2, NoFPConsumeToggle.Checked));
             logger.Log($"No FP Loss Toggle {NoFPConsumeToggle.Checked}");
         }
         public void NoDamagetoggle()
@@ -365,8 +359,8 @@ namespace ERPvPHelper
                 NoDamageToggle.CheckState = CheckState.Unchecked;
                 return;
             }
-            byte b = ChrFlags.ReadByte(0x19B);
-            ChrFlags.WriteByte(0x19B, Helpers.SetBit(b, 1, NoDamageToggle.Checked));
+            byte b = CustomPointers.ChrFlags.ReadByte(0x19B);
+            CustomPointers.ChrFlags.WriteByte(0x19B, Helpers.SetBit(b, 1, NoDamageToggle.Checked));
 
             logger.Log($"No Damage Toggled {NoDamageToggle.Checked}");
         }
@@ -384,8 +378,8 @@ namespace ERPvPHelper
                 NoStamLossToggle.CheckState = CheckState.Unchecked;
                 return;
             }
-            byte b = ChrFlags.ReadByte(0x19B);
-            ChrFlags.WriteByte(0x19B, Helpers.SetBit(b, 3, NoStamLossToggle.Checked));
+            byte b = CustomPointers.ChrFlags.ReadByte(0x19B);
+            CustomPointers.ChrFlags.WriteByte(0x19B, Helpers.SetBit(b, 3, NoStamLossToggle.Checked));
 
             logger.Log($"No Stam Loss Toggled {NoStamLossToggle.Checked}");
         }
@@ -425,6 +419,11 @@ namespace ERPvPHelper
                 row.Param.Pointer.WriteByte(dataOffset + consumeOffset, b);
                 //Log($"Made isConsume {(NoGoodsConsumeToggle.Checked ? "false" : "true")} for {row.Name}");
             }
+            PHPointer AllNoArrowConsume = hook.CreateBasePointer(CustomPointers.ChrDbgFlags.Resolve() + 6);
+            
+            logger.Log(CustomPointers.ChrDbgFlags.Resolve().ToString());
+            logger.Log(AllNoArrowConsume.Resolve().ToString());
+            CustomPointers.ChrDbgFlags.WriteByte(0, NoFPConsumeToggle.Checked ? (byte)1 : (byte)0);
 
             logger.Log($"Infinite Consumables Toggled {NoGoodsConsumeToggle.Checked}.");
         }

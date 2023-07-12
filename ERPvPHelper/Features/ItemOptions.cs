@@ -51,6 +51,10 @@ namespace ERPvPHelper.Features
                     }
 
                     GemOption gemOption = AshOfWarBox.SelectedItem as GemOption;
+                    if (gemOption.gem.Infusions == null)
+                    {
+                        return;
+                    }
                     foreach(Infusion infusion in gemOption.gem.Infusions)
                     {
                         var index = InfusionBox.Items.Add(new InfusionOption(infusion.ToString(), infusion));
@@ -67,8 +71,27 @@ namespace ERPvPHelper.Features
                 InfusionBox.Enabled = false;
                 SaveBtn.Enabled = false;
             }
+            SetColors();
         }
+        public void SetColors()
+        {
+            this.BackColor = Settings.Default.BackgroundColor;
 
+            foreach (Control control in this.Controls)
+            {
+                if (control is GroupBox box)
+                {
+                    foreach (Control boxControl in box.Controls)
+                    {
+                        boxControl.BackColor = Settings.Default.BackgroundColor;
+                        boxControl.ForeColor = Settings.Default.ForegroundColor;
+                    }
+                    continue;
+                }
+                control.BackColor = Settings.Default.BackgroundColor;
+                control.ForeColor = Settings.Default.ForegroundColor;
+            }
+        }
 
         private void SaveBtn_Click(object sender, EventArgs e)
         {

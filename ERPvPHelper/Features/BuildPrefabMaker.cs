@@ -44,9 +44,106 @@ namespace ERPvPHelper.Features
             CategoryBox.Items.Add(new ItemCategoryOption(category3.Name, category3));
             CategoryBox.Items.Add(new ItemCategoryOption(category4.Name, category4));
             CategoryBox.Items.Add(new ItemCategoryOption(category5.Name, category5));
+
+            SetColors();
+            ItemsBox.TextChanged += ItemsBox_TextChanged;
+            AshOfWarBox.TextChanged += AshBox_TextChanged;
+        }
+        List<ItemGibOption> originData = new();
+        List<ItemGibOption> updatedList = new List<ItemGibOption>();
+
+        private void ItemsBox_TextChanged(object sender, EventArgs e)
+        {
+            if (ItemsBox.SelectedItem != null)
+                return;
+            if (string.IsNullOrEmpty(ItemsBox.Text))
+            {
+                ItemsBox.Items.Clear();
+                foreach (ItemGibOption option in originData)
+                {
+                    ItemsBox.Items.Add(option);
+                }
+                return;
+            }
+            string searchText = ItemsBox.Text.ToLower();
+
+            // Filter the list based on the search text and order by position
+            updatedList = originData
+                .Where(item => item.Name.ToLower().Contains(searchText))
+                .OrderBy(item => item.Name.IndexOf(searchText))
+                .ToList();
+
+            // Update the ComboBox items only once the user finishes typing
+            ItemsBox.BeginUpdate();
+            ItemsBox.Items.Clear();
+            foreach (ItemGibOption item in updatedList)
+            {
+                ItemsBox.Items.Add(item);
+            }
+            ItemsBox.EndUpdate();
+            ItemsBox.Select(ItemsBox.Text.Length, 0);
+        }
+        List<GemOption> ashOriginData = new();
+        List<GemOption> ashUpdatedList = new();
+        private void AshBox_TextChanged(object sender, EventArgs e)
+        {
+            if (AshOfWarBox.SelectedItem != null)
+                return;
+            if (string.IsNullOrEmpty(AshOfWarBox.Text))
+            {
+                AshOfWarBox.Items.Clear();
+                foreach (GemOption option in ashOriginData)
+                {
+                    AshOfWarBox.Items.Add(option);
+                }
+                return;
+            }
+            string searchText = AshOfWarBox.Text.ToLower();
+
+            // Filter the list based on the search text and order by position
+            ashUpdatedList = ashOriginData
+                .Where(item => item.Name.ToLower().Contains(searchText))
+                .OrderBy(item => item.Name.IndexOf(searchText))
+                .ToList();
+
+            // Update the ComboBox items only once the user finishes typing
+            AshOfWarBox.BeginUpdate();
+            AshOfWarBox.Items.Clear();
+            foreach (GemOption item in ashUpdatedList)
+            {
+                AshOfWarBox.Items.Add(item);
+            }
+            AshOfWarBox.EndUpdate();
+            AshOfWarBox.Select(ItemsBox.Text.Length, 0);
+        }
+        public void SetColors()
+        {
+            this.BackColor = Settings.Default.BackgroundColor;
+
+            foreach (Control control in this.Controls)
+            {
+                if (control is GroupBox box)
+                {
+                    foreach (Control boxControl in box.Controls)
+                    {
+                        boxControl.BackColor = Settings.Default.BackgroundColor;
+                        boxControl.ForeColor = Settings.Default.ForegroundColor;
+                    }
+                    continue;
+                }
+                if (control is FlowLayoutPanel panel)
+                {
+                    foreach(Control panelControl in panel.Controls)
+                    {
+                        panelControl.BackColor = Settings.Default.BackgroundColor;
+                        panelControl.ForeColor = Settings.Default.ForegroundColor;
+                    }
+                }
+                control.BackColor = Settings.Default.BackgroundColor;
+                control.ForeColor = Settings.Default.ForegroundColor;
+            }
         }
 
-        
         private void InventoryDragDrop(object sender, DragEventArgs e)
         {
             if (e.Data.GetData(typeof(ItemControl)) != null)
@@ -99,34 +196,42 @@ namespace ERPvPHelper.Features
         private void CategoryBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             ItemsBox.Items.Clear();
+            originData.Clear();
             ItemCategoryOption option = CategoryBox.SelectedItem as ItemCategoryOption;
             foreach(Item item in option.category.Items)
             {
-                ItemGibOption itemGibOption = new(item.Name, item);
+                ItemGibOption itemGibOption = new(item.Name, option.Name, item);
                 ItemsBox.Items.Add(itemGibOption);
+                originData.Add(itemGibOption);
             }
             ItemsBox.Focus();
         }
-
+        private string[] allowedCatsForUpgrade = new string[] { "Melee Weapons", "Ranged Weapons", "Spell Tools", "Shields" };
         private void ItemsBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            ItemGibOption option = ItemsBox.SelectedItem as ItemGibOption;
+            if (option == null || option.item == null)
+                return;
+
             InfusionsBox.Items.Clear();
             AshOfWarBox.Items.Clear();
             AshOfWarBox.Text = string.Empty;
             InfusionsBox.Text = string.Empty;
-            ItemGibOption option = ItemsBox.SelectedItem as ItemGibOption;
+            ashOriginData.Clear();
 
-            if (option.item is Weapon weapon)
+            if (option.item is Weapon weapon && allowedCatsForUpgrade.Contains(option.CatName))
             {
                 if (weapon.Infusible)
                 {
                     AshOfWarBox.Enabled = true;
 
                     foreach (Gem gem in Gem.All)
-                    { 
+                    {
                         if (gem.WeaponTypes.Contains(weapon.Type))
                         {
-                            AshOfWarBox.Items.Add(new GemOption(gem.Name, gem));
+                            var newGem = new GemOption(gem.Name.Contains("Ash of War: ") ? gem.Name.Substring(12) : gem.Name, gem);
+                            AshOfWarBox.Items.Add(newGem);
+                            ashOriginData.Add(newGem);
                         }
                     }
                     UpgradeBox.Maximum = 25;
@@ -142,10 +247,14 @@ namespace ERPvPHelper.Features
                         UpgradeBox.Value = UpgradeBox.Maximum;
                 }
                 UpgradeBox.Enabled = true;
-                
+
             }
             else
-                UpgradeBox.Enabled = true;
+            {
+                AshOfWarBox.Enabled = false;
+                InfusionsBox.Enabled = false;
+                UpgradeBox.Enabled = false;
+            }
 
             QuantityBox.Maximum = option.item.MaxQuantity;
             
@@ -221,7 +330,7 @@ namespace ERPvPHelper.Features
             {
                 foreach (ArmorPrefab prefab in armorsPrefab)
                 {
-                    ItemCategory itemCat = ItemCategory.All.FirstOrDefault(x => x.Name == "Armors");
+                    ItemCategory itemCat = ItemCategory.All.FirstOrDefault(x => x.Name == "Armor");
                     if (itemCat != null)
                     {
                         Item item = itemCat.Items.FirstOrDefault(x => x.ID == prefab.ID);
@@ -252,7 +361,8 @@ namespace ERPvPHelper.Features
             ItemControl newBtn = new(item);
             newBtn.Text = name;
             newBtn.FlatStyle = FlatStyle.Flat;
-            newBtn.BackColor = Color.Black;
+            newBtn.BackColor = Settings.Default.BackgroundColor;
+            newBtn.ForeColor = Settings.Default.ForegroundColor;
             newBtn.Size = new(81, 84);
             
             newBtn.MouseDown += (s, e) => 
@@ -433,6 +543,32 @@ namespace ERPvPHelper.Features
         private void TalismanBtn_Click(object sender, EventArgs e)
         {
             SetInventory(InventoryState.Talismans);
+        }
+
+        private void BuildPrefabMaker_Load(object sender, EventArgs e)
+        {
+            if (weaponsPrefab.Count > 0)
+            {
+                foreach (WeaponPrefab prefab in weaponsPrefab)
+                {
+                    ItemCategory category = ItemCategory.All.FirstOrDefault(x => x.Items.FirstOrDefault(x => x.ID == prefab.ID && x is Weapon) != null);
+                    Item item = category.Items.FirstOrDefault(x => x.ID == prefab.ID);
+                    if (item is Weapon weapon)
+                    {
+                        Gem gem = Gem.All.FirstOrDefault(x => x.ID == prefab.SwordArtID);
+
+                        if (!gem.WeaponTypes.Contains(weapon.Type))
+                        {
+                            var result = MessageBox.Show($"Warning: The weapon [{weapon.Name}] does not have a proper ash of war. Would you like to change its ash of war back to default?", "WARNING", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                            if (result == DialogResult.Yes)
+                            {
+                                var defaultGem = weapon.DefaultGem?.ID ?? -1;
+                                prefab.SwordArtID = defaultGem;
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
     public partial class ItemControl : Button

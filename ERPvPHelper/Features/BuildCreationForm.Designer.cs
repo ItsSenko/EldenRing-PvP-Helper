@@ -57,6 +57,7 @@
             this.ImportBtn = new System.Windows.Forms.Button();
             this.RunesBox = new System.Windows.Forms.NumericUpDown();
             this.MaxRunesToggle = new System.Windows.Forms.CheckBox();
+            this.NoMatCostToggle = new System.Windows.Forms.CheckBox();
             this.StatsBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.RunesBox)).BeginInit();
             this.SuspendLayout();
@@ -287,6 +288,8 @@
             // 
             // BuildPrefabBox
             // 
+            this.BuildPrefabBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.BuildPrefabBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.BuildPrefabBox.BackColor = System.Drawing.Color.Black;
             this.BuildPrefabBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.Simple;
             this.BuildPrefabBox.ForeColor = System.Drawing.Color.Fuchsia;
@@ -396,12 +399,25 @@
             this.MaxRunesToggle.UseVisualStyleBackColor = true;
             this.MaxRunesToggle.CheckedChanged += new System.EventHandler(this.MaxRunesToggle_CheckedChanged);
             // 
+            // NoMatCostToggle
+            // 
+            this.NoMatCostToggle.AutoSize = true;
+            this.NoMatCostToggle.ForeColor = System.Drawing.Color.Purple;
+            this.NoMatCostToggle.Location = new System.Drawing.Point(212, 365);
+            this.NoMatCostToggle.Name = "NoMatCostToggle";
+            this.NoMatCostToggle.Size = new System.Drawing.Size(115, 19);
+            this.NoMatCostToggle.TabIndex = 20;
+            this.NoMatCostToggle.Text = "No Material Cost";
+            this.NoMatCostToggle.UseVisualStyleBackColor = true;
+            this.NoMatCostToggle.CheckedChanged += new System.EventHandler(this.NoMatCostToggle_CheckedChanged);
+            // 
             // BuildCreationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(763, 403);
+            this.Controls.Add(this.NoMatCostToggle);
             this.Controls.Add(this.MaxRunesToggle);
             this.Controls.Add(this.RunesBox);
             this.Controls.Add(this.ImportBtn);
@@ -465,5 +481,6 @@
         private Button ImportBtn;
         private NumericUpDown RunesBox;
         private CheckBox MaxRunesToggle;
+        private CheckBox NoMatCostToggle;
     }
 }

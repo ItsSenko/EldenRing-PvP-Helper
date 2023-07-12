@@ -23,23 +23,64 @@ namespace ERPvPHelper
             {
                 Directory.CreateDirectory(directory);
             }
+
+            if (!File.Exists(Path.Combine(directory, "Simple Arcane Build.json")))
+                Helpers.SaveEmbededFileToPath("Resources.Builds.SimpleArcaneBuild.json", Path.Combine(directory, "Simple Arcane Build.json"));
+
+            if (!File.Exists(Path.Combine(directory, "Simple Strength Build.json")))
+                Helpers.SaveEmbededFileToPath("Resources.Builds.SimpleStrengthBuild.json", Path.Combine(directory, "Simple Strength Build.json"));
+
+            Settings.Default.SettingsSaving += (s, e) => 
+            {
+                SetColors();
+                
+                if (settings != null)
+                    settings.SetColors();
+
+                if (otherOptForm != null)
+                    otherOptForm.SetColors();
+
+                if (buildCreationForm != null)
+                    buildCreationForm.SetColors();
+            };
+            SetColors();
+        }
+
+        private void SetColors()
+        {
+            this.BackColor = Settings.Default.BackgroundColor;
+
+            foreach (Control control in this.Controls)
+            {
+                if (control is GroupBox box)
+                {
+                    foreach(Control boxControl in box.Controls)
+                    {
+                        boxControl.BackColor = Settings.Default.BackgroundColor;
+                        boxControl.ForeColor = Settings.Default.ForegroundColor;
+                    }
+                    continue;
+                }
+                control.BackColor = Settings.Default.BackgroundColor;
+                control.ForeColor = Settings.Default.ForegroundColor;
+            }
         }
         private ErdHook hook;
         private BasePvPSettings pvpSettings;
 
         private Logger logger;
+        public static PHPointer CameraPointer;
 
         [DllImport("kernel32.dll", SetLastError = true)]
         [return: MarshalAs(UnmanagedType.Bool)]
         static extern bool AllocConsole();
         private void Form1_Load(object sender, EventArgs e)
         {
-            
             logger = new Logger(this, LogsBox, new StringBuilder());
             Func<Process, bool> func = process => process.ProcessName == "eldenring";
 
             hook = new(1, 100, func);
-            SettingsForm.dHitbox = hook.RegisterRelativeAOB("0F 29 74 24 40 0F 1F", 12, 16, 0);
+            CustomPointers.Initialize(hook);
             pvpSettings = new(this, hook, logger);
 
             hook.OnHooked += OnHooked;
@@ -71,26 +112,23 @@ namespace ERPvPHelper
 
             logger.Log("Elden Ring is no longer detecting.");
         }
-
+        private bool HasSeamless = false;
         private void OnHooked(object? sender, PropertyHook.PHEventArgs e)
         {
             Invoke(new Action(() => { LoadingLabel.Text = "Attached!"; }));
             Invoke(() => 
             {
+                CameraPointer = hook.CreateChildPointer(CustomPointers.FieldArea, new int[] { 0x20 });
                 bool hasSeamless = false;
                 foreach(ProcessModule module in hook.Process.Modules)
                 {
                     if (module.ModuleName == "elden_ring_seamless_coop.dll")
                         hasSeamless = true;
                 }
-
-                if (!hasSeamless)
-                    BuildCreationBtn.Click += (s, e) => { logger.Log("Please use seamless to use the build creator, this is done for your safety.", Logger.LogType.Error); };
-                else
-                    BuildCreationBtn.Click += BuildCreationBtn_Click;
+                HasSeamless = hasSeamless;
+                BuildCreationBtn.Click += BuildCreationBtn_Click;
             });
         }
-
         private void ManaBox_KeyPress(object? sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -197,8 +235,11 @@ namespace ERPvPHelper
         BuildCreationForm buildCreationForm;
         private void BuildCreationBtn_Click(object sender, EventArgs e)
         {
-            /*logger.Log("Sorry, build creation is not implemented yet.", Logger.LogType.Warning);
-            return;*/
+            if (!Settings.Default.DisableSeamlessCheck && !HasSeamless)
+            {
+                logger.Log("Sorry, please use the build creator in seamless co-op. This is done for your safety.");
+                return;
+            }
             if (!pvpSettings.hook.Hooked)
             {
                 logger.Log("The game is not attached. Attach the game first", Logger.LogType.Error);
@@ -224,19 +265,19 @@ namespace ERPvPHelper
         private SettingsForm settings = null;
         private void SettingsBtn_Click(object sender, EventArgs e)
         {
-            if (!hook.Loaded)
-            {
-                logger.Log("You have not attached Elden Ring", Logger.LogType.Error);
-                return;
-            }
             if (settings != null)
             {
                 settings.Close();
                 settings = null;
             }
 
-            settings = new(hook, logger);
+            settings = new(hook, logger, this);
             settings.Show();
+        }
+
+        private void TestBox_CheckedChanged(object sender, EventArgs e)
+        {
+            //CameraPointer.WriteInt32(0xC8, TestBox.Checked ? 2 : 0);
         }
     }
 }

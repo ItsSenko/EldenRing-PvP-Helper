@@ -28,11 +28,13 @@ namespace ERPvPHelper
     class ItemGibOption
     {
         public string Name { get; set; }
+        public string CatName { get; set; }
         public Item item { get; set; }
-        public ItemGibOption(string name, Item item)
+        public ItemGibOption(string name, string catName, Item item)
         {
             this.Name = name;
             this.item = item;
+            CatName = catName;
         }
         public override string ToString()
         {

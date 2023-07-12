@@ -45,6 +45,35 @@ namespace ERPvPHelper
             Task.Run(new Action(() => Checks()));
 
             RefreshBtn.PerformClick();
+            SetColors();
+        }
+        public void SetColors()
+        {
+            this.BackColor = Settings.Default.BackgroundColor;
+
+            foreach (Control control in this.Controls)
+            {
+                if (control is GroupBox box)
+                {
+                    foreach (Control boxControl in box.Controls)
+                    {
+                        boxControl.BackColor = Settings.Default.BackgroundColor;
+                        boxControl.ForeColor = Settings.Default.ForegroundColor;
+                    }
+                    continue;
+                }
+                control.BackColor = Settings.Default.BackgroundColor;
+                control.ForeColor = Settings.Default.ForegroundColor;
+            }
+
+            if (itemGibPage != null)
+                itemGibPage.SetColors();
+
+            if (massItemGib != null)
+                massItemGib.SetColors();
+
+            if (maker != null)
+                maker.SetColors();
         }
         private void Checks()
         {
@@ -92,7 +121,7 @@ namespace ERPvPHelper
                     itemGibPage.Close();
                     itemGibPage = null;
                 }
-                itemGibPage = new(hook);
+                itemGibPage = new(hook, logger);
                 itemGibPage.TopLevel = true;
 
                 itemGibPage.Show();
@@ -346,6 +375,25 @@ namespace ERPvPHelper
         private void AllInvasionZonesBtn_Click(object sender, EventArgs e)
         {
             logger.Log("Sorry, Invasion zones are not implemented yet.", Logger.LogType.Warning);
+        }
+        Dictionary<string, Tuple<int, int>> defaultMtrlValues = new();
+        private void NoMatCostToggle_CheckedChanged(object sender, EventArgs e)
+        {
+            Param param = hook.Params.FirstOrDefault(x => x.Name == "EquipMtrlSetParam");
+
+            var materialIdOffset = param.Fields.FirstOrDefault(x => x.InternalName == "materialId01").FieldOffset;
+            var itemNumOffset = param.Fields.FirstOrDefault(x => x.InternalName == "itemNum01").FieldOffset;
+
+            if (NoMatCostToggle.Checked)
+            {
+                foreach (Row row in param.Rows)
+                {
+                    param.Pointer.WriteInt32(row.DataOffset + materialIdOffset, (sbyte)-1);
+                    param.Pointer.WriteSByte(row.DataOffset + itemNumOffset, (sbyte)-1);
+                }
+            }
+            else
+                param.RestoreParam();
         }
     }
 

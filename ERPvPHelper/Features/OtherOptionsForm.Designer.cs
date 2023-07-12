@@ -33,6 +33,13 @@
             this.ChrTypeSelection = new System.Windows.Forms.ComboBox();
             this.TestBtn = new System.Windows.Forms.Button();
             this.ResetColorBtn = new System.Windows.Forms.Button();
+            this.CustomFPS = new System.Windows.Forms.NumericUpDown();
+            this.CustomFPSToggle = new System.Windows.Forms.CheckBox();
+            this.CustomFOVToggle = new System.Windows.Forms.CheckBox();
+            this.CustomFOV = new System.Windows.Forms.NumericUpDown();
+            this.ShowHitboxesToggle = new System.Windows.Forms.CheckBox();
+            ((System.ComponentModel.ISupportInitialize)(this.CustomFPS)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CustomFOV)).BeginInit();
             this.SuspendLayout();
             // 
             // ChrTypeLabel
@@ -87,12 +94,103 @@
             this.ResetColorBtn.UseVisualStyleBackColor = false;
             this.ResetColorBtn.Click += new System.EventHandler(this.ResetColorBtn_Click);
             // 
+            // CustomFPS
+            // 
+            this.CustomFPS.BackColor = System.Drawing.Color.Black;
+            this.CustomFPS.ForeColor = System.Drawing.Color.Fuchsia;
+            this.CustomFPS.Location = new System.Drawing.Point(259, 61);
+            this.CustomFPS.Maximum = new decimal(new int[] {
+            999,
+            0,
+            0,
+            0});
+            this.CustomFPS.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.CustomFPS.Name = "CustomFPS";
+            this.CustomFPS.Size = new System.Drawing.Size(90, 23);
+            this.CustomFPS.TabIndex = 5;
+            this.CustomFPS.Value = new decimal(new int[] {
+            75,
+            0,
+            0,
+            0});
+            this.CustomFPS.ValueChanged += new System.EventHandler(this.CustomFPS_ValueChanged);
+            // 
+            // CustomFPSToggle
+            // 
+            this.CustomFPSToggle.AutoSize = true;
+            this.CustomFPSToggle.ForeColor = System.Drawing.Color.Fuchsia;
+            this.CustomFPSToggle.Location = new System.Drawing.Point(163, 62);
+            this.CustomFPSToggle.Name = "CustomFPSToggle";
+            this.CustomFPSToggle.Size = new System.Drawing.Size(90, 19);
+            this.CustomFPSToggle.TabIndex = 6;
+            this.CustomFPSToggle.Text = "Custom FPS";
+            this.CustomFPSToggle.UseVisualStyleBackColor = true;
+            this.CustomFPSToggle.CheckedChanged += new System.EventHandler(this.CustomFPSToggle_CheckedChanged);
+            // 
+            // CustomFOVToggle
+            // 
+            this.CustomFOVToggle.AutoSize = true;
+            this.CustomFOVToggle.ForeColor = System.Drawing.Color.Fuchsia;
+            this.CustomFOVToggle.Location = new System.Drawing.Point(163, 95);
+            this.CustomFOVToggle.Name = "CustomFOVToggle";
+            this.CustomFOVToggle.Size = new System.Drawing.Size(93, 19);
+            this.CustomFOVToggle.TabIndex = 8;
+            this.CustomFOVToggle.Text = "Custom FOV";
+            this.CustomFOVToggle.UseVisualStyleBackColor = true;
+            this.CustomFOVToggle.CheckedChanged += new System.EventHandler(this.CustomFOVToggle_CheckedChanged);
+            // 
+            // CustomFOV
+            // 
+            this.CustomFOV.BackColor = System.Drawing.Color.Black;
+            this.CustomFOV.ForeColor = System.Drawing.Color.Fuchsia;
+            this.CustomFOV.Location = new System.Drawing.Point(259, 94);
+            this.CustomFOV.Maximum = new decimal(new int[] {
+            999,
+            0,
+            0,
+            0});
+            this.CustomFOV.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.CustomFOV.Name = "CustomFOV";
+            this.CustomFOV.Size = new System.Drawing.Size(90, 23);
+            this.CustomFOV.TabIndex = 7;
+            this.CustomFOV.Value = new decimal(new int[] {
+            75,
+            0,
+            0,
+            0});
+            this.CustomFOV.ValueChanged += new System.EventHandler(this.CustomFOV_ValueChanged);
+            // 
+            // ShowHitboxesToggle
+            // 
+            this.ShowHitboxesToggle.AutoSize = true;
+            this.ShowHitboxesToggle.ForeColor = System.Drawing.Color.Fuchsia;
+            this.ShowHitboxesToggle.Location = new System.Drawing.Point(163, 28);
+            this.ShowHitboxesToggle.Name = "ShowHitboxesToggle";
+            this.ShowHitboxesToggle.Size = new System.Drawing.Size(105, 19);
+            this.ShowHitboxesToggle.TabIndex = 9;
+            this.ShowHitboxesToggle.Text = "Show Hitboxes";
+            this.ShowHitboxesToggle.UseVisualStyleBackColor = true;
+            this.ShowHitboxesToggle.CheckedChanged += new System.EventHandler(this.ShowHitboxesToggle_CheckedChanged);
+            // 
             // OtherOptionsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(419, 155);
+            this.ClientSize = new System.Drawing.Size(376, 130);
+            this.Controls.Add(this.ShowHitboxesToggle);
+            this.Controls.Add(this.CustomFOVToggle);
+            this.Controls.Add(this.CustomFOV);
+            this.Controls.Add(this.CustomFPSToggle);
+            this.Controls.Add(this.CustomFPS);
             this.Controls.Add(this.ResetColorBtn);
             this.Controls.Add(this.TestBtn);
             this.Controls.Add(this.ChrTypeSelection);
@@ -102,6 +200,8 @@
             this.Name = "OtherOptionsForm";
             this.Text = "Other Options";
             this.Load += new System.EventHandler(this.OtherOptionsForm_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.CustomFPS)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CustomFOV)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -112,5 +212,10 @@
         private ComboBox ChrTypeSelection;
         private Button TestBtn;
         private Button ResetColorBtn;
+        private NumericUpDown CustomFPS;
+        private CheckBox CustomFPSToggle;
+        private CheckBox CustomFOVToggle;
+        private NumericUpDown CustomFOV;
+        private CheckBox ShowHitboxesToggle;
     }
 }

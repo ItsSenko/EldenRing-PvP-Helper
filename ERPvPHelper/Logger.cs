@@ -37,9 +37,8 @@ namespace ERPvPHelper
                 LogsBox.SelectionStart = LogsBox.TextLength;
                 LogsBox.SelectionLength = 0;
 
-                LogsBox.SelectionColor = Color.DarkMagenta;
+                LogsBox.SelectionColor = Settings.Default.ForegroundColor;
                 LogsBox.AppendText($"\n{SystemTime} [PvP");
-                LogsBox.SelectionColor = Color.Magenta;
                 LogsBox.AppendText($"Helper] ");
                 LogsBox.SelectionColor = getLogTypeColor(type);
                 LogsBox.AppendText($"{str}");

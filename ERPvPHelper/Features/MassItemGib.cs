@@ -21,8 +21,27 @@ namespace ERPvPHelper.Features
         {
             InitializeComponent();
             this.hook = hook;
+            SetColors();
         }
+        public void SetColors()
+        {
+            this.BackColor = Settings.Default.BackgroundColor;
 
+            foreach (Control control in this.Controls)
+            {
+                if (control is GroupBox box)
+                {
+                    foreach (Control boxControl in box.Controls)
+                    {
+                        boxControl.BackColor = Settings.Default.BackgroundColor;
+                        boxControl.ForeColor = Settings.Default.ForegroundColor;
+                    }
+                    continue;
+                }
+                control.BackColor = Settings.Default.BackgroundColor;
+                control.ForeColor = Settings.Default.ForegroundColor;
+            }
+        }
         private void MassGib(ItemCategory category, string[] excludedNames = null, int quantity = 0)
         {
             List<ItemSpawnInfo> items = new();
@@ -221,6 +240,13 @@ namespace ERPvPHelper.Features
 
             hook.GetItem(keyItems, CancellationToken.None);
             hook.GetItem(consumables, CancellationToken.None);
+        }
+
+        int[] whetbladeFlags = new int[] { 65600, 65610, 65620, 65630, 65640, 65650, 65660, 65670, 65680, 65690, 65700, 65710, 65720 };
+        private void AllWhetbladesBtn_Click(object sender, EventArgs e)
+        {
+            foreach (int whetblade in whetbladeFlags)
+                hook.SetEventFlag(whetblade, true);
         }
     }
 }

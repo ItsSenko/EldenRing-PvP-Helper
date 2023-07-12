@@ -47,7 +47,22 @@ namespace ERPvPHelper
                     return reader.ReadToEnd();
                 }
             }
+        }
+        public static void SaveEmbededFileToPath(string file, string pathToSave)
+        {
+            Assembly assembly = Assembly.GetCallingAssembly();
+            string resourceName = $"ERPvPHelper.{file}";
 
+            using (Stream? stream = assembly.GetManifestResourceStream(resourceName))
+            {
+                if (stream == null)
+                    throw new NullReferenceException($"Could not find embedded resource: {file} in the {Assembly.GetCallingAssembly().GetName()} assembly");
+
+                using FileStream fs = new(pathToSave, FileMode.Create);
+                stream.CopyTo(fs);
+                fs.Close();
+                stream.Close();
+            }
         }
     }
 }

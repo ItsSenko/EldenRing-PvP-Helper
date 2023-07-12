@@ -80,8 +80,26 @@ namespace ERPvPHelper
         }
         private void OtherOptionsForm_Load(object sender, EventArgs e)
         {
-            this.TopLevel = true;
-            this.TopMost = true;
+            SetColors();
+        }
+        public void SetColors()
+        {
+            this.BackColor = Settings.Default.BackgroundColor;
+
+            foreach (Control control in this.Controls)
+            {
+                if (control is GroupBox box)
+                {
+                    foreach (Control boxControl in box.Controls)
+                    {
+                        boxControl.BackColor = Settings.Default.BackgroundColor;
+                        boxControl.ForeColor = Settings.Default.ForegroundColor;
+                    }
+                    continue;
+                }
+                control.BackColor = Settings.Default.BackgroundColor;
+                control.ForeColor = Settings.Default.ForegroundColor;
+            }
         }
         private bool firstTimeChanging = true;
         private bool shouldRun = false;
@@ -118,13 +136,14 @@ namespace ERPvPHelper
 
         private void CustomColor_Click(object sender, EventArgs e)
         {
+            if (!hook.Loaded)
+                return;
             ColorDialog newDialog = new ColorDialog();
             var result = newDialog.ShowDialog();
+            ChrType chrType = (ChrType)ChrTypeSelection.SelectedItem;
 
-            if (result == DialogResult.OK)
-            {
-                
-                ChrType chrType = (ChrType)ChrTypeSelection.SelectedItem;
+            if (result == DialogResult.OK && chrType.ChrID != 0)
+            {    
                 var phantomID = chrType.ParamID;
 
                 Row row = PhantomParam.Rows.FirstOrDefault(x => x.ID == phantomID);
@@ -170,6 +189,63 @@ namespace ERPvPHelper
             row.Param.Pointer.WriteByte(dataOffset + frontColorR, chrType.frontColor.R);
             row.Param.Pointer.WriteByte(dataOffset + frontColorG, chrType.frontColor.G);
             row.Param.Pointer.WriteByte(dataOffset + frontColorB, chrType.frontColor.B);
+        }
+
+        private void CustomFPSToggle_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!hook.Loaded)
+                return;
+
+            CustomPointers.CSFlipper.WriteSingle(0x2CC, (float)CustomFPS.Value);
+            CustomPointers.CSFlipper.WriteByte(0x2D0, CustomFPSToggle.Checked ? (byte)01 : (byte)00);
+        }
+
+        private void CustomFOVToggle_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!hook.Loaded)
+                return;
+
+            Param param = hook.Params.FirstOrDefault(x => x.Name == "LockCamParam");
+            var fieldOffset = param.Fields.FirstOrDefault(x => x.InternalName == "camFovY").FieldOffset;
+
+            if (CustomFOVToggle.Checked)
+            {
+                foreach (Row row in param.Rows)
+                {
+                    param.Pointer.WriteSingle(row.DataOffset + fieldOffset, (int)CustomFOV.Value);
+                }
+            }
+            else
+                param.RestoreParam();
+        }
+
+        private void ShowHitboxesToggle_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!hook.Loaded)
+                return;
+            CustomPointers.dHitbox.WriteByte(0xA1, ShowHitboxesToggle.Checked ? (byte)1 : (byte)0);
+        }
+
+        private void CustomFPS_ValueChanged(object sender, EventArgs e)
+        {
+            if (CustomFPSToggle.Checked)
+            {
+                CustomPointers.CSFlipper.WriteSingle(0x2CC, (float)CustomFPS.Value);
+            }
+        }
+
+        private void CustomFOV_ValueChanged(object sender, EventArgs e)
+        {
+            if (CustomFOVToggle.Checked)
+            {
+                Param param = hook.Params.FirstOrDefault(x => x.Name == "LockCamParam");
+                var fieldOffset = param.Fields.FirstOrDefault(x => x.InternalName == "camFovY").FieldOffset;
+
+                foreach (Row row in param.Rows)
+                {
+                    param.Pointer.WriteSingle(row.DataOffset + fieldOffset, (int)CustomFOV.Value);
+                }
+            }
         }
     }
 

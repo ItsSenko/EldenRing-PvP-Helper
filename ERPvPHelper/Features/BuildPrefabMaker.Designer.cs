@@ -332,6 +332,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "BuildPrefabMaker";
             this.Text = "Build Maker";
+            this.Load += new System.EventHandler(this.BuildPrefabMaker_Load);
             ((System.ComponentModel.ISupportInitialize)(this.QuantityBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.UpgradeBox)).EndInit();
             this.ResumeLayout(false);

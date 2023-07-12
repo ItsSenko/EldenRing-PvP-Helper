@@ -48,6 +48,7 @@
             this.AllAshBtn = new System.Windows.Forms.Button();
             this.AllSpellsBtn = new System.Windows.Forms.Button();
             this.AllLimBtn = new System.Windows.Forms.Button();
+            this.AllWhetbladesBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.UpgradeLevel)).BeginInit();
             this.SuspendLayout();
             // 
@@ -262,12 +263,24 @@
             this.AllLimBtn.UseVisualStyleBackColor = true;
             this.AllLimBtn.Click += new System.EventHandler(this.AllLimBtn_Click);
             // 
+            // AllWhetbladesBtn
+            // 
+            this.AllWhetbladesBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.AllWhetbladesBtn.Location = new System.Drawing.Point(370, 217);
+            this.AllWhetbladesBtn.Name = "AllWhetbladesBtn";
+            this.AllWhetbladesBtn.Size = new System.Drawing.Size(135, 35);
+            this.AllWhetbladesBtn.TabIndex = 19;
+            this.AllWhetbladesBtn.Text = "All Whetblades";
+            this.AllWhetbladesBtn.UseVisualStyleBackColor = true;
+            this.AllWhetbladesBtn.Click += new System.EventHandler(this.AllWhetbladesBtn_Click);
+            // 
             // MassItemGib
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(582, 262);
+            this.ClientSize = new System.Drawing.Size(519, 262);
+            this.Controls.Add(this.AllWhetbladesBtn);
             this.Controls.Add(this.AllLimBtn);
             this.Controls.Add(this.AllSpellsBtn);
             this.Controls.Add(this.AllAshBtn);
@@ -319,5 +332,6 @@
         private Button AllAshBtn;
         private Button AllSpellsBtn;
         private Button AllLimBtn;
+        private Button AllWhetbladesBtn;
     }
 }
