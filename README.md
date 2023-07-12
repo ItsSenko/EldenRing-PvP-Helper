@@ -1,16 +1,17 @@
 # Senko's PvP Helper for Elden Ring
 
-This is a tool to give a better experience in pvp in [seamless co-op](https://www.nexusmods.com/eldenring/mods/510)! It also helps with making future pvp builds!
+This is a tool to give a better experience in pvp in [seamless co-op](https://www.nexusmods.com/eldenring/mods/510)! It also helps with making future pvp builds! If you would like to use the helper offline without seamless co-op, I recommend using [this mod](https://www.nexusmods.com/eldenring/mods/90).
 
-[![Discord Server](https://img.shields.io/discord/914575394735284344?color=purple&label=Discord&style=plastic)](https://discord.gg/fxpPgHqwUr) [![Twitter Follow](https://img.shields.io/twitter/follow/SenkoPur?style=social&labelColor=%23a200ed&color=%23000000)](https://twitter.com/intent/follow?original_referer=https%3A%2F%2Fgithub.com%2FItsSenko&screen_name=SenkoPur)
+[![Discord Server](https://img.shields.io/discord/1123789049728090122?style=plastic&label=Discord&color=purple)](https://discord.gg/VmyGAS24Gf) [![Twitter Follow](https://img.shields.io/twitter/follow/SenkoPur?style=social&labelColor=%23a200ed&color=%23000000)](https://twitter.com/intent/follow?original_referer=https%3A%2F%2Fgithub.com%2FItsSenko&screen_name=SenkoPur)
 
 ### Please note that this is meant for seamless co-op and not the base game! Using this tool in the base game will likely get you banned. I am not responsible if you get banned using this tool.
 ![MainMenu](https://i.imgur.com/4YnpTB8.png) 
 ![OtherOptions](https://i.imgur.com/ZJgTFfo.png)
 ![RedBadGirl](https://i.imgur.com/KscBzaS.png) ![BlueBadGirl](https://i.imgur.com/v4fDnZ2.png)
+![BuildCreation](https://i.imgur.com/zlXXo13.png) ![ItemGib](https://i.imgur.com/6paUzmV.png) ![MassItemGib](https://i.imgur.com/iNsukKu.png) ![Build Maker](https://i.imgur.com/qQtSAPw.png)
 
 ## Questions or Concerns?
-Message me on discord at senkopur. Or sumbit an issue!
+Join the [Discord!](https://discord.com/invite/VmyGAS24Gf)
 
 # Features
 ### Base PvP Settings
@@ -27,7 +28,7 @@ Message me on discord at senkopur. Or sumbit an issue!
 - Set your Health
 - Set your Mana
 ### Settings
-- Not Implemented Yet.
+- Show Hitboxes
 ### Other Options
 - Change ChrType
   - Yellow Phantom/Co-op Member
@@ -35,7 +36,15 @@ Message me on discord at senkopur. Or sumbit an issue!
   - Blue Phantom/Hunter
 - Customize Character Type Color
 ### Build Creation
-- Not Implemented Yet.
+- The Build Creator
+   - All Flash Upgrades
+   - All Talisman Pouches
+   - All Memory Stones
+   - All Maps/Graces
+   - ItemGib
+   - MassItemGib
+   - Loadout Builder
+   - RuneGib
 
 ## Credits
 - Thank you to [Nordgaren](https://github.com/Nordgaren) for the library [Erd-Tools](https://github.com/Nordgaren/Erd-Tools). This helped a lot with development. As well as their controbutions with programming help and helping me understand more about modding Elden Ring!
@@ -43,21 +52,9 @@ Message me on discord at senkopur. Or sumbit an issue!
 
 ## Upcoming Features
 ### Build Creation
-- ItemGib
-  - Mass Item Gib
-  - Give all Weapons at specified weapon level
-  - Give specified weapon at specified weapon level with a specified ash of war and affinity
-  - Give all Golden Seeds
-  - Give all Sacred Tears
-  - Give all Maps
-  - Give Max Runes
-- Unlock all Graces
-- Unlock all Invasion Zones
-- Show Current Stats
 - Upgrading Costs no Materials
 
 ### Settings
-- Show Hitboxes
 - (possibly) Free Cam
 
 
