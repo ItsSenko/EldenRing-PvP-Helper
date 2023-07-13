@@ -1,0 +1,24 @@
+﻿<UserControl x:Class="PvPHelper.MVVM.Views.UserControls.SimpleDropDown"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PvPHelper.MVVM.Views.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="20" d:DesignWidth="200">
+    <Border Background="#1e1e1e" CornerRadius="5">
+        <Grid>
+            <ComboBox Style="{DynamicResource ComboBoxStyle}"
+                      ItemContainerStyle="{DynamicResource ComboBoxItemStyle}"
+                      BorderThickness="0"
+                      Foreground="#404040"
+                      Background="#1e1e1e"
+                      ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                      IsTextSearchEnabled="False"
+                      IsEditable="False"
+                      Margin="5,0,5,0"
+                      SelectedItem="{Binding SelectedItem, UpdateSourceTrigger=PropertyChanged}"
+                      ItemsSource="{Binding ItemsSource, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        </Grid>
+    </Border>
+</UserControl>

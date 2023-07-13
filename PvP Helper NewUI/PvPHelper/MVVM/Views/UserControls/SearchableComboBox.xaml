@@ -1,0 +1,44 @@
+﻿<UserControl x:Class="PvPHelper.MVVM.Views.UserControls.SearchableComboBox"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PvPHelper.MVVM.Views.UserControls"
+             xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
+             mc:Ignorable="d" 
+             d:DesignHeight="20" d:DesignWidth="200">
+    <Border Background="#1e1e1e" CornerRadius="5">
+        <Grid>
+            <TextBlock Text="{Binding Placeholder, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                   VerticalAlignment="Center"
+                   Margin="20, 0, 0, 1"
+                   Foreground="#404040"/>
+            <svgc:SvgIcon UriSource="Resources/Images/magnify.svg"
+                          Fill="#404040"
+                          VerticalAlignment="Center"
+                          HorizontalAlignment="Left"
+                          Margin="2,0,0,0"
+                          Height="15"/>
+            <ComboBox ItemContainerStyle="{DynamicResource ComboBoxItemStyle}" x:Name="comboBox" Style="{DynamicResource ComboBoxStyle}"
+                  IsEditable="True"
+                  IsTextSearchEnabled="False"
+                  Margin="15,0,0,0"
+                  BorderThickness="0"
+                  Foreground="#404040"
+                  Background="#1e1e1e"
+                  Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
+                  SelectedItem="{Binding SelectedItem}"
+                  ItemsSource="{Binding ItemsSource, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                  TextBoxBase.TextChanged="comboBox_TextChanged"
+                  ScrollViewer.VerticalScrollBarVisibility="Hidden">
+
+                <ComboBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel />
+                    </ItemsPanelTemplate>
+                </ComboBox.ItemsPanel>
+            </ComboBox>
+
+        </Grid>
+    </Border>
+</UserControl>

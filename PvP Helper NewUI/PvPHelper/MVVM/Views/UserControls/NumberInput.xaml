@@ -1,0 +1,45 @@
+﻿<UserControl x:Class="PvPHelper.MVVM.Views.UserControls.NumberInput"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PvPHelper.MVVM.Views.UserControls"
+             xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
+             mc:Ignorable="d" 
+             d:DesignHeight="20" d:DesignWidth="100">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
+        <svgc:SvgIcon UriSource="/Resources/Images/minus-circle-outline.svg"
+                      Fill="White"
+                      Height="20"
+                      Width="20"
+                      HorizontalAlignment="Left"
+                      Grid.Column="0"
+                      MouseDown="Minus_MouseDown"/>
+
+        <TextBox Text="{Binding InputText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                 PreviewTextInput="TextBox_PreviewTextInput"
+                 Background="Transparent"
+                 Foreground="White"
+                 TextAlignment="Center"
+                 VerticalContentAlignment="Center"
+                 HorizontalAlignment="Stretch"
+                 FontSize="16"
+                 BorderThickness="0"
+                 Grid.Column="1"/>
+
+        <svgc:SvgIcon UriSource="/Resources/Images/plus-circle-outline.svg"
+                  Fill="White"
+                  Height="20"
+                  Width="20"
+                  HorizontalAlignment="Right"
+                  Grid.Column="2"
+                  MouseDown="Plus_MouseDown"/>
+
+    </Grid>
+</UserControl>
