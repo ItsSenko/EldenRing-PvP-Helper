@@ -1,0 +1,3 @@
+[submodule "erdtools"]
+	path = erdtools
+	url = https://github.com/ItsSenko/Erd-Tools
