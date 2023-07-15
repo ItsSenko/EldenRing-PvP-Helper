@@ -6,39 +6,43 @@
              xmlns:local="clr-namespace:PvPHelper.MVVM.Views.UserControls"
              xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
              mc:Ignorable="d" 
-             d:DesignHeight="20" d:DesignWidth="200">
-    <Border Background="#1e1e1e" CornerRadius="5">
+             d:DesignHeight="40" d:DesignWidth="200">
+    <Border Background="#1e1e1e" CornerRadius="10">
         <Grid>
             <TextBlock Text="{Binding Placeholder, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                    VerticalAlignment="Center"
-                   Margin="20, 0, 0, 1"
+                   Margin="40, 0, 0, 1"
                    Foreground="#404040"/>
-            <svgc:SvgIcon UriSource="Resources/Images/magnify.svg"
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+
+                <svgc:SvgIcon UriSource="Resources/Images/magnify.svg"
                           Fill="#404040"
                           VerticalAlignment="Center"
                           HorizontalAlignment="Left"
-                          Margin="2,0,0,0"
-                          Height="15"/>
-            <ComboBox ItemContainerStyle="{DynamicResource ComboBoxItemStyle}" x:Name="comboBox" Style="{DynamicResource ComboBoxStyle}"
+                          Margin="10,0,0,0"
+                          Height="20"/>
+                <ComboBox ItemContainerStyle="{DynamicResource ComboBoxItemStyle}" x:Name="comboBox" Style="{DynamicResource ComboBoxStyle}"
                   IsEditable="True"
                   IsTextSearchEnabled="False"
-                  Margin="15,0,0,0"
+                  Height="Auto"
+                  Width="210"
                   BorderThickness="0"
                   Foreground="#404040"
-                  Background="#1e1e1e"
+                  Background= "#1e1e1e"
                   Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
                   SelectedItem="{Binding SelectedItem}"
                   ItemsSource="{Binding ItemsSource, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                   TextBoxBase.TextChanged="comboBox_TextChanged"
                   ScrollViewer.VerticalScrollBarVisibility="Hidden">
 
-                <ComboBox.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <VirtualizingStackPanel />
-                    </ItemsPanelTemplate>
-                </ComboBox.ItemsPanel>
-            </ComboBox>
+                    <ComboBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <VirtualizingStackPanel />
+                        </ItemsPanelTemplate>
+                    </ComboBox.ItemsPanel>
+                </ComboBox>
 
+            </StackPanel>
         </Grid>
     </Border>
 </UserControl>

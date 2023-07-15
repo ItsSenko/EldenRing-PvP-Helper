@@ -1,0 +1,23 @@
+﻿<UserControl x:Class="PvPHelper.MVVM.Views.UserControls.StatDisplay"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PvPHelper.MVVM.Views.UserControls"
+            xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
+             mc:Ignorable="d" 
+             d:DesignHeight="50" d:DesignWidth="270">
+    <Grid>
+        <Border CornerRadius="20" Background="{DynamicResource BackgroundBrush}">
+            <!--Bind the fill color!-->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <svgc:SvgIcon Grid.Column="0" Height="30" Fill="{Binding Fill}" UriSource="{Binding UriSource, UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBox Text="2100" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="1" Foreground="{DynamicResource ForegroundBrush}" Background="Transparent" BorderThickness="0"/>
+            </Grid>
+        </Border>   
+    </Grid>
+</UserControl>
