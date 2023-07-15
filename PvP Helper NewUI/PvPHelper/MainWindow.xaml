@@ -118,12 +118,12 @@
                                 <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center">
                                     <ToggleButton Style="{StaticResource CircleToggle}"/>
                                     <!--<local:StatDisplay Margin="10 0 10 0" Width="100" Height="50" UriSource="Resources/Images/water.svg" Fill="#7BADF6"/>-->
-                                    <!--<local:StatDisplay Margin="10 0 10 0"   Width="100" Height="50" UriSource="Resources/Images/hospital.svg" Fill="#D36969"/>-->
+                                    <local:StatDisplay Margin="10 0 10 0"   Width="100" Height="50" UriSource="Resources/Images/hospital.svg" Fill="#D36969"/>
                                     <svgc:SvgIcon Height="35" Fill="{DynamicResource ForegroundBrush}" UriSource="Resources/Images/refresh.svg"/>
                                 </StackPanel>
                                 <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
                                     <ToggleButton Style="{StaticResource CircleToggle}"/>
-                                    <!--<local:StatDisplay Margin="10 0 10 0" Width="100" Height="50" UriSource="Resources/Images/water.svg" Fill="#7BADF6"/>-->
+                                    <local:StatDisplay Margin="10 0 10 0" Width="100" Height="50" UriSource="Resources/Images/water.svg" Fill="#7BADF6"/>
 
                                     <svgc:SvgIcon Height="35" Fill="{DynamicResource ForegroundBrush}" UriSource="Resources/Images/refresh.svg"/>
                                 </StackPanel>
