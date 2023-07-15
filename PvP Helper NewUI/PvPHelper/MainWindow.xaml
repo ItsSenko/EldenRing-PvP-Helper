@@ -181,7 +181,9 @@
                                     </Style>
                                 </StackPanel.Resources>
                                 <Grid>
-                                    
+                                    <local:SearchableComboBox Height="50" Margin="10">
+                                        
+                                    </local:SearchableComboBox>
                                 </Grid>
                                 <Grid>
                                     

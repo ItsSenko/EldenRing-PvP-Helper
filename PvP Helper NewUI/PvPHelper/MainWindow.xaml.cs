@@ -35,5 +35,6 @@ namespace PvPHelper
             Application.Current.Resources["Highlight"] = e.NewValue;
             ((LinearGradientBrush)Application.Current.Resources["DashHighlightGradient"]).GradientStops[0].Color = (Color)(e.NewValue);
         }
+
     }
 }
