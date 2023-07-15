@@ -193,8 +193,7 @@
                                 <ColumnDefinition Width="7*"/>
                                 <ColumnDefinition Width="2*" />
                             </Grid.ColumnDefinitions>
-                            <!--<xctk:ColorCanvas SelectedColorChanged="ColorChanged" Foreground="{DynamicResource ForegroundBrush}" Background="{DynamicResource DarkBrush}" SelectedColor="{StaticResource Highlight}" d:IsHidden="True" />-->
-                            <!--<local:ColorCanvas SelectedColorChanged="ColorChanged" SelectedColor="{DynamicResource Highlight}" HorizontalAlignment="Center" VerticalAlignment="Center"/>-->
+                            <local:ColorCanvas SelectedColorChanged="HighLightColorChanged" SelectedColor="{DynamicResource Highlight}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Grid>
                     </Grid>
                 </ContentControl>
