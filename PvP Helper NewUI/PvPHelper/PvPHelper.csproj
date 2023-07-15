@@ -8,23 +8,59 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\Images\auto-fix.svg" />
+    <None Remove="Resources\Images\file-document-alert.svg" />
+    <None Remove="Resources\Images\hospital.svg" />
     <None Remove="Resources\Images\magnify.svg" />
     <None Remove="Resources\Images\minus-circle-outline.svg" />
+    <None Remove="Resources\Images\misc-dots.svg" />
     <None Remove="Resources\Images\plus-circle-outline.svg" />
+    <None Remove="Resources\Images\refresh.svg" />
     <None Remove="Resources\Images\serpent-hunter_greatspear_weapon_elden_ring_wiki_guide_200px.png" />
+    <None Remove="Resources\Images\tab-plus.svg" />
+    <None Remove="Resources\Images\tab-search.svg" />
+    <None Remove="Resources\Images\view-dashboard-variant.svg" />
+    <None Remove="Resources\Images\water.svg" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Resources\Images\auto-fix.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\file-document-alert.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\hospital.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Images\magnify.svg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\minus-circle-outline.svg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Images\misc-dots.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Images\plus-circle-outline.svg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Images\refresh.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Images\serpent-hunter_greatspear_weapon_elden_ring_wiki_guide_200px.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\tab-plus.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\tab-search.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\view-dashboard-variant.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\water.svg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

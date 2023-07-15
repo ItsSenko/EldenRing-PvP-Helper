@@ -1,5 +1,5 @@
 ﻿<Window x:Name="window" x:Class="PvPHelper.MainWindow"
-        xmlns:local="clr-namespace:PvPHelper"
+        xmlns:local="clr-namespace:PvPHelper.MVVM.Views.UserControls"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -46,39 +46,17 @@
                 <SolidColorBrush Color="{DynamicResource Dark}"/>
             </Grid.Background>
 
-            <!--This was the old tab menu-->
-
-            <!--<Grid x:Name="TabsMenu" Grid.Row="1" Grid.RowSpan="2">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-                <Grid.Background>
-                    <SolidColorBrush Color="{DynamicResource Dark}"/>
-                </Grid.Background>
-                <local:TabButton Label="Dashboard" SourceUri="Resources/view-dashboard-variant.svg"/>
-                -->
-            <!--<xctk:ColorPicker SelectedColor="{Binding Source={StaticResource AppData}, Path=Highlight, Mode=TwoWay}" />-->
-            <!--
-                <xctk:ColorPicker SelectedColorChanged="ColorChanged" SelectedColor="{StaticResource Highlight}" d:IsHidden="True" />
-            </Grid>-->
             <StackPanel x:Name="TabsMenu" Grid.Row="1">
                 <StackPanel.Resources>
-                    <!--<Style TargetType="{x:Type local:TabButton}">
+                    <Style TargetType="{x:Type local:TabButton}">
                         <Setter Property="Margin" Value="0,5,0,5"/>
-                    </Style>-->
+                    </Style>
                 </StackPanel.Resources>
-                <!--<local:TabButton Label="Dashboard" UriSource="Resources/view-dashboard-variant.svg"/>
-                <local:TabButton Label="Items" UriSource="Resources/tab-plus.svg"/>
-                <local:TabButton Label="Prefab Creator" UriSource="Resources/auto-fix.svg"/>
-                <local:TabButton Label="Your prefabs" UriSource="Resources/tab-search.svg"/>
-                <local:TabButton Label="Misc" UriSource="Resources/misc-dots.svg"/>-->
+                <local:TabButton Label="Dashboard" UriSource="Resources/Images/view-dashboard-variant.svg"/>
+                <local:TabButton Label="Items" UriSource="Resources/Images/tab-plus.svg"/>
+                <local:TabButton Label="Prefab Creator" UriSource="Resources/Images/auto-fix.svg"/>
+                <local:TabButton Label="Your prefabs" UriSource="Resources/Images/tab-search.svg"/>
+                <local:TabButton Label="Misc" UriSource="Resources/Images/misc-dots.svg"/>
 
             </StackPanel>
 
@@ -139,15 +117,15 @@
                                 </StackPanel.Resources>
                                 <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center">
                                     <ToggleButton Style="{StaticResource CircleToggle}"/>
-                                    <!--<local:StatDisplay Margin="10 0 10 0" Width="100" Height="50" UriSource="Resources/water.svg" Fill="#7BADF6"/>-->
-                                    <!--<local:StatDisplay Margin="10 0 10 0"   Width="100" Height="50" UriSource="Resources/hospital.svg" Fill="#D36969"/>-->
-                                    <svgc:SvgIcon Height="35" Fill="{DynamicResource ForegroundBrush}" UriSource="Resources/refresh.svg"/>
+                                    <!--<local:StatDisplay Margin="10 0 10 0" Width="100" Height="50" UriSource="Resources/Images/water.svg" Fill="#7BADF6"/>-->
+                                    <!--<local:StatDisplay Margin="10 0 10 0"   Width="100" Height="50" UriSource="Resources/Images/hospital.svg" Fill="#D36969"/>-->
+                                    <svgc:SvgIcon Height="35" Fill="{DynamicResource ForegroundBrush}" UriSource="Resources/Images/refresh.svg"/>
                                 </StackPanel>
                                 <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
                                     <ToggleButton Style="{StaticResource CircleToggle}"/>
-                                    <!--<local:StatDisplay Margin="10 0 10 0" Width="100" Height="50" UriSource="Resources/water.svg" Fill="#7BADF6"/>-->
+                                    <!--<local:StatDisplay Margin="10 0 10 0" Width="100" Height="50" UriSource="Resources/Images/water.svg" Fill="#7BADF6"/>-->
 
-                                    <svgc:SvgIcon Height="35" Fill="{DynamicResource ForegroundBrush}" UriSource="Resources/refresh.svg"/>
+                                    <svgc:SvgIcon Height="35" Fill="{DynamicResource ForegroundBrush}" UriSource="Resources/Images/refresh.svg"/>
                                 </StackPanel>
                                 <!--<Grid Grid.Row="0" Height="50">
                                     <Grid.ColumnDefinitions>
@@ -158,8 +136,8 @@
                                         <ColumnDefinition/>
                                     </Grid.ColumnDefinitions>
                                     <local:CircleToggle Grid.Column="0" Grid.ColumnSpan="2"/>
-                                    <local:StatDisplay Grid.Column="2" Grid.ColumnSpan="2" UriSource="Resources/water.svg" Fill="#7BADF6"/>
-                                    <svgc:SvgIcon Grid.Column="4" Margin="10" Fill="{DynamicResource ForegroundBrush}" UriSource="Resources/refresh.svg"/>
+                                    <local:StatDisplay Grid.Column="2" Grid.ColumnSpan="2" UriSource="Resources/Images/water.svg" Fill="#7BADF6"/>
+                                    <svgc:SvgIcon Grid.Column="4" Margin="10" Fill="{DynamicResource ForegroundBrush}" UriSource="Resources/Images/refresh.svg"/>
                                 </Grid>
                                 <Grid Grid.Row="1" Height="50">
                                     <Grid.ColumnDefinitions>
@@ -170,8 +148,8 @@
                                         <ColumnDefinition/>
                                     </Grid.ColumnDefinitions>
                                     <local:CircleToggle Grid.Column="0" Grid.ColumnSpan="2"/>
-                                    <local:StatDisplay Grid.Column="2" Grid.ColumnSpan="2" UriSource="Resources/hospital.svg" Fill="#D36969"/>
-                                    <svgc:SvgIcon Grid.Column="4" Margin="10" Fill="{DynamicResource ForegroundBrush}" UriSource="Resources/refresh.svg"/>
+                                    <local:StatDisplay Grid.Column="2" Grid.ColumnSpan="2" UriSource="Resources/Images/hospital.svg" Fill="#D36969"/>
+                                    <svgc:SvgIcon Grid.Column="4" Margin="10" Fill="{DynamicResource ForegroundBrush}" UriSource="Resources/Images/refresh.svg"/>
                                 </Grid>-->
                             </StackPanel>
                             <StackPanel x:Name="First" Grid.Column="1" Orientation="Vertical" VerticalAlignment="Center">
