@@ -11,6 +11,7 @@
                 <ResourceDictionary Source="MVVM/Views/Styles/ComboBoxItemStyle.xaml"/>
                 <ResourceDictionary Source="MVVM/Views/Styles/CircleToggle.xaml"/>
                 <ResourceDictionary Source="MVVM/Views/Styles/PrimaryButton.xaml"/>
+                <ResourceDictionary Source="MVVM/Views/Styles/ToggleLabel.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
 
