@@ -24,5 +24,16 @@ namespace PvPHelper
         {
             InitializeComponent();
         }
+
+        private void window_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+                this.DragMove();
+        }
+        private void HighLightColorChanged(object sender, RoutedPropertyChangedEventArgs<Color?> e)
+        {
+            Application.Current.Resources["Highlight"] = e.NewValue;
+            ((LinearGradientBrush)Application.Current.Resources["DashHighlightGradient"]).GradientStops[0].Color = (Color)(e.NewValue);
+        }
     }
 }

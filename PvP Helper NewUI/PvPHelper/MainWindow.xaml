@@ -1,12 +1,227 @@
-﻿<Window x:Class="PvPHelper.MainWindow"
+﻿<Window x:Name="window" x:Class="PvPHelper.MainWindow"
+        xmlns:local="clr-namespace:PvPHelper"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:PvPHelper"
+        xmlns:svg="http://sharpvectors.codeplex.com/runtime/"
+        xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Height="768" Width="1366"
+        Background="Transparent" WindowStyle="None" ResizeMode="NoResize"
+        AllowsTransparency="True" MouseDown="window_MouseDown">
+
+    <!--Needed for when i add the usercontrol-->
+    <!--xmlns:colorpicker="clr-namespace:ColorPicker;assembly=ColorPicker"-->
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+        <xctk:ColorToSolidColorBrushConverter x:Key="ColorToSolidColorBrushConverter" />
+    </Window.Resources>
+    <Grid Width="Auto">
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="{DynamicResource Background}"/>
+                <GradientStop Color="{DynamicResource Dark}" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="8*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid x:Name="SidePanel">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Grid.Background>
+                <SolidColorBrush Color="{DynamicResource Dark}"/>
+            </Grid.Background>
+
+            <!--This was the old tab menu-->
+
+            <!--<Grid x:Name="TabsMenu" Grid.Row="1" Grid.RowSpan="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.Background>
+                    <SolidColorBrush Color="{DynamicResource Dark}"/>
+                </Grid.Background>
+                <local:TabButton Label="Dashboard" SourceUri="Resources/view-dashboard-variant.svg"/>
+                -->
+            <!--<xctk:ColorPicker SelectedColor="{Binding Source={StaticResource AppData}, Path=Highlight, Mode=TwoWay}" />-->
+            <!--
+                <xctk:ColorPicker SelectedColorChanged="ColorChanged" SelectedColor="{StaticResource Highlight}" d:IsHidden="True" />
+            </Grid>-->
+            <StackPanel x:Name="TabsMenu" Grid.Row="1">
+                <StackPanel.Resources>
+                    <!--<Style TargetType="{x:Type local:TabButton}">
+                        <Setter Property="Margin" Value="0,5,0,5"/>
+                    </Style>-->
+                </StackPanel.Resources>
+                <!--<local:TabButton Label="Dashboard" UriSource="Resources/view-dashboard-variant.svg"/>
+                <local:TabButton Label="Items" UriSource="Resources/tab-plus.svg"/>
+                <local:TabButton Label="Prefab Creator" UriSource="Resources/auto-fix.svg"/>
+                <local:TabButton Label="Your prefabs" UriSource="Resources/tab-search.svg"/>
+                <local:TabButton Label="Misc" UriSource="Resources/misc-dots.svg"/>-->
+
+            </StackPanel>
+
+            <Grid x:Name="Socials" Grid.Row="2">
+                <Grid.Background>
+                    <SolidColorBrush Color="{DynamicResource Dark}"/>
+                </Grid.Background>
+            </Grid>
+            <Image 
+               Grid.Row="0" x:Name="AppIcon" Source="/Resources/Images/serpent-hunter_greatspear_weapon_elden_ring_wiki_guide_200px.png" Stretch="Uniform"  VerticalAlignment="Center" HorizontalAlignment="Center" Grid.RowSpan="1">
+            </Image>
+
+        </Grid>
+        <Grid x:Name="View" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="4*"/>
+            </Grid.RowDefinitions>
+            <Grid x:Name="Header" Grid.Row="0">
+                <Grid.Background>
+                    <SolidColorBrush/>
+                </Grid.Background>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" TextWrapping="Wrap" Text="Elden Ring PvP Helper" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="36" FontFamily="Bahnschrift SemiBold">
+                    <TextBlock.Foreground>
+                        <SolidColorBrush Color="{DynamicResource Foreground}"/>
+                    </TextBlock.Foreground>
+                </TextBlock>
+                <TextBlock Grid.Row="1" TextWrapping="Wrap" Text="by Senkopur" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="36" FontFamily="Bahnschrift SemiLight">
+                    <TextBlock.Foreground>
+                        <SolidColorBrush Color="{DynamicResource Foreground}"/>
+                    </TextBlock.Foreground>
+                </TextBlock>
+            </Grid>
+            <Grid x:Name="ContentControl" Grid.RowSpan="2" Grid.Row="1">
+                <ContentControl>
+                    <Grid x:Name="DashboardView">
+                        <Grid.RowDefinitions>
+                            <RowDefinition  Height="200"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid x:Name="Toggles" Grid.Row="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel x:Name="Stats" Grid.Column="0" Orientation="Vertical" VerticalAlignment="Center">
+                                <StackPanel.Resources>
+                                    <Style TargetType="{x:Type StackPanel}">
+                                        <Setter Property="Margin" Value="0,10,0,10"/>
+                                    </Style>
+                                </StackPanel.Resources>
+                                <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <ToggleButton Style="{StaticResource CircleToggle}"/>
+                                    <!--<local:StatDisplay Margin="10 0 10 0" Width="100" Height="50" UriSource="Resources/water.svg" Fill="#7BADF6"/>-->
+                                    <!--<local:StatDisplay Margin="10 0 10 0"   Width="100" Height="50" UriSource="Resources/hospital.svg" Fill="#D36969"/>-->
+                                    <svgc:SvgIcon Height="35" Fill="{DynamicResource ForegroundBrush}" UriSource="Resources/refresh.svg"/>
+                                </StackPanel>
+                                <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <ToggleButton Style="{StaticResource CircleToggle}"/>
+                                    <!--<local:StatDisplay Margin="10 0 10 0" Width="100" Height="50" UriSource="Resources/water.svg" Fill="#7BADF6"/>-->
+
+                                    <svgc:SvgIcon Height="35" Fill="{DynamicResource ForegroundBrush}" UriSource="Resources/refresh.svg"/>
+                                </StackPanel>
+                                <!--<Grid Grid.Row="0" Height="50">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <local:CircleToggle Grid.Column="0" Grid.ColumnSpan="2"/>
+                                    <local:StatDisplay Grid.Column="2" Grid.ColumnSpan="2" UriSource="Resources/water.svg" Fill="#7BADF6"/>
+                                    <svgc:SvgIcon Grid.Column="4" Margin="10" Fill="{DynamicResource ForegroundBrush}" UriSource="Resources/refresh.svg"/>
+                                </Grid>
+                                <Grid Grid.Row="1" Height="50">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <local:CircleToggle Grid.Column="0" Grid.ColumnSpan="2"/>
+                                    <local:StatDisplay Grid.Column="2" Grid.ColumnSpan="2" UriSource="Resources/hospital.svg" Fill="#D36969"/>
+                                    <svgc:SvgIcon Grid.Column="4" Margin="10" Fill="{DynamicResource ForegroundBrush}" UriSource="Resources/refresh.svg"/>
+                                </Grid>-->
+                            </StackPanel>
+                            <StackPanel x:Name="First" Grid.Column="1" Orientation="Vertical" VerticalAlignment="Center">
+                                <StackPanel.Resources>
+                                    <!--<Style TargetType="{x:Type local:LabeledCircleToggle}">
+                                        <Setter Property="Margin" Value="0,10,0,10"/>
+                                    </Style>-->
+                                </StackPanel.Resources>
+                                <!--<local:LabeledCircleToggle Label="Cum" HorizontalAlignment="Center"/>
+                                <local:LabeledCircleToggle HorizontalAlignment="Center"/>-->
+                            </StackPanel>
+                            <StackPanel x:Name="Second" Grid.Column="2" Orientation="Vertical" VerticalAlignment="Center">
+                                <StackPanel.Resources>
+                                    <Style TargetType="{x:Type Grid}">
+                                        <Setter Property="Margin" Value="0,10,0,10"/>
+                                    </Style>
+                                </StackPanel.Resources>
+                                <Grid>
+                                    <!--<Button Content="Auto-Revive" Height="50" Style="{StaticResource PrimaryButton}"/>-->
+                                </Grid>
+                                <Grid>
+                                    <!--<Button Content="Auto-Revive" Height="50" Style="{StaticResource PrimaryButton}"/>-->
+                                </Grid>
+                            </StackPanel>
+                            <StackPanel x:Name="Third" Grid.Column="3" Orientation="Vertical" VerticalAlignment="Center">
+                                <StackPanel.Resources>
+                                    <Style TargetType="{x:Type Grid}">
+                                        <Setter Property="Margin" Value="0,10,0,10"/>
+                                    </Style>
+                                </StackPanel.Resources>
+                                <Grid>
+                                    
+                                </Grid>
+                                <Grid>
+                                    
+                                </Grid>
+                            </StackPanel>
+                        </Grid>
+                        <Grid x:Name="Bottom" Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="7*"/>
+                                <ColumnDefinition Width="2*" />
+                            </Grid.ColumnDefinitions>
+                            <!--<xctk:ColorCanvas SelectedColorChanged="ColorChanged" Foreground="{DynamicResource ForegroundBrush}" Background="{DynamicResource DarkBrush}" SelectedColor="{StaticResource Highlight}" d:IsHidden="True" />-->
+                            <!--<local:ColorCanvas SelectedColorChanged="ColorChanged" SelectedColor="{DynamicResource Highlight}" HorizontalAlignment="Center" VerticalAlignment="Center"/>-->
+                        </Grid>
+                    </Grid>
+                </ContentControl>
+            </Grid>
+        </Grid>
 
     </Grid>
 </Window>

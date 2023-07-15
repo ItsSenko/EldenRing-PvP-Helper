@@ -11,6 +11,7 @@
     <None Remove="Resources\Images\magnify.svg" />
     <None Remove="Resources\Images\minus-circle-outline.svg" />
     <None Remove="Resources\Images\plus-circle-outline.svg" />
+    <None Remove="Resources\Images\serpent-hunter_greatspear_weapon_elden_ring_wiki_guide_200px.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -23,14 +24,18 @@
     <Content Include="Resources\Images\plus-circle-outline.svg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Images\serpent-hunter_greatspear_weapon_elden_ring_wiki_guide_200px.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="MVVM\ViewModels\" />
-    <Folder Include="MVVM\Views\Styles\" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Extended.Wpf.Toolkit" Version="4.5.0" />
+    <PackageReference Include="PixiEditor.ColorPicker" Version="3.3.1" />
     <PackageReference Include="SharpVectors" Version="1.8.1" />
   </ItemGroup>
 

@@ -3,12 +3,44 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:PvPHelper"
              StartupUri="MainWindow.xaml">
+
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="MVVM/Views/Styles/ComboBoxTemplate.xaml"/>
                 <ResourceDictionary Source="MVVM/Views/Styles/ComboBoxItemStyle.xaml"/>
+                <ResourceDictionary Source="MVVM/Views/Styles/CircleToggle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
+
+
+            <Color x:Key="Foreground">#FFFFFF</Color>
+            <Color x:Key="Lighter">#393939</Color>
+            <Color x:Key="LighterText">#636363</Color>
+            <Color x:Key="Dark">#202020</Color>
+            <Color x:Key="Background">#2d2d2d</Color>
+            <Color x:Key="Icons">#FFFFFF</Color>
+            <Color x:Key="Highlight">#A953FF</Color>
+
+            <SolidColorBrush x:Key="ForegroundBrush" Color="{DynamicResource Foreground}"/>
+            <SolidColorBrush x:Key="LighterBrush" Color="{DynamicResource Lighter}"/>
+            <SolidColorBrush x:Key="LighterTextBrush" Color="{DynamicResource LighterText}"/>
+            <SolidColorBrush x:Key="DarkBrush" Color="{DynamicResource Dark}"/>
+            <SolidColorBrush x:Key="BackgroundBrush" Color="{DynamicResource Background}"/>
+            <SolidColorBrush x:Key="IconsBrush" Color="{DynamicResource Icons}"/>
+            <SolidColorBrush x:Key="HighlightBrush" Color="{DynamicResource Highlight}"/>
+
+            <LinearGradientBrush x:Key="DashBackgroundGradient" StartPoint="0,0.5" EndPoint="1,0.5">
+                <LinearGradientBrush.GradientStops>
+                    <GradientStop Offset="0.0" Color="{DynamicResource Background}" />
+                    <GradientStop Offset="1.0" Color="{DynamicResource Dark}" />
+                </LinearGradientBrush.GradientStops>
+            </LinearGradientBrush>
+            <LinearGradientBrush x:Key="DashHighlightGradient" StartPoint="0,0.5" EndPoint="1,0.5">
+                <LinearGradientBrush.GradientStops>
+                    <GradientStop Offset="0.0" Color="{DynamicResource Highlight}" />
+                    <GradientStop Offset="1.0" Color="{DynamicResource Dark}" />
+                </LinearGradientBrush.GradientStops>
+            </LinearGradientBrush>
         </ResourceDictionary>
     </Application.Resources>
 </Application>
