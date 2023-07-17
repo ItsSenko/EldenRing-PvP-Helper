@@ -13,7 +13,9 @@
                    VerticalAlignment="Center"
                    Margin="40, 0, 0, 1"
                    Foreground="#404040"/>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <StackPanel Orientation="Horizontal" 
+                        HorizontalAlignment="Stretch" 
+                        VerticalAlignment="Stretch">
 
                 <svgc:SvgIcon UriSource="Resources/Images/magnify.svg"
                           Fill="#404040"
@@ -22,18 +24,19 @@
                           Margin="10,0,0,0"
                           Height="20"/>
                 <ComboBox ItemContainerStyle="{DynamicResource ComboBoxItemStyle}" x:Name="comboBox" Style="{DynamicResource ComboBoxStyle}"
-                  IsEditable="True"
-                  IsTextSearchEnabled="False"
-                  Height="Auto"
-                  Width="210"
-                  BorderThickness="0"
-                  Foreground="#404040"
-                  Background= "#1e1e1e"
-                  Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
-                  SelectedItem="{Binding SelectedItem}"
-                  ItemsSource="{Binding ItemsSource, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                  TextBoxBase.TextChanged="comboBox_TextChanged"
-                  ScrollViewer.VerticalScrollBarVisibility="Hidden">
+                          IsEditable="True"
+                          IsTextSearchEnabled="False"
+                          Height="Auto"
+                          Width="210"
+                          BorderThickness="0"
+                          Foreground="#404040"
+                          Background= "#1e1e1e"
+                          Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
+                          SelectedItem="{Binding SelectedItem}"
+                          ItemsSource="{Binding ItemsSource, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                          TextBoxBase.TextChanged="comboBox_TextChanged"
+                          ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                          VerticalContentAlignment="Center">    
 
                     <ComboBox.ItemsPanel>
                         <ItemsPanelTemplate>

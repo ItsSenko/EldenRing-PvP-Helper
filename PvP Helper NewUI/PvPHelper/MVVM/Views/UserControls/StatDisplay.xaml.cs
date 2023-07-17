@@ -45,6 +45,36 @@ namespace PvPHelper.MVVM.Views.UserControls
             get { return uriSource; }
             set { uriSource = value; OnPropertyChanged(); }
         }
+        private string _text;
+
+        public string Text
+        {
+            get { return _text; }
+            set { _text = value;  OnPropertyChanged(); }
+        }
+        private int _min;
+
+        public int Min
+        {
+            get { return _min; }
+            set { _min = value; OnPropertyChanged(); }
+        }
+        private int _max;
+
+        public int Max
+        {
+            get { return _max; }
+            set { _max = value; OnPropertyChanged(); }
+        }
+        private int _currValue;
+
+        public int CurrValue
+        {
+            get { return _currValue; }
+            set { _currValue = value; Text = CurrValue.ToString(); OnPropertyChanged(); }
+        }
+
+
         public StatDisplay()
         {
             DataContext = this;
@@ -54,6 +84,27 @@ namespace PvPHelper.MVVM.Views.UserControls
         protected void OnPropertyChanged([CallerMemberName] string name = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
+
+        private bool IsTextAllowed(string text)
+        {
+            int parsed;
+            if (!int.TryParse(Text + text, out parsed))
+                return false;
+
+            if (parsed < Min)
+                return false;
+            if (parsed > Max)
+                return false;
+
+            return true;
+        }
+        private void TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !IsTextAllowed(e.Text);
+
+            if (!e.Handled && int.TryParse(Text, out int parsed))
+                CurrValue = parsed;
         }
     }
 }
