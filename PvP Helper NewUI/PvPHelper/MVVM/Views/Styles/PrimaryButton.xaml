@@ -1,10 +1,12 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Style x:Key="PrimaryButton" TargetType="Button">
-        <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}"/>
+        <Setter Property="Opacity" Value="0.8"/>
+        <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush }"/>
         <Setter Property="Background" Value="{DynamicResource LighterBrush}"/>
         <Setter Property="BorderThickness" Value="0"/>
-        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="Margin" Value="10"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
@@ -12,10 +14,10 @@
                                 Background="{TemplateBinding Background}"
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}"
-                                CornerRadius="10"
+                                CornerRadius="7"
                             >
                         <Border.Effect>
-                            <DropShadowEffect BlurRadius="20" ShadowDepth="0"/>
+                            <DropShadowEffect BlurRadius="20" ShadowDepth="0" Opacity="0.3"/>
                         </Border.Effect>
                         <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </Border>

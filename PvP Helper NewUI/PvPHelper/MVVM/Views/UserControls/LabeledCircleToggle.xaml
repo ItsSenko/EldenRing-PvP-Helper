@@ -5,13 +5,13 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PvPHelper.MVVM.Views.UserControls"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+             d:DesignHeight="60" d:DesignWidth="250">
+    <Grid HorizontalAlignment="Left">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="80"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <ToggleButton Style="{StaticResource CircleToggle}"/>
-        <TextBlock Grid.Column="1" Margin="20,0,0,0" Text="{Binding Label}" FontSize="32" d:Text="Label" Foreground="{DynamicResource ForegroundBrush}" VerticalAlignment="Center"/>
+        <TextBlock Grid.Column="1" Margin="20,0,0,0" Text="{Binding Label}" FontSize="18" d:Text="Cool Label" Foreground="{DynamicResource ForegroundBrush}" VerticalAlignment="Center"/>
     </Grid>
 </UserControl>

@@ -42,6 +42,12 @@
                     <GradientStop Offset="1.0" Color="{DynamicResource Dark}" />
                 </LinearGradientBrush.GradientStops>
             </LinearGradientBrush>
+            <LinearGradientBrush x:Key="ItemGradient" StartPoint="0.5,0" EndPoint="0.5,0.5">
+                <LinearGradientBrush.GradientStops>
+                    <GradientStop Offset="0.0" Color="{DynamicResource Lighter}" />
+                    <GradientStop Offset="1.0" Color="{DynamicResource Background}" />
+                </LinearGradientBrush.GradientStops>
+            </LinearGradientBrush>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

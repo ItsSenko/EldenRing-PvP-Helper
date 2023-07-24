@@ -13,8 +13,10 @@
     <None Remove="Resources\Images\hospital.svg" />
     <None Remove="Resources\Images\magnify.svg" />
     <None Remove="Resources\Images\minus-circle-outline.svg" />
+    <None Remove="Resources\Images\minus-circle.svg" />
     <None Remove="Resources\Images\misc-dots.svg" />
     <None Remove="Resources\Images\plus-circle-outline.svg" />
+    <None Remove="Resources\Images\plus-circle.svg" />
     <None Remove="Resources\Images\refresh.svg" />
     <None Remove="Resources\Images\serpent-hunter_greatspear_weapon_elden_ring_wiki_guide_200px.png" />
     <None Remove="Resources\Images\tab-plus.svg" />
@@ -39,10 +41,16 @@
     <Content Include="Resources\Images\minus-circle-outline.svg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Images\minus-circle.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Images\misc-dots.svg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\plus-circle-outline.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\plus-circle.svg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\refresh.svg">
@@ -73,6 +81,26 @@
     <PackageReference Include="Extended.Wpf.Toolkit" Version="4.5.0" />
     <PackageReference Include="PixiEditor.ColorPicker" Version="3.3.1" />
     <PackageReference Include="SharpVectors" Version="1.8.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="MVVM\Views\PrefabCreatorView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="MVVM\Views\ItemsView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="MVVM\Views\PrefabCreatorView.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="MVVM\Views\ItemsView.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
 
 </Project>
