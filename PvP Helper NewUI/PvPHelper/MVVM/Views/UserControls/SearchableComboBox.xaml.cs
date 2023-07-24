@@ -66,7 +66,7 @@ namespace PvPHelper.MVVM.Views.UserControls
             set
             {
                 _itemsSource = value;
-                if (OriginItems == null && FilteredItems == null)
+                if (OriginItems == null && FilteredItems == null && value != null)
                 {
                     OriginItems = value.ToList();
                 }
@@ -93,6 +93,9 @@ namespace PvPHelper.MVVM.Views.UserControls
                 return;
             }
             Placeholder = string.Empty;
+
+            // Check if there is any items in the ItemsSource
+            if (ItemsSource == null || ItemsSource.ToList().Count == 0) return;
 
             // Filter the list based on the search text and order by position
             FilteredItems = OriginItems
