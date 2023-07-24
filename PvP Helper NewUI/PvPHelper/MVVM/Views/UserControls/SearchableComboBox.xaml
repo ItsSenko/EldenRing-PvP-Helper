@@ -22,7 +22,7 @@
                           VerticalAlignment="Center"
                           HorizontalAlignment="Left"
                           Margin="10,0,0,0"
-                          Height="20"/>
+                          Height="15"/>
                 <ComboBox ItemContainerStyle="{DynamicResource ComboBoxItemStyle}" x:Name="comboBox" Style="{DynamicResource ComboBoxStyle}"
                           IsEditable="True"
                           IsTextSearchEnabled="False"

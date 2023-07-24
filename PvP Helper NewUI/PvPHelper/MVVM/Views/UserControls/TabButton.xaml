@@ -105,6 +105,6 @@
         </Style>
     </UserControl.Resources>
     <Grid Height="Auto" Width="Auto">
-        <RadioButton  FontSize="18" Foreground="{DynamicResource ForegroundBrush}" Content="{Binding Label, UpdateSourceTrigger=PropertyChanged}" d:Content="Content"  Grid.Row="0" Style="{StaticResource DashButtonStyle}"/>
+        <RadioButton  FontSize="18" Foreground="{DynamicResource ForegroundBrush}" Content="{Binding Label, UpdateSourceTrigger=PropertyChanged}"  Grid.Row="0" Style="{StaticResource DashButtonStyle}"/>
     </Grid>
 </UserControl>

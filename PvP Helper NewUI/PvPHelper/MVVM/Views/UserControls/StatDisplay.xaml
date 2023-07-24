@@ -8,13 +8,17 @@
              mc:Ignorable="d" 
              d:DesignHeight="50" d:DesignWidth="270">
     <Grid>
-        <Border CornerRadius="20" Background="{DynamicResource BackgroundBrush}">
+        <Border CornerRadius="10" Background="{DynamicResource BackgroundBrush}">
             <!--Bind the fill color!-->
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
+
+                <svgc:SvgIcon Grid.Column="0" Height="15" Fill="{Binding Fill}" UriSource="{Binding UriSource, UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBox Text="2100" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="1" Foreground="{DynamicResource ForegroundBrush}" Background="Transparent" BorderThickness="0"/>
+
                 <svgc:SvgIcon Grid.Column="0" 
                               Height="30" Fill="{Binding Fill}" 
                               UriSource="{Binding UriSource, UpdateSourceTrigger=PropertyChanged}"/>
@@ -26,6 +30,7 @@
                          Foreground="{DynamicResource ForegroundBrush}" 
                          Background="Transparent" BorderThickness="0"
                          PreviewTextInput="TextBox_PreviewTextInput"/>
+
             </Grid>
         </Border>   
     </Grid>

@@ -10,11 +10,11 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ToggleButton">
-                    <Grid Width="90" Cursor="Hand">
+                    <Grid Width="80" Cursor="Hand">
                         <Border
                                     x:Name="ToggleBackgroundBOTTOM"
                                     Width="Auto"
-                                    Height="45"
+                                    Height="40"
                                     BorderThickness="2"
                                     CornerRadius="20"
                                     Opacity="0"
@@ -29,7 +29,7 @@
                         <Border
                                     x:Name="ToggleBackgroundTOP"
                                     Width="Auto"
-                                    Height="45"
+                                    Height="40"
                                     BorderThickness="2"
                                     CornerRadius="20">
                             <Border.Effect>
@@ -61,7 +61,7 @@
                                     <DoubleAnimation
                                                 Storyboard.TargetName="ToggleTransform"
                                                 Storyboard.TargetProperty="X"
-                                                To="45"
+                                                To="40"
                                                 Duration="0:0:0.2"
                                             />
                                     <!--<ColorAnimation

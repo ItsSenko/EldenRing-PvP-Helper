@@ -1,0 +1,196 @@
+﻿<UserControl x:Class="PvPHelper.MVVM.Views.ItemsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PvPHelper.MVVM.Views.UserControls"
+        xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             mc:Ignorable="d" 
+             d:DesignHeight="658.285714285714" d:DesignWidth="1092.8">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0" Name="Left">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="4*"/>
+                <RowDefinition Height="2*"/>
+            </Grid.RowDefinitions>
+            <Border Grid.Row="0" Background="{DynamicResource BackgroundBrush}" Margin="10">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Label Content="Senko Dex" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="24" Foreground="{DynamicResource ForegroundBrush}"/>
+                    <Label Content="lvl 137" Grid.Row="1" HorizontalAlignment="Center" FontSize="18" Foreground="{DynamicResource ForegroundBrush}"/>
+                </Grid>
+            </Border>
+            <Border Grid.Row="1" Background="{DynamicResource BackgroundBrush}" Margin="10">
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <StackPanel.Resources>
+                        <Style TargetType="Label">
+                            <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}"/>
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                        </Style>
+                    </StackPanel.Resources>
+                    <Label Content="Vigor 60"/>
+                    <Label Content="Vigor 60"/>
+                    <Label Content="Vigor 60"/>
+                    <Label Content="Vigor 60"/>
+                    <Label Content="Vigor 60"/>
+                    <Label Content="Vigor 60"/>
+                    <Label Content="Vigor 60"/>
+                    <Label Content="Vigor 60"/>
+                    <Label Content="Vigor 60"/>
+                    <Label Content="Vigor 60"/>
+                    <Label Content="Vigor 60"/>
+                </StackPanel>
+            </Border>
+            <Border Grid.Row="2" Background="{DynamicResource BackgroundBrush}" Margin="10">
+                <StackPanel>
+                    <Label Content="Runes" HorizontalAlignment="Center" Foreground="{DynamicResource ForegroundBrush}" FontSize="20"/>
+                    <Label Content="789123" HorizontalAlignment="Center" Foreground="{DynamicResource ForegroundBrush}" FontSize="18"/>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="180"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <local:NumberInput Grid.Column="0" CurrValue="9999999" VerticalAlignment="Bottom"/>
+                        <Grid x:Name="Toggle" Grid.Column="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1*"/>
+                                <RowDefinition Height="1*"/>
+                            </Grid.RowDefinitions>
+                            <Label Grid.Row="0" Content="Max" HorizontalContentAlignment="Center" Foreground="{DynamicResource ForegroundBrush}"/>
+                            <ToggleButton Grid.Row="1" Style="{StaticResource CircleToggle}"/>
+                        </Grid>
+                        <Button Grid.Column="2" Style="{StaticResource PrimaryButton}" Content="Add" Width="60" Height="40" VerticalAlignment="Bottom" Margin="0"/>
+                    </Grid>
+                </StackPanel>
+            </Border>
+        </Grid>
+        <Grid Grid.Column="1" Name="Right">
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="2*"/>
+                </Grid.RowDefinitions>
+                <Border x:Name="Massive_Gains" Grid.Row="0" Margin="10" Background="{DynamicResource BackgroundBrush}">
+                    <UniformGrid Columns="4" Rows="4">
+                        
+                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Flask Upgrades"/>
+                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Talisman Pouches"/>
+                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Talisman Pouches"/>
+                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Talisman Pouches" />
+                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Talisman Pouches" />
+                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Talisman Pouches" />
+                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Talisman Pouches" />
+                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Talisman Pouches" />
+                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Talisman Pouches" />
+                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Talisman Pouches" />
+                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Talisman Pouches" />
+                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Talisman Pouches" />
+                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Talisman Pouches" />
+                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Talisman Pouches" />
+                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Talisman Pouches" />
+                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Talisman Pouches" />          
+                    </UniformGrid>
+                </Border>
+                <Border Name="Massive_Item_Gib" Grid.Row="1" Margin="10" Background="{DynamicResource BackgroundBrush}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Name="Upgrade_Level" Grid.Column="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition Height="2*"/>
+                            </Grid.RowDefinitions>
+                            <Label Grid.Row="0" Content="Upgrade Level" VerticalContentAlignment="Bottom" Foreground="{DynamicResource ForegroundBrush}" HorizontalAlignment="Center"/>
+                            <local:NumberInput Grid.Row="1" CurrValue="10" HorizontalAlignment="Center"/>
+                        </Grid>
+                        <UniformGrid Grid.Column="1" Rows="2">
+                            <Button Content="All Melee Weapons" Style="{StaticResource PrimaryButton}"/>
+                            <Button Content="All Melee Weapons" Style="{StaticResource PrimaryButton}"/>
+                        </UniformGrid>
+                        <UniformGrid Grid.Column="2" Rows="2">
+                            <Button Content="All Melee Weapons" Style="{StaticResource PrimaryButton}"/>
+                            <Button Content="All Melee Weapons" Style="{StaticResource PrimaryButton}"/>
+                        </UniformGrid>
+                        <UniformGrid Grid.Column="3" Rows="2">
+                            <Button Content="All Melee Weapons" Style="{StaticResource PrimaryButton}"/>
+                            <Button Content="All Melee Weapons" Style="{StaticResource PrimaryButton}"/>
+                        </UniformGrid>
+                    </Grid>
+                </Border>
+                <Border Name="Item_Gib" Grid.Row="2" Background="{DynamicResource BackgroundBrush}" Margin="10">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel VerticalAlignment="Center" >
+                            <StackPanel.Resources>
+                                <Style TargetType="local:SearchableComboBox">
+                                    <Setter Property="Margin" Value="0 0 0 0"/>
+                                    <Setter Property="Height" Value="35"/>
+                                    <Setter Property="Width" Value="250"/>
+                                </Style>
+                                <Style TargetType="Label">
+                                    <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}"/>
+                                    <Setter Property="FontSize" Value="8"/>
+                                    <Setter Property="Margin" Value="50 0 0 0"/>
+                                </Style>
+                            </StackPanel.Resources>
+                            <local:SimpleDropDown Height="30" Width="200"/> 
+                            <Label Content="WEAPON"/>
+                            <local:SearchableComboBox/>
+                            <Label Content="INFUSION"/>
+                            <local:SearchableComboBox/>
+                            <Label Content="ASH OF WAR"/>
+                            <local:SearchableComboBox/>
+                        </StackPanel>
+                        <Grid Grid.Column="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="2*"/>
+                                <RowDefinition Height="1*"/>
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                    </Grid.RowDefinitions>
+                                    <Label Grid.Row="0" Content="Upgrade Level" Foreground="{DynamicResource ForegroundBrush}" FontWeight="DemiBold" FontSize="14" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Center"/>
+                                    <local:NumberInput Grid.Row="1" HorizontalAlignment="Center" CurrValue="10"/>
+                                </Grid>
+                                <Grid Grid.Column="1">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                    </Grid.RowDefinitions>
+                                    <Label Grid.Row="0" Content="Amount" Foreground="{DynamicResource ForegroundBrush}" FontWeight="DemiBold" FontSize="14" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Center"/>
+                                    <local:NumberInput Grid.Row="1" HorizontalAlignment="Center" CurrValue="10"/>
+                                </Grid>
+                            </Grid>
+                            <Button Grid.Row="1" Width="150" Height="40" Style="{StaticResource PrimaryButton}" Content="Add"/>
+                        </Grid>
+                    </Grid>
+                </Border>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

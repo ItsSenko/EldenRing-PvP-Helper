@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:PvPHelper.MVVM.Views.UserControls"
              xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
              mc:Ignorable="d" 
-             d:DesignHeight="20" d:DesignWidth="100">
+             d:DesignHeight="40" d:DesignWidth="100">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
@@ -14,10 +14,11 @@
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
 
-        <svgc:SvgIcon UriSource="/Resources/Images/minus-circle-outline.svg"
+        <svgc:SvgIcon UriSource="/Resources/Images/minus-circle.svg"
+                      Margin="0 0 10 0"
                       Fill="White"
-                      Height="20"
-                      Width="20"
+                      Height="40"
+                      Width="40"
                       HorizontalAlignment="Left"
                       Grid.Column="0"
                       MouseDown="Minus_MouseDown"/>
@@ -29,14 +30,15 @@
                  TextAlignment="Center"
                  VerticalContentAlignment="Center"
                  HorizontalAlignment="Stretch"
-                 FontSize="16"
+                 FontSize="20"
                  BorderThickness="0"
                  Grid.Column="1"/>
 
-        <svgc:SvgIcon UriSource="/Resources/Images/plus-circle-outline.svg"
+        <svgc:SvgIcon UriSource="/Resources/Images/plus-circle.svg"
+                  Margin="10 0 0 0"
                   Fill="White"
-                  Height="20"
-                  Width="20"
+                  Height="40"
+                  Width="40"
                   HorizontalAlignment="Right"
                   Grid.Column="2"
                   MouseDown="Plus_MouseDown"/>
