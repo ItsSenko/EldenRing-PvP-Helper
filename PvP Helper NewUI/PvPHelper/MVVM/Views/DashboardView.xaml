@@ -4,8 +4,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PvPHelper.MVVM.Views.UserControls"
-        xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
-        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:viewModels="clr-namespace:PvPHelper.MVVM.ViewModels"
+             xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              mc:Ignorable="d" 
              d:DesignHeight="658.285714285714" d:DesignWidth="1092.8">
     <Grid>
@@ -27,16 +28,34 @@
                     </Style>
                 </StackPanel.Resources>
                 <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center">
-                    <ToggleButton Style="{StaticResource CircleToggle}"/>
+                    <ToggleButton Style="{StaticResource CircleToggle}"
+                                  IsChecked="{Binding NoDamageToggle.State,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                  Command="{Binding NoDamageToggle}"/>
                     <!--<local:StatDisplay Margin="10 0 10 0" Width="100" Height="50" UriSource="Resources/Images/water.svg" Fill="#7BADF6"/>-->
-                    <local:StatDisplay Margin="10 0 10 0"  Width="100" Height="40" UriSource="Resources/Images/hospital.svg" Fill="#D36969"/>
-                    <svgc:SvgIcon Height="30" Fill="{DynamicResource ForegroundBrush}" UriSource="Resources/Images/refresh.svg"/>
+                    <local:StatDisplay Margin="10 0 10 0"  
+                                       Width="100" Height="40" 
+                                       UriSource="Resources/Images/hospital.svg" 
+                                       Fill="#D36969"
+                                       Text="{Binding HPText, UpdateSourceTrigger=PropertyChanged}"/>
+                    <Button Command="{Binding RefillHPCommand}" Style="{DynamicResource SimpleButtonStyle}">
+                        <svgc:SvgIcon Height="30" Fill="{DynamicResource ForegroundBrush}" UriSource="Resources/Images/refresh.svg"/>
+                    </Button>
+                    <!--<svgc:SvgIcon Height="30" Fill="{DynamicResource ForegroundBrush}" UriSource="Resources/Images/refresh.svg"/>-->
                 </StackPanel>
                 <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
-                    <ToggleButton Style="{StaticResource CircleToggle}"/>
-                    <local:StatDisplay Margin="10 0 10 0" Width="100" Height="40" UriSource="Resources/Images/water.svg" Fill="#7BADF6"/>
+                    <ToggleButton Style="{StaticResource CircleToggle}"
+                                  IsChecked="{Binding NoFPLossToggle.State, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                  Command="{Binding NoFPLossToggle}"/>
+                    <local:StatDisplay Margin="10 0 10 0" 
+                                       Width="100" 
+                                       Height="40" 
+                                       UriSource="Resources/Images/water.svg" 
+                                       Fill="#7BADF6"
+                                       Text="{Binding FPText, UpdateSourceTrigger=PropertyChanged}"/>
 
-                    <svgc:SvgIcon Height="30" Fill="{DynamicResource ForegroundBrush}" UriSource="Resources/Images/refresh.svg"/>
+                    <Button Command="{Binding RefillFPCommand}" Style="{DynamicResource SimpleButtonStyle}">
+                        <svgc:SvgIcon Height="30" Fill="{DynamicResource ForegroundBrush}" UriSource="Resources/Images/refresh.svg"/>
+                    </Button>
                 </StackPanel>
                 <!--<Grid Grid.Row="0" Height="50">
                                     <Grid.ColumnDefinitions>
@@ -69,8 +88,12 @@
                         <Setter Property="Margin" Value="0,10,0,10"/>
                     </Style>
                 </StackPanel.Resources>
-                <local:LabeledCircleToggle Label="Auto Revive"/>
-                <local:LabeledCircleToggle Label="Mad Heal"/>
+                <local:LabeledCircleToggle Label="Auto Revive"
+                                           Checked="{Binding AutoReviveToggle.State, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                           ToggleCommand="{Binding AutoReviveToggle}"/>
+                <local:LabeledCircleToggle Label="Mad Heal"
+                                           Checked="{Binding MadHealToggle.State, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                           ToggleCommand="{Binding MadHealToggle}"/>
             </StackPanel>
             <StackPanel x:Name="Second" Grid.Column="2" Orientation="Vertical" VerticalAlignment="Center">
                 <StackPanel.Resources>
@@ -78,8 +101,12 @@
                         <Setter Property="Margin" Value="0,10,0,10"/>
                     </Style>
                 </StackPanel.Resources>
-                <local:LabeledCircleToggle Label="Infinite Consumables"/>
-                <local:LabeledCircleToggle Label="Fast Anims"/>
+                <local:LabeledCircleToggle Label="Infinite&#x0a;Consumables"
+                                           Checked="{Binding InfConsumeablesToggle.State, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                           ToggleCommand="{Binding InfConsumeablesToggle}"/>
+                <local:LabeledCircleToggle Label="Fast Anims"
+                                           Checked="{Binding FastAnimsToggle.State, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                           ToggleCommand="{Binding FastAnimsToggle}"/>
             </StackPanel>
             <StackPanel x:Name="Third" Grid.Column="3" Orientation="Vertical" VerticalAlignment="Center">
                 <StackPanel.Resources>
@@ -87,8 +114,12 @@
                         <Setter Property="Margin" Value="0,10,0,10"/>
                     </Style>
                 </StackPanel.Resources>
-                <local:LabeledCircleToggle Label="No Death"/>
-                <local:LabeledCircleToggle Label="No Stam Loss"/>
+                <local:LabeledCircleToggle Label="No Death"
+                                           Checked="{Binding NoDeathToggle.State, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                           ToggleCommand="{Binding NoDeathToggle}"/>
+                <local:LabeledCircleToggle Label="No Stam Loss"
+                                           Checked="{Binding NoStamLossToggle.State, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                           ToggleCommand="{Binding NoStamLossToggle}"/>
             </StackPanel>
         </Grid>
         <Grid x:Name="Bottom" Grid.Row="1">
@@ -96,11 +127,7 @@
                 <ColumnDefinition Width="7*"/>
                 <ColumnDefinition Width="2*" />
             </Grid.ColumnDefinitions>
-            <Border x:Name="Console" Background="{StaticResource BackgroundBrush}" Margin="10" Grid.Column="0">
-                <ScrollViewer>
-                    <TextBlock FontSize="16" Padding="10" Text="First Line&#x0a;Second Line&#x0a;Second Line&#x0a;Second Line&#x0a;Second Line&#x0a;Second Line&#x0a;Second Line&#x0a;Second Line&#x0a;Second Line&#x0a;Second Line&#x0a;Second Line&#x0a;Second Line&#x0a;Second Line&#x0a;Second Line&#x0a;Second Line&#x0a;Second Line&#x0a;Second Line&#x0a;Second Line&#x0a;Second Line&#x0a;Second Line&#x0a;Second Line&#x0a;Second Line&#x0a;Second Line&#x0a;Second Line&#x0a;Second Line&#x0a;Second Line&#x0a;Second Line&#x0a;Second Line&#x0a;Second Line&#x0a;Second Line&#x0a;Second Line&#x0a;Second Line&#x0a;Second Line&#x0a;Second Line" TextWrapping="Wrap" Background="Transparent" Foreground="{DynamicResource ForegroundBrush}"/>
-                </ScrollViewer>
-            </Border>
+            <local:Console Grid.Column="0" Margin="10"/>
             <Grid Grid.Column="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="5*"/>
@@ -113,11 +140,38 @@
                             <RowDefinition Height="1*"/>
                         </Grid.RowDefinitions>
                         <Label Grid.Row="0" Content="Character Type" Margin="0 20 0 0" FontSize="16" HorizontalAlignment="Center" Foreground="{StaticResource ForegroundBrush}"/>
-                        <local:SimpleDropDown Grid.Row="1" Height="30" Margin="20 10 20 0" Width="150"/>
+                        <local:SimpleDropDown Grid.Row="1" 
+                                              Height="30" 
+                                              Margin="20 10 20 0"
+                                              Width="150"
+                                              SelectedIndex="{Binding ChrTypeSelectedIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                              ItemsSource="{Binding ChrTypeItemsSource, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                        <Button Margin="20,64,20,-59" 
+                                Grid.Row="1"
+                                Content="Change Color"
+                                Style="{DynamicResource PrimaryButton}"/>
+                        <Button Margin="20,104,20,-99" 
+                                Grid.Row="1"
+                                Content="Reset Color"
+                                Style="{DynamicResource PrimaryButton}"/>
                     </Grid>
                 </Border>
                 <Border Margin="10" Background="{StaticResource BackgroundBrush}" Grid.Row="1">
+                    <Grid>
+                        <Button Command="{Binding AttachCommand}" Style="{DynamicResource SimpleButtonStyle}">
+                            <svgc:SvgIcon 
+                                  Fill="{DynamicResource ForegroundBrush}" 
+                                  UriSource="{Binding AttachIcon, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                  Margin="0,10,0,61"/>
+                        </Button>
 
+                        <TextBlock Text="{Binding AttachText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                   VerticalAlignment="Top"
+                                   HorizontalAlignment="Center"
+                                   FontSize="35"
+                                   Foreground="{DynamicResource ForegroundBrush}" Margin="0,153,0,0"/>
+                    </Grid>
                 </Border>
             </Grid>
         </Grid>

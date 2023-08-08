@@ -1,0 +1,100 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:svg="http://sharpvectors.codeplex.com/runtime/"
+                    xmlns:svgc="http://sharpvectors.codeplex.com/svgc/">
+    
+    <Style x:Key="DashButtonStyle" TargetType="RadioButton">
+        <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="RadioButton">
+                    <Grid>
+                        <Border Cursor="Hand" Name="borderBOTTOM" CornerRadius="20" Background="{DynamicResource DashHighlightGradient}" BorderBrush="Transparent" BorderThickness="0,1,1,0">
+
+                        </Border>
+                        <Border Cursor="Hand" Name="borderTOP" CornerRadius="20" Background="{DynamicResource DashBackgroundGradient}" BorderBrush="Transparent" BorderThickness="0,1,1,0">
+
+                        </Border>
+                        <Grid VerticalAlignment="Center">
+                            <Grid.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="Padding" Value="15"/>
+                                </Style>
+                            </Grid.Resources>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Border>
+                                <svgc:SvgIcon Margin="10" Fill="{DynamicResource ForegroundBrush}" UriSource="{Binding UriSource, UpdateSourceTrigger=PropertyChanged}"/>
+                            </Border>
+                            <ContentPresenter x:Name="contentPresenter"
+                                          Grid.Column="1"
+                                          Grid.ColumnSpan="2"
+                                          ContentTemplate="{TemplateBinding ContentTemplate}" 
+                                          Content="{TemplateBinding Content}" 
+                                          HorizontalAlignment="Left"
+                                          Margin="{TemplateBinding Padding}" 
+                                          VerticalAlignment="Center" />
+                        </Grid>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <EventTrigger RoutedEvent="MouseEnter">
+                            <EventTrigger.Actions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <!--<ColorAnimation
+                                                Storyboard.TargetProperty="(Border.Background).(GradientBrush.GradientStops)[0].Color"
+                                                Storyboard.TargetName="border"
+                                                To="{StaticResource Highlight}"
+                                                Duration="0:0:0.2"
+                                                />-->
+                                        <DoubleAnimation
+                                                    Storyboard.TargetName="borderBOTTOM"
+                                                    Storyboard.TargetProperty="Opacity"
+                                                    To="1"
+                                                    Duration="0:0:0.2"
+                                                />
+                                        <DoubleAnimation
+                                                    Storyboard.TargetName="borderTOP"
+                                                    Storyboard.TargetProperty="Opacity"
+                                                    To="0"
+                                                    Duration="0:0:0.2"
+                                                />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger.Actions>
+                        </EventTrigger>
+                        <EventTrigger RoutedEvent="MouseLeave">
+                            <EventTrigger.Actions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <!--<ColorAnimation
+                                                Storyboard.TargetProperty="(Border.Background).(GradientBrush.GradientStops)[0].Color"
+                                                Storyboard.TargetName="border"
+                                                To="{StaticResource Background}"
+                                                Duration="0:0:0.2"
+                                                />-->
+                                        <DoubleAnimation
+                                                    Storyboard.TargetName="borderBOTTOM"
+                                                    Storyboard.TargetProperty="Opacity"
+                                                    To="0"
+                                                    Duration="0:0:0.2"
+                                                />
+                                        <DoubleAnimation
+                                                    Storyboard.TargetName="borderTOP"
+                                                    Storyboard.TargetProperty="Opacity"
+                                                    To="1"
+                                                    Duration="0:0:0.2"
+                                                />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger.Actions>
+                        </EventTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

@@ -8,9 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\Blacklist.json" />
+    <None Remove="Resources\ConsumableIDS.txt" />
     <None Remove="Resources\Images\auto-fix.svg" />
     <None Remove="Resources\Images\file-document-alert.svg" />
     <None Remove="Resources\Images\hospital.svg" />
+    <None Remove="Resources\Images\link-box-outline.svg" />
+    <None Remove="Resources\Images\link-box.svg" />
     <None Remove="Resources\Images\magnify.svg" />
     <None Remove="Resources\Images\minus-circle-outline.svg" />
     <None Remove="Resources\Images\minus-circle.svg" />
@@ -23,6 +27,7 @@
     <None Remove="Resources\Images\tab-search.svg" />
     <None Remove="Resources\Images\view-dashboard-variant.svg" />
     <None Remove="Resources\Images\water.svg" />
+    <None Remove="Resources\MapEventFlagIds.txt" />
   </ItemGroup>
 
   <ItemGroup>
@@ -33,6 +38,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\hospital.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\link-box-outline.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\link-box.svg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\magnify.svg">
@@ -74,6 +85,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Resources\Blacklist.json" />
+    <EmbeddedResource Include="Resources\ConsumableIDS.txt" />
+    <EmbeddedResource Include="Resources\MapEventFlagIds.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.1" />
     <PackageReference Include="Extended.Wpf.Toolkit" Version="4.5.0" />
     <PackageReference Include="PixiEditor.ColorPicker" Version="3.3.1" />
     <PackageReference Include="SharpVectors" Version="1.8.1" />

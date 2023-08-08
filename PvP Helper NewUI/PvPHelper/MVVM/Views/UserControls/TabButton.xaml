@@ -6,6 +6,7 @@
             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
             xmlns:svg="http://sharpvectors.codeplex.com/runtime/"
             xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
+             x:Name="TabButtonRoot"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
@@ -33,7 +34,7 @@
                                     <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
                                 <Border>
-                                    <svgc:SvgIcon Margin="10" Fill="{DynamicResource ForegroundBrush}" UriSource="{Binding UriSource, UpdateSourceTrigger=PropertyChanged}"/>
+                                    <svgc:SvgIcon Margin="10" Fill="{DynamicResource ForegroundBrush}" UriSource="{Binding UriSource, ElementName=TabButtonRoot}"/>
                                 </Border>
                                 <ContentPresenter x:Name="contentPresenter"
                                           Grid.Column="1"
@@ -105,6 +106,10 @@
         </Style>
     </UserControl.Resources>
     <Grid Height="Auto" Width="Auto">
-        <RadioButton  FontSize="18" Foreground="{DynamicResource ForegroundBrush}" Content="{Binding Label, UpdateSourceTrigger=PropertyChanged}"  Grid.Row="0" Style="{StaticResource DashButtonStyle}"/>
+        <RadioButton FontSize="18" 
+                     Foreground="{DynamicResource ForegroundBrush}" 
+                     Content="{Binding Label, ElementName=TabButtonRoot}"  
+                     Grid.Row="0" Style="{StaticResource DashButtonStyle}"
+                     Command="{Binding BtnCommand, ElementName=TabButtonRoot}"/>
     </Grid>
 </UserControl>

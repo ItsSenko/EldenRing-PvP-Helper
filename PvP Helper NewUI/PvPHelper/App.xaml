@@ -2,6 +2,8 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:PvPHelper"
+             xmlns:viewModels="clr-namespace:PvPHelper.MVVM.ViewModels"
+             xmlns:views="clr-namespace:PvPHelper.MVVM.Views"
              StartupUri="MainWindow.xaml">
 
     <Application.Resources>
@@ -11,8 +13,15 @@
                 <ResourceDictionary Source="MVVM/Views/Styles/ComboBoxItemStyle.xaml"/>
                 <ResourceDictionary Source="MVVM/Views/Styles/CircleToggle.xaml"/>
                 <ResourceDictionary Source="MVVM/Views/Styles/PrimaryButton.xaml"/>
+                <ResourceDictionary Source="MVVM/Views/Styles/SimpleButtonStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
+            <DataTemplate DataType="{x:Type viewModels:DashboardViewModel}">
+                <views:DashboardView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModels:ItemsViewModel}">
+                <views:ItemsView/>
+            </DataTemplate>
 
             <Color x:Key="Foreground">#FFFFFF</Color>
             <Color x:Key="Lighter">#393939</Color>

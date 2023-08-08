@@ -9,11 +9,27 @@ namespace PvPHelper.Console
     public class CommandManager
     {
         private List<CommandBase> _commands = new List<CommandBase>();
+        private static CommandManager instance;
+        public CommandManager()
+        {
+            instance = this;
+        }
         public void RegisterCommand(CommandBase newCommand)
         {
             _commands.Add(newCommand);
         }
-
+        public static event Action LogLoaded;
+        private static Action<string> logAction;
+        public static CommandManager RegisterConsole(Action<string> action)
+        {
+            logAction = action;
+            //LogLoaded.Invoke();
+            return instance;
+        }
+        public static void Log(string text)
+        {
+            logAction.Invoke(text);
+        }
         public void HandleInput(string input)
         {
             foreach(var command in _commands)

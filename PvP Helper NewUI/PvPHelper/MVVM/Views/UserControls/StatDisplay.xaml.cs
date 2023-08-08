@@ -20,91 +20,42 @@ namespace PvPHelper.MVVM.Views.UserControls
     /// <summary>
     /// Interaction logic for StatDisplay.xaml
     /// </summary>
-    public partial class StatDisplay : UserControl,INotifyPropertyChanged
+    public partial class StatDisplay : UserControl
     {
-        public static readonly DependencyProperty fill =
-                   DependencyProperty.Register(
-                         "Fill",
-                          typeof(Brush),
-                          typeof(StatDisplay));
-        public Brush Fill
+        public Brush Fill        
         {
-            get
-            {
-                return (Brush)GetValue(fill);
-            }
-            set
-            {
-                SetValue(fill, value);
-            }
+            get { return (Brush)GetValue(FillProperty); }
+            set { SetValue(FillProperty, value); }
         }
 
-        private string uriSource = "Resources/file-document-alert.svg";
+        // Using a DependencyProperty as the backing store for Fill.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty FillProperty =
+            DependencyProperty.Register("Fill", typeof(Brush), typeof(StatDisplay));
+
         public string UriSource
         {
-            get { return uriSource; }
-            set { uriSource = value; OnPropertyChanged(); }
+            get { return (string)GetValue(UriSourceProperty); }
+            set { SetValue(UriSourceProperty, value); }
         }
-        private string _text;
+
+        // Using a DependencyProperty as the backing store for UriSource.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty UriSourceProperty =
+            DependencyProperty.Register("UriSource", typeof(string), typeof(StatDisplay), new PropertyMetadata("Resources/file-document-alert.svg"));
 
         public string Text
         {
-            get { return _text; }
-            set { _text = value;  OnPropertyChanged(); }
+            get { return (string)GetValue(TextProperty); }
+            set { SetValue(TextProperty, value); }
         }
-        private int _min;
 
-        public int Min
-        {
-            get { return _min; }
-            set { _min = value; OnPropertyChanged(); }
-        }
-        private int _max;
-
-        public int Max
-        {
-            get { return _max; }
-            set { _max = value; OnPropertyChanged(); }
-        }
-        private int _currValue;
-
-        public int CurrValue
-        {
-            get { return _currValue; }
-            set { _currValue = value; Text = CurrValue.ToString(); OnPropertyChanged(); }
-        }
+        // Using a DependencyProperty as the backing store for Text.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty TextProperty =
+            DependencyProperty.Register("Text", typeof(string), typeof(StatDisplay), new PropertyMetadata("???"));
 
 
         public StatDisplay()
         {
-            DataContext = this;
             InitializeComponent();
-        }
-        public event PropertyChangedEventHandler? PropertyChanged;
-        protected void OnPropertyChanged([CallerMemberName] string name = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-        }
-
-        private bool IsTextAllowed(string text)
-        {
-            int parsed;
-            if (!int.TryParse(Text + text, out parsed))
-                return false;
-
-            if (parsed < Min)
-                return false;
-            if (parsed > Max)
-                return false;
-
-            return true;
-        }
-        private void TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
-        {
-            e.Handled = !IsTextAllowed(e.Text);
-
-            if (!e.Handled && int.TryParse(Text, out int parsed))
-                CurrValue = parsed;
         }
     }
 }
