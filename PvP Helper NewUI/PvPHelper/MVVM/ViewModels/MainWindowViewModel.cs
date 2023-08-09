@@ -3,6 +3,7 @@ using Erd_Tools.Models.Entities;
 using PvPHelper.Console;
 using PvPHelper.Console.Commands;
 using PvPHelper.Core;
+using PvPHelper.MVVM.Models;
 using PvPHelper.MVVM.Views;
 using System.Collections.Generic;
 using System.Windows;
@@ -49,6 +50,7 @@ namespace PvPHelper.MVVM.ViewModels
             CustomPointers.Initialize(_hook);
             SetupViewModels();
             RegisterCommands();
+            Blacklist.Initialize();
         }
 
         private void _hook_OnUnhooked(object? sender, PropertyHook.PHEventArgs e)
