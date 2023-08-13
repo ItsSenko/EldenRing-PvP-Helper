@@ -24,8 +24,10 @@ namespace PvPHelper.MVVM.Views.UserControls
             InitializeComponent();
 
             commandManager = CommandManager.RegisterConsole(new Action<string>(s => { Log(s); }));
+            LogLoaded.Invoke();
         }
         #region Data Bindings
+        public static event Action LogLoaded = new(() => { });
         private static ObservableCollection<string> defaultConsoleOutput = new();
 
         public ObservableCollection<string> ConsoleOutput

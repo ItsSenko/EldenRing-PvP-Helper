@@ -1,9 +1,5 @@
 ﻿using Erd_Tools;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PvPHelper.Console.Commands
 {
@@ -13,7 +9,7 @@ namespace PvPHelper.Console.Commands
         public HookCommand(ErdHook hook)
         {
             Name = "Hook Command";
-            Description = "Begins or Ends the hook.";
+            Description = "Starts or Stops attempting to Hook to Elden Ring.";
             CommandString = "/hook";
             HasParams = true;
             RequireParams = true;

@@ -1,21 +1,10 @@
 ﻿using Erd_Tools;
 using Erd_Tools.Models;
-using Erd_Tools.Models.Entities;
 using Erd_Tools.Models.Items;
-using PropertyHook;
-using PvPHelper.Console;
-using PvPHelper.Core;
-using PvPHelper.MVVM.Models;
 using PvPHelper.MVVM.ViewModels;
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Threading;
 using static Erd_Tools.Models.Weapon;
 using CommandBase = PvPHelper.Core.CommandBase;
 

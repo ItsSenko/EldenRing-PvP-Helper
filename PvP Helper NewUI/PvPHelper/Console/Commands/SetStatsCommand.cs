@@ -1,11 +1,6 @@
 ﻿using Erd_Tools;
 using Erd_Tools.Models.Entities;
-using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PvPHelper.Console.Commands
 {
@@ -15,7 +10,7 @@ namespace PvPHelper.Console.Commands
         private ErdHook _hook;
         public SetStatsCommand(ErdHook hook, Player player)
         {
-            Name = "Set Stats";
+            Name = "Set Stats Command";
             Description = "Set supported stat to value.";
             CommandString = "/set";
             HasParams = true;
@@ -52,7 +47,7 @@ namespace PvPHelper.Console.Commands
                     {
                         var newValue = value >= _player.HpMax ? _player.HpMax : value;
                         _player.Hp = newValue;
-                        CommandManager.Log($"Set FP to {newValue}");
+                        CommandManager.Log($"Set HP to {newValue}");
                         break; 
                     }
             }

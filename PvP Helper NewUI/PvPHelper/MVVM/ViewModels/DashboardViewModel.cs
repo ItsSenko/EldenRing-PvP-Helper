@@ -1,13 +1,9 @@
 ﻿using Erd_Tools;
 using Erd_Tools.Models.Entities;
-using PvPHelper.Console;
 using PvPHelper.Core;
-using PvPHelper.MVVM.Views.UserControls;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using CommandManager = PvPHelper.Console.CommandManager;
@@ -15,8 +11,8 @@ using PvPHelper.MVVM.Commands.Dashboard.Toggles;
 using System.Windows.Threading;
 using PvPHelper.MVVM.Models;
 using System.Drawing;
-using System.Collections.ObjectModel;
 using PvPHelper.MVVM.Views;
+using System.Diagnostics;
 
 namespace PvPHelper.MVVM.ViewModels
 {
@@ -38,6 +34,7 @@ namespace PvPHelper.MVVM.ViewModels
         public ICommand NoStamLossToggle { get; set; }
 
         public ICommand AttachCommand { get; set; }
+        public ICommand HelpCommand { get; set; }
 
         private string _hpText;
 
@@ -168,6 +165,16 @@ namespace PvPHelper.MVVM.ViewModels
 
             NoDeathToggle = new NoDeathToggle(hook);
             NoStamLossToggle = new NoStamLossToggle(hook);
+
+            HelpCommand = new RelayCommand((o) => 
+            {
+                var ps = new ProcessStartInfo("https://github.com/ItsSenko/EldenRing-PvP-Helper/wiki/Console-Commands")
+                {
+                    UseShellExecute = true,
+                    Verb = "open"
+                };
+                Process.Start(ps);
+            });
 
             AttachCommand = new RelayCommand((o) => 
             {

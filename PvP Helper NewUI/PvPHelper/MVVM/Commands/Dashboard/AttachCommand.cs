@@ -1,5 +1,5 @@
 ﻿using Erd_Tools;
-using CommandBase = PvPHelper.Core.CommandBase;
+using PvPHelper.Core;
 
 namespace PvPHelper.MVVM.Commands.Dashboard
 {

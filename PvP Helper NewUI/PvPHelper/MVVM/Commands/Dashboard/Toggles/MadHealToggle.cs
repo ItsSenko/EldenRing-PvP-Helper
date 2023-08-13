@@ -1,15 +1,8 @@
 ﻿using Erd_Tools;
 using Erd_Tools.Models;
-using Erd_Tools.Models.Entities;
-using PvPHelper.Console;
 using PvPHelper.Core;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Threading;
 using CommandBase = PvPHelper.Core.CommandBase;
 
 namespace PvPHelper.MVVM.Commands.Dashboard.Toggles

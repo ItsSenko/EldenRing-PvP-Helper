@@ -128,6 +128,12 @@
                 <ColumnDefinition Width="2*" />
             </Grid.ColumnDefinitions>
             <local:Console Grid.Column="0" Margin="10"/>
+            <Button Margin="808,413,14,17" 
+                    Style="{DynamicResource SimpleButtonStyle}"
+                    Command="{Binding HelpCommand}">
+                <svgc:SvgIcon UriSource="Resources/Images/help-circle.svg"
+                              Fill="{DynamicResource LighterTextBrush}" Height="22" Width="23"/>
+            </Button>
             <Grid Grid.Column="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="5*"/>
