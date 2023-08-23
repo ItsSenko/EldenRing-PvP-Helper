@@ -9,6 +9,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+
+    <None Remove="MVVM\Views\UserControls\grave_scythe.png" />
+    <None Remove="Resources\Images\auto-fix.svg" />
+    <None Remove="Resources\Images\file-document-alert.svg" />
+    <None Remove="Resources\Images\grave_scythe.png" />
+    <None Remove="Resources\Images\hospital.svg" />
+    <None Remove="Resources\Images\Infusions\fire.png" />
+
     <None Remove="Resources\Blacklist.json" />
     <None Remove="Resources\ConsumableIDS.txt" />
     <None Remove="Resources\Images\auto-fix.svg" />
@@ -17,6 +25,7 @@
     <None Remove="Resources\Images\hospital.svg" />
     <None Remove="Resources\Images\link-box-outline.svg" />
     <None Remove="Resources\Images\link-box.svg" />
+
     <None Remove="Resources\Images\magnify.svg" />
     <None Remove="Resources\Images\minus-circle-outline.svg" />
     <None Remove="Resources\Images\minus-circle.svg" />
@@ -40,9 +49,14 @@
     <Content Include="Resources\Images\file-document-alert.svg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+
+    <Resource Include="Resources\Images\grave_scythe.png" />
+    <Resource Include="Resources\Images\Infusions\fire.png" />
+    
     <Content Include="Resources\Images\help-circle.svg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+
     <Content Include="Resources\Images\hospital.svg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

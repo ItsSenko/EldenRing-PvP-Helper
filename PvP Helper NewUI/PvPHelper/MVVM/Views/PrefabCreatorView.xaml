@@ -11,11 +11,11 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="0">
             <Grid.RowDefinitions>
-                <RowDefinition Height="50"/>
+                <RowDefinition Height="30"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <local:SimpleDropDown Grid.Row="0" Width="250"/>
@@ -104,46 +104,21 @@
         </Grid>
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
-                <RowDefinition Height="50"/>
+                <RowDefinition Height="30"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <local:SimpleDropDown Width="250" Grid.Row="0"/>
             <Border Margin="10" Background="{DynamicResource BackgroundBrush}" Grid.Row="1">
-                <ScrollViewer HorizontalScrollBarVisibility="Auto">
-                    <ItemsControl ItemsSource="{Binding Items}">
+                <ScrollViewer Style="{DynamicResource ScrollViewerStyleDark}" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Visible">
+                    <ItemsControl ItemsSource="{Binding Items}" Padding="20">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
-                                <WrapPanel Orientation="Horizontal" Width="500"/>
+                                <WrapPanel Orientation="Horizontal" Width="668"/>
                             </ItemsPanelTemplate>
                         </ItemsControl.ItemsPanel>
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <Border CornerRadius="40">
-                                    <Border.Effect>
-                                        <DropShadowEffect BlurRadius="10" Opacity="0.5" ShadowDepth="0"/>
-                                    </Border.Effect>
-                                    <Button Content="Item"
-                                    Background="{DynamicResource ItemGradient}"
-                                    Margin="5"
-                                    Padding="10"
-                                    Width="90"
-                                    Height="75"
-                                    BorderBrush="Transparent"
-                                    PreviewMouseLeftButtonDown="Button_PreviewMouseLeftButtonDown"
-                                    PreviewMouseMove="Button_PreviewMouseMove"
-                                    Drop="Button_Drop"
-                                    DragEnter="Button_DragEnter"
-                                    Foreground="{DynamicResource ForegroundBrush}"
-                                    Cursor="Hand"
-                                    >
-                                        <Button.Resources>
-                                            <Style TargetType="{x:Type Border}">
-                                                <Setter Property="CornerRadius" Value="10"/>
-                                            </Style>
-                                        </Button.Resources>
-                                    </Button>
-                                    
-                                </Border>
+                                <local:InventoryItem/>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
