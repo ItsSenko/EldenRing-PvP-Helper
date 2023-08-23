@@ -33,7 +33,7 @@ namespace PvPHelper.MVVM.Views
             Items = new List<string>();
 
             // Replace this with your actual data source.
-            for (int i = 1; i <= 20; i++)
+            for (int i = 1; i <= 60; i++)
             {
                 Items.Add("Item " + i);
             }

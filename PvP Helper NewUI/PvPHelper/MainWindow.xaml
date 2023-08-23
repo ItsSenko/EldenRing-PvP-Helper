@@ -12,8 +12,8 @@
         mc:Ignorable="d"
         Height="768" Width="1366"
         Background="Transparent" WindowStyle="None" ResizeMode="NoResize"
+        Style="{StaticResource WinAll}"
         AllowsTransparency="True" MouseDown="window_MouseDown">
-
     <!--Needed for when i add the usercontrol-->
     <!--xmlns:colorpicker="clr-namespace:ColorPicker;assembly=ColorPicker"-->
     <Window.Resources>
@@ -99,8 +99,8 @@
             <Grid x:Name="ContentControl" Grid.RowSpan="2" Grid.Row="1">
                 <!--<ContentControl Content="{Binding CurrentView, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>-->
                 <!--<views:DashboardView/>-->
-                <views:ItemsView/>
-                <!--<views:PrefabCreatorView/>-->
+                <!--<views:ItemsView/>-->
+                <views:PrefabCreatorView/>   
             </Grid>
         </Grid>
 
