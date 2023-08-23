@@ -5,15 +5,27 @@
     <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
+	  <IncludeAllContentForSelfExtract>true</IncludeAllContentForSelfExtract>
   </PropertyGroup>
 
   <ItemGroup>
+
     <None Remove="MVVM\Views\UserControls\grave_scythe.png" />
     <None Remove="Resources\Images\auto-fix.svg" />
     <None Remove="Resources\Images\file-document-alert.svg" />
     <None Remove="Resources\Images\grave_scythe.png" />
     <None Remove="Resources\Images\hospital.svg" />
     <None Remove="Resources\Images\Infusions\fire.png" />
+
+    <None Remove="Resources\Blacklist.json" />
+    <None Remove="Resources\ConsumableIDS.txt" />
+    <None Remove="Resources\Images\auto-fix.svg" />
+    <None Remove="Resources\Images\file-document-alert.svg" />
+    <None Remove="Resources\Images\help-circle.svg" />
+    <None Remove="Resources\Images\hospital.svg" />
+    <None Remove="Resources\Images\link-box-outline.svg" />
+    <None Remove="Resources\Images\link-box.svg" />
+
     <None Remove="Resources\Images\magnify.svg" />
     <None Remove="Resources\Images\minus-circle-outline.svg" />
     <None Remove="Resources\Images\minus-circle.svg" />
@@ -26,6 +38,8 @@
     <None Remove="Resources\Images\tab-search.svg" />
     <None Remove="Resources\Images\view-dashboard-variant.svg" />
     <None Remove="Resources\Images\water.svg" />
+    <None Remove="Resources\MapEventFlagIds.txt" />
+    <None Remove="Resources\Version.txt" />
   </ItemGroup>
 
   <ItemGroup>
@@ -35,9 +49,21 @@
     <Content Include="Resources\Images\file-document-alert.svg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+
     <Resource Include="Resources\Images\grave_scythe.png" />
     <Resource Include="Resources\Images\Infusions\fire.png" />
+    
+    <Content Include="Resources\Images\help-circle.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+
     <Content Include="Resources\Images\hospital.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\link-box-outline.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\link-box.svg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\magnify.svg">
@@ -76,10 +102,21 @@
     <Content Include="Resources\Images\water.svg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Version.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Resources\Blacklist.json" />
+    <EmbeddedResource Include="Resources\ConsumableIDS.txt" />
+    <EmbeddedResource Include="Resources\MapEventFlagIds.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.1" />
     <PackageReference Include="Extended.Wpf.Toolkit" Version="4.5.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="PixiEditor.ColorPicker" Version="3.3.1" />
     <PackageReference Include="SharpVectors" Version="1.8.1" />
   </ItemGroup>
@@ -110,4 +147,48 @@
 
   </ItemGroup>
 
+	<ItemGroup>
+		<Content Update="keystone.dll">
+			<CopyToPublishDirectory>Never</CopyToPublishDirectory>
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+		</Content>
+	</ItemGroup>
+	
+	<ItemGroup>
+		<None Update="C:\Users\Nord\.nuget\packages\keystoneengine.csharp\0.9.1.1\build\x64\keystone.dll">
+			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Update="C:\Users\Nord\.nuget\packages\keystoneengine.csharp\0.9.1.1\build\x86\keystone.dll">
+			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+	
+	<ItemGroup>
+		<ResourceFiles Include="$(SolutionDir)\Resources\**\*.*" />
+	</ItemGroup>
+	
+	<ItemGroup>
+	  <ResourceFiles Remove="Resources\Version.txt" />
+	</ItemGroup>
+	
+	<Target Name="CopyResources" Condition="'$(Configuration)'!='Publish'" AfterTargets="Build">
+		<Message Text="Copy resource files" Importance="High" />
+		<Message Text="Files: @(ResourceFiles)" Importance="High" />
+		<Message Text="directory: $(OutDir)" Importance="High" />
+		<Copy SourceFiles="@(ResourceFiles)" DestinationFolder="$(OutDir)Resources\%(RecursiveDir)" SkipUnchangedFiles="true" />
+	</Target>
+
+	<!-- Copy all resources to the published output -->
+	<Target Name="CopyResourcesPublish" Condition="'$(Configuration)'=='Publish' OR '$(Configuration)'=='Release'" AfterTargets="Publish">
+		<Message Text="Copy resource files" Importance="High" />
+		<Message Text="Files: @(ResourceFiles)" Importance="High" />
+		<Message Text="Directory: $(PublishDir)" Importance="High" />
+		<Copy SourceFiles="@(ResourceFiles)" DestinationFolder="$(PublishDir)Resources\%(RecursiveDir)" SkipUnchangedFiles="true" />
+		<!-- <Message Text="Moving Readme: $(PublishDir)" Importance="High" />
+      <Message Text="Solution Dir: $(SolutionDir)" Importance="High" />
+    <Copy SourceFiles="$(SolutionDir)README.md" DestinationFiles="$(PublishDir)README.txt" />-->
+	</Target>
 </Project>

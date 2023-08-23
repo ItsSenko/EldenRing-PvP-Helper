@@ -25,51 +25,63 @@
                         <RowDefinition/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <Label Content="Senko Dex" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="24" Foreground="{DynamicResource ForegroundBrush}"/>
-                    <Label Content="lvl 137" Grid.Row="1" HorizontalAlignment="Center" FontSize="18" Foreground="{DynamicResource ForegroundBrush}"/>
+                    <Label Content="{Binding ChrName, UpdateSourceTrigger=PropertyChanged}" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="24" Foreground="{DynamicResource ForegroundBrush}"/>
+                    <Label Content="{Binding ChrLevel, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" HorizontalAlignment="Center" FontSize="18" Foreground="{DynamicResource ForegroundBrush}"/>
                 </Grid>
             </Border>
             <Border Grid.Row="1" Background="{DynamicResource BackgroundBrush}" Margin="10">
-                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <StackPanel.Resources>
-                        <Style TargetType="Label">
-                            <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}"/>
-                            <Setter Property="HorizontalAlignment" Value="Center"/>
-                        </Style>
-                    </StackPanel.Resources>
-                    <Label Content="Vigor 60"/>
-                    <Label Content="Vigor 60"/>
-                    <Label Content="Vigor 60"/>
-                    <Label Content="Vigor 60"/>
-                    <Label Content="Vigor 60"/>
-                    <Label Content="Vigor 60"/>
-                    <Label Content="Vigor 60"/>
-                    <Label Content="Vigor 60"/>
-                    <Label Content="Vigor 60"/>
-                    <Label Content="Vigor 60"/>
-                    <Label Content="Vigor 60"/>
-                </StackPanel>
+                <Grid>
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <StackPanel.Resources>
+                            <Style TargetType="Label">
+                                <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}"/>
+                                <Setter Property="HorizontalAlignment" Value="Center"/>
+                            </Style>
+                        </StackPanel.Resources>
+                        <Label Content="{Binding Vigor, UpdateSourceTrigger=PropertyChanged}" FontSize="20"/>
+                        <Label Content="{Binding Mind, UpdateSourceTrigger=PropertyChanged}" FontSize="20"/>
+                        <Label Content="{Binding Endurance, UpdateSourceTrigger=PropertyChanged}" FontSize="20"/>
+                        <Label Content="{Binding Strength, UpdateSourceTrigger=PropertyChanged}" FontSize="20"/>
+                        <Label Content="{Binding Dexterity, UpdateSourceTrigger=PropertyChanged}" FontSize="20"/>
+                        <Label Content="{Binding Intelligence, UpdateSourceTrigger=PropertyChanged}" FontSize="20"/>
+                        <Label Content="{Binding Faith, UpdateSourceTrigger=PropertyChanged}" FontSize="20"/>
+                        <Label Content="{Binding Arcane, UpdateSourceTrigger=PropertyChanged}" FontSize="20"/>
+                    </StackPanel>
+
+                    <Button Command="{Binding RefreshStats}" 
+                            Style="{DynamicResource SimpleButtonStyle}"
+                            Height="30"
+                            Width="30"
+                            Margin="0,270,305,0">
+                        <svgc:SvgIcon Fill="{DynamicResource ForegroundBrush}" UriSource="Resources/Images/refresh.svg"/>
+                    </Button>
+                </Grid>
             </Border>
             <Border Grid.Row="2" Background="{DynamicResource BackgroundBrush}" Margin="10">
                 <StackPanel>
                     <Label Content="Runes" HorizontalAlignment="Center" Foreground="{DynamicResource ForegroundBrush}" FontSize="20"/>
-                    <Label Content="789123" HorizontalAlignment="Center" Foreground="{DynamicResource ForegroundBrush}" FontSize="18"/>
+                    <Label Content="{Binding CurrHeldRunes, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" Foreground="{DynamicResource ForegroundBrush}" FontSize="18"/>
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="180"/>
                             <ColumnDefinition/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        <local:NumberInput Grid.Column="0" CurrValue="9999999" VerticalAlignment="Bottom"/>
+                        <local:NumberInput Grid.Column="0" 
+                                           CurrValue="{Binding CurrRunesToAdd, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                           Max="{Binding MaxRunes,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                           InputText="{Binding CurrRunesToAddText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                           Min="0"
+                                           VerticalAlignment="Bottom"/>
                         <Grid x:Name="Toggle" Grid.Column="1">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="1*"/>
                                 <RowDefinition Height="1*"/>
                             </Grid.RowDefinitions>
                             <Label Grid.Row="0" Content="Max" HorizontalContentAlignment="Center" Foreground="{DynamicResource ForegroundBrush}"/>
-                            <ToggleButton Grid.Row="1" Style="{StaticResource CircleToggle}"/>
+                            <ToggleButton Grid.Row="1" Style="{StaticResource CircleToggle}" IsChecked="{Binding MaxChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                         </Grid>
-                        <Button Grid.Column="2" Style="{StaticResource PrimaryButton}" Content="Add" Width="60" Height="40" VerticalAlignment="Bottom" Margin="0"/>
+                        <Button Grid.Column="2" Style="{StaticResource PrimaryButton}" Content="Add" Width="60" Height="40" VerticalAlignment="Bottom" Margin="0" Command="{Binding AddRunes}"/>
                     </Grid>
                 </StackPanel>
             </Border>
@@ -84,22 +96,22 @@
                 <Border x:Name="Massive_Gains" Grid.Row="0" Margin="10" Background="{DynamicResource BackgroundBrush}">
                     <UniformGrid Columns="4" Rows="4">
                         
-                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Flask Upgrades"/>
-                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Talisman Pouches"/>
-                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Talisman Pouches"/>
-                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Talisman Pouches" />
-                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Talisman Pouches" />
-                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Talisman Pouches" />
-                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Talisman Pouches" />
-                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Talisman Pouches" />
-                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Talisman Pouches" />
-                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Talisman Pouches" />
-                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Talisman Pouches" />
-                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Talisman Pouches" />
-                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Talisman Pouches" />
-                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Talisman Pouches" />
-                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Talisman Pouches" />
-                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Talisman Pouches" />          
+                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Flask Upgrades" Command="{Binding AllFlaskUpgrades}"/>
+                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Talisman Pouches" Command="{Binding AllTalismanPouches}"/>
+                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Memory Stones" Command="{Binding AllMemoryStones}"/>
+                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Maps/Graces" Command="{Binding AllMapsGraces}"/>
+                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Cookbooks" Command="{Binding AllCookbooks}"/>
+                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Tools" Command="{Binding AllTools}"/>
+                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Merchant Items" Command="{Binding AllMerchantItems}"/>
+                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Crafting Materials" Command="{Binding AllCraftingMaterials}"/>
+                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Crystal Tears" Command="{Binding AllCrystalTears}"/>
+                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Ashes" Command="{Binding AllAshes}"/>
+                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Consumables" Command="{Binding AllConsumables}"/>
+                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Spells" Command="{Binding AllSpells}"/>
+                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Ammo" Command="{Binding AllAmmo}"/>
+                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Limited Items" Command="{Binding AllLimitedItems}"/>
+                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Upgrade Materials" Command="{Binding AllUpgradeMaterials}"/>
+                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Whetblades" Command="{Binding AllWhetblades}"/>          
                     </UniformGrid>
                 </Border>
                 <Border Name="Massive_Item_Gib" Grid.Row="1" Margin="10" Background="{DynamicResource BackgroundBrush}">
@@ -116,19 +128,24 @@
                                 <RowDefinition Height="2*"/>
                             </Grid.RowDefinitions>
                             <Label Grid.Row="0" Content="Upgrade Level" VerticalContentAlignment="Bottom" Foreground="{DynamicResource ForegroundBrush}" HorizontalAlignment="Center"/>
-                            <local:NumberInput Grid.Row="1" CurrValue="10" HorizontalAlignment="Center"/>
+                            <local:NumberInput Grid.Row="1" 
+                                               CurrValue="{Binding MassGibUpgLevel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                               InputText="{Binding MassGibUpgLvlString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                               HorizontalAlignment="Center" 
+                                               Min="0"
+                                               Max="25"/>
                         </Grid>
                         <UniformGrid Grid.Column="1" Rows="2">
-                            <Button Content="All Melee Weapons" Style="{StaticResource PrimaryButton}"/>
-                            <Button Content="All Melee Weapons" Style="{StaticResource PrimaryButton}"/>
+                            <Button Content="All Melee Weapons" Style="{StaticResource PrimaryButton}" Command="{Binding AllMeleeWeapons}"/>
+                            <Button Content="All Ranged Weapons" Style="{StaticResource PrimaryButton}" Command="{Binding AllRangedWeapons}"/>
                         </UniformGrid>
                         <UniformGrid Grid.Column="2" Rows="2">
-                            <Button Content="All Melee Weapons" Style="{StaticResource PrimaryButton}"/>
-                            <Button Content="All Melee Weapons" Style="{StaticResource PrimaryButton}"/>
+                            <Button Content="All Shields" Style="{StaticResource PrimaryButton}" Command="{Binding AllShields}"/>
+                            <Button Content="All Armor" Style="{StaticResource PrimaryButton}" Command="{Binding AllArmor}"/>
                         </UniformGrid>
                         <UniformGrid Grid.Column="3" Rows="2">
-                            <Button Content="All Melee Weapons" Style="{StaticResource PrimaryButton}"/>
-                            <Button Content="All Melee Weapons" Style="{StaticResource PrimaryButton}"/>
+                            <Button Content="All Spell Tools" Style="{StaticResource PrimaryButton}" Command="{Binding AllSpellTools}"/>
+                            <Button Content="All Talismans" Style="{StaticResource PrimaryButton}" Command="{Binding AllTalismans}"/>
                         </UniformGrid>
                     </Grid>
                 </Border>
@@ -151,13 +168,27 @@
                                     <Setter Property="Margin" Value="50 0 0 0"/>
                                 </Style>
                             </StackPanel.Resources>
-                            <local:SimpleDropDown Height="30" Width="200"/> 
+                            <local:SimpleDropDown 
+                                Height="30" 
+                                Width="200"
+                                ItemsSource="{Binding CategoryItemsSource, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                SelectedItem="{Binding CategorySelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                SelectedIndex="{Binding CategorySelectedIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/> 
                             <Label Content="WEAPON"/>
-                            <local:SearchableComboBox/>
+                            <local:SearchableComboBox
+                                ItemsSource="{Binding WeaponsItemsSource, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                SelectedItem="{Binding WeaponsSelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                OriginItems="{Binding OriginWeapons, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                             <Label Content="INFUSION"/>
-                            <local:SearchableComboBox/>
+                            <local:SearchableComboBox
+                                ItemsSource="{Binding InfusionsItemsSource, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                SelectedItem="{Binding InfusionsSelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                OriginItems="{Binding OriginInfusions, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                             <Label Content="ASH OF WAR"/>
-                            <local:SearchableComboBox/>
+                            <local:SearchableComboBox
+                                ItemsSource="{Binding AshesItemsSource, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                SelectedItem="{Binding AshesSelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                OriginItems="{Binding OriginAshes, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
                         <Grid Grid.Column="1">
                             <Grid.RowDefinitions>
@@ -175,7 +206,10 @@
                                         <RowDefinition/>
                                     </Grid.RowDefinitions>
                                     <Label Grid.Row="0" Content="Upgrade Level" Foreground="{DynamicResource ForegroundBrush}" FontWeight="DemiBold" FontSize="14" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Center"/>
-                                    <local:NumberInput Grid.Row="1" HorizontalAlignment="Center" CurrValue="10"/>
+                                    <local:NumberInput Grid.Row="1" HorizontalAlignment="Center"
+                                                       CurrValue="{Binding UpgradeLevel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                       Max="{Binding MaxUpgradeLvl, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                       InputText="{Binding UpgradeLvlText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                                 </Grid>
                                 <Grid Grid.Column="1">
                                     <Grid.RowDefinitions>
@@ -183,10 +217,13 @@
                                         <RowDefinition/>
                                     </Grid.RowDefinitions>
                                     <Label Grid.Row="0" Content="Amount" Foreground="{DynamicResource ForegroundBrush}" FontWeight="DemiBold" FontSize="14" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Center"/>
-                                    <local:NumberInput Grid.Row="1" HorizontalAlignment="Center" CurrValue="10"/>
+                                    <local:NumberInput Grid.Row="1" HorizontalAlignment="Center"
+                                                       CurrValue="{Binding Quantity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                       Max="{Binding MaxQuantity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                       InputText="{Binding QuantityText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                                 </Grid>
                             </Grid>
-                            <Button Grid.Row="1" Width="150" Height="40" Style="{StaticResource PrimaryButton}" Content="Add"/>
+                            <Button Grid.Row="1" Width="150" Height="40" Style="{StaticResource PrimaryButton}" Content="Add" Command="{Binding Gib}"/>
                         </Grid>
                     </Grid>
                 </Border>

@@ -1,4 +1,7 @@
 ﻿using Erd_Tools;
+using Erd_Tools.Models.Entities;
+using PvPHelper.Console;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
@@ -12,10 +15,12 @@ namespace PvPHelper.Core
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
-
-        public virtual void Initialize(ErdHook hook)
+        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string? propertyName = null)
         {
-
+            if (EqualityComparer<T>.Default.Equals(field, value)) return false;
+            field = value;
+            OnPropertyChanged(propertyName ?? "");
+            return true;
         }
     }
 }

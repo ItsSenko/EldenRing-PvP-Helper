@@ -1,8 +1,10 @@
 ﻿using PvPHelper.MVVM.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace PvPHelper.MVVM.Views.UserControls
@@ -10,45 +12,44 @@ namespace PvPHelper.MVVM.Views.UserControls
     /// <summary>
     /// Interaction logic for SimpleDropDown.xaml
     /// </summary>
-    public partial class SimpleDropDown : UserControl, INotifyPropertyChanged
+    public partial class SimpleDropDown : UserControl
     {
         public SimpleDropDown()
         {
-            DataContext = this;
             InitializeComponent();
         }
-        #region INotifyPropertyChanged Implementation
-        public event PropertyChangedEventHandler? PropertyChanged;
-        protected void OnPropertyChanged([CallerMemberName] string name = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-        }
-        #endregion
         #region Data Bindings
-        public event Action<BaseOption> OnSelectedItemChanged;
-        private object _selectedItem;
+
 
         public object SelectedItem
         {
-            get { return _selectedItem; }
-            set
-            {
-                _selectedItem = value;
-                OnPropertyChanged();
-                OnSelectedItemChanged.Invoke((BaseOption)value);
-            }
+            get { return (object)GetValue(SelectedItemProperty); }
+            set { SetValue(SelectedItemProperty, value); }
         }
-        private IEnumerable<object> _itemsSource;
 
+        // Using a DependencyProperty as the backing store for SelectedItem.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty SelectedItemProperty =
+            DependencyProperty.Register("SelectedItem", typeof(object), typeof(SimpleDropDown));
+
+
+        public int SelectedIndex
+        {
+            get { return (int)GetValue(SelectedIndexProperty); }
+            set { SetValue(SelectedIndexProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for SelectedItem.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty SelectedIndexProperty =
+            DependencyProperty.Register("SelectedIndex", typeof(int), typeof(SimpleDropDown), new PropertyMetadata(0));
         public IEnumerable<object> ItemsSource
         {
-            get { return _itemsSource; }
-            set
-            {
-                _itemsSource = value;
-                OnPropertyChanged();
-            }
+            get { return (IEnumerable<object>)GetValue(ItemsSourceProperty); }
+            set { SetValue(ItemsSourceProperty, value); }
         }
+
+        // Using a DependencyProperty as the backing store for ItemsSource.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty ItemsSourceProperty =
+            DependencyProperty.Register("ItemsSource", typeof(IEnumerable<object>), typeof(SimpleDropDown));
         #endregion
     }
 }

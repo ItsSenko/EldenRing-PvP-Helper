@@ -20,31 +20,39 @@ namespace PvPHelper.MVVM.Views.UserControls
     /// <summary>
     /// Interaction logic for TabButton.xaml
     /// </summary>
-    public partial class TabButton : UserControl, INotifyPropertyChanged
+    public partial class TabButton : UserControl
     {
-        private string uriSource = "Resources/file-document-alert.svg";
-
         public string UriSource
         {
-            get { return uriSource; }
-            set { uriSource = value; OnPropertyChanged(); }
+            get { return (string)GetValue(UriSourceProperty); }
+            set { SetValue(UriSourceProperty, value); }
         }
 
-        private string label;
+        // Using a DependencyProperty as the backing store for UriSource.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty UriSourceProperty =
+            DependencyProperty.Register("UriSource", typeof(string), typeof(TabButton), new PropertyMetadata(string.Empty));
+
         public string Label
         {
-            get { return label; }
-            set { label = value; OnPropertyChanged(); }
+            get { return (string)GetValue(LabelProperty); }
+            set { SetValue(LabelProperty, value); }
         }
 
-        public event PropertyChangedEventHandler? PropertyChanged;
-        protected void OnPropertyChanged([CallerMemberName] string name = null)
+        // Using a DependencyProperty as the backing store for Label.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty LabelProperty =
+            DependencyProperty.Register("Label", typeof(string), typeof(TabButton), new PropertyMetadata(string.Empty));
+
+        public ICommand BtnCommand
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+            get { return (ICommand)GetValue(BtnCommandProperty); }
+            set { SetValue(BtnCommandProperty, value); }   
         }
+
+        public static readonly DependencyProperty BtnCommandProperty =
+            DependencyProperty.Register("BtnCommand", typeof(ICommand), typeof(TabButton));
+
         public TabButton()
         {
-            DataContext = this;
             InitializeComponent();
         }
     }

@@ -4,15 +4,16 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PvPHelper.MVVM.Views.UserControls"
-             mc:Ignorable="d" 
+             mc:Ignorable="d"
+             x:Name="ConsoleRoot"
              d:DesignHeight="450" d:DesignWidth="800">
-    <Border Background="#2e2e2e" CornerRadius="25">
+    <Border Background="#2e2e2e" CornerRadius="5">
         <Grid>
             <ScrollViewer Name="Scroller"
-                          Margin="0"
+                          Margin="0,0,0,37"
                           VerticalScrollBarVisibility="Hidden">
                 <StackPanel>
-                    <ItemsControl ItemsSource="{Binding ConsoleOutput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                    <ItemsControl ItemsSource="{Binding ConsoleOutput, ElementName=ConsoleRoot}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <TextBlock Foreground="#878787" 
@@ -31,7 +32,7 @@
                      Foreground="#adadad"
                      BorderThickness="3"
                      BorderBrush="#404040"
-                     Text="{Binding InputText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     Text="{Binding InputText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ElementName=ConsoleRoot}"
                      KeyDown="TextBox_KeyDown"
                      VerticalAlignment="Bottom"/>
         </Grid>

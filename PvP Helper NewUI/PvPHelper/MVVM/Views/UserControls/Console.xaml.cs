@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using PvPHelper.Console;
@@ -16,51 +17,61 @@ namespace PvPHelper.MVVM.Views.UserControls
     /// <summary>
     /// Interaction logic for Console.xaml
     /// </summary>
-    public partial class Console : UserControl, INotifyPropertyChanged
+    public partial class Console : UserControl
     {
         public Console()
         {
-            DataContext = this;
             InitializeComponent();
+
+            commandManager = CommandManager.RegisterConsole(new Action<string>(s => { Log(s); }));
+            LogLoaded.Invoke();
         }
-        #region INotifyPropertyChanged Implementation
-        public event PropertyChangedEventHandler? PropertyChanged;
-        protected void OnPropertyChanged([CallerMemberName] string name = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-        }
-        #endregion
         #region Data Bindings
-        private ObservableCollection<string> _itemsSource = new();
+        public static event Action LogLoaded = new(() => { });
+        private static ObservableCollection<string> defaultConsoleOutput = new();
 
         public ObservableCollection<string> ConsoleOutput
         {
-            get { return _itemsSource; }
-            set { _itemsSource = value; OnPropertyChanged(); }
+            get { return (ObservableCollection<string>)GetValue(ConsoleOutputProperty); }
+            set { SetValue(ConsoleOutputProperty, value); }
         }
-        private string _inputText;
+
+        // Using a DependencyProperty as the backing store for ConsoleOutput.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty ConsoleOutputProperty =
+            DependencyProperty.Register("ConsoleOutput", typeof(ObservableCollection<string>), typeof(Console), new PropertyMetadata(defaultConsoleOutput));
+
+
+
 
         public string InputText
         {
-            get { return _inputText; }
-            set { _inputText = value; OnPropertyChanged(); }
+            get { return (string)GetValue(InputTextProperty); }
+            set { SetValue(InputTextProperty, value); }
         }
 
-        private CommandManager _commandManager; 
+        // Using a DependencyProperty as the backing store for InputText.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty InputTextProperty =
+            DependencyProperty.Register("InputText", typeof(string), typeof(Console), new PropertyMetadata(string.Empty));
 
-        public CommandManager CommandManager
-        {
-            get { return _commandManager; }
-            set { _commandManager = value; }
-        }
+
+
+        private CommandManager commandManager; 
 
         #endregion
-
-        public void Log(string text)
+        public void Log(string text, bool withTime = true)
         {
             string SystemTime = DateTime.Now.ToString("[" + "hh:mm:ss" + "]");
 
-            ConsoleOutput.Add($"{SystemTime} {text}");
+            if (text.Length > (withTime ? 64 : 75))
+            {
+                var startString = text.Substring(0, 64);
+
+                var endString = text.Substring(64);
+                Log(startString);
+                Log(endString, withTime = false);
+                return;
+            }
+            ConsoleOutput.Add(withTime ? $"{SystemTime} {text}" : text);
             Scroller.ScrollToBottom();
         }
 
@@ -75,7 +86,7 @@ namespace PvPHelper.MVVM.Views.UserControls
                 {
                     try
                     {
-                        CommandManager.HandleInput(InputText);
+                        commandManager.HandleInput(InputText);
                     }
                     catch (InvalidCommandException ex)
                     {

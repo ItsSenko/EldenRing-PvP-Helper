@@ -6,10 +6,11 @@
              xmlns:local="clr-namespace:PvPHelper.MVVM.Views.UserControls"
              xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
              mc:Ignorable="d" 
+             x:Name="SearchableComboBoxRoot"
              d:DesignHeight="40" d:DesignWidth="200">
     <Border Background="#1e1e1e" CornerRadius="10">
         <Grid>
-            <TextBlock Text="{Binding Placeholder, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+            <TextBlock Text="{Binding Placeholder, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ElementName=SearchableComboBoxRoot}"
                    VerticalAlignment="Center"
                    Margin="40, 0, 0, 1"
                    Foreground="#404040"/>
@@ -31,9 +32,9 @@
                           BorderThickness="0"
                           Foreground="#404040"
                           Background= "#1e1e1e"
-                          Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
-                          SelectedItem="{Binding SelectedItem}"
-                          ItemsSource="{Binding ItemsSource, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                          Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged, ElementName=SearchableComboBoxRoot}"
+                          SelectedItem="{Binding SelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ElementName=SearchableComboBoxRoot}"
+                          ItemsSource="{Binding ItemsSource, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ElementName=SearchableComboBoxRoot}"
                           TextBoxBase.TextChanged="comboBox_TextChanged"
                           ScrollViewer.VerticalScrollBarVisibility="Hidden"
                           VerticalContentAlignment="Center">    

@@ -110,7 +110,7 @@ namespace ERPvPHelper
             if (!shouldRun)
             {
                 shouldRun = true;
-                return;
+                return; 
             }
             if (firstTimeChanging)
             {

@@ -4,14 +4,17 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PvPHelper.MVVM.Views.UserControls"
-             mc:Ignorable="d" 
+             mc:Ignorable="d"
+             x:Name="LabeledCircleToggleRoot"
              d:DesignHeight="60" d:DesignWidth="250">
     <Grid HorizontalAlignment="Left">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="80"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <ToggleButton Style="{StaticResource CircleToggle}"/>
-        <TextBlock Grid.Column="1" Margin="20,0,0,0" Text="{Binding Label}" FontSize="18" d:Text="Cool Label" Foreground="{DynamicResource ForegroundBrush}" VerticalAlignment="Center"/>
+        <ToggleButton Style="{StaticResource CircleToggle}" 
+                      IsChecked="{Binding Checked, ElementName=LabeledCircleToggleRoot}"
+                      Command="{Binding ToggleCommand, ElementName=LabeledCircleToggleRoot}"/>
+        <TextBlock Grid.Column="1" Margin="20,0,0,0" Text="{Binding Label, ElementName=LabeledCircleToggleRoot}" FontSize="18" d:Text="Cool Label" Foreground="{DynamicResource ForegroundBrush}" VerticalAlignment="Center"/>
     </Grid>
 </UserControl>

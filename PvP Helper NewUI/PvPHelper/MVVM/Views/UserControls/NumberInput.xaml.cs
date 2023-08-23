@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
@@ -9,68 +10,60 @@ namespace PvPHelper.MVVM.Views.UserControls
     /// <summary>
     /// Interaction logic for NumberInput.xaml
     /// </summary>
-    public partial class NumberInput : UserControl, INotifyPropertyChanged
+    public partial class NumberInput : UserControl
     {
         public NumberInput()
         {
-            DataContext = this;
             InitializeComponent();
         }
-        #region INotifyPropertyChanged Implementation
-        public event PropertyChangedEventHandler? PropertyChanged;
-        protected void OnPropertyChanged([CallerMemberName] string name = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-        }
-        #endregion
         #region Data Bindings
-        private string _inputText;
+
 
         public string InputText
         {
-            get { return _inputText; }
-            set
-            {
-                _inputText = value;
-                OnPropertyChanged();
-            }
+            get { return (string)GetValue(InputTextProperty); }
+            set { SetValue(InputTextProperty, value); }
         }
-        private int _currValue;
+
+        // Using a DependencyProperty as the backing store for InputText.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty InputTextProperty =
+            DependencyProperty.Register("InputText", typeof(string), typeof(NumberInput), new PropertyMetadata(string.Empty));
+
+
 
         public int CurrValue
         {
-            get { return _currValue; }
-            set
-            {
-                _currValue = value;
-                InputText = CurrValue.ToString();
-                OnPropertyChanged();
-            }
+            get { return (int)GetValue(CurrValueProperty); }
+            set { SetValue(CurrValueProperty, value); UpdateText(); }
         }
 
-        private int _max;
+        // Using a DependencyProperty as the backing store for CurrValue.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty CurrValueProperty =
+            DependencyProperty.Register("CurrValue", typeof(int), typeof(NumberInput), new PropertyMetadata(0));
+
+
 
         public int Max
         {
-            get { return _max; }
-            set
-            {
-                _max = value;
-                OnPropertyChanged();
-            }
+            get { return (int)GetValue(MaxProperty); }
+            set { SetValue(MaxProperty, value); }
         }
 
-        private int _min;
+        // Using a DependencyProperty as the backing store for Max.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty MaxProperty =
+            DependencyProperty.Register("Max", typeof(int), typeof(NumberInput), new PropertyMetadata(0));
+
+
 
         public int Min
         {
-            get { return _min; }
-            set
-            {
-                _min = value;
-                OnPropertyChanged();
-            }
+            get { return (int)GetValue(MinProperty); }
+            set { SetValue(MinProperty, value); }
         }
+
+        // Using a DependencyProperty as the backing store for Min.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty MinProperty =
+            DependencyProperty.Register("Min", typeof(int), typeof(NumberInput), new PropertyMetadata(0));
 
         #endregion
         private bool IsTextAllowed(string text)
@@ -89,17 +82,21 @@ namespace PvPHelper.MVVM.Views.UserControls
         private void TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             e.Handled = !IsTextAllowed(e.Text);
-
-            if (!e.Handled && int.TryParse(InputText, out int parsed))
+        }
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (int.TryParse(InputText, out int parsed))
                 CurrValue = parsed;
         }
-
         private void Minus_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (CurrValue > Min)
                 CurrValue--;
         }
-
+        private void UpdateText()
+        {
+            InputText = CurrValue.ToString();
+        }
         private void Plus_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (CurrValue < Max)

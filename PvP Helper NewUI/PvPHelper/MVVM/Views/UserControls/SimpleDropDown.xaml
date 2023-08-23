@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PvPHelper.MVVM.Views.UserControls"
+             x:Name="SimpleDropDownRoot"
              mc:Ignorable="d" 
              d:DesignHeight="20" d:DesignWidth="200">
     <Border Background="#1e1e1e" CornerRadius="5">
@@ -17,8 +18,11 @@
                       IsTextSearchEnabled="False"
                       IsEditable="False"
                       Margin="5,0,5,0"
-                      SelectedItem="{Binding SelectedItem, UpdateSourceTrigger=PropertyChanged}"
-                      ItemsSource="{Binding ItemsSource, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                      SelectedIndex="{Binding SelectedIndex, ElementName=SimpleDropDownRoot}"
+                      SelectedItem="{Binding SelectedItem, ElementName=SimpleDropDownRoot}"
+                      ItemsSource="{Binding ItemsSource, ElementName=SimpleDropDownRoot}"
+                      IsSynchronizedWithCurrentItem="True"
+                      VerticalContentAlignment="Center"/>
         </Grid>
     </Border>
 </UserControl>
