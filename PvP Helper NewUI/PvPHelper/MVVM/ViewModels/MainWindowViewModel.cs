@@ -97,7 +97,7 @@ namespace PvPHelper.MVVM.ViewModels
             }
             else
             {
-                CommandManager.Log("Looks like youre up to date!");
+                CommandManager.Log("Looks like you're up to date!");
             }
             HasLoaded = true;
         }
@@ -153,7 +153,7 @@ namespace PvPHelper.MVVM.ViewModels
             commandManager.RegisterCommand(new CustomFPS(_hook));
             commandManager.RegisterCommand(new CustomFOV(_hook));
             commandManager.RegisterCommand(new Update(_vController));
-            commandManager.RegisterCommand(new TestModal());
+            commandManager.RegisterCommand(new TestModal(_vController));
         }
     }
 }

@@ -407,10 +407,10 @@ namespace PvPHelper.MVVM.ViewModels
                 InventoryItems.Add(newInvItem);
         }
 
-        public void Update(bool updateDrag = true)
+        public void Update(InventoryState state, bool updateDrag = true)
         {
             
-            switch (CurrState)
+            switch (state)
             {
                 case InventoryState.Weapons:
                     {
@@ -447,7 +447,7 @@ namespace PvPHelper.MVVM.ViewModels
                     }
             }
         }
-        private InventoryState CurrState = InventoryState.Weapons;
+        public InventoryState CurrState = InventoryState.Weapons;
         private void OnInventoryChanged(bool updateDrag = false)
         {
             if (SelectedInventory == null)
@@ -460,11 +460,11 @@ namespace PvPHelper.MVVM.ViewModels
                 return;
             }
             if (updateDrag)
-                Update();
+                Update(state: CurrState);
 
             InventoryStateOption state = SelectedInventory as InventoryStateOption;
 
-            switch(state.State)
+            switch(state != null ? state.State : InventoryState.Weapons)
             {
                 case InventoryState.Weapons:
                     {
@@ -513,7 +513,8 @@ namespace PvPHelper.MVVM.ViewModels
                 
 
             BuildPrefab build = SelectedBuild as BuildPrefab;
-
+            SelectedInventory = 0;
+            
             weaponPrefabs = build.weapons;
             armorPrefabs = build.armors;
             talismanPrefabs = build.talismans;
@@ -525,21 +526,6 @@ namespace PvPHelper.MVVM.ViewModels
 
             string itempicfolder = "PvPHelper.Resources.Images.Items";
             string infusionpicfolder = "PvPHelper.Resources.Images.Infusions";
-
-            if (weaponPrefabs.Count > 0)
-            {
-                foreach (var prefab in weaponPrefabs)
-                {
-                    ItemCategory itemCat = ItemCategory.All.FirstOrDefault(x => x.Items.Any(x => x.Name == prefab.Name));
-                    if (itemCat != null)
-                    {
-                        Item item = itemCat.Items.FirstOrDefault(x => x.ID == prefab.ID);
-                        CreateNewBtn(item.Name,
-                            Helpers.GetImageSource(item.Name, itempicfolder, true, true), "+"+prefab.UpgradeLevel.ToString(),
-                            Helpers.GetImageSource(((Infusion)prefab.Infusion).ToString(), infusionpicfolder, false, false), weaponItems, wpnPrefab: prefab, add: false);
-                    }
-                }
-            }
 
             if (armorPrefabs.Count > 0)
             {
@@ -568,8 +554,23 @@ namespace PvPHelper.MVVM.ViewModels
                     }
                 }
             }
+            if (weaponPrefabs.Count > 0)
+            {
+                foreach (var prefab in weaponPrefabs)
+                {
+                    ItemCategory itemCat = ItemCategory.All.FirstOrDefault(x => x.Items.Any(x => x.Name == prefab.Name));
+                    if (itemCat != null)
+                    {
+                        Item item = itemCat.Items.FirstOrDefault(x => x.ID == prefab.ID);
+                        CreateNewBtn(item.Name,
+                            Helpers.GetImageSource(item.Name, itempicfolder, true, true), "+" + prefab.UpgradeLevel.ToString(),
+                            Helpers.GetImageSource(((Infusion)prefab.Infusion).ToString(), infusionpicfolder, false, false), weaponItems, wpnPrefab: prefab, add: false);
+                    }
+                }
+            }
 
-            Update(false);
+            foreach (var item in weaponItems)
+                InventoryItems.Add(item);
         }
         private void OnCategoryChanged()
         {

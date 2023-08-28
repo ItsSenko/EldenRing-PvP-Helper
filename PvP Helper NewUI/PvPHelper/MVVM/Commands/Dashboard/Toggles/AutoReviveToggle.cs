@@ -67,6 +67,8 @@ namespace PvPHelper.MVVM.Commands.Dashboard.Toggles
                 autoReviveTimer.Start();
             else
                 autoReviveTimer.Stop();
+
+            CommandManager.Log($"Toggled AutoRevived to {State}");
         }
 
         private void Revive()

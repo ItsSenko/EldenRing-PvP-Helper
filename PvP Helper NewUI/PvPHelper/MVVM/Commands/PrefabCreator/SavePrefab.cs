@@ -35,7 +35,8 @@ namespace PvPHelper.MVVM.Commands.PrefabCreator
 
                 BuildSaver.saveBuild(prefab);
                 viewModel.RefreshBuilds.Execute(prefab);
-                MessageBox.Show($"Updated {prefab.BuildName}.", "Update", MessageBoxButton.OK, MessageBoxImage.Information);
+                InformationDialog info = new($"Updated {prefab.BuildName}.");
+                info.ShowDialog();
             }
             else
             {
@@ -46,6 +47,8 @@ namespace PvPHelper.MVVM.Commands.PrefabCreator
                 {
                     prefab = new(name, viewModel.weaponPrefabs, viewModel.armorPrefabs, viewModel.talismanPrefabs);
                     BuildSaver.saveBuild(prefab);
+
+                    InformationDialog info = new($"Saved {name}.");
                 };
                 dialog.ShowDialog();
             }

@@ -26,7 +26,7 @@ namespace PvPHelper.MVVM.Commands.Dashboard.Toggles
             byte b = CustomPointers.ChrFlags.ReadByte(0x19B);
             CustomPointers.ChrFlags.WriteByte(0x19B, Helpers.SetBit(b, 3, State));
 
-            CommandManager.Log($"No Stam Loss Toggled {State}");
+            CommandManager.Log($"NoStamLoss Toggled {State}");
         }
     }
 }

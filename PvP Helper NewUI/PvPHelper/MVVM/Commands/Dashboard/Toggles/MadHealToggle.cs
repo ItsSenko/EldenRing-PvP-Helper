@@ -1,5 +1,6 @@
 ﻿using Erd_Tools;
 using Erd_Tools.Models;
+using PvPHelper.Console;
 using PvPHelper.Core;
 using System.Collections.Generic;
 using System.Linq;
@@ -133,6 +134,8 @@ namespace PvPHelper.MVVM.Commands.Dashboard.Toggles
             lawOfReg6.Param.Pointer.WriteInt32(lawOfReg6.DataOffset + hitBulletIdOffset.FieldOffset, State ? larIds[6] : larIds[5]);
 
             lawOfReg7.Param.Pointer.WriteInt32(lawOfReg7.DataOffset + spEffectId0Offset.FieldOffset, State ? 110 : 503041);
+
+            CommandManager.Log($"Replaced {(State ? "Soft Cotten" : "Mad Heal")} with {(State ? "Mad Heal" : "Soft Cotten")}");
         }
     }
 }

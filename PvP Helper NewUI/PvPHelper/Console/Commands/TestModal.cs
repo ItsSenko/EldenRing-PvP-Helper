@@ -10,13 +10,15 @@ namespace PvPHelper.Console.Commands
 {
     internal class TestModal : CommandBase
     {
-        public TestModal()
+        private VersionController _vController;
+        public TestModal(VersionController versionController)
         {
             CommandString = "/test";
+            _vController = versionController;
         }
         protected override void OnTriggerCommand()
         {
-            Helpers.GetImageSource("fire", "PvPHelper.Resources.Images.Items", true, true);
+            _vController.ApplyUpdate();
         }
     }
 }

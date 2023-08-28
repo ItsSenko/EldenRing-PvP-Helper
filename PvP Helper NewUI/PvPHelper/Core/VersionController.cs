@@ -106,7 +106,7 @@ namespace PvPHelper.Core
             }
         }
 
-        private void ApplyUpdate()
+        public void ApplyUpdate()
         {
             File.WriteAllText(Path.Combine(_updateLocation,"Resources/Version.txt"), CurrentVersion);
             Process.Start(Path.Combine(_updateLocation, "PvPHelperUpdater.exe"), "pweaseupdate");

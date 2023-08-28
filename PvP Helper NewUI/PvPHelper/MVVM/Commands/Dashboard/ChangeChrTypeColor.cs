@@ -1,5 +1,6 @@
 ﻿using Erd_Tools;
 using Erd_Tools.Models;
+using PvPHelper.Console;
 using PvPHelper.MVVM.Dialogs;
 using PvPHelper.MVVM.Models;
 using PvPHelper.MVVM.ViewModels;
@@ -60,6 +61,9 @@ namespace PvPHelper.MVVM.Commands.Dashboard
                 row.Param.Pointer.WriteByte(dataOffset + frontColorR, (byte)Math.Round(invertedColor.R * 0.3, 0));
                 row.Param.Pointer.WriteByte(dataOffset + frontColorG, (byte)Math.Round(invertedColor.G * 0.3, 0));
                 row.Param.Pointer.WriteByte(dataOffset + frontColorB, (byte)Math.Round(invertedColor.B * 0.3, 0));
+
+                CommandManager.Log("Color Updated");
+                CommandManager.Log($"R: {color.R} G: {color.G} B: {color.B}");
             };
             dialog.ShowDialog();
         }

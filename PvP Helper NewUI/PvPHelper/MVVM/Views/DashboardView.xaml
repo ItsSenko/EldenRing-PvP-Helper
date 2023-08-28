@@ -130,7 +130,8 @@
             <local:Console Grid.Column="0" Margin="10"/>
             <Button Margin="808,413,14,17" 
                     Style="{DynamicResource SimpleButtonStyle}"
-                    Command="{Binding HelpCommand}">
+                    Command="{Binding HelpCommand}"
+                    Cursor="Help">
                 <svgc:SvgIcon UriSource="Resources/Images/help-circle.svg"
                               Fill="{DynamicResource LighterTextBrush}" Height="22" Width="23"/>
             </Button>

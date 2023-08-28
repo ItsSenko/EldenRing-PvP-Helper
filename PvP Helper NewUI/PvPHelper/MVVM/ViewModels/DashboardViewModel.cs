@@ -233,6 +233,13 @@ namespace PvPHelper.MVVM.ViewModels
 
             ChrType chrType = (ChrTypeItemsSource.ToArray())[ChrTypeSelectedIndex] as ChrType;
             player.ChrType = chrType.ChrID;
+
+            if (chrType.ChrID != 0)
+            {
+                CommandManager.Log("Please note that changing ChrType does save.");
+                CommandManager.Log("Even when you restart you will be whatever you selet.");
+                CommandManager.Log("If brought online, you will likely be banned.");
+            }
         }
         private void Console_LogLoaded()
         {

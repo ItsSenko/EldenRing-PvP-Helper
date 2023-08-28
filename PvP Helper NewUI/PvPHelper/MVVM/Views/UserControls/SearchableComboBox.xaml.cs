@@ -104,7 +104,9 @@ namespace PvPHelper.MVVM.Views.UserControls
                 return;
             }
             Placeholder = string.Empty;
-
+            
+            if (SelectedItem != null)
+                return;
             // Check if there is any items in the ItemsSource
             if (ItemsSource == null || ItemsSource.ToList().Count == 0) return;
 

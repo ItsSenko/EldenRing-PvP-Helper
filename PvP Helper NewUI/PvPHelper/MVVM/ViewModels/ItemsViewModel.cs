@@ -729,6 +729,9 @@ namespace PvPHelper.MVVM.ViewModels
             if (!_hook.Loaded || !_hook.Hooked)
                 return;
 
+            if (WeaponsSelectedItem == null)
+                return;
+
             ItemGibOption option = (ItemGibOption)WeaponsSelectedItem;
             if (option.item is Weapon weapon && allowedCatsForUpgrade.Contains(option.CatName))
             {

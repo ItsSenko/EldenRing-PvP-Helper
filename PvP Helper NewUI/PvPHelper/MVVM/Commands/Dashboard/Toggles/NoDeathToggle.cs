@@ -1,4 +1,5 @@
 ﻿using Erd_Tools;
+using PvPHelper.Console;
 using PvPHelper.Core;
 using CommandBase = PvPHelper.Core.CommandBase;
 
@@ -25,6 +26,8 @@ namespace PvPHelper.MVVM.Commands.Dashboard.Toggles
 
             byte b = CustomPointers.ChrFlags.ReadByte(0x19B);
             CustomPointers.ChrFlags.WriteByte(0x19B, Helpers.SetBit(b, 0, State));
+
+            CommandManager.Log($"NoDeath toggled to {State}");
         }
     }
 }
