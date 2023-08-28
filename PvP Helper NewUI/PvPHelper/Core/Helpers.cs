@@ -5,6 +5,8 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace PvPHelper.Core
 {
@@ -74,6 +76,99 @@ namespace PvPHelper.Core
             {
                 yield return line;
             }
+        }
+        public static ImageSource GetImageSource(string searchStr, string folder, bool replace, bool png)
+        {
+            Assembly assembly = Assembly.GetExecutingAssembly();
+            string[] resourceNames = assembly.GetManifestResourceNames();
+            string itemName = searchStr;
+            if (searchStr.Contains("'") && replace)
+            {
+                itemName = searchStr.Replace('\'', '_');
+            }
+            foreach (string resourceName in resourceNames)
+            {
+                bool startsWith = resourceName.StartsWith(folder);
+                bool endsWith = resourceName.EndsWith(png ? ".png" : ".jpg");
+                if (resourceName.StartsWith(folder) && resourceName.EndsWith(png?".png":".jpg"))
+                {
+                    string fileName = resourceName.Substring(folder.Length + 1); // +1 to remove the dot
+                    string fileNameWithoutExtension = Path.GetFileNameWithoutExtension(fileName);
+
+                    if (fileNameWithoutExtension.StartsWith(itemName, StringComparison.OrdinalIgnoreCase))
+                    {
+                        return LoadImageFromResource(resourceName);
+                    }
+                }
+            }
+            return LoadImageFromResource("PvPHelper.Resources.Images.null.png");
+        }
+        public static ImageSource LoadImageFromResource(string resourcePath)
+        {
+            Assembly assembly = Assembly.GetExecutingAssembly();
+            using (Stream stream = assembly.GetManifestResourceStream(resourcePath))
+            {
+                if (stream != null)
+                {
+                    BitmapImage image = new BitmapImage();
+                    image.BeginInit();
+                    image.StreamSource = stream;
+                    image.CacheOption = BitmapCacheOption.OnLoad;
+                    image.EndInit();
+                    return image;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+        }
+        public static string GetPathToPic(string searchStr, string folder, bool replace, bool png)
+        {
+            try
+            {
+                string[] pictureFiles = Directory.GetFiles(folder, png ? "*.png" : "*.jpg"); // You can adjust the search pattern as needed
+
+                foreach (string pictureFile in pictureFiles)
+                {
+                    string fileName = Path.GetFileNameWithoutExtension(pictureFile);
+
+
+                    string itemName = searchStr;
+                    if (searchStr.Contains("'") && replace)
+                    {
+                        itemName = searchStr.Replace('\'', '_');
+                    }
+
+                    if (fileName.StartsWith(itemName, StringComparison.OrdinalIgnoreCase))
+                    {
+                        return Path.GetFullPath(pictureFile);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Resources/Images/null.png");
+            }
+            return Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Resources/Images/null.png");
+        }
+        public static bool IsValidFileName(string fileName)
+        {
+            char[] invalidChars = Path.GetInvalidFileNameChars();
+            foreach (char invalidChar in invalidChars)
+            {
+                if (fileName.Contains(invalidChar))
+                {
+                    return false;
+                }
+            }
+
+            if (string.IsNullOrWhiteSpace(fileName))
+            {
+                return false;
+            }
+
+            return true;
         }
     }
 }

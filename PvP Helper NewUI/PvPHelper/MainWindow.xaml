@@ -14,7 +14,9 @@
         Height="768" Width="1366"
         Background="Transparent" WindowStyle="None" ResizeMode="NoResize"
         Style="{StaticResource WinAll}"
-        AllowsTransparency="True" MouseDown="window_MouseDown">
+        AllowsTransparency="True" MouseDown="window_MouseDown"
+        Icon="Resources/Images/shunter.ico"
+        Title="Elden Ring PvP Helper - Senkopur">
     <!--Needed for when i add the usercontrol-->
     <!--xmlns:colorpicker="clr-namespace:ColorPicker;assembly=ColorPicker"-->
     <Window.Resources>
@@ -66,7 +68,9 @@
                 <local:TabButton Label="Prefab Creator" 
                                  UriSource="Resources/Images/auto-fix.svg"
                                  BtnCommand="{Binding PrefabCreatorCommand}"/>
-                <local:TabButton Label="Misc" UriSource="Resources/Images/misc-dots.svg"/>
+                <local:TabButton Label="Misc" 
+                                 UriSource="Resources/Images/misc-dots.svg"
+                                 BtnCommand="{Binding MiscCommand}"/>
 
             </StackPanel>
 
@@ -76,10 +80,10 @@
                 </Grid.Background>
 
                 <TextBlock Text="{Binding VersionText, UpdateSourceTrigger=PropertyChanged}" FontSize="30"
-                           Foreground="{DynamicResource LighterTextBrush}" Margin="195,154,0,1"/>
+                           Foreground="{DynamicResource LighterTextBrush}" Margin="0,155,21,0"/>
             </Grid>
             <Image 
-               Grid.Row="0" x:Name="AppIcon" Source="/Resources/Images/serpent-hunter_greatspear_weapon_elden_ring_wiki_guide_200px.png" Stretch="Uniform"  VerticalAlignment="Center" HorizontalAlignment="Center" Grid.RowSpan="1">
+               Grid.Row="0" x:Name="AppIcon" Source="/Resources/Images/shunter.png" Stretch="Uniform"  VerticalAlignment="Center" HorizontalAlignment="Center" Grid.RowSpan="1">
             </Image>
 
         </Grid>

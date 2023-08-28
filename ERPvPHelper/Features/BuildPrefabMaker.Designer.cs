@@ -202,6 +202,7 @@
             this.InventoryLayoutPanel.Name = "InventoryLayoutPanel";
             this.InventoryLayoutPanel.Size = new System.Drawing.Size(445, 462);
             this.InventoryLayoutPanel.TabIndex = 13;
+            this.InventoryLayoutPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.InventoryLayoutPanel_Paint);
             // 
             // CancelBtn
             // 

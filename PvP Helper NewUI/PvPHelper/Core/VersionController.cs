@@ -21,7 +21,7 @@ namespace PvPHelper.Core
 
         public string CurrentLocalVersion { get; private set; }
         public string CurrentVersion { get; private set; }
-        public bool UpdateAvailable {get; private set;}
+        public bool UpdateAvailable => IsUpdateAvailable();
 
         public VersionController(string updateLocation)
         {
@@ -31,7 +31,6 @@ namespace PvPHelper.Core
 
             CurrentLocalVersion = GetCurrentLocalVersion();
             CurrentVersion = GetCurrentGlobalVersion();
-            UpdateAvailable = IsUpdateAvailable();
         }
 
         private string GetCurrentLocalVersion()
@@ -57,12 +56,12 @@ namespace PvPHelper.Core
                     return releaseData.TagName;
                 }
                 else
-                    return "v0.0.0";
+                    return "Unavailable";
             }
         }
         private bool IsUpdateAvailable()
         {
-            return CurrentVersion != CurrentLocalVersion;
+            return CurrentVersion != CurrentLocalVersion && CurrentVersion != "Unavailable";
         }
         public async Task Update()
         {
@@ -77,7 +76,6 @@ namespace PvPHelper.Core
                     if (response.IsSuccessStatusCode)
                     {
                         string responseBody = await response.Content.ReadAsStringAsync();
-                        File.WriteAllText(Path.Combine(_updateLocation, "update.txt"), responseBody);
                         var releaseData = JsonSerializer.Deserialize<Release>(responseBody);
                         var asset = releaseData.Assets[0];
 
@@ -110,6 +108,7 @@ namespace PvPHelper.Core
 
         private void ApplyUpdate()
         {
+            File.WriteAllText(Path.Combine(_updateLocation,"Resources/Version.txt"), CurrentVersion);
             Process.Start(Path.Combine(_updateLocation, "PvPHelperUpdater.exe"), "pweaseupdate");
             Application.Current.Shutdown();
         }

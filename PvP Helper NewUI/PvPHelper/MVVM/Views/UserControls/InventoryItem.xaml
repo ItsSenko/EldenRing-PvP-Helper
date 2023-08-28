@@ -7,104 +7,47 @@
              mc:Ignorable="d" 
              d:DesignHeight="150" d:DesignWidth="150">
     <UserControl.Resources>
-        <ControlTemplate x:Key="ItemTemplate">
-            <Grid  Width="123" Height="88" Cursor="Hand" Margin="5">
-                <Border Background="{DynamicResource ItemGradientActive}" CornerRadius="10" Opacity="0" Name="borderActive">
-                    <Border.Effect>
-                        <DropShadowEffect Direction="0" BlurRadius="10" ShadowDepth="0"/>
-                    </Border.Effect>
-                </Border>
-
-                <Border Background="{DynamicResource ItemGradient}" CornerRadius="10" Name="borderInActive">
-                    <Border.Effect>
-                        <DropShadowEffect Direction="0" BlurRadius="10" ShadowDepth="0"/>
-                    </Border.Effect>
-                </Border>
-                <Grid>
-                    <Image Name="WeaponIcon" Source="/Resources/Images/grave_scythe.png" Width="Auto" Height="Auto" Margin="0 30 0 5" Opacity="1"/>
-
-                    <Border CornerRadius="10 10 0 0" Height="60" VerticalAlignment="Top">
-                        <Border.Effect>
-                            <DropShadowEffect ShadowDepth="0" Direction="0"/>
-                        </Border.Effect>
-                        <TextBlock Text="Inverted Hawk Heater Shield" TextWrapping="WrapWithOverflow" TextAlignment="Center"
-                       Foreground="{DynamicResource ForegroundBrush}" FontSize="12" Margin="5"/>
-                    </Border>
-                    
-                    <Border Background="{DynamicResource DarkBrush}" Padding="2" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10" CornerRadius="2" Width="25" Height="25">
-                        <Border.Effect>
-                            <DropShadowEffect ShadowDepth="0" Direction="0" BlurRadius="5"/>
-                        </Border.Effect>
-                        <Image Source="/Resources/Images/Infusions/fire.png"/>
-                    </Border>
-                    
-                    <Border Background="{DynamicResource DarkBrush}" Padding="2" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10" CornerRadius="10" Width="25" Height="25">
-                        <Border.Effect>
-                            <DropShadowEffect ShadowDepth="0" Direction="0" BlurRadius="5"/>
-                        </Border.Effect>
-                        <Label Padding="0" Content="+15" FontSize="9" Foreground="{DynamicResource ForegroundBrush}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-                    </Border>
-                </Grid>
-            </Grid>
-
-            <ControlTemplate.Triggers>
-                <EventTrigger RoutedEvent="MouseEnter">
-                    <EventTrigger.Actions>
-                        <BeginStoryboard>
-                            <Storyboard>
-                                <DoubleAnimation
-                                                        Storyboard.TargetName="borderActive"
-                                                        Storyboard.TargetProperty="Opacity"
-                                                        To="1"
-                                                        Duration="0:0:0.1"
-                                                    />
-                                <DoubleAnimation
-                                                        Storyboard.TargetName="borderInActive"
-                                                        Storyboard.TargetProperty="Opacity"
-                                                        To="0"
-                                                        Duration="0:0:0.1"
-                                                    />
-
-                                <DoubleAnimation
-                                                        Storyboard.TargetName="WeaponIcon"
-                                                        Storyboard.TargetProperty="Opacity"
-                                                        To="1"
-                                                        Duration="0:0:0.1"
-                                                    />
-                            </Storyboard>
-                        </BeginStoryboard>
-                    </EventTrigger.Actions>
-                </EventTrigger>
-                <EventTrigger RoutedEvent="MouseLeave">
-                    <EventTrigger.Actions>
-                        <BeginStoryboard>
-                            <Storyboard>
-                                <DoubleAnimation
-                                                        Storyboard.TargetName="borderActive"
-                                                        Storyboard.TargetProperty="Opacity"
-                                                        To="0"
-                                                        Duration="0:0:0.1"
-                                                    />
-                                <DoubleAnimation
-                                                        Storyboard.TargetName="borderInActive"
-                                                        Storyboard.TargetProperty="Opacity"
-                                                        To="1"
-                                                        Duration="0:0:0.1"
-                                                    />
-
-                                <DoubleAnimation
-                                                        Storyboard.TargetName="WeaponIcon"
-                                                        Storyboard.TargetProperty="Opacity"
-                                                        To="1"
-                                                        Duration="0:0:0.1"
-                                                    />
-                            </Storyboard>
-                        </BeginStoryboard>
-                    </EventTrigger.Actions>
-                </EventTrigger>
-            </ControlTemplate.Triggers>
-        </ControlTemplate>
+        <local:NullImageConverter x:Key="nullImageConverter"/>
     </UserControl.Resources>
 
-    <ContentControl Template="{StaticResource ItemTemplate}"/>
+    <Grid>
+        <Grid Width="123" Height="88" Cursor="Hand" Margin="5"
+              MouseEnter="Grid_MouseEnter" MouseLeave="Grid_MouseLeave">
+            <Border Background="{DynamicResource ItemGradientActive}" CornerRadius="10" Opacity="0" Name="borderActive">
+                <Border.Effect>
+                    <DropShadowEffect Direction="0" BlurRadius="10" ShadowDepth="0"/>
+                </Border.Effect>
+            </Border>
+
+            <Border Background="{DynamicResource ItemGradient}" CornerRadius="10" Name="borderInActive">
+                <Border.Effect>
+                    <DropShadowEffect Direction="0" BlurRadius="10" ShadowDepth="0"/>
+                </Border.Effect>
+            </Border>
+
+            <Image Name="WeaponIcon" Source="{Binding Path=ItemIconPath, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource nullImageConverter}}" Width="Auto" Height="Auto" Margin="0 30 0 5" Opacity="1"/>
+
+            <Border CornerRadius="10 10 0 0" Height="60" VerticalAlignment="Top">
+                <Border.Effect>
+                    <DropShadowEffect ShadowDepth="0" Direction="0"/>
+                </Border.Effect>
+                <TextBlock Text="{Binding Path=ItemName, UpdateSourceTrigger=PropertyChanged}" TextWrapping="WrapWithOverflow" TextAlignment="Center"
+                       Foreground="{DynamicResource ForegroundBrush}" FontSize="12" Margin="5"/>
+            </Border>
+
+            <Border Background="{DynamicResource DarkBrush}" Padding="2" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10" CornerRadius="2" Width="25" Height="25">
+                <Border.Effect>
+                    <DropShadowEffect ShadowDepth="0" Direction="0" BlurRadius="5"/>
+                </Border.Effect>
+                <Image Source="{Binding Path=InfusionIconPath, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource nullImageConverter}}"/>
+            </Border>
+
+            <Border Background="{DynamicResource DarkBrush}" Padding="2" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10" CornerRadius="10" Width="25" Height="25">
+                <Border.Effect>
+                    <DropShadowEffect ShadowDepth="0" Direction="0" BlurRadius="5"/>
+                </Border.Effect>
+                <Label Padding="0" Content="{Binding UpgradeLevel, UpdateSourceTrigger=PropertyChanged}" FontSize="9" Foreground="{DynamicResource ForegroundBrush}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+            </Border>
+        </Grid>
+    </Grid>
 </UserControl>

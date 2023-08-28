@@ -4,8 +4,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PvPHelper.MVVM.Views.UserControls"
-        xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
-        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:dd="urn:gong-wpf-dragdrop"
              mc:Ignorable="d" 
              d:DesignHeight="658.285714285714" d:DesignWidth="1092.8">
     <Grid>
@@ -18,7 +19,9 @@
                 <RowDefinition Height="30"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <local:SimpleDropDown Grid.Row="0" Width="250"/>
+            <local:SimpleDropDown Grid.Row="0" Width="250" 
+                                  ItemsSource="{Binding CategoryItemsSource, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                  SelectedItem="{Binding CategorySelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             <Border Grid.Row="1" Background="{DynamicResource BackgroundBrush}" Margin="10">
                 <Grid>
                     <Grid.RowDefinitions>
@@ -43,8 +46,10 @@
                                 <Setter Property="Margin" Value="140 0 0 0"/>
                             </Style>
                         </Grid.Resources>
-                        <Label Content="INFUSION"/>
-                        <local:SearchableComboBox/>
+                        <Label Content="WEAPON"/>
+                        <local:SearchableComboBox ItemsSource="{Binding WeaponsItemsSource, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                  OriginItems="{Binding OriginWeapons, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                  SelectedItem="{Binding WeaponsSelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                     </Grid>
 
                     <Grid Grid.Row="1">
@@ -61,7 +66,9 @@
                             </Style>
                         </Grid.Resources>
                         <Label Content="INFUSION"/>
-                        <local:SearchableComboBox/>
+                        <local:SearchableComboBox ItemsSource="{Binding InfusionsItemsSource, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                  OriginItems="{Binding OriginInfusions, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                  SelectedItem="{Binding InfusionsSelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                     </Grid>
 
                     <Grid Grid.Row="2">
@@ -78,27 +85,50 @@
                             </Style>
                         </Grid.Resources>
                         <Label Content="ASH OF WAR"/>
-                        <local:SearchableComboBox/>
+                        <local:SearchableComboBox ItemsSource="{Binding AshesItemsSource, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                  OriginItems="{Binding OriginAshes, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                  SelectedItem="{Binding AshesSelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                     </Grid>
                     <Border Grid.Row="3"/>
-                    <Grid Grid.Row="4">
+                    <Grid Grid.Row="3">
                         <Grid.RowDefinitions>
                             <RowDefinition/>
                             <RowDefinition/>
                         </Grid.RowDefinitions>
                         <Label Grid.Row="0" Content="Upgrade Level" Foreground="{DynamicResource ForegroundBrush}" FontWeight="DemiBold" FontSize="14" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Center"/>
-                        <local:NumberInput CurrValue="25" Grid.Row="1" HorizontalAlignment="Center"/>
+                        <local:NumberInput CurrValue="{Binding UpgradeLevel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                           Max="{Binding MaxUpgradeLevel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                           InputText="{Binding UpgradeLevelString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                           Grid.Row="1" 
+                                           HorizontalAlignment="Center"/>
                     </Grid>
 
-                    <Grid Grid.Row="5">
+                    <Grid Grid.Row="4">
                         <Grid.RowDefinitions>
                             <RowDefinition/>
                             <RowDefinition/>
                         </Grid.RowDefinitions>
                         <Label Grid.Row="0" Content="Amount" Foreground="{DynamicResource ForegroundBrush}" FontWeight="DemiBold" FontSize="14" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Center"/>
-                        <local:NumberInput CurrValue="1" Grid.Row="1" HorizontalAlignment="Center"/>
+                        <local:NumberInput CurrValue="{Binding Quantity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                           Grid.Row="1" 
+                                           HorizontalAlignment="Center"
+                                           Max="{Binding MaxQuantity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                           InputText="{Binding QuantityString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                     </Grid>
-                    <Button Grid.Row="6" Content="Add" Width="150" Height="40" Style="{StaticResource PrimaryButton}"/>
+                    <Button Grid.Row="5" Content="Add" Width="150" Height="40" Style="{StaticResource PrimaryButton}"
+                            Command="{Binding AddItem}"/>
+                    <StackPanel Grid.Row="6" Orientation="Horizontal"
+                                HorizontalAlignment="Center">
+                        <StackPanel.Resources>
+                            <Style TargetType="Button">
+                                <Setter Property="Margin" Value="0,0,0,0"/>
+                            </Style>
+                        </StackPanel.Resources>
+                        <Button Content="Create New" Width="80" Height="40" Style="{StaticResource PrimaryButton}"
+                                Command="{Binding CreateNew}"/>
+                        <Button Content="Save" Width="80" Height="40" Style="{StaticResource PrimaryButton}" Command="{Binding Save}"/>
+                        <Button Content="Load" Width="80" Height="40" Style="{StaticResource PrimaryButton}" Command="{Binding Load}"/>
+                    </StackPanel>
                 </Grid>
             </Border>
         </Grid>
@@ -107,10 +137,31 @@
                 <RowDefinition Height="30"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <local:SimpleDropDown Width="250" Grid.Row="0"/>
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center">
+                <StackPanel.Resources>
+                    <Style TargetType="{x:Type local:SimpleDropDown}">
+                        <Setter Property="Margin" Value="20,0,20,0"/>
+                    </Style>
+                </StackPanel.Resources>
+                <Button Width="50" Style="{DynamicResource SimpleButtonStyle}" Command="{Binding RefreshBuilds}">
+                    <svgc:SvgIcon Height="20" Fill="{DynamicResource ForegroundBrush}" UriSource="Resources/Images/refresh.svg"/>
+                </Button>
+                <local:SimpleDropDown Width="250"
+                                  ItemsSource="{Binding BuildItemsSource, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                  SelectedItem="{Binding SelectedBuild, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <local:SimpleDropDown Width="250"
+                                  ItemsSource="{Binding SelectedInventoryItemsSource, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                  SelectedItem="{Binding SelectedInventory, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                  SelectedIndex="{Binding SelectedInventoryIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            </StackPanel>
             <Border Margin="10" Background="{DynamicResource BackgroundBrush}" Grid.Row="1">
-                <ScrollViewer Style="{DynamicResource ScrollViewerStyleDark}" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Visible">
-                    <ItemsControl ItemsSource="{Binding Items}" Padding="20">
+                <ScrollViewer Style="{DynamicResource ScrollViewerStyleDark}" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Visible" ScrollViewer.CanContentScroll="True">
+                    <ItemsControl ItemsSource="{Binding InventoryItems, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="20" Background="{DynamicResource BackgroundBrush}"
+                                  dd:DragDrop.IsDragSource="True"
+                                  dd:DragDrop.IsDropTarget="True"
+                                  BorderThickness="0"
+                                  x:Name="Items">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <WrapPanel Orientation="Horizontal" Width="668"/>

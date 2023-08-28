@@ -60,6 +60,12 @@ namespace PvPHelper.MVVM.ViewModels
             commandManager = new();
             _vController = new(AppDomain.CurrentDomain.BaseDirectory);
             VersionText = _vController.CurrentLocalVersion;
+
+            if (_vController.UpdateAvailable && Settings.Default.AutoUpdate)
+            {
+                var task = Task.Run(async () => await _vController.Update());
+                task.GetAwaiter().GetResult();
+            }
             Views.UserControls.Console.LogLoaded += Console_LogLoaded;
 
             _hook.OnSetup += _hook_OnSetup;
@@ -74,8 +80,12 @@ namespace PvPHelper.MVVM.ViewModels
             Blacklist.Initialize();
         }
 
+        private bool HasLoaded = false;
         private void Console_LogLoaded()
         {
+            if (HasLoaded)
+                return;
+
             CommandManager.Log("Welcome to the PvP Helper for Elden Ring!");
             CommandManager.Log("Created by Senkopur and Catshark");
             if (_vController.UpdateAvailable)
@@ -85,6 +95,11 @@ namespace PvPHelper.MVVM.ViewModels
                 CommandManager.Log($"New version is {_vController.CurrentVersion}");
                 CommandManager.Log($"Do /update if you would like to update!");
             }
+            else
+            {
+                CommandManager.Log("Looks like youre up to date!");
+            }
+            HasLoaded = true;
         }
 
         private void _hook_OnUnhooked(object? sender, PropertyHook.PHEventArgs e)
@@ -102,6 +117,7 @@ namespace PvPHelper.MVVM.ViewModels
             _viewModels.Add(nameof(DashboardView), new DashboardViewModel(_hook));
             _viewModels.Add(nameof(ItemsView), new ItemsViewModel(_hook));
             _viewModels.Add(nameof(PrefabCreatorView), new PrefabCreatorViewModel(_hook));
+            _viewModels.Add(nameof(MiscView), new MiscViewModel(_hook, _vController));
 
             DashboardCommand = new(o => 
             {
@@ -113,15 +129,16 @@ namespace PvPHelper.MVVM.ViewModels
             });
             PrefabCreatorCommand = new(o => 
             {
-                CurrentView = _viewModels["PrefabCreatorView"];
-            });
-            YourPrefabsCommand = new(o => 
-            {
-                CurrentView = _viewModels["YourPrefabsView"];
+                if (CurrentView != _viewModels[nameof(PrefabCreatorView)])
+                {
+                    PrefabCreatorViewModel model = _viewModels[nameof(PrefabCreatorView)] as PrefabCreatorViewModel;
+                    model.SelectedInventoryIndex = 0;
+                }
+                CurrentView = _viewModels[nameof(PrefabCreatorView)];
             });
             MiscCommand = new(o => 
             {
-                CurrentView = _viewModels["MiscView"];
+                CurrentView = _viewModels[nameof(MiscView)];
             });
 
             CurrentView = _viewModels[nameof(DashboardView)];
@@ -136,6 +153,7 @@ namespace PvPHelper.MVVM.ViewModels
             commandManager.RegisterCommand(new CustomFPS(_hook));
             commandManager.RegisterCommand(new CustomFOV(_hook));
             commandManager.RegisterCommand(new Update(_vController));
+            commandManager.RegisterCommand(new TestModal());
         }
     }
 }

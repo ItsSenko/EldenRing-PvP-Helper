@@ -1,4 +1,5 @@
 ﻿using Erd_Tools.Models;
+using PvPHelper.MVVM.ViewModels;
 using static Erd_Tools.Models.Weapon;
 
 namespace PvPHelper.MVVM.Models
@@ -39,6 +40,15 @@ namespace PvPHelper.MVVM.Models
         {
             this.Name = name;
             this.gem = item;
+        }
+    }
+    public class InventoryStateOption : BaseOption
+    {
+        public PrefabCreatorViewModel.InventoryState State { get; set; }
+        public InventoryStateOption(PrefabCreatorViewModel.InventoryState state)
+        {
+            Name = state.ToString();
+            State = state;
         }
     }
 }

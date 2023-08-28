@@ -156,11 +156,13 @@
                         <Button Margin="20,64,20,-59" 
                                 Grid.Row="1"
                                 Content="Change Color"
-                                Style="{DynamicResource PrimaryButton}"/>
+                                Style="{DynamicResource PrimaryButton}"
+                                Command="{Binding ChangeColor}"/>
                         <Button Margin="20,104,20,-99" 
                                 Grid.Row="1"
                                 Content="Reset Color"
-                                Style="{DynamicResource PrimaryButton}"/>
+                                Style="{DynamicResource PrimaryButton}"
+                                Command="{Binding ResetColor}"/>
                     </Grid>
                 </Border>
                 <Border Margin="10" Background="{StaticResource BackgroundBrush}" Grid.Row="1">
@@ -175,7 +177,7 @@
                         <TextBlock Text="{Binding AttachText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                    VerticalAlignment="Top"
                                    HorizontalAlignment="Center"
-                                   FontSize="35"
+                                   FontSize="30"
                                    Foreground="{DynamicResource ForegroundBrush}" Margin="0,153,0,0"/>
                     </Grid>
                 </Border>

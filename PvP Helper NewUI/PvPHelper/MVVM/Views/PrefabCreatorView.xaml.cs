@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PvPHelper.MVVM.Views.UserControls;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,73 +26,42 @@ namespace PvPHelper.MVVM.Views
         private Button draggedButton;
         private Point startPoint;
         private int initialIndex;
-        public List<string> Items { get; set; }
         public PrefabCreatorView()
         {
             InitializeComponent();
-            DataContext = this;
-            Items = new List<string>();
-
-            // Replace this with your actual data source.
-            for (int i = 1; i <= 60; i++)
-            {
-                Items.Add("Item " + i);
-            }
         }
 
-
-        private void Button_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void Items_Drop(object sender, DragEventArgs e)
         {
-            // Initiates the drag-and-drop operation.
-            isDragging = true;
-            startPoint = e.GetPosition(null);
-            draggedButton = sender as Button;
-            initialIndex = Items.IndexOf(draggedButton.Content.ToString());
-        }
+            var droppedData = e.Data.GetData(typeof(InventoryItem)) as InventoryItem;
+            var target = ((InventoryItem)(sender)).DataContext as InventoryItem;
 
-        private void Button_PreviewMouseMove(object sender, MouseEventArgs e)
-        {
-            // Performs the drag operation if needed.
-            if (isDragging && sender is Button button)
+            int removedIdx = Items.Items.IndexOf(droppedData);
+            int targetIdx = Items.Items.IndexOf(target);
+
+            if (removedIdx < targetIdx)
             {
-                Point currentPosition = e.GetPosition(null);
-                Vector diff = startPoint - currentPosition;
-
-                if (e.LeftButton == MouseButtonState.Pressed &&
-                    (System.Math.Abs(diff.X) > SystemParameters.MinimumHorizontalDragDistance ||
-                     System.Math.Abs(diff.Y) > SystemParameters.MinimumVerticalDragDistance))
-                {
-                    // Start the drag-and-drop operation
-                    DataObject dataObject = new DataObject("myFormat", button);
-                    DragDrop.DoDragDrop(button, dataObject, DragDropEffects.Move);
-                }
-            }
-        }
-
-        private void Button_Drop(object sender, DragEventArgs e)
-        {
-            // Handles the drop operation
-            if (sender is Button targetButton && e.Data.GetData("myFormat") is Button sourceButton)
-            {
-                int targetIndex = Items.IndexOf(targetButton.Content.ToString());
-                int sourceIndex = initialIndex;
-                Items.RemoveAt(sourceIndex);
-                Items.Insert(targetIndex, sourceButton.Content.ToString());
-            }
-        }
-
-        private void Button_DragEnter(object sender, DragEventArgs e)
-        {
-            // Sets the cursor and effect during drag-and-drop operation
-            if (e.Data.GetDataPresent("myFormat") && sender is Button)
-            {
-                e.Effects = DragDropEffects.Move;
+                Items.Items.Insert(targetIdx + 1, droppedData);
+                Items.Items.RemoveAt(removedIdx);
             }
             else
             {
-                e.Effects = DragDropEffects.None;
+                int remIdx = removedIdx + 1;
+                if (Items.Items.Count + 1 > remIdx)
+                {
+                    Items.Items.Insert(targetIdx, droppedData);
+                    Items.Items.RemoveAt(remIdx);
+                }
+            }
+
+            Items.Items.Refresh();
+        }
+        private void InventoryItem_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (sender is ListViewItem item)
+            {
+                DragDrop.DoDragDrop(item, new DataObject(DataFormats.Serializable, item.DataContext), DragDropEffects.Move);
             }
         }
-
     }
 }

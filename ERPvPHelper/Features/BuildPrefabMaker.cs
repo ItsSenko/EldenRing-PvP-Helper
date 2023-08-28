@@ -570,6 +570,11 @@ namespace ERPvPHelper.Features
                 }
             }
         }
+
+        private void InventoryLayoutPanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
     public partial class ItemControl : Button
     {

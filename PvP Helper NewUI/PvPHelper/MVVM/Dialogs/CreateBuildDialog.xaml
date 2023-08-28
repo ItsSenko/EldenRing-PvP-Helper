@@ -1,0 +1,42 @@
+﻿<Window x:Class="PvPHelper.MVVM.Dialogs.CreateBuildDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PvPHelper.MVVM.Dialogs"
+        mc:Ignorable="d"
+        Title="CreateBuildDialog" Height="154" Width="576"
+        Background="Transparent"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        AllowsTransparency="True"
+        WindowStartupLocation="CenterScreen">
+    <Border CornerRadius="20" Background="{DynamicResource DarkBrush}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <TextBox x:Name="TextBox" Text="Build Name..." Background="#1c1c1c" Margin="10,10,10,10"
+                     BorderBrush="#171717" GotFocus="TextBox_GotFocus"
+                     Foreground="{DynamicResource LighterBrush}"
+                     FontSize="35"
+                     VerticalContentAlignment="Center"/>
+
+            <StackPanel Grid.Row="1" Orientation="Horizontal">
+                <StackPanel.Resources>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Margin" Value="0,0,0,0"/>
+                    </Style>
+                </StackPanel.Resources>
+                <Button Width="268" Style="{DynamicResource PrimaryButton}"
+                        Content="Cancel"
+                        Click="Cancel_Click"/>
+                <Button Width="268" Style="{DynamicResource PrimaryButton}"
+                        Content="Save"
+                        Click="Save_Click"/>
+            </StackPanel>
+        </Grid>
+    </Border>
+</Window>

@@ -31,6 +31,9 @@
             <DataTemplate DataType="{x:Type viewModels:PrefabCreatorViewModel}">
                 <views:PrefabCreatorView/>
             </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModels:MiscViewModel}">
+                <views:MiscView/>
+            </DataTemplate>
 
             <Color x:Key="Foreground">#FFFFFF</Color>
             <Color x:Key="Lighter">#393939</Color>

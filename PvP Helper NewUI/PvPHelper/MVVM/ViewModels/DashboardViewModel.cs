@@ -13,6 +13,7 @@ using PvPHelper.MVVM.Models;
 using System.Drawing;
 using PvPHelper.MVVM.Views;
 using System.Diagnostics;
+using PvPHelper.MVVM.Commands.Dashboard;
 
 namespace PvPHelper.MVVM.ViewModels
 {
@@ -35,6 +36,9 @@ namespace PvPHelper.MVVM.ViewModels
 
         public ICommand AttachCommand { get; set; }
         public ICommand HelpCommand { get; set; }
+
+        public ICommand ChangeColor { get; set; }
+        public ICommand ResetColor { get; set; }
 
         private string _hpText;
 
@@ -165,6 +169,9 @@ namespace PvPHelper.MVVM.ViewModels
 
             NoDeathToggle = new NoDeathToggle(hook);
             NoStamLossToggle = new NoStamLossToggle(hook);
+
+            ChangeColor = new ChangeChrTypeColor(hook, this);
+            ResetColor = new ResetChrTypeColor(hook, this);
 
             HelpCommand = new RelayCommand((o) => 
             {

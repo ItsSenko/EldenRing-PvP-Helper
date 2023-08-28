@@ -4,7 +4,7 @@
     <Style x:Key="PrimaryButton" TargetType="Button">
         <Setter Property="Opacity" Value="0.8"/>
         <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush }"/>
-        <Setter Property="Background" Value="{DynamicResource LighterBrush}"/>
+        <Setter Property="Background" Value="#393939"/>
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="FontSize" Value="14"/>
         <Setter Property="Margin" Value="10"/>
@@ -22,9 +22,18 @@
                         </Border.Effect>
                         <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#292929"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Background" Value="#171717"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
         
+
     </Style>
 </ResourceDictionary>
