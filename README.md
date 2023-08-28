@@ -4,7 +4,7 @@ This is a tool to give a better experience in pvp in [seamless co-op](https://ww
 
 [![Discord Server](https://img.shields.io/discord/1123789049728090122?style=plastic&label=Discord&color=purple)](https://discord.gg/VmyGAS24Gf) [![Twitter Follow](https://img.shields.io/twitter/follow/SenkoPur?style=social&labelColor=%23a200ed&color=%23000000)](https://twitter.com/intent/follow?original_referer=https%3A%2F%2Fgithub.com%2FItsSenko&screen_name=SenkoPur)
 
-### Please note that this is meant for seamless co-op and not the base game! Using this tool in the base game will likely get you banned. I am not responsible if you get banned using this tool.
+### Please note that this is meant for seamless co-op and not the base game! Using this tool in the base game can possibly get you banned. Please check the [Wiki](https://github.com/ItsSenko/EldenRing-PvP-Helper/wiki). I am not responsible if you get banned using this tool.
 ![MainMenu](https://i.imgur.com/0JQEQYV.png)
 ![BuildCreation](https://i.imgur.com/vHvECEp.png) ![Prefab Creator](https://i.imgur.com/zaYUSl9.png)
 ![RedBadGirl](https://i.imgur.com/KscBzaS.png) ![BlueBadGirl](https://i.imgur.com/v4fDnZ2.png)
