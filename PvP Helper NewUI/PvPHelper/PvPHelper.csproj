@@ -10,10 +10,6 @@
 
   <ItemGroup>
 
-    <None Remove="Builds\Simple_Arcane_Build.json" />
-
-    <None Remove="Builds\Simple_Strength_Build.json" />
-
     <None Remove="MVVM\Views\UserControls\grave_scythe.png" />
     <None Remove="Resources\Images\auto-fix.svg" />
     <None Remove="Resources\Images\file-document-alert.svg" />
@@ -1134,16 +1130,9 @@
     <None Remove="Resources\Images\view-dashboard-variant.svg" />
     <None Remove="Resources\Images\water.svg" />
     <None Remove="Resources\MapEventFlagIds.txt" />
-    <None Remove="Resources\Version.txt" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Builds\Simple_Arcane_Build.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Builds\Simple_Strength_Build.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Resources\Images\auto-fix.svg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -4471,9 +4460,6 @@
     <Content Include="Resources\Images\water.svg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Version.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
 
   <ItemGroup>
@@ -4531,6 +4517,12 @@
 	</ItemGroup>
 	
 	<ItemGroup>
+		<None Update="Builds\Simple_Arcane_Build.json">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Builds\Simple_Strength_Build.json">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
 		<None Update="C:\Users\Nord\.nuget\packages\keystoneengine.csharp\0.9.1.1\build\x64\keystone.dll">
 			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
 		</None>
@@ -4543,6 +4535,9 @@
 		<None Update="Core\Settings.settings">
 		  <Generator>SettingsSingleFileGenerator</Generator>
 		  <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+		</None>
+		<None Update="Resources\Version.txt">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
 		</None>
 	</ItemGroup>
 	

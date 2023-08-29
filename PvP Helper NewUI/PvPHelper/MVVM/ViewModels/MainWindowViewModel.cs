@@ -7,6 +7,7 @@ using PvPHelper.MVVM.Models;
 using PvPHelper.MVVM.Views;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -58,7 +59,7 @@ namespace PvPHelper.MVVM.ViewModels
         {
             _hook = new(5000, 1000, new(x => x.MainWindowTitle is "ELDEN RING™" or "ELDEN RING"));
             commandManager = new();
-            _vController = new(AppDomain.CurrentDomain.BaseDirectory);
+            _vController = new(Directory.GetCurrentDirectory());
             VersionText = _vController.CurrentLocalVersion;
 
             if (_vController.UpdateAvailable && Settings.Default.AutoUpdate)
@@ -153,7 +154,8 @@ namespace PvPHelper.MVVM.ViewModels
             commandManager.RegisterCommand(new CustomFPS(_hook));
             commandManager.RegisterCommand(new CustomFOV(_hook));
             commandManager.RegisterCommand(new Update(_vController));
-            commandManager.RegisterCommand(new TestModal(_vController));
+            //commandManager.RegisterCommand(new TestModal(_vController));
+            commandManager.RegisterCommand(new TeamTypeChangeCommand(_hook));
         }
     }
 }

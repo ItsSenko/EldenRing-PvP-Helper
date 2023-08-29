@@ -116,7 +116,7 @@
                                            InputText="{Binding QuantityString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                     </Grid>
                     <Button Grid.Row="5" Content="Add" Width="150" Height="40" Style="{StaticResource PrimaryButton}"
-                            Command="{Binding AddItem}"/>
+                            Command="{Binding AddItem}" Cursor="Hand"/>
                     <StackPanel Grid.Row="6" Orientation="Horizontal"
                                 HorizontalAlignment="Center">
                         <StackPanel.Resources>
@@ -125,9 +125,9 @@
                             </Style>
                         </StackPanel.Resources>
                         <Button Content="Create New" Width="80" Height="40" Style="{StaticResource PrimaryButton}"
-                                Command="{Binding CreateNew}"/>
-                        <Button Content="Save" Width="80" Height="40" Style="{StaticResource PrimaryButton}" Command="{Binding Save}"/>
-                        <Button Content="Load" Width="80" Height="40" Style="{StaticResource PrimaryButton}" Command="{Binding Load}"/>
+                                Command="{Binding CreateNew}" Cursor="Hand"/>
+                        <Button Content="Save" Width="80" Height="40" Style="{StaticResource PrimaryButton}" Command="{Binding Save}" Cursor="Hand"/>
+                        <Button Content="Load" Width="80" Height="40" Style="{StaticResource PrimaryButton}" Command="{Binding Load}" Cursor="Hand"/>
                     </StackPanel>
                 </Grid>
             </Border>
@@ -144,9 +144,7 @@
                         <Setter Property="Margin" Value="20,0,20,0"/>
                     </Style>
                 </StackPanel.Resources>
-                <Button Width="50" Style="{DynamicResource SimpleButtonStyle}" Command="{Binding RefreshBuilds}">
-                    <svgc:SvgIcon Height="20" Fill="{DynamicResource ForegroundBrush}" UriSource="Resources/Images/refresh.svg"/>
-                </Button>
+                <local:Refresh Height="20" BtnCommand="{Binding RefreshBuilds}"/>
                 <local:SimpleDropDown Width="250"
                                   ItemsSource="{Binding BuildItemsSource, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                   SelectedItem="{Binding SelectedBuild, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>

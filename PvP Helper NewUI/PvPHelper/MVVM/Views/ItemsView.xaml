@@ -48,13 +48,7 @@
                         <Label Content="{Binding Arcane, UpdateSourceTrigger=PropertyChanged}" FontSize="20"/>
                     </StackPanel>
 
-                    <Button Command="{Binding RefreshStats}" 
-                            Style="{DynamicResource SimpleButtonStyle}"
-                            Height="30"
-                            Width="30"
-                            Margin="0,270,305,0">
-                        <svgc:SvgIcon Fill="{DynamicResource ForegroundBrush}" UriSource="Resources/Images/refresh.svg"/>
-                    </Button>
+                    <local:Refresh Height="30" BtnCommand="{Binding RefreshStats}" Margin="0,270,305,0"/>
                 </Grid>
             </Border>
             <Border Grid.Row="2" Background="{DynamicResource BackgroundBrush}" Margin="10">
@@ -81,7 +75,7 @@
                             <Label Grid.Row="0" Content="Max" HorizontalContentAlignment="Center" Foreground="{DynamicResource ForegroundBrush}"/>
                             <ToggleButton Grid.Row="1" Style="{StaticResource CircleToggle}" IsChecked="{Binding MaxChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                         </Grid>
-                        <Button Grid.Column="2" Style="{StaticResource PrimaryButton}" Content="Add" Width="60" Height="40" VerticalAlignment="Bottom" Margin="0" Command="{Binding AddRunes}"/>
+                        <Button Grid.Column="2" Style="{StaticResource PrimaryButton}" Content="Add" Width="60" Height="40" VerticalAlignment="Bottom" Margin="0" Command="{Binding AddRunes}" Cursor="Hand"/>
                     </Grid>
                 </StackPanel>
             </Border>
@@ -95,23 +89,23 @@
                 </Grid.RowDefinitions>
                 <Border x:Name="Massive_Gains" Grid.Row="0" Margin="10" Background="{DynamicResource BackgroundBrush}">
                     <UniformGrid Columns="4" Rows="4">
-                        
-                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Flask Upgrades" Command="{Binding AllFlaskUpgrades}"/>
-                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Talisman Pouches" Command="{Binding AllTalismanPouches}"/>
-                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Memory Stones" Command="{Binding AllMemoryStones}"/>
-                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Maps/Graces" Command="{Binding AllMapsGraces}"/>
-                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Cookbooks" Command="{Binding AllCookbooks}"/>
-                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Tools" Command="{Binding AllTools}"/>
-                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Merchant Items" Command="{Binding AllMerchantItems}"/>
-                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Crafting Materials" Command="{Binding AllCraftingMaterials}"/>
-                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Crystal Tears" Command="{Binding AllCrystalTears}"/>
-                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Ashes" Command="{Binding AllAshes}"/>
-                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Consumables" Command="{Binding AllConsumables}"/>
-                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Spells" Command="{Binding AllSpells}"/>
-                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Ammo" Command="{Binding AllAmmo}"/>
-                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Limited Items" Command="{Binding AllLimitedItems}"/>
-                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Upgrade Materials" Command="{Binding AllUpgradeMaterials}"/>
-                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Whetblades" Command="{Binding AllWhetblades}"/>          
+
+                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Flask Upgrades" Command="{Binding AllFlaskUpgrades}" Cursor="Hand"/>
+                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Talisman Pouches" Command="{Binding AllTalismanPouches}" Cursor="Hand"/>
+                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Memory Stones" Command="{Binding AllMemoryStones}" Cursor="Hand"/>
+                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Maps/Graces" Command="{Binding AllMapsGraces}" Cursor="Hand"/>
+                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Cookbooks" Command="{Binding AllCookbooks}" Cursor="Hand"/>
+                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Tools" Command="{Binding AllTools}" Cursor="Hand"/>
+                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Merchant Items" Command="{Binding AllMerchantItems}" Cursor="Hand"/>
+                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Crafting Mats" Command="{Binding AllCraftingMaterials}" Cursor="Hand"/>
+                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Crystal Tears" Command="{Binding AllCrystalTears}" Cursor="Hand"/>
+                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Ashes" Command="{Binding AllAshes}" Cursor="Hand"/>
+                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Consumables" Command="{Binding AllConsumables}" Cursor="Hand"/>
+                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Spells" Command="{Binding AllSpells}" Cursor="Hand"/>
+                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Ammo" Command="{Binding AllAmmo}" Cursor="Hand"/>
+                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Limited Items" Command="{Binding AllLimitedItems}" Cursor="Hand"/>
+                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Upgrade Mats" Command="{Binding AllUpgradeMaterials}" Cursor="Hand"/>
+                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Whetblades" Command="{Binding AllWhetblades}" Cursor="Hand"/>          
                     </UniformGrid>
                 </Border>
                 <Border Name="Massive_Item_Gib" Grid.Row="1" Margin="10" Background="{DynamicResource BackgroundBrush}">
@@ -136,16 +130,16 @@
                                                Max="25"/>
                         </Grid>
                         <UniformGrid Grid.Column="1" Rows="2">
-                            <Button Content="All Melee Weapons" Style="{StaticResource PrimaryButton}" Command="{Binding AllMeleeWeapons}"/>
-                            <Button Content="All Ranged Weapons" Style="{StaticResource PrimaryButton}" Command="{Binding AllRangedWeapons}"/>
+                            <Button Content="All Melee Weapons" Style="{StaticResource PrimaryButton}" Command="{Binding AllMeleeWeapons}" Cursor="Hand"/>
+                            <Button Content="All Ranged Weapons" Style="{StaticResource PrimaryButton}" Command="{Binding AllRangedWeapons}" Cursor="Hand"/>
                         </UniformGrid>
                         <UniformGrid Grid.Column="2" Rows="2">
-                            <Button Content="All Shields" Style="{StaticResource PrimaryButton}" Command="{Binding AllShields}"/>
-                            <Button Content="All Armor" Style="{StaticResource PrimaryButton}" Command="{Binding AllArmor}"/>
+                            <Button Content="All Shields" Style="{StaticResource PrimaryButton}" Command="{Binding AllShields}" Cursor="Hand"/>
+                            <Button Content="All Armor" Style="{StaticResource PrimaryButton}" Command="{Binding AllArmor}" Cursor="Hand"/>
                         </UniformGrid>
                         <UniformGrid Grid.Column="3" Rows="2">
-                            <Button Content="All Spell Tools" Style="{StaticResource PrimaryButton}" Command="{Binding AllSpellTools}"/>
-                            <Button Content="All Talismans" Style="{StaticResource PrimaryButton}" Command="{Binding AllTalismans}"/>
+                            <Button Content="All Spell Tools" Style="{StaticResource PrimaryButton}" Command="{Binding AllSpellTools}" Cursor="Hand"/>
+                            <Button Content="All Talismans" Style="{StaticResource PrimaryButton}" Command="{Binding AllTalismans}" Cursor="Hand"/>
                         </UniformGrid>
                     </Grid>
                 </Border>
@@ -223,7 +217,7 @@
                                                        InputText="{Binding QuantityText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                                 </Grid>
                             </Grid>
-                            <Button Grid.Row="1" Width="150" Height="40" Style="{StaticResource PrimaryButton}" Content="Add" Command="{Binding Gib}"/>
+                            <Button Grid.Row="1" Width="150" Height="40" Style="{StaticResource PrimaryButton}" Content="Add" Command="{Binding Gib}" Cursor="Hand"/>
                         </Grid>
                     </Grid>
                 </Border>

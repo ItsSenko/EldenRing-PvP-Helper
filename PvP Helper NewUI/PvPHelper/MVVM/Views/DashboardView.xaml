@@ -37,9 +37,7 @@
                                        UriSource="Resources/Images/hospital.svg" 
                                        Fill="#D36969"
                                        Text="{Binding HPText, UpdateSourceTrigger=PropertyChanged}"/>
-                    <Button Command="{Binding RefillHPCommand}" Style="{DynamicResource SimpleButtonStyle}">
-                        <svgc:SvgIcon Height="30" Fill="{DynamicResource ForegroundBrush}" UriSource="Resources/Images/refresh.svg"/>
-                    </Button>
+                    <local:Refresh Height="30" BtnCommand="{Binding RefillHPCommand}"/>
                     <!--<svgc:SvgIcon Height="30" Fill="{DynamicResource ForegroundBrush}" UriSource="Resources/Images/refresh.svg"/>-->
                 </StackPanel>
                 <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
@@ -53,9 +51,7 @@
                                        Fill="#7BADF6"
                                        Text="{Binding FPText, UpdateSourceTrigger=PropertyChanged}"/>
 
-                    <Button Command="{Binding RefillFPCommand}" Style="{DynamicResource SimpleButtonStyle}">
-                        <svgc:SvgIcon Height="30" Fill="{DynamicResource ForegroundBrush}" UriSource="Resources/Images/refresh.svg"/>
-                    </Button>
+                    <local:Refresh Height="30" BtnCommand="{Binding RefillFPCommand}"/>
                 </StackPanel>
                 <!--<Grid Grid.Row="0" Height="50">
                                     <Grid.ColumnDefinitions>
@@ -158,17 +154,17 @@
                                 Grid.Row="1"
                                 Content="Change Color"
                                 Style="{DynamicResource PrimaryButton}"
-                                Command="{Binding ChangeColor}"/>
+                                Command="{Binding ChangeColor}" Cursor="Hand"/>
                         <Button Margin="20,104,20,-99" 
                                 Grid.Row="1"
                                 Content="Reset Color"
                                 Style="{DynamicResource PrimaryButton}"
-                                Command="{Binding ResetColor}"/>
+                                Command="{Binding ResetColor}" Cursor="Hand"/>
                     </Grid>
                 </Border>
                 <Border Margin="10" Background="{StaticResource BackgroundBrush}" Grid.Row="1">
                     <Grid>
-                        <Button Command="{Binding AttachCommand}" Style="{DynamicResource SimpleButtonStyle}">
+                        <Button Command="{Binding AttachCommand}" Style="{DynamicResource SimpleButtonStyle}" Cursor="Hand">
                             <svgc:SvgIcon 
                                   Fill="{DynamicResource ForegroundBrush}" 
                                   UriSource="{Binding AttachIcon, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 

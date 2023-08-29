@@ -18,7 +18,7 @@ namespace PvPHelper.Console.Commands
         }
         protected override void OnTriggerCommand()
         {
-            _vController.ApplyUpdate();
+            
         }
     }
 }

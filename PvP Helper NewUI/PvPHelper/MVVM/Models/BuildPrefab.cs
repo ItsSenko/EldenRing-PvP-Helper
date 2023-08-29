@@ -95,7 +95,7 @@ namespace PvPHelper.MVVM.Models
 
         public static void saveBuild(BuildPrefab build)
         {
-            string FilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $"Builds/{build.BuildName}.json");
+            string FilePath = Path.Combine(Directory.GetCurrentDirectory(), $"Builds/{build.BuildName}.json");
             string json = JsonConvert.SerializeObject(build, Formatting.Indented);
             if (File.Exists(FilePath))
                 File.Delete(FilePath);
@@ -108,7 +108,7 @@ namespace PvPHelper.MVVM.Models
         public static List<BuildPrefab> getBuilds()
         {
             List<BuildPrefab> builds = new();
-            string FilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Builds/");
+            string FilePath = Path.Combine(Directory.GetCurrentDirectory(), "Builds/");
             foreach (string fileName in Directory.GetFiles(FilePath, "*.json"))
             {
                 try

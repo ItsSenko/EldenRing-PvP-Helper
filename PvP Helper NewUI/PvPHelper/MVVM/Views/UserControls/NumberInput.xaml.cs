@@ -1,9 +1,12 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Drawing;
+using System.IO;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace PvPHelper.MVVM.Views.UserControls
 {
@@ -65,6 +68,31 @@ namespace PvPHelper.MVVM.Views.UserControls
         public static readonly DependencyProperty MinProperty =
             DependencyProperty.Register("Min", typeof(int), typeof(NumberInput), new PropertyMetadata(0));
 
+
+
+        public string MinusImgSource
+        {
+            get { return (string)GetValue(MinusImgSourceProperty); }
+            set { SetValue(MinusImgSourceProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for MinusImgSource.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty MinusImgSourceProperty =
+            DependencyProperty.Register("MinusImgSource", typeof(string), typeof(NumberInput));
+
+
+
+        public string PlusImgSource
+        {
+            get { return (string)GetValue(PlusImgSourceProperty); }
+            set { SetValue(PlusImgSourceProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for PlusImgSource.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty PlusImgSourceProperty =
+            DependencyProperty.Register("PlusImgSource", typeof(string), typeof(NumberInput));
+
+
         #endregion
         private bool IsTextAllowed(string text)
         {
@@ -101,6 +129,28 @@ namespace PvPHelper.MVVM.Views.UserControls
         {
             if (CurrValue < Max)
                 CurrValue++;
+        }
+
+        private void Minus_MouseEnter(object sender, MouseEventArgs e)
+        {
+            var bc = new BrushConverter();
+            Minus.Fill = (Brush)bc.ConvertFrom("#737373");
+        }
+
+        private void Minus_MouseLeave(object sender, MouseEventArgs e)
+        {
+            Minus.Fill = Brushes.White;
+        }
+
+        private void Plus_MouseEnter(object sender, MouseEventArgs e)
+        {
+            var bc = new BrushConverter();
+            Plus.Fill = (Brush)bc.ConvertFrom("#737373");
+        }
+
+        private void Plus_MouseLeave(object sender, MouseEventArgs e)
+        {
+            Plus.Fill = Brushes.White;
         }
     }
 }

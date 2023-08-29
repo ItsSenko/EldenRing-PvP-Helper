@@ -237,15 +237,9 @@ namespace PvPHelper.MVVM.ViewModels
             if (chrType.ChrID != 0)
             {
                 CommandManager.Log("Please note that changing ChrType does save.");
-                CommandManager.Log("Even when you restart you will be whatever you selet.");
+                CommandManager.Log("Even when you restart you will be whatever you set it.");
                 CommandManager.Log("If brought online, you will likely be banned.");
             }
-        }
-        private void Console_LogLoaded()
-        {
-            CommandManager.Log("Main Window Loaded");
-            CommandManager.Log(nameof(DashboardView));
-            CommandManager.Log(nameof(ItemsView));
         }
     }
 }

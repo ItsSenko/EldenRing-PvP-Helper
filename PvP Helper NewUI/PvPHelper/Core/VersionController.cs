@@ -35,7 +35,7 @@ namespace PvPHelper.Core
 
         private string GetCurrentLocalVersion()
         {
-            string basePath = AppDomain.CurrentDomain.BaseDirectory;
+            string basePath = Directory.GetCurrentDirectory();
             string versionFilePath = Path.Combine(basePath, "Resources/Version.txt");
 
             return File.ReadAllText(versionFilePath);
@@ -107,9 +107,8 @@ namespace PvPHelper.Core
         }
 
         public void ApplyUpdate()
-        {
-            File.WriteAllText(Path.Combine(_updateLocation,"Resources/Version.txt"), CurrentVersion);
-            Process.Start(Path.Combine(_updateLocation, "PvPHelperUpdater.exe"), "pweaseupdate");
+        { 
+            Process.Start(Path.Combine(_updateLocation, "PvPHelperUpdater.exe"), $"pweaseupdate {CurrentVersion}");
             Application.Current.Shutdown();
         }
     }

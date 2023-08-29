@@ -148,9 +148,9 @@ namespace PvPHelper.Core
             }
             catch (Exception ex)
             {
-                return Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Resources/Images/null.png");
+                return Path.Combine(Directory.GetCurrentDirectory(), "Resources/Images/null.png");
             }
-            return Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Resources/Images/null.png");
+            return Path.Combine(Directory.GetCurrentDirectory(), "Resources/Images/null.png");
         }
         public static bool IsValidFileName(string fileName)
         {

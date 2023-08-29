@@ -15,13 +15,15 @@ namespace PvPHelper.MVVM.Commands.Items
         private string[] exclude = new string[] { };
         private ItemCategory _category;
         private ErdHook _hook;
+        private bool single;
 
-        public MassGib(ErdHook hook, ItemCategory category, string[] excludedItems = null)
+        public MassGib(ErdHook hook, ItemCategory category, string[] excludedItems = null, bool single = false)
         {
             _hook = hook;
             _category = category;
             if (excludedItems != null)
                 exclude = excludedItems;
+            this.single = single;
         }
         public override void Execute(object? parameter)
         {
@@ -36,11 +38,15 @@ namespace PvPHelper.MVVM.Commands.Items
                     if (exclude != null && exclude.Any(x => x == item.Name))
                         continue;
                     ItemSpawnInfo info = new(item.ID, item.ItemCategory, item.MaxQuantity, item.MaxQuantity, (int)Infusion.Standard, 0, -1, item.EventID);
-                    items.Add(info);
+                    if (single)
+                        _hook.GetItem(info);
+                    else
+                        items.Add(info);
                 }
             }
 
-            _hook.GetItem(items, CancellationToken.None);
+            if (!single)
+                _hook.GetItem(items, CancellationToken.None);
         }
     }
 }

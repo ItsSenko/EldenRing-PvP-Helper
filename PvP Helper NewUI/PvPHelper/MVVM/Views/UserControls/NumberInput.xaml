@@ -22,7 +22,11 @@
                       Width="40"
                       HorizontalAlignment="Left"
                       Grid.Column="0"
-                      MouseDown="Minus_MouseDown"/>
+                      MouseDown="Minus_MouseDown"
+                      MouseEnter="Minus_MouseEnter"
+                      MouseLeave="Minus_MouseLeave"
+                      x:Name="Minus"
+                      Cursor="Hand"/>
 
         <TextBox Text="{Binding InputText, ElementName=NumberInputRoot, UpdateSourceTrigger=PropertyChanged}"
                  PreviewTextInput="TextBox_PreviewTextInput"
@@ -37,13 +41,17 @@
                  Grid.Column="1"/>
 
         <svgc:SvgIcon UriSource="/Resources/Images/plus-circle.svg"
-                  Margin="10 0 0 0"
-                  Fill="White"
-                  Height="40"
-                  Width="40"
-                  HorizontalAlignment="Right"
-                  Grid.Column="2"
-                  MouseDown="Plus_MouseDown"/>
+                      Margin="10 0 0 0"
+                      Fill="White"
+                      Height="40"
+                      Width="40"
+                      HorizontalAlignment="Right"
+                      Grid.Column="2"
+                      MouseDown="Plus_MouseDown"
+                      MouseEnter="Plus_MouseEnter"
+                      MouseLeave="Plus_MouseLeave"
+                      x:Name="Plus"
+                      Cursor="Hand"/>
 
     </Grid>
 </UserControl>
