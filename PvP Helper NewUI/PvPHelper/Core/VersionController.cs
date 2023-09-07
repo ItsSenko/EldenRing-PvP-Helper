@@ -3,10 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
@@ -109,7 +107,7 @@ namespace PvPHelper.Core
         public void ApplyUpdate()
         { 
             Process.Start(Path.Combine(_updateLocation, "PvPHelperUpdater.exe"), $"pweaseupdate {CurrentVersion}");
-            Application.Current.Shutdown();
+            Process.GetCurrentProcess().Kill();
         }
     }
     public class Asset

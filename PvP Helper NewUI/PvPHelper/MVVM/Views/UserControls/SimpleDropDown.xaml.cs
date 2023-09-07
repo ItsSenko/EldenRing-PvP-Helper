@@ -1,9 +1,4 @@
-﻿using PvPHelper.MVVM.Models;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
+﻿using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 

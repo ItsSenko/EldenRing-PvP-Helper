@@ -1,10 +1,4 @@
-﻿using Erd_Tools;
-using Erd_Tools.Models.Entities;
-using PvPHelper.Console;
-using PvPHelper.Core;
-using System;
-using System.Threading;
-using System.Windows.Threading;
+﻿using PvPHelper.Core;
 using CommandBase = PvPHelper.Core.CommandBase;
 
 namespace PvPHelper.MVVM.Commands.Misc

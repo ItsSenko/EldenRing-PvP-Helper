@@ -1,5 +1,6 @@
 ﻿using Erd_Tools;
 using Erd_Tools.Models.Entities;
+using PvPHelper.Core;
 using System.Collections.Generic;
 
 namespace PvPHelper.Console.Commands
@@ -28,9 +29,6 @@ namespace PvPHelper.Console.Commands
             if (parameters.Count < 2 || parameters.Count > 2)
                 throw new InvalidCommandException($"Inproper Parameter Count. This command requires {RequiresParamsString.Length} parameters.");
 
-            if (!IsSupportedStat(parameters[0]))
-                throw new InvalidCommandException($"The inputed stat is either invalid or not supported.");
-
             if (!int.TryParse(parameters[1], out int value))
                 throw new InvalidCommandException($"Invalid Value. Try again.");
 
@@ -50,12 +48,113 @@ namespace PvPHelper.Console.Commands
                         CommandManager.Log($"Set HP to {newValue}");
                         break; 
                     }
+                case "vigor":
+                    {
+                        if (!Settings.Default.AllowUnsafe)
+                        {
+                            SendError(parameters[0]);
+                            break;
+                        }
+
+                        _player.Vigor = value;
+                        CommandManager.Log($"Set {parameters[0]} to {value}");
+                        break;
+                    }
+                case "mind":
+                    {
+                        if (!Settings.Default.AllowUnsafe)
+                        {
+                            SendError(parameters[0]);
+                            break;
+                        }
+
+                        _player.Mind = value;
+                        CommandManager.Log($"Set {parameters[0]} to {value}");
+                        break;
+                    }
+                case "end":
+                    {
+                        if (!Settings.Default.AllowUnsafe)
+                        {
+                            SendError(parameters[0]);
+                            break;
+                        }
+
+                        _player.Endurance = value;
+                        CommandManager.Log($"Set {parameters[0]} to {value}");
+                        break;
+                    }
+                case "str":
+                    {
+                        if (!Settings.Default.AllowUnsafe)
+                        {
+                            SendError(parameters[0]);
+                            break;
+                        }
+
+                        _player.Strength = value;
+                        CommandManager.Log($"Set {parameters[0]} to {value}");
+                        break;
+                    }
+                case "dex":
+                    {
+                        if (!Settings.Default.AllowUnsafe)
+                        {
+                            SendError(parameters[0]);
+                            break;
+                        }
+
+                        _player.Dexterity = value;
+                        CommandManager.Log($"Set {parameters[0]} to {value}");
+                        break;
+                    }
+                case "int":
+                    {
+                        if (!Settings.Default.AllowUnsafe)
+                        {
+                            SendError(parameters[0]);
+                            break;
+                        }
+
+                        _player.Intelligence = value;
+                        CommandManager.Log($"Set {parameters[0]} to {value}");
+                        break;
+                    }
+                case "faith":
+                    {
+                        if (!Settings.Default.AllowUnsafe)
+                        {
+                            SendError(parameters[0]);
+                            break;
+                        }
+
+                        _player.Faith = value;
+                        CommandManager.Log($"Set {parameters[0]} to {value}");
+                        break;
+                    }
+                case "arc":
+                    {
+                        if (!Settings.Default.AllowUnsafe)
+                        {
+                            SendError(parameters[0]);
+                            break;
+                        }
+
+                        _player.Arcane = value;
+                        CommandManager.Log($"Set {parameters[0]} to {value}");
+                        break;
+                    }
+                default:
+                    {
+                        throw new InvalidCommandException($"The inputed stat is either invalid or not supported.");
+                    }
             }
         }
 
-        private bool IsSupportedStat(string input)
+        private void SendError(string stat)
         {
-            return input.ToLower() == "fp" || input.ToLower() == "hp";
+            CommandManager.Log($"Cannot set '{stat}' because you do not allow unsafe options.");
+            CommandManager.Log("To change this, go to misc and toggle 'Allow Unsafe Options`.");
         }
     }
 }

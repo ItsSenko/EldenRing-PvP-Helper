@@ -142,24 +142,28 @@
                             <RowDefinition Height="1*"/>
                             <RowDefinition Height="1*"/>
                         </Grid.RowDefinitions>
-                        <Label Grid.Row="0" Content="Character Type" Margin="0 20 0 0" FontSize="16" HorizontalAlignment="Center" Foreground="{StaticResource ForegroundBrush}"/>
+                        <Label Grid.Row="0" Content="Phantom ID" Margin="0 20 0 0" FontSize="16" HorizontalAlignment="Center" Foreground="{StaticResource ForegroundBrush}"/>
                         <local:SimpleDropDown Grid.Row="1" 
                                               Height="30" 
                                               Margin="20 10 20 0"
                                               Width="150"
-                                              SelectedIndex="{Binding ChrTypeSelectedIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                              ItemsSource="{Binding ChrTypeItemsSource, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                              SelectedIndex="{Binding PhantomIDSelectedIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                              ItemsSource="{Binding PhantomIDItemsSource, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
                         <Button Margin="20,64,20,-59" 
                                 Grid.Row="1"
                                 Content="Change Color"
                                 Style="{DynamicResource PrimaryButton}"
                                 Command="{Binding ChangeColor}" Cursor="Hand"/>
-                        <Button Margin="20,104,20,-99" 
+                        <local:LabeledCircleToggle Margin="20,104,20,-111" Grid.Row="1"
+                                                   Label="Update"
+                                                   Checked="{Binding UpdatePhantom.State, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                   ToggleCommand="{Binding UpdatePhantom}"/>
+                        <!--<Button Margin="20,104,20,-99" 
                                 Grid.Row="1"
                                 Content="Reset Color"
                                 Style="{DynamicResource PrimaryButton}"
-                                Command="{Binding ResetColor}" Cursor="Hand"/>
+                                Command="{Binding ResetColor}" Cursor="Hand"/>-->
                     </Grid>
                 </Border>
                 <Border Margin="10" Background="{StaticResource BackgroundBrush}" Grid.Row="1">

@@ -12,6 +12,7 @@
 
     <None Remove="MVVM\Views\UserControls\grave_scythe.png" />
     <None Remove="Resources\Images\auto-fix.svg" />
+    <None Remove="Resources\Images\Discord.png" />
     <None Remove="Resources\Images\file-document-alert.svg" />
     <None Remove="Resources\Images\grave_scythe.png" />
     <None Remove="Resources\Images\hospital.svg" />
@@ -1139,6 +1140,7 @@
     <Content Include="Resources\Images\file-document-alert.svg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Resources\Images\Discord.png" />
     <Resource Include="Resources\Images\shunter.ico" />
     <Resource Include="Resources\Images\shunter.png" />
     <EmbeddedResource Include="Resources\Images\Infusions\blood.jpg">

@@ -1,11 +1,8 @@
 ﻿using Erd_Tools;
 using Erd_Tools.Models;
 using PvPHelper.Console;
-using PvPHelper.MVVM.Dialogs;
 using PvPHelper.MVVM.Models;
 using PvPHelper.MVVM.ViewModels;
-using System;
-using System.Drawing;
 using System.Linq;
 using static Erd_Tools.Models.Param;
 using CommandBase = PvPHelper.Core.CommandBase;
@@ -34,7 +31,7 @@ namespace PvPHelper.MVVM.Commands.Dashboard
         }
         public override void Execute(object? parameter)
         {
-            if (!_hook.Loaded || !_hook.Hooked)
+           /* if (!_hook.Loaded || !_hook.Hooked)
                 return;
 
             var chrType = _dashboard.ChrTypeItemsSource.ToArray()[_dashboard.ChrTypeSelectedIndex] as ChrType;
@@ -58,7 +55,7 @@ namespace PvPHelper.MVVM.Commands.Dashboard
             row.Param.Pointer.WriteByte(dataOffset + frontColorG, chrType.frontColor.G);
             row.Param.Pointer.WriteByte(dataOffset + frontColorB, chrType.frontColor.B);
 
-            CommandManager.Log($"Reset Color for {chrType.Name}");
+            CommandManager.Log($"Reset Color for {chrType.Name}");*/
         }
     }
 }

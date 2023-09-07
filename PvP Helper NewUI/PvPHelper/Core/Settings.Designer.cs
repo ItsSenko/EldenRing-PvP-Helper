@@ -34,5 +34,17 @@ namespace PvPHelper.Core {
                 this["AutoUpdate"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool AllowUnsafe {
+            get {
+                return ((bool)(this["AllowUnsafe"]));
+            }
+            set {
+                this["AllowUnsafe"] = value;
+            }
+        }
     }
 }

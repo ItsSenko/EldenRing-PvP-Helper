@@ -1,12 +1,8 @@
 ﻿using Erd_Tools;
 using Erd_Tools.Models;
-using PvPHelper.MVVM.Dialogs;
 using PvPHelper.MVVM.Models;
 using PvPHelper.MVVM.ViewModels;
-using System;
-using System.Drawing;
 using System.Linq;
-using static Erd_Tools.Models.Param;
 using static Erd_Tools.Models.Weapon;
 using CommandBase = PvPHelper.Core.CommandBase;
 

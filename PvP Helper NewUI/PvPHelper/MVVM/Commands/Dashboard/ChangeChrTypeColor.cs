@@ -39,14 +39,13 @@ namespace PvPHelper.MVVM.Commands.Dashboard
                 return;
 
             ColorPickerDialog dialog = new();
-            var chrType = _dashboard.ChrTypeItemsSource.ToArray()[_dashboard.ChrTypeSelectedIndex] as ChrType;
+            PhantomIDOption phantom = _dashboard.PhantomIDItemsSource.ToArray()[_dashboard.PhantomIDSelectedIndex] as PhantomIDOption;
             dialog.OnSubmit += (color) =>
             {
-                if (chrType == null || chrType.ChrID == 0)
+                if (phantom == null || phantom.ID == 0)
                     return;
-                var phantomID = chrType.ParamID;
 
-                Row row = PhantomParam.Rows.FirstOrDefault(x => x.ID == phantomID);
+                Row row = PhantomParam.Rows.FirstOrDefault(x => x.ID == phantom.ID);
                 var dataOffset = row.DataOffset;
 
                 row.Param.Pointer.WriteByte(dataOffset + edgeColorR, color.R);

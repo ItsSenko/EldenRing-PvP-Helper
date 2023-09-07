@@ -1,19 +1,23 @@
 ﻿using Erd_Tools;
 using Erd_Tools.Models.Entities;
 using PvPHelper.Core;
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace PvPHelper.Console.Commands
 {
-    public class TeamTypeChangeCommand : CommandBase
+    internal class ChrTypeChange : CommandBase
     {
         private ErdHook Hook { get; set; }
         private Player player { get; set; }
-        public TeamTypeChangeCommand(ErdHook hook)
+        public ChrTypeChange(ErdHook hook)
         {
-            Name = "TeamType Change";
-            Description = "Change your TeamType";
-            CommandString = "/teamtype";
+            Name = "ChrType Change";
+            Description = "Change your ChrType";
+            CommandString = "/chrtype";
             RequireParams = true;
             HasParams = true;
             RequiresParamsString = new string[] { "typeInt", "matchBool" };
@@ -34,17 +38,17 @@ namespace PvPHelper.Console.Commands
 
             if (int.TryParse(parameters[0], out int id))
             {
-                player.TeamType = (byte)id;
+                player.ChrType = (byte)id;
 
                 if (parameters.Count > 1 && bool.TryParse(parameters[1], out bool match))
                     player.ChrType = id;
             }
             else if (parameters[0].ToLower() == "reset")
             {
-                player.TeamType = 1;
+                player.ChrType = 0;
 
                 if (bool.TryParse(parameters[1], out bool match))
-                    player.ChrType = 0;
+                    player.TeamType = 1;
             }
             else
                 throw new InvalidCommandException("Invalid Param");

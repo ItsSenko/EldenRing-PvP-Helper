@@ -33,6 +33,9 @@
             <userControls:LabeledCircleToggle Label="Auto Update"
                                               Checked="{Binding AutoUpdateToggle.State, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                               ToggleCommand="{Binding AutoUpdateToggle}"/>
+            <userControls:LabeledCircleToggle Label="Allow Unsafe Options"
+                                              Checked="{Binding UnsafeToggle.State, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                              ToggleCommand="{Binding UnsafeToggle}"/>
             <userControls:LabeledCircleToggle Label="Show Hitboxes"
                                               Checked="{Binding ShowHitboxesToggle.State, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                               ToggleCommand="{Binding ShowHitboxesToggle}"/>

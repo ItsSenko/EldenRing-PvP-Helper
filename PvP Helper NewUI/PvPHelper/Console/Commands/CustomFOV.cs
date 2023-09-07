@@ -3,7 +3,6 @@ using System.Linq;
 using System.Windows;
 using Erd_Tools;
 using Erd_Tools.Models;
-using PvPHelper.Core;
 using static Erd_Tools.Models.Param;
 
 namespace PvPHelper.Console.Commands

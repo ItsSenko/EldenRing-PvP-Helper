@@ -1,12 +1,13 @@
 ﻿using Erd_Tools;
 using Erd_Tools.Models.Entities;
+using PropertyHook;
 using PvPHelper.Console;
 using PvPHelper.Console.Commands;
 using PvPHelper.Core;
 using PvPHelper.MVVM.Models;
 using PvPHelper.MVVM.Views;
-using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows;
@@ -22,6 +23,7 @@ namespace PvPHelper.MVVM.ViewModels
         public RelayCommand YourPrefabsCommand { get; set; }
         public RelayCommand MiscCommand { get; set; }
         public RelayCommand CloseCommand { get; set; }
+        public RelayCommand Discord { get; set; }
 
         private string _versionText;
         public string VersionText
@@ -55,6 +57,7 @@ namespace PvPHelper.MVVM.ViewModels
         
         
         public CommandManager commandManager;
+        public PHPointer LocalPlayer;
         public MainWindowViewModel()
         {
             _hook = new(5000, 1000, new(x => x.MainWindowTitle is "ELDEN RING™" or "ELDEN RING"));
@@ -62,7 +65,7 @@ namespace PvPHelper.MVVM.ViewModels
             _vController = new(Directory.GetCurrentDirectory());
             VersionText = _vController.CurrentLocalVersion;
 
-            if (_vController.UpdateAvailable && Settings.Default.AutoUpdate)
+            if (Settings.Default.AutoUpdate && _vController.UpdateAvailable)
             {
                 var task = Task.Run(async () => await _vController.Update());
                 task.GetAwaiter().GetResult();
@@ -74,7 +77,17 @@ namespace PvPHelper.MVVM.ViewModels
             player = new Player(_hook.PlayerIns, _hook);
             
             CloseCommand = new((o) => { Application.Current.Shutdown(); });
-            
+            Discord = new((o) => 
+            {
+                var ps = new ProcessStartInfo("https://www.discord.gg/VmyGAS24Gf")
+                {
+                    UseShellExecute = true,
+                    Verb = "open"
+                };
+                Process.Start(ps);
+            });
+            LocalPlayer = _hook.CreateChildPointer(_hook.WorldChrMan, new int[] { 0x1E508 });
+
             CustomPointers.Initialize(_hook);
             SetupViewModels();
             RegisterCommands();
@@ -115,7 +128,7 @@ namespace PvPHelper.MVVM.ViewModels
 
         private void SetupViewModels()
         {
-            _viewModels.Add(nameof(DashboardView), new DashboardViewModel(_hook));
+            _viewModels.Add(nameof(DashboardView), new DashboardViewModel(_hook, LocalPlayer));
             _viewModels.Add(nameof(ItemsView), new ItemsViewModel(_hook));
             _viewModels.Add(nameof(PrefabCreatorView), new PrefabCreatorViewModel(_hook));
             _viewModels.Add(nameof(MiscView), new MiscViewModel(_hook, _vController));
@@ -154,8 +167,11 @@ namespace PvPHelper.MVVM.ViewModels
             commandManager.RegisterCommand(new CustomFPS(_hook));
             commandManager.RegisterCommand(new CustomFOV(_hook));
             commandManager.RegisterCommand(new Update(_vController));
-            //commandManager.RegisterCommand(new TestModal(_vController));
+            //commandManager.RegisterCommand(new TestModal(_hook));
             commandManager.RegisterCommand(new TeamTypeChangeCommand(_hook));
+            commandManager.RegisterCommand(new NetPlayerCommand(_hook));
+            commandManager.RegisterCommand(new ChrTypeChange(_hook));
+            commandManager.RegisterCommand(new HelpCommand(commandManager));
         }
     }
 }

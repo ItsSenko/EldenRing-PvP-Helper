@@ -11,13 +11,14 @@ using PvPHelper.MVVM.Commands.Dashboard.Toggles;
 using System.Windows.Threading;
 using PvPHelper.MVVM.Models;
 using System.Drawing;
-using PvPHelper.MVVM.Views;
 using System.Diagnostics;
 using PvPHelper.MVVM.Commands.Dashboard;
+using Erd_Tools.Models;
+using PropertyHook;
 
 namespace PvPHelper.MVVM.ViewModels
 {
-    internal class DashboardViewModel : ViewModelBase
+    public class DashboardViewModel : ViewModelBase
     {
         #region DataBindings
         public ICommand RefillHPCommand { get; set; }
@@ -39,6 +40,7 @@ namespace PvPHelper.MVVM.ViewModels
 
         public ICommand ChangeColor { get; set; }
         public ICommand ResetColor { get; set; }
+        public UpdatePhantom UpdatePhantom { get; set; }
 
         private string _hpText;
 
@@ -56,34 +58,34 @@ namespace PvPHelper.MVVM.ViewModels
             set { _manaText = value; OnPropertyChanged(); }
         }
 
-        private int _chrTypeSelectedIndex;
+        private int _phantomIDSelectedIndex;
 
-        public int ChrTypeSelectedIndex
+        public int PhantomIDSelectedIndex
         {
-            get { return _chrTypeSelectedIndex; }
+            get { return _phantomIDSelectedIndex; }
             set 
             {
                 if (value != 0 && (!hook.Loaded || !hook.Hooked))
                 {
-                    _chrTypeSelectedIndex = 0;
-                    ChrTypeSelectedIndex = 0;
+                    _phantomIDSelectedIndex = 0;
+                    PhantomIDSelectedIndex = 0;
                     OnPropertyChanged();
                     return;
                 }
-                _chrTypeSelectedIndex = value;
-                UpdateChrType();
+                _phantomIDSelectedIndex = value;
+                UpdatePhantomID();
                 OnPropertyChanged();
             }
         }
 
-        private IEnumerable<object> _chrTypeItemsSource;    
+        private IEnumerable<object> _phantomIDItemsSource;    
 
-        public IEnumerable<object> ChrTypeItemsSource
+        public IEnumerable<object> PhantomIDItemsSource
         {
-            get { return _chrTypeItemsSource; }
+            get { return _phantomIDItemsSource; }
             set 
-            { 
-                _chrTypeItemsSource = value;
+            {
+                _phantomIDItemsSource = value;
                 OnPropertyChanged();
             }
         }
@@ -104,52 +106,26 @@ namespace PvPHelper.MVVM.ViewModels
             set { _attachText = value; OnPropertyChanged(); }
         }
 
-        private ChrType[] ChrTypes = new ChrType[] 
-        {
-            new ChrType{ChrID = 0,
-                    Name = "Normal"},
-
-                new ChrType{ChrID = 1,
-                    Name = "Yellow Phantom",
-                    ParamID = 61,
-                    edgeColor = Color.FromArgb(200, 120, 80),
-                    diffMulColor = Color.FromArgb(255, 255, 255)},
-
-                new ChrType{ChrID = 2,
-                    Name = "Red Phantom",
-                    ParamID = 60,
-                    edgeColor = Color.FromArgb(255, 40, 40),
-                    diffMulColor = Color.FromArgb(255, 210, 190),
-                    frontColor = Color.FromArgb(0, 65, 95)},
-
-                new ChrType{ChrID = 17,
-                    Name = "Blue Phantom",
-                    ParamID = 70,
-                    edgeColor = Color.FromArgb(112, 118, 255),
-                    diffMulColor = Color.FromArgb(255, 255, 255),
-                    frontColor = Color.FromArgb(62, 65, 0)},
-        };
-
         private ErdHook hook { get; set; }
         private Player player;
+        private PHPointer LocalPlayer;
         private DispatcherTimer statsTimer;
+        private Param PhantomParam => hook.Params.FirstOrDefault(x => x.Name == "PhantomParam");
         #endregion
         
-        public DashboardViewModel(ErdHook hook)
+        public DashboardViewModel(ErdHook hook, PHPointer localPlayer)
         {
             this.hook = hook;
             player = new Player(hook.PlayerIns, hook);
             hook.OnSetup += Hook_OnSetup;
             hook.OnUnhooked += Hook_OnUnhooked;
+            LocalPlayer = localPlayer;
 
             SetupCommands();
-            ChrTypeItemsSource = ChrTypes;
 
             statsTimer = new DispatcherTimer();
             statsTimer.Interval = TimeSpan.FromSeconds(1);
             statsTimer.Tick += StatsTimer_Tick;
-            
-
             //CommandManager.LogLoaded += Console_LogLoaded;
         }
 
@@ -171,7 +147,9 @@ namespace PvPHelper.MVVM.ViewModels
             NoStamLossToggle = new NoStamLossToggle(hook);
 
             ChangeColor = new ChangeChrTypeColor(hook, this);
-            ResetColor = new ResetChrTypeColor(hook, this);
+            //ResetColor = new ResetChrTypeColor(hook, this);
+
+            UpdatePhantom = new(hook, LocalPlayer, this);
 
             HelpCommand = new RelayCommand((o) => 
             {
@@ -214,9 +192,79 @@ namespace PvPHelper.MVVM.ViewModels
                 statsTimer.Start();
                 AttachIcon = "Resources/Images/link-box.svg";
                 AttachText = "Attached";
+
+                List<PhantomIDOption> phantomIds = new();
+                phantomIds.Add(new("-1 - Default", -1));
+                foreach (var row in PhantomParam.Rows)
+                {
+                    phantomIds.Add(new(GetNewPhantomName(row.ID), row.ID));
+                }
+                PhantomIDItemsSource = phantomIds;
             });
         }
 
+        public string GetNewPhantomName(int id)
+        {
+            switch(id)
+            {
+                case 51:
+                    {
+                        return $"{id} - White Coop";
+                    }
+                case 60:
+                    {
+                        return $"{id} - Duelist";
+                    }
+                case 61:
+                    {
+                        return $"{id} - Yellow Coop";
+                    }
+                case 1:
+                    {
+                        return $"{id} - Big White Glow";
+                    }
+                case 230:
+                    {
+                        return $"{id} - White Ghost, White Eyes";
+                    }
+                case 901:
+                    {
+                        return $"{id} - White Ghost Normal";
+                    }
+                case 902:
+                    {
+                        return $"{id} - Blood Stain Ghost";
+                    }
+                case 810:
+                    {
+                        return $"{id} - Invisible Cloak";
+                    }
+                case 211:
+                    {
+                        return $"{id} - Black Phantom";
+                    }
+                case 270:
+                    {
+                        return $"{id} - Piss Ghost";
+                    }
+                case 290:
+                    {
+                        return $"{id} - VOID";
+                    }
+                case 811:
+                    {
+                        return $"{id} - Flashbang";
+                    }
+                case 70:
+                    {
+                        return $"{id} - Hunter";
+                    }
+                default:
+                    {
+                        return $"{id} -";
+                    }
+            }
+        }
         private void StatsTimer_Tick(object? sender, EventArgs e)
         {
             if (player != null && hook.Loaded && hook.Hooked)
@@ -226,20 +274,19 @@ namespace PvPHelper.MVVM.ViewModels
             }
         }
 
-        private void UpdateChrType()
+        private void UpdatePhantomID()
         {
             if (!hook.Loaded || !hook.Hooked)
                 return;
 
-            ChrType chrType = (ChrTypeItemsSource.ToArray())[ChrTypeSelectedIndex] as ChrType;
-            player.ChrType = chrType.ChrID;
+            PhantomIDOption option = PhantomIDItemsSource.ToArray()[PhantomIDSelectedIndex] as PhantomIDOption;
 
-            if (chrType.ChrID != 0)
-            {
-                CommandManager.Log("Please note that changing ChrType does save.");
-                CommandManager.Log("Even when you restart you will be whatever you set it.");
-                CommandManager.Log("If brought online, you will likely be banned.");
-            }
+            if (option == null)
+                return;
+
+            LocalPlayer.WriteInt32(0x538, option.ID);
+
+            CommandManager.Log($"Overriden local PhantomID to be {option.Name}");
         }
     }
 }

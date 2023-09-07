@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PvPHelper.Console
 {
@@ -18,6 +16,9 @@ namespace PvPHelper.Console
         {
             _commands.Add(newCommand);
         }
+
+        public List<CommandBase> GetAllRegisteredCommands() {return _commands;}
+
         public static event Action LogLoaded;
         private static Action<string> logAction;
         public static CommandManager RegisterConsole(Action<string> action)
