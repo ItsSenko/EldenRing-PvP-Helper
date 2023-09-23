@@ -56,7 +56,7 @@ Join the [Discord!](https://discord.com/invite/VmyGAS24Gf)
 - [The Grand Archives](https://github.com/The-Grand-Archives/Elden-Ring-CT-TGA) for the pointers and other addresses!
 - [CatShark](https://github.com/CatSharkShin) for the UI Design, and other work!
 - [Amir](https://www.youtube.com/@Amir0) for providing ingame icons!
-- [WaZues](https://www.youtube.com/@WaZeusPvP) testing help!
+- [WaZues](https://www.youtube.com/@WaZeusPvP) and [Frosty](https://www.twitch.tv/frostycomes) for testing help!
 
 ## Upcoming Features
 ### Build Creation
