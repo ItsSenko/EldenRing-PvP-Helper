@@ -16,8 +16,7 @@ namespace PvPHelper.Console.Commands
         }
         protected override void OnTriggerCommand()
         {
-            var task = Task.Run(async () => await _vController.Update());
-            task.GetAwaiter().GetResult();
+            _vController.Update(_vController._releaseUrl, _vController.CurrentVersion);
         }
     }
 }

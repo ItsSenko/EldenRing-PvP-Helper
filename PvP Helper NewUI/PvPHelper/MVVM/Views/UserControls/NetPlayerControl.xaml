@@ -1,0 +1,75 @@
+﻿<UserControl x:Class="PvPHelper.MVVM.Views.UserControls.NetPlayerControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PvPHelper.MVVM.Views.UserControls"
+             mc:Ignorable="d" Height="145" Width="1080">
+    <Grid Background="{DynamicResource BackgroundBrush}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="71*"/>
+                <RowDefinition Height="34*"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock x:Name="Name" Grid.Row="0"
+                           VerticalAlignment="Bottom"
+                           HorizontalAlignment="Left"
+                           Padding="10"
+                           FontSize="30"
+                           Foreground="{DynamicResource IconsBrush}"/>
+            <TextBlock x:Name="Level" Grid.Row="0"
+                           VerticalAlignment="Bottom"
+                           HorizontalAlignment="Right"
+                           Padding="10"
+                           FontSize="30"
+                           Foreground="{DynamicResource LighterTextBrush}"/>
+
+            <ProgressBar Grid.Row="1" x:Name="HealthBar"
+                             Height="20"
+                             Margin="10,0,10,0"
+                             VerticalAlignment="Top"
+                             Minimum="0"
+                             Background="{DynamicResource DarkBrush}"
+                             Foreground="#a30f0f"
+                             BorderBrush="{DynamicResource DarkBrush}"
+                             BorderThickness="1"/>
+            <TextBlock x:Name="HealthBlock" Grid.Row="1"
+                           VerticalAlignment="Top"
+                           HorizontalAlignment="Center"
+                           Margin="0,2,0,0"
+                           Foreground="White"/>
+        </Grid>
+
+        <Grid Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Border BorderThickness="0" Background="{DynamicResource DarkBrush}" Margin="10,10,10,10">
+                <Image x:Name="Tal1" Margin="5,5,5,5"/>
+            </Border>
+
+            <Border BorderThickness="0" Grid.Column="1" Background="{DynamicResource DarkBrush}" Margin="10,10,10,10">
+                <Image x:Name="Tal2" Margin="5,5,5,5"/>
+            </Border>
+
+            <Border BorderThickness="0" Grid.Column="2" Background="{DynamicResource DarkBrush}" Margin="10,10,10,10">
+
+                <Image x:Name="Tal3" Margin="5,5,5,5"/>
+            </Border>
+
+            <Border BorderThickness="0" Grid.Column="3" Background="{DynamicResource DarkBrush}" Margin="10,10,10,10">
+                <Image x:Name="Tal4" Margin="5,5,5,5"/>
+            </Border>
+        </Grid>
+    </Grid>
+</UserControl>

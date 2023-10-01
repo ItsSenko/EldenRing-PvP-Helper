@@ -42,7 +42,7 @@ namespace PvPHelper.MVVM.Commands.Dashboard
             PhantomIDOption phantom = _dashboard.PhantomIDItemsSource.ToArray()[_dashboard.PhantomIDSelectedIndex] as PhantomIDOption;
             dialog.OnSubmit += (color) =>
             {
-                if (phantom == null || phantom.ID == 0)
+                if (phantom == null || phantom.ID == -1)
                     return;
 
                 Row row = PhantomParam.Rows.FirstOrDefault(x => x.ID == phantom.ID);

@@ -10,6 +10,7 @@ using PvPHelper.MVVM.Views.UserControls;
 using System.Collections.ObjectModel;
 using PvPHelper.MVVM.Commands.PrefabCreator;
 using System.Windows.Media;
+using PvPHelper.MVVM.Dialogs;
 
 namespace PvPHelper.MVVM.ViewModels
 {
@@ -232,6 +233,8 @@ namespace PvPHelper.MVVM.ViewModels
         private ErdHook Hook;
 
         private bool refreshing = false;
+        Dictionary<int, int> SmithyToSomber = new();
+        Dictionary<int, int> SomberToSmithy = new();
         public PrefabCreatorViewModel(ErdHook hook)
         {
             Hook = hook;
@@ -295,6 +298,45 @@ namespace PvPHelper.MVVM.ViewModels
             SelectedInventoryItemsSource = inventoryStates;
 
             BuildItemsSource = BuildSaver.getBuilds();
+
+            SmithyToSomber.Add(0, 0);
+            SmithyToSomber.Add(1, 0);
+            SmithyToSomber.Add(2, 1);
+            SmithyToSomber.Add(3, 1);
+            SmithyToSomber.Add(4, 1);
+            SmithyToSomber.Add(5, 2);
+            SmithyToSomber.Add(6, 2);
+            SmithyToSomber.Add(7, 3);
+            SmithyToSomber.Add(8, 3);
+            SmithyToSomber.Add(9, 3);
+            SmithyToSomber.Add(10, 4);
+            SmithyToSomber.Add(11, 4);
+            SmithyToSomber.Add(12, 5);
+            SmithyToSomber.Add(13, 5);
+            SmithyToSomber.Add(14, 5);
+            SmithyToSomber.Add(15, 6);
+            SmithyToSomber.Add(16, 6);
+            SmithyToSomber.Add(17, 7);
+            SmithyToSomber.Add(18, 7);
+            SmithyToSomber.Add(19, 7);
+            SmithyToSomber.Add(20, 8);
+            SmithyToSomber.Add(21, 8);
+            SmithyToSomber.Add(22, 9);
+            SmithyToSomber.Add(23, 9);
+            SmithyToSomber.Add(24, 9);
+            SmithyToSomber.Add(25, 10);
+
+            SomberToSmithy.Add(0, 0);
+            SomberToSmithy.Add(1, 4);
+            SomberToSmithy.Add(2, 6);
+            SomberToSmithy.Add(3, 9);
+            SomberToSmithy.Add(4, 11);
+            SomberToSmithy.Add(5, 13);
+            SomberToSmithy.Add(6, 16);
+            SomberToSmithy.Add(7, 19);
+            SomberToSmithy.Add(8, 21);
+            SomberToSmithy.Add(9, 24);
+            SomberToSmithy.Add(10, 25);
         }
         private void SetupCommands()
         {
@@ -330,10 +372,18 @@ namespace PvPHelper.MVVM.ViewModels
                     GemOption gem = AshesSelectedItem as GemOption;
                     WeaponPrefab newWeapon = new(wep.Name, wep.ID, inf == null ? Infusion.Standard : inf.infusion, gem == null ? -1 : gem.gem.ID, UpgradeLevel);
                     weaponPrefabs.Add(newWeapon);
-                    CreateNewBtn(item.item.Name,
-                        Helpers.GetImageSource(item.item.Name, itempicfolder, true, true), "+" + UpgradeLevel.ToString(),
-                        Helpers.GetImageSource(inf == null ? Infusion.Standard.ToString() : inf.infusion.ToString(), infusionpicfolder, false, false), weaponItems,
-                        wpnPrefab: newWeapon);
+                    ImageSource icon = Helpers.GetImageSource(item.item.Name);
+                    ImageSource infusionIcon = Helpers.GetImageSource(inf == null ? Infusion.Standard.ToString() : inf.infusion.ToString());
+                    ImageSource ashIcon = null;
+
+                    if (gem != null)
+                    {
+                        string gemName = gem.Name;
+                        gemName = gemName.StartsWith("Ash of War") ? gemName.Replace(":", "_") : ("Ash of War_ " + gemName);
+                        ashIcon = Helpers.GetImageSource(gemName);
+                    }
+
+                    CreateNewBtn(item.item.Name, icon, "+" + UpgradeLevel.ToString(), infusionIcon, ashIcon, weaponItems, wpnPrefab: newWeapon);
                 }
                 else
                 {
@@ -345,7 +395,7 @@ namespace PvPHelper.MVVM.ViewModels
                                 ArmorPrefab prefab = new(item.item.ID);
                                 armorPrefabs.Add(prefab);
                                 CreateNewBtn(item.item.Name,
-                                    Helpers.GetImageSource(item.item.Name, itempicfolder, true, true), "", null, armorItems, armPrefab: prefab);
+                                    Helpers.GetImageSource(item.item.Name), "",null, null, armorItems, armPrefab: prefab);
                                 break;
                             }
                         case Item.Category.Accessory:
@@ -354,7 +404,7 @@ namespace PvPHelper.MVVM.ViewModels
                                 TalismanPrefab prefab = new(item.item.ID);
                                 talismanPrefabs.Add(prefab);
                                 CreateNewBtn(item.item.Name,
-                                    Helpers.GetImageSource(item.item.Name, itempicfolder, true, true), "", null, talismanItems, talPrefab: prefab);
+                                    Helpers.GetImageSource(item.item.Name), "",null, null, talismanItems, talPrefab: prefab);
                                 break;
                             }
                     }
@@ -362,13 +412,39 @@ namespace PvPHelper.MVVM.ViewModels
             }
         }
 
-        private void CreateNewBtn(string name, ImageSource icon, string upgradelevel, ImageSource infusionicon, List<InventoryItem> list, WeaponPrefab wpnPrefab = null, ArmorPrefab armPrefab = null, TalismanPrefab talPrefab = null, bool add = true)
+        public void OnSaveEditedItem(WeaponPrefab prefab, InventoryItem item)
+        {
+            string itempicfolder = "PvPHelper.Resources.Images.Items";
+            string infusionpicfolder = "PvPHelper.Resources.Images.Infusions";
+
+            if (item.WeaponPrefab.Infusion != prefab.Infusion)
+            {
+                item.InfusionIconPath = Helpers.GetImageSource(prefab.Infusion == null ? Infusion.Standard.ToString() : ((Infusion)prefab.Infusion).ToString());
+            }
+
+            if (item.WeaponPrefab.SwordArtID != prefab.SwordArtID)
+            {
+                if (prefab.SwordArtID != null)
+                {
+                    Gem gem = Gem.All.FirstOrDefault(x => x.ID == prefab.SwordArtID);
+                    string gemName = gem.Name.Replace(":", "_");
+
+                    item.AshOfWarIcon = Helpers.GetImageSource(gemName);
+                }
+            }
+
+            item.WeaponPrefab = prefab;
+            item.UpgradeLevel = prefab.UpgradeLevel.ToString();
+            Update(CurrState);
+        }
+        private void CreateNewBtn(string name, ImageSource icon, string upgradelevel, ImageSource infusionicon, ImageSource ashIcon, List<InventoryItem> list, WeaponPrefab wpnPrefab = null, ArmorPrefab armPrefab = null, TalismanPrefab talPrefab = null, bool add = true)
         {
             InventoryItem newInvItem = new();
             newInvItem.ItemName = name;
             newInvItem.ItemIconPath = icon;
             newInvItem.UpgradeLevel = upgradelevel;
             newInvItem.InfusionIconPath = infusionicon;
+            newInvItem.AshOfWarIcon = ashIcon;
 
             newInvItem.WeaponPrefab = wpnPrefab == null ? null : wpnPrefab;
             newInvItem.ArmorPrefab = armPrefab == null ? null : armPrefab;
@@ -376,21 +452,39 @@ namespace PvPHelper.MVVM.ViewModels
 
             newInvItem.MouseRightButtonDown += (o, e) => 
             {
-                if (InventoryItems.Contains(newInvItem))
-                    InventoryItems.Remove(newInvItem);
+                if (newInvItem.WeaponPrefab == null)
+                    return;
 
-                list.Remove(newInvItem);
+                EditItemDialog dialog = new();
+                dialog.Prefab = newInvItem.WeaponPrefab;
+                dialog.ItemIcon.Source = icon;
+                dialog.OnSubmit += (p) =>
+                {
+                    OnSaveEditedItem(p, newInvItem);
+                };
 
-                if (wpnPrefab != null)
-                    weaponPrefabs.Remove(wpnPrefab);
-
-                if (talPrefab != null)
-                    talismanPrefabs.Remove(talPrefab);
-
-                if (armPrefab != null)
-                    armorPrefabs.Remove(armPrefab);
+                dialog.ShowDialog();
             };
 
+            newInvItem.MouseDown += (s, e) => 
+            {
+                if (e.ChangedButton == MouseButton.Middle && e.ButtonState == MouseButtonState.Pressed)
+                {
+                    if (InventoryItems.Contains(newInvItem))
+                        InventoryItems.Remove(newInvItem);
+
+                    list.Remove(newInvItem);
+
+                    if (wpnPrefab != null)
+                        weaponPrefabs.Remove(wpnPrefab);
+
+                    if (talPrefab != null)
+                        talismanPrefabs.Remove(talPrefab);
+
+                    if (armPrefab != null)
+                        armorPrefabs.Remove(armPrefab);
+                }
+            };
             list.Add(newInvItem);
             if (add)
                 InventoryItems.Add(newInvItem);
@@ -525,7 +619,7 @@ namespace PvPHelper.MVVM.ViewModels
                     {
                         Item item = itemCat.Items.FirstOrDefault(x => x.ID == prefab.ID);
                         CreateNewBtn(item.Name,
-                            Helpers.GetImageSource(item.Name, itempicfolder, true, true), "",null, armorItems, armPrefab: prefab, add: false);
+                            Helpers.GetImageSource(item.Name), "", null, null, armorItems, armPrefab: prefab, add: false);
                     }
                 }
             }
@@ -539,7 +633,7 @@ namespace PvPHelper.MVVM.ViewModels
                     {
                         Item item = itemCat.Items.FirstOrDefault(x => x.ID == prefab.ID);
                         CreateNewBtn(item.Name,
-                            Helpers.GetImageSource(item.Name, itempicfolder, true, true), "", null, talismanItems, talPrefab: prefab, add: false);
+                            Helpers.GetImageSource(item.Name), "", null, null, talismanItems, talPrefab: prefab, add: false);
                     }
                 }
             }
@@ -551,9 +645,17 @@ namespace PvPHelper.MVVM.ViewModels
                     if (itemCat != null)
                     {
                         Item item = itemCat.Items.FirstOrDefault(x => x.ID == prefab.ID);
-                        CreateNewBtn(item.Name,
-                            Helpers.GetImageSource(item.Name, itempicfolder, true, true), "+" + prefab.UpgradeLevel.ToString(),
-                            Helpers.GetImageSource(((Infusion)prefab.Infusion).ToString(), infusionpicfolder, false, false), weaponItems, wpnPrefab: prefab, add: false);
+                        ImageSource icon = Helpers.GetImageSource(item.Name);
+                        ImageSource infusionIcon = Helpers.GetImageSource(((Infusion)prefab.Infusion).ToString());
+                        ImageSource ashIcon = null;
+
+                        if (prefab.SwordArtID != null)
+                        {
+                            string gemName = Gem.All.FirstOrDefault(x => x.ID == prefab.SwordArtID).Name.Replace(":", "_");
+                            ashIcon = Helpers.GetImageSource(gemName);
+                        }
+
+                        CreateNewBtn(item.Name, icon, "+" + prefab.UpgradeLevel.ToString(), infusionIcon, ashIcon, weaponItems, wpnPrefab: prefab, add: false);
                     }
                 }
             }
@@ -582,6 +684,10 @@ namespace PvPHelper.MVVM.ViewModels
                 gibOptions.Add(new(item.Name, option.Name, item));
 
             WeaponsItemsSource = gibOptions;
+
+            WeaponsSelectedItem = null;
+            AshesSelectedItem = null;
+            InfusionsSelectedItem = null;
         }
         private void OnItemSelectedChanged()
         {
@@ -598,7 +704,8 @@ namespace PvPHelper.MVVM.ViewModels
             ItemGibOption option = WeaponsSelectedItem as ItemGibOption;
             if (option.item is Weapon weapon)
             {
-                if (weapon.Infusible)
+                MaxUpgradeLevel = weapon.MaxUpgrade;
+                if (!weapon.Unique)
                 {
                     List<GemOption> gemOptions = new();
                     foreach (Gem gem in Gem.All)
@@ -608,20 +715,21 @@ namespace PvPHelper.MVVM.ViewModels
                             gemOptions.Add(new(gem.Name.Contains("Ash of War: ") ? gem.Name.Substring(12) : gem.Name, gem));
                         }
                     }
-                    AshesItemsSource = gemOptions;
                     MaxUpgradeLevel = 25;
+                    AshesItemsSource = gemOptions;
+                    UpgradeLevel = SomberToSmithy[UpgradeLevel];
+                    UpgradeLevelString = UpgradeLevel.ToString();
                 }
                 else
                 {
                     MaxUpgradeLevel = 10;
-                    if (UpgradeLevel > MaxUpgradeLevel)
-                    {
-                        UpgradeLevel = MaxUpgradeLevel;
-                        UpgradeLevelString = MaxUpgradeLevel.ToString();
-                    }
+                    UpgradeLevel = SmithyToSomber[UpgradeLevel];
+                    UpgradeLevelString = UpgradeLevel.ToString();
                 }
             }
+            AshesSelectedItem = null;
         }
+
         private void OnAshSelectedChanged()
         {
             if (!Hook.Loaded || !Hook.Hooked)
@@ -636,6 +744,8 @@ namespace PvPHelper.MVVM.ViewModels
             foreach (Infusion infusion in option.gem.Infusions)
                 infusionOptions.Add(new(infusion.ToString(), infusion));
             InfusionsItemsSource = infusionOptions;
+
+            InfusionsSelectedItem = null;
         }
     }
 }

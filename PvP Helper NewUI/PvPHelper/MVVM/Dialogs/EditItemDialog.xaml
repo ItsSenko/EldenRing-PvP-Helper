@@ -1,0 +1,81 @@
+﻿<Window x:Class="PvPHelper.MVVM.Dialogs.EditItemDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PvPHelper.MVVM.Dialogs"
+        xmlns:uc="clr-namespace:PvPHelper.MVVM.Views.UserControls"
+        mc:Ignorable="d"
+        Height="421" Width="738"
+        WindowStyle="None"
+        Background="Transparent"
+        ResizeMode="NoResize"
+        AllowsTransparency="True"
+        Style="{StaticResource WinAll}"
+        WindowStartupLocation="CenterScreen"
+        x:Name="EditItemDialogRoot">
+    <Border CornerRadius="30" Background="{DynamicResource DarkBrush}">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Image x:Name="ItemIcon" Margin="11,8,17,13"/>
+
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Text="Ash Of War"
+                           HorizontalAlignment="Center"
+                           FontSize="24"
+                           Foreground="{StaticResource ForegroundBrush}" Margin="0,10,0,0"/>
+                <uc:SearchableComboBox HorizontalAlignment="Center"
+                                       VerticalAlignment="Top"
+                                       Height="40" Margin="0,42,0,0"
+                                       x:Name="AshOfWarBox"
+                                       OnSelectedItemChanged="AshOfWarBox_OnSelectedItemChanged"
+                                       SelectedItem="{Binding AshSelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <TextBlock Text="Infusion"
+                           HorizontalAlignment="Center"
+                           FontSize="24"
+                           Foreground="{StaticResource ForegroundBrush}" 
+                           Margin="0,10,0,0"
+                           Grid.Row="1"/>
+                <uc:SearchableComboBox HorizontalAlignment="Center"
+                                       VerticalAlignment="Top"
+                                       Height="40" Margin="0,42,0,0"
+                                       Grid.Row="1"
+                                       x:Name="InfusionBox"/>
+
+                <uc:NumberInput Grid.Row="2"
+                                Width="150" Margin="110,44,109,19"
+                                x:Name="UpgradeBox"/>
+                <TextBlock Text="Upgrade"
+                           HorizontalAlignment="Center"
+                           FontSize="24"
+                           Foreground="{StaticResource ForegroundBrush}" 
+                           Margin="0,10,0,0"
+                           Grid.Row="2"/>
+                
+                <Button Grid.Row="3" Style="{DynamicResource PrimaryButton}"
+                        Content="Save"
+                        Width="150"
+                        Height="50" Margin="209,27,10,28"
+                        Click="Save_Click"/>
+                
+                <Button Grid.Row="3" Style="{DynamicResource PrimaryButton}"
+                        Content="Cancel"
+                        Width="150"
+                        Height="50" Margin="10,27,209,28"
+                        Click="Cancel_Click"/>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>

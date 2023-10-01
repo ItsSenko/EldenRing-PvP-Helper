@@ -12,7 +12,7 @@
             <ComboBox Style="{DynamicResource ComboBoxStyle}"
                       ItemContainerStyle="{DynamicResource ComboBoxItemStyle}"
                       BorderThickness="0"
-                      Foreground="#404040"
+                      Foreground="#757575"
                       Background="#1e1e1e"
                       ScrollViewer.VerticalScrollBarVisibility="Hidden"
                       IsTextSearchEnabled="False"

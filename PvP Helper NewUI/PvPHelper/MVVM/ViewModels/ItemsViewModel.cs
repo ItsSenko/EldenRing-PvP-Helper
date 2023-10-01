@@ -405,6 +405,14 @@ namespace PvPHelper.MVVM.ViewModels
             set { _ashesSelectedIndex = value; OnPropertyChanged(); }
         }
 
+        private bool _isOverrideChecked;
+
+        public bool IsOverrideChecked
+        {
+            get { return _isOverrideChecked; }
+            set { _isOverrideChecked = value; OnPropertyChanged(); }
+        }
+
         #endregion
         #endregion
 
@@ -444,6 +452,7 @@ namespace PvPHelper.MVVM.ViewModels
                 allItemCategorys.Add(new(category.Name, category));
             }
             CategoryItemsSource = allItemCategorys;
+            CategorySelectedItem = null;
 
             Quantity = 0;
             QuantityText = "0";
@@ -536,7 +545,7 @@ namespace PvPHelper.MVVM.ViewModels
             AllCookbooks = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Cookbooks"));
             AllTools = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Tools"));
             AllMerchantItems = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Merchant Items"));
-            AllCraftingMaterials = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Crafting Materials"), new string[] { "Cracked Pot", "Ritual Pot", "Celestial Dew" }, true);
+            AllCraftingMaterials = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Crafting Materials"), new string[] { "Cracked Pot", "Ritual Pot", "Celestial Dew" }, true, viewModel: this, 999);
             AllCrystalTears = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Crystal Tears"));
             AllAshes = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Gems"), single: true);
             AllConsumables = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Consumables"),
@@ -546,9 +555,9 @@ namespace PvPHelper.MVVM.ViewModels
             "Remembrance of the Blasphemous","Remembrance of the Starscourge","Remembrance of the Omen King",
             "Remembrance of the Blood Lord", "Remembrance of the Rot Goddess", "Remembrance of the Black Blade",
             "Remembrance of Hoarah Loux", "Remembrance of the Dragonlord", "Elden Remembrance", "Shabriri Grape",
-            "Baldachin's Blessing", "Radiant Baldachin's Blessing"}, single: true);
+            "Baldachin's Blessing", "Radiant Baldachin's Blessing"}, single: true, viewModel: this, 999);
             AllSpells = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Magic"));
-            AllAmmo = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Ammo"), single: true);
+            AllAmmo = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Ammo"),null, single: true, viewModel: this, 999);
             AllUpgradeMaterials = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Upgrade Materials"), new string[] { "Golden Seed", "Sacred Tear", "Memory Stone", "Talisman Pouch" }, single: true);
 
             AllMeleeWeapons = new MassWeaponGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Melee Weapons"));
@@ -590,19 +599,24 @@ namespace PvPHelper.MVVM.ViewModels
             if (!_hook.Hooked || !_hook.Loaded)
                 return;
             ItemCategory upgradeMats = ItemCategory.All.FirstOrDefault(x => x.Name == "Upgrade Materials");
+            ItemCategory flasks = ItemCategory.All.FirstOrDefault(x => x.Name == "Flasks");
 
             Item goldenSeed = upgradeMats.Items.FirstOrDefault(x => x.Name == "Golden Seed");
             Item sacredTear = upgradeMats.Items.FirstOrDefault(x => x.Name == "Sacred Tear");
+            Item physic = flasks.Items.FirstOrDefault(x => x.Name == "Flask of Wondrous Physick (Empty)");
 
             _hook.GetItem(new(goldenSeed.ID, goldenSeed.ItemCategory, 30, goldenSeed.MaxQuantity, 0, 0, -1, goldenSeed.EventID));
             _hook.GetItem(new(sacredTear.ID, sacredTear.ItemCategory, 12, sacredTear.MaxQuantity, 0, 0, -1, sacredTear.EventID));
+            
+            if (!Helpers.InventoryContainsItem((List<InventoryEntry>)_hook.GetInventory(), "Flask of Wondrous Physick"))
+                _hook.GetItem(new(physic.ID, physic.ItemCategory, 1, physic.MaxQuantity, 0, 0, -1, physic.EventID));
         }
         private void LimitedItems()
         {
             if (!_hook.Hooked || !_hook.Loaded)
                 return;
             string[] itemsToAdd = new string[] { "Cracked Pot", "Ritual Pot", "Perfume Bottle", "Duelist's Furled Finger", "White Cipher Ring", "Blue Cipher Ring",
-            "Taunter's Tounge", "Recusant Finger", "Bloody Finger"};
+            "Taunter's Tounge", "Recusant Finger", "Bloody Finger", "Crafting Kit"};
             ItemCategory keyItemsCat = ItemCategory.All.FirstOrDefault(x => x.Name == "Key Items");
             ItemCategory consumablesCat = ItemCategory.All.FirstOrDefault(x => x.Name == "Consumables");
 
@@ -633,6 +647,14 @@ namespace PvPHelper.MVVM.ViewModels
         {
             if (!_hook.Hooked || !_hook.Loaded)
                 return;
+
+            ItemCategory cat = ItemCategory.All.FirstOrDefault(x => x.Name == "Key Items");
+
+            if (cat!= null)
+            {
+                Item whetstoneKnife = cat.Items.FirstOrDefault(x => x.ID == 8590);
+                _hook.GetItem(new(whetstoneKnife.ID, whetstoneKnife.ItemCategory, 1, whetstoneKnife.MaxQuantity, (int)Infusion.Standard, 0, -1, whetstoneKnife.EventID));
+            }
             foreach (int whetblade in whetbladeFlags)
                 _hook.SetEventFlag(whetblade, true);
         }
@@ -678,7 +700,7 @@ namespace PvPHelper.MVVM.ViewModels
             List<GemOption> gemOptions = new();
             if (option.item is Weapon weapon)
             {
-                if (weapon.Infusible)
+                if (!weapon.Unique)
                 {
                     foreach (Gem gem in Gem.All)
                     {
@@ -692,7 +714,9 @@ namespace PvPHelper.MVVM.ViewModels
                     AshesItemsSource = gemOptions;
                 }
                 else
+                {
                     MaxUpgradeLvl = 10;
+                }
             }
             else
             {
@@ -700,7 +724,7 @@ namespace PvPHelper.MVVM.ViewModels
                 UpgradeLevel = 0;
                 UpgradeLvlText = "0";
             }
-            MaxQuantity = option.item.MaxQuantity;
+            MaxQuantity = IsOverrideChecked ? (option.item is Weapon ? 10 : 999) : option.item.MaxQuantity;
         }
         private void OnInfusionChanged()
         {

@@ -1,0 +1,40 @@
+﻿<UserControl x:Class="PvPHelper.MVVM.Views.LobbyManagerView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PvPHelper.MVVM.Views"
+             xmlns:userControl="clr-namespace:PvPHelper.MVVM.Views.UserControls"
+             mc:Ignorable="d"
+             xmlns:dd="urn:gong-wpf-dragdrop"
+             d:DesignHeight="658.285714285714" d:DesignWidth="1092">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="150"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="{Binding LobbyTitle, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
+                   FontSize="60"
+                   Foreground="{DynamicResource LighterTextBrush}"/>
+
+        <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden" ScrollViewer.CanContentScroll="True">
+            <ItemsControl ItemsSource="{Binding LobbyItemsSource, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                          dd:DragDrop.IsDragSource="True"
+                          dd:DragDrop.IsDropTarget="True">
+                <ItemsControl.ItemContainerStyle>
+                    <Style>
+                        <Setter Property="FrameworkElement.Margin" Value="5"/>
+                    </Style>
+                </ItemsControl.ItemContainerStyle>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <userControl:NetPlayerControl/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

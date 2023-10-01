@@ -1,4 +1,6 @@
-﻿using System.Windows.Controls;
+﻿using PvPHelper.MVVM.ViewModels;
+using System;
+using System.Windows.Controls;
 
 namespace PvPHelper.MVVM.Views
 {
@@ -7,9 +9,14 @@ namespace PvPHelper.MVVM.Views
     /// </summary>
     public partial class DashboardView : UserControl
     {
+        public static event Action OnLoaded = new(() => { });
         public DashboardView()
         {
             InitializeComponent();
+            this.Loaded += (s, e) => 
+            {
+                OnLoaded.Invoke();
+            };
         }
     }
 }

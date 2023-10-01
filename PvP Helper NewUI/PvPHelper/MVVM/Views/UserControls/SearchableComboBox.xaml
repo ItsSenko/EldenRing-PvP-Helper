@@ -24,27 +24,29 @@
                           HorizontalAlignment="Left"
                           Margin="10,0,0,0"
                           Height="15"/>
-                <ComboBox ItemContainerStyle="{DynamicResource ComboBoxItemStyle}" x:Name="comboBox" Style="{DynamicResource ComboBoxStyle}"
+                <local:ComboBoxSimple ItemContainerStyle="{DynamicResource ComboBoxItemStyle}" x:Name="comboBox" Style="{DynamicResource ComboBoxStyle}"
                           IsEditable="True"
                           IsTextSearchEnabled="False"
                           Height="Auto"
                           Width="210"
                           BorderThickness="0"
-                          Foreground="#404040"
+                          Foreground="#757575"
                           Background= "#1e1e1e"
                           Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged, ElementName=SearchableComboBoxRoot}"
+                                      SelectedIndex="{Binding SelectedIndex, UpdateSourceTrigger=PropertyChanged, ElementName=SearchableComboBoxRoot}"
                           SelectedItem="{Binding SelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ElementName=SearchableComboBoxRoot}"
                           ItemsSource="{Binding ItemsSource, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ElementName=SearchableComboBoxRoot}"
                           TextBoxBase.TextChanged="comboBox_TextChanged"
                           ScrollViewer.VerticalScrollBarVisibility="Hidden"
-                          VerticalContentAlignment="Center">    
+                          VerticalContentAlignment="Center"
+                                      OnTextBoxSet="comboBox_OnTextBoxSet">
 
                     <ComboBox.ItemsPanel>
                         <ItemsPanelTemplate>
                             <VirtualizingStackPanel />
                         </ItemsPanelTemplate>
                     </ComboBox.ItemsPanel>
-                </ComboBox>
+                </local:ComboBoxSimple>
 
             </StackPanel>
         </Grid>

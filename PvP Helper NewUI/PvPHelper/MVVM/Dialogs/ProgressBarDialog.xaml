@@ -1,0 +1,41 @@
+﻿<Window x:Class="PvPHelper.MVVM.Dialogs.ProgressBarDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PvPHelper.MVVM.Dialogs"
+        mc:Ignorable="d"
+        Height="200" Width="577"
+        WindowStyle="None"
+        Background="Transparent"
+        ResizeMode="NoResize"
+        AllowsTransparency="True"
+        Style="{StaticResource WinAll}"
+        WindowStartupLocation="CenterScreen">
+    <Border CornerRadius="20" Background="{DynamicResource DarkBrush}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="100"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock x:Name="TitleBox"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       FontSize="30"
+                       TextWrapping="Wrap"
+                       Foreground="{DynamicResource LighterTextBrush}"/>
+
+            <ProgressBar Grid.Row="1" x:Name="progressBar"
+                         Height="40"
+                         Width="550"
+                         VerticalAlignment="Top"
+                         HorizontalAlignment="Center"
+                         Foreground="{DynamicResource LighterTextBrush}"
+                         Background="#ffffff"
+                         Minimum="0"
+                         Maximum="100" Margin="0,27,0,0"
+                         BorderThickness="0"/>
+        </Grid>
+    </Border>
+</Window>

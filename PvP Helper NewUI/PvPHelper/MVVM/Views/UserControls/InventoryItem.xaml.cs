@@ -63,6 +63,19 @@ namespace PvPHelper.MVVM.Views.UserControls
         public static readonly DependencyProperty ItemIconPathProperty =
             DependencyProperty.Register("ItemIconPath", typeof(ImageSource), typeof(InventoryItem));
 
+
+
+        public ImageSource AshOfWarIcon
+        {
+            get { return (ImageSource)GetValue(AshOfWarIconProperty); }
+            set { SetValue(AshOfWarIconProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for AshOfWarIcon.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty AshOfWarIconProperty =
+            DependencyProperty.Register("AshOfWarIcon", typeof(ImageSource), typeof(InventoryItem));
+
+
         public string UpgradeLevel
         {
             get { return (string)GetValue(UpgradeLevelProperty); }

@@ -35,6 +35,10 @@
                 <views:MiscView/>
             </DataTemplate>
 
+            <DataTemplate DataType="{x:Type viewModels:LobbyManagerViewModel}">
+                <views:LobbyManagerView/>
+            </DataTemplate>
+
             <Color x:Key="Foreground">#FFFFFF</Color>
             <Color x:Key="Lighter">#393939</Color>
             <Color x:Key="LighterText">#636363</Color>

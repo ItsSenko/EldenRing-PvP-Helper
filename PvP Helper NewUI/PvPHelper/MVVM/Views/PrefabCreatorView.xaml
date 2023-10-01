@@ -65,10 +65,10 @@
                                 <Setter Property="Margin" Value="140 0 0 0"/>
                             </Style>
                         </Grid.Resources>
-                        <Label Content="INFUSION"/>
-                        <local:SearchableComboBox ItemsSource="{Binding InfusionsItemsSource, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                                  OriginItems="{Binding OriginInfusions, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                                  SelectedItem="{Binding InfusionsSelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        <Label Content="ASH OF WAR"/>
+                        <local:SearchableComboBox ItemsSource="{Binding AshesItemsSource, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                  OriginItems="{Binding OriginAshes, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                  SelectedItem="{Binding AshesSelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                     </Grid>
 
                     <Grid Grid.Row="2">
@@ -84,10 +84,10 @@
                                 <Setter Property="Margin" Value="140 0 0 0"/>
                             </Style>
                         </Grid.Resources>
-                        <Label Content="ASH OF WAR"/>
-                        <local:SearchableComboBox ItemsSource="{Binding AshesItemsSource, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                                  OriginItems="{Binding OriginAshes, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                                  SelectedItem="{Binding AshesSelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        <Label Content="INFUSION"/>
+                        <local:SearchableComboBox ItemsSource="{Binding InfusionsItemsSource, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                  OriginItems="{Binding OriginInfusions, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                  SelectedItem="{Binding InfusionsSelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                     </Grid>
                     <Border Grid.Row="3"/>
                     <Grid Grid.Row="3">
@@ -137,6 +137,7 @@
                 <RowDefinition Height="30"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
+
             <StackPanel Orientation="Horizontal"
                         HorizontalAlignment="Center">
                 <StackPanel.Resources>

@@ -92,6 +92,18 @@ namespace PvPHelper.MVVM.Views.UserControls
         private bool IsTextAllowed(string text)
         {
             int parsed;
+            if (MainTextBox.SelectionLength == InputText.Length)
+            {
+                if (!int.TryParse(text, out parsed))
+                    return false;
+
+                if (parsed < Min)
+                    return false;
+                if (parsed > Max)
+                    return false;
+
+                return true;
+            }
             if (!int.TryParse(InputText + text, out parsed))
                 return false;
 

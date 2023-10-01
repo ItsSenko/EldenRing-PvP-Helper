@@ -4,8 +4,10 @@ using PropertyHook;
 using PvPHelper.Console;
 using PvPHelper.Console.Commands;
 using PvPHelper.Core;
+using PvPHelper.MVVM.Dialogs;
 using PvPHelper.MVVM.Models;
 using PvPHelper.MVVM.Views;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -23,6 +25,7 @@ namespace PvPHelper.MVVM.ViewModels
         public RelayCommand YourPrefabsCommand { get; set; }
         public RelayCommand MiscCommand { get; set; }
         public RelayCommand CloseCommand { get; set; }
+        public RelayCommand LobbyManagerCommand { get; set; }
         public RelayCommand Discord { get; set; }
 
         private string _versionText;
@@ -67,17 +70,17 @@ namespace PvPHelper.MVVM.ViewModels
 
             if (Settings.Default.AutoUpdate && _vController.UpdateAvailable)
             {
-                var task = Task.Run(async () => await _vController.Update());
-                task.GetAwaiter().GetResult();
+                _vController.Update(_vController._releaseUrl, _vController.CurrentVersion);
             }
+
             Views.UserControls.Console.LogLoaded += Console_LogLoaded;
 
             _hook.OnSetup += _hook_OnSetup;
             _hook.OnUnhooked += _hook_OnUnhooked;
             player = new Player(_hook.PlayerIns, _hook);
-            
+
             CloseCommand = new((o) => { Application.Current.Shutdown(); });
-            Discord = new((o) => 
+            Discord = new((o) =>
             {
                 var ps = new ProcessStartInfo("https://www.discord.gg/VmyGAS24Gf")
                 {
@@ -92,6 +95,19 @@ namespace PvPHelper.MVVM.ViewModels
             SetupViewModels();
             RegisterCommands();
             Blacklist.Initialize();
+
+            DashboardView.OnLoaded += () =>
+            {
+                if (!Directory.Exists(Path.Combine(Directory.GetCurrentDirectory(), "Icons")) || _vController.IsUpdateAvailableForIcons())
+                {
+                    InformationDialog dialog = new("You are missing the Elden Ring Icons. Would you like to download them now?");
+                    dialog.OnOk += () =>
+                    {
+                        _vController.Update(_vController._iconsReleaseUrl, _vController.CurrentIconsVersion);
+                    };
+                    dialog.ShowDialog();
+                }
+            };
         }
 
         private bool HasLoaded = false;
@@ -113,6 +129,7 @@ namespace PvPHelper.MVVM.ViewModels
             {
                 CommandManager.Log("Looks like you're up to date!");
             }
+
             HasLoaded = true;
         }
 
@@ -131,6 +148,7 @@ namespace PvPHelper.MVVM.ViewModels
             _viewModels.Add(nameof(DashboardView), new DashboardViewModel(_hook, LocalPlayer));
             _viewModels.Add(nameof(ItemsView), new ItemsViewModel(_hook));
             _viewModels.Add(nameof(PrefabCreatorView), new PrefabCreatorViewModel(_hook));
+            _viewModels.Add(nameof(LobbyManagerView), new LobbyManagerViewModel(_hook));
             _viewModels.Add(nameof(MiscView), new MiscViewModel(_hook, _vController));
 
             DashboardCommand = new(o => 
@@ -150,6 +168,10 @@ namespace PvPHelper.MVVM.ViewModels
                 }
                 CurrentView = _viewModels[nameof(PrefabCreatorView)];
             });
+            LobbyManagerCommand = new(o =>
+            {
+                CurrentView = _viewModels[nameof(LobbyManagerView)];
+            });
             MiscCommand = new(o => 
             {
                 CurrentView = _viewModels[nameof(MiscView)];
@@ -167,7 +189,7 @@ namespace PvPHelper.MVVM.ViewModels
             commandManager.RegisterCommand(new CustomFPS(_hook));
             commandManager.RegisterCommand(new CustomFOV(_hook));
             commandManager.RegisterCommand(new Update(_vController));
-            //commandManager.RegisterCommand(new TestModal(_hook));
+            commandManager.RegisterCommand(new TestModal(_hook));
             commandManager.RegisterCommand(new TeamTypeChangeCommand(_hook));
             commandManager.RegisterCommand(new NetPlayerCommand(_hook));
             commandManager.RegisterCommand(new ChrTypeChange(_hook));

@@ -2,6 +2,7 @@
 using Erd_Tools.Models;
 using Erd_Tools.Models.Items;
 using PvPHelper.MVVM.Models;
+using PvPHelper.MVVM.ViewModels;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -16,14 +17,19 @@ namespace PvPHelper.MVVM.Commands.Items
         private ItemCategory _category;
         private ErdHook _hook;
         private bool single;
+        private int newMax;
+        private ItemsViewModel viewModel;
 
-        public MassGib(ErdHook hook, ItemCategory category, string[] excludedItems = null, bool single = false)
+        public MassGib(ErdHook hook, ItemCategory category, string[] excludedItems = null, bool single = false, ItemsViewModel viewModel = null, int newMax = 0)
         {
             _hook = hook;
             _category = category;
             if (excludedItems != null)
                 exclude = excludedItems;
             this.single = single;
+
+            this.viewModel = viewModel;
+            this.newMax = newMax;
         }
         public override void Execute(object? parameter)
         {
@@ -37,7 +43,7 @@ namespace PvPHelper.MVVM.Commands.Items
                 {
                     if (exclude != null && exclude.Any(x => x == item.Name))
                         continue;
-                    ItemSpawnInfo info = new(item.ID, item.ItemCategory, item.MaxQuantity, item.MaxQuantity, (int)Infusion.Standard, 0, -1, item.EventID);
+                    ItemSpawnInfo info = new(item.ID, item.ItemCategory, viewModel.IsOverrideChecked ? newMax : item.MaxQuantity, viewModel.IsOverrideChecked ? newMax : item.MaxQuantity, (int)Infusion.Standard, 0, -1, item.EventID);
                     if (single)
                         _hook.GetItem(info);
                     else

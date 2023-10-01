@@ -44,8 +44,7 @@
             </Grid.ColumnDefinitions>
 
             <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto" MinHeight="542"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
@@ -53,10 +52,11 @@
                 <SolidColorBrush Color="{DynamicResource Dark}"/>
             </Grid.Background>
 
-            <StackPanel x:Name="TabsMenu" Grid.Row="1">
+            <StackPanel x:Name="TabsMenu" Grid.Row="0">
                 <StackPanel.Resources>
                     <Style TargetType="{x:Type local:TabButton}">
-                        <Setter Property="Margin" Value="0,5,0,5"/>
+                        <Setter Property="Margin" Value="10,5,0,5"/>
+                        <Setter Property="Height" Value="80"/>
                     </Style>
                 </StackPanel.Resources>
                 <local:TabButton Label="Dashboard" 
@@ -68,28 +68,31 @@
                 <local:TabButton Label="Prefab Creator" 
                                  UriSource="Resources/Images/auto-fix.svg"
                                  BtnCommand="{Binding PrefabCreatorCommand}"/>
+                <local:TabButton Label="Lobby Manager" 
+                                 UriSource="Resources/Images/format-list-text.svg"
+                                 BtnCommand="{Binding LobbyManagerCommand}"/>
                 <local:TabButton Label="Misc" 
                                  UriSource="Resources/Images/misc-dots.svg"
                                  BtnCommand="{Binding MiscCommand}"/>
+                <local:TabButton Label="Coming Soon" 
+                                 UriSource="Resources/Images/help-circle.svg"/>
 
             </StackPanel>
 
-            <Grid x:Name="Socials" Grid.Row="2">
+            <Grid x:Name="Socials" Grid.Row="1">
                 <Grid.Background>
                     <SolidColorBrush Color="{DynamicResource Dark}"/>
                 </Grid.Background>
-                <Button Margin="10,18,10,42" Style="{DynamicResource SimpleButtonStyle}" Cursor="Hand"
+                <Button Margin="10,18,10,31" Style="{DynamicResource SimpleButtonStyle}" Cursor="Hand"
                         Command="{Binding Discord}">
                     <Image Source="Resources/Images/Discord.png"
-                           Height="154" Width="200"/>
+                           Height="167" Width="184"/>
                 </Button>
 
                 <TextBlock Text="{Binding VersionText, UpdateSourceTrigger=PropertyChanged}" FontSize="30"
-                           Foreground="{DynamicResource LighterTextBrush}" Margin="0,155,21,0"/>
+                           Foreground="{DynamicResource LighterTextBrush}" Margin="10,181,11,14"/>
             </Grid>
-            <Image 
-               Grid.Row="0" x:Name="AppIcon" Source="/Resources/Images/shunter.png" Stretch="Uniform"  VerticalAlignment="Center" HorizontalAlignment="Center" Grid.RowSpan="1">
-            </Image>
+            <!--<Image x:Name="AppIcon" Source="/Resources/Images/shunter.png" Stretch="Uniform"  VerticalAlignment="Center" HorizontalAlignment="Center" Height="96" Width="99"/>-->
 
         </Grid>
         <Grid x:Name="View" Grid.Column="1">
@@ -106,15 +109,13 @@
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <TextBlock Grid.Row="0" TextWrapping="Wrap" Text="Elden Ring PvP Helper" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="36" FontFamily="Bahnschrift SemiBold">
+                <TextBlock Grid.Row="0" TextWrapping="Wrap" Text="Elden Ring PvP Helper" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="36" FontFamily="Bahnschrift SemiBold">
                     <TextBlock.Foreground>
                         <SolidColorBrush Color="{DynamicResource Foreground}"/>
                     </TextBlock.Foreground>
                 </TextBlock>
-                <TextBlock Grid.Row="1" TextWrapping="Wrap" Text="by Senkopur" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="36" FontFamily="Bahnschrift SemiLight">
-                    <TextBlock.Foreground>
-                        <SolidColorBrush Color="{DynamicResource Foreground}"/>
-                    </TextBlock.Foreground>
+                <TextBlock Foreground="{DynamicResource LighterTextBrush}" Grid.Row="1" TextWrapping="Wrap" Text="by Senkopur" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="36" FontFamily="Bahnschrift SemiLight">
+
                 </TextBlock>
 
                 <Button Margin="1065,0,0,33" Content="X"

@@ -53,6 +53,7 @@ namespace PvPHelper.MVVM.Commands.Dashboard.Toggles
                 row.Param.Pointer.WriteByte(dataOffset + consumeOffset, b);
             }
 
+            CustomPointers.ChrDbgFlags.WriteByte(0x6, State ? (byte)1 : (byte)0);
             CommandManager.Log($"Infinite Consumables Toggled {State}.");
         }
     }

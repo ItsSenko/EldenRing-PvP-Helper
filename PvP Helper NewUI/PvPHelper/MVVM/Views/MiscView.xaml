@@ -19,7 +19,9 @@
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center"
                    Foreground="{DynamicResource LighterBrush}"
-                   TextWrapping="Wrap"/>
+                   TextWrapping="Wrap"
+                   TextAlignment="Center"
+                   Padding="10"/>
         <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center">
             <StackPanel.Resources>
                 <Style TargetType="{x:Type userControls:LabeledCircleToggle}">

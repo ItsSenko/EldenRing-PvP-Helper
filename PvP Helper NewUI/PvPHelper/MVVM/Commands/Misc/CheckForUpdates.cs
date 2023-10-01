@@ -19,8 +19,7 @@ namespace PvPHelper.MVVM.Commands.Misc
                 InformationDialog dialog = new($"Update {_vController.CurrentVersion} is available. Do you want to update?");
                 dialog.OnOk += () =>
                 {
-                    var task = Task.Run(async () => await _vController.Update());
-                    task.GetAwaiter().GetResult();
+                    _vController.Update(_vController._releaseUrl, _vController.CurrentVersion);
                 };
                 dialog.ShowDialog();
             }

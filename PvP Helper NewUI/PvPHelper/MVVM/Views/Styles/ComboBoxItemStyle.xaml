@@ -28,7 +28,7 @@
         <Setter Property="VerticalContentAlignment" Value="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
         <Setter Property="Background" Value="#1e1e1e"/>
         <Setter Property="BorderBrush" Value="#1e1e1e"/>
-        <Setter Property="Foreground" Value="#404040"/>
+        <Setter Property="Foreground" Value="#757575"/>
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
         <Setter Property="Template">

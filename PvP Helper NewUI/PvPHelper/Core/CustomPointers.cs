@@ -5,10 +5,11 @@ namespace PvPHelper.Core
 {
     public class CustomPointers
     {
-        private static string ChrDbgFlagsAOB = "80 3D ? ? ? ? 00 0F 85 ? ? ? ? 32 C0 48";
+        private static string ChrDbgFlagsAOB = "80 3D ?? ?? ?? ?? 00 0F 85 ?? ?? ?? ?? 32 C0 48";
         private static string FieldAreaAOB = "48 8B 3D ? ? ? ? 49 8B D8 48 8B F2 4C 8B F1 48 85 FF";
         private static string CSFlipperAOB = "48 8B 0D ?? ?? ?? ?? 80 BB D7 00 00 00 00 0F 84 CE 00 00 00 48 85 C9 75 2E";
         private static string dHitboxAOB = "0F 29 74 24 40 0F 1F";
+        private static string SessionManAOB = "4C 8B 05 ?? ?? ?? ?? 48 8B D9 33 C9 0F 29 74 24 ?? 0F 29 7C 24 ?? B2 01";
 
         public static PHPointer ChrDbgFlags;
         public static PHPointer ChrFlags;
@@ -18,9 +19,11 @@ namespace PvPHelper.Core
         public static PHPointer FieldArea;
         public static PHPointer CSFlipper;
         public static PHPointer dHitbox;
+        public static PHPointer GlobalSessionMan;
+        public static PHPointer SessionMan;
         public static void Initialize(ErdHook hook)
         {
-            ChrDbgFlags = hook.RegisterRelativeAOB(ChrDbgFlagsAOB, 2, 7, 0);
+            ChrDbgFlags = hook.RegisterRelativeAOB(ChrDbgFlagsAOB, 2, 7);
 
             ChrFlags = hook.CreateChildPointer(hook.PlayerIns, new int[] { 0x190, 0x0 });
             idleAnimation = hook.CreateChildPointer(hook.PlayerIns, new int[] { 0x190, 0x58 });
@@ -29,6 +32,8 @@ namespace PvPHelper.Core
             FieldArea = hook.RegisterAbsoluteAOB(FieldAreaAOB);
             CSFlipper = hook.RegisterRelativeAOB(CSFlipperAOB, 3, 7, 0);
             dHitbox = hook.RegisterRelativeAOB(dHitboxAOB, 12, 16, 0);
+            GlobalSessionMan = hook.RegisterRelativeAOB(SessionManAOB, 3, 7);
+            SessionMan = hook.RegisterRelativeAOB(SessionManAOB, 3, 7, 0);
         }
     }
 }

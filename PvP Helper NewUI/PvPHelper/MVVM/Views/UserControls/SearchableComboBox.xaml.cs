@@ -1,7 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using PvPHelper.Core;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
+using System.Windows.Media;
 
 namespace PvPHelper.MVVM.Views.UserControls
 {
@@ -16,15 +20,44 @@ namespace PvPHelper.MVVM.Views.UserControls
             Placeholder = "Search...";
         }
         #region DataBindings
+
+
+        public ICommand ShiftUpCommand
+        {
+            get { return (ICommand)GetValue(ShiftUpCommandProperty); }
+            set { SetValue(ShiftUpCommandProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for ShiftUpCommand.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty ShiftUpCommandProperty =
+            DependencyProperty.Register("ShiftUpCommand", typeof(ICommand), typeof(SearchableComboBox));
+
+
         public object SelectedItem
         {
             get { return (object)GetValue(SelectedItemProperty); }
-            set { SetValue(SelectedItemProperty, value); }
+            set 
+            { 
+                SetValue(SelectedItemProperty, value); 
+                OnSelectedItemChanged.Invoke(value); 
+            }
         }
-
+        public event Action<object> OnSelectedItemChanged = new((obj) => { });
         // Using a DependencyProperty as the backing store for SelectedItem.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty SelectedItemProperty =
             DependencyProperty.Register("SelectedItem", typeof(object), typeof(SearchableComboBox));
+
+
+
+        public int SelectedIndex
+        {
+            get { return (int)GetValue(SelectedIndexProperty); }
+            set { SetValue(SelectedIndexProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for SelectedIndex.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty SelectedIndexProperty =
+            DependencyProperty.Register("SelectedIndex", typeof(int), typeof(SearchableComboBox));
 
 
 
@@ -57,7 +90,7 @@ namespace PvPHelper.MVVM.Views.UserControls
             get { return (IEnumerable<object>)GetValue(ItemsSourceProperty); }
             set 
             {
-                if (OriginItems == null && FilteredItems == null && value != null)
+                if (OriginItems == null && value != null)
                 {
                     OriginItems = value.ToList();
                 }
@@ -82,8 +115,34 @@ namespace PvPHelper.MVVM.Views.UserControls
         public static readonly DependencyProperty OriginItemsProperty =
             DependencyProperty.Register("OriginItems", typeof(List<object>), typeof(SearchableComboBox));
 
-
+        
         public List<object> FilteredItems { get; set; }
+        /*public override void OnApplyTemplate()
+        {
+            base.OnApplyTemplate();
+
+            var element = GetTemplateChild("comboBox");
+            if (element != null)
+            {
+                var textBox = Helpers.FindVisualChild<TextBox>(element);
+
+                if (textBox!= null)
+                {
+                    textBox.SelectionChanged += OnDropSelectionChanged;
+                }
+            }
+        }
+
+        bool dropDownOpened = false;
+        private void OnDropSelectionChanged(object sender, RoutedEventArgs e)
+        {
+            TextBox box = sender as TextBox;
+
+            if (dropDownOpened)
+            {
+                box.SelectionLength = 0;
+            }
+        }*/
         private void comboBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             // Check for empty to reset ComboBox List
@@ -94,14 +153,27 @@ namespace PvPHelper.MVVM.Views.UserControls
                 FilteredItems = null;
                 ItemsSource = OriginItems;
                 Placeholder = "Search...";
-
-                //show the dropdown to show the user all the options
-                comboBox.IsDropDownOpen = true;
                 return;
             }
             Placeholder = string.Empty;
-            
+
             if (SelectedItem != null)
+                return;
+
+            if (ItemsSource == null || ItemsSource.ToList().Count == 0)
+                return;
+
+            ItemsSource = OriginItems.Where(item => item.ToString().ToLower().Contains(SearchText.ToLower()));
+
+            bool doDropDown = ItemsSource.ToList().Count <= 0 ? false : true && !string.IsNullOrEmpty(SearchText);
+
+            if (comboBox.IsDropDownOpen != doDropDown)
+            {
+                comboBox.IsManuallyDroppedDown = doDropDown;
+                comboBox.IsDropDownOpen = doDropDown;
+            }
+
+            /*if (SelectedItem != null)
                 return;
             // Check if there is any items in the ItemsSource
             if (ItemsSource == null || ItemsSource.ToList().Count == 0) return;
@@ -113,8 +185,14 @@ namespace PvPHelper.MVVM.Views.UserControls
             ItemsSource = FilteredItems;
 
             // hide or show drop down depedning on FilteredItems
-            comboBox.IsDropDownOpen = FilteredItems.Count <= 0 ? false : true;
+            comboBox.IsDropDownOpen = FilteredItems.Count <= 0 ? false : true;*/
         }
         #endregion
+
+        private TextBox box;
+        private void comboBox_OnTextBoxSet(TextBox obj)
+        {
+            box = obj;
+        }
     }
 }

@@ -7,6 +7,7 @@ using System.Windows;
 using Erd_Tools;
 using Erd_Tools.Models;
 using PropertyHook;
+using PvPHelper.Core;
 using PvPHelper.MVVM.Dialogs;
 using static Erd_Tools.Models.Param;
 
@@ -16,14 +17,18 @@ namespace PvPHelper.Console.Commands
     {
         private ErdHook hook;
 
-        private PHPointer LocalNetPlayer;
-        private PHPointer NetPlayer1;
-        private PHPointer NetPlayer2;
-        private PHPointer NetPlayer3;
-        private PHPointer NetPlayer4;
-        private PHPointer NetPlayer5;
+        private PHPointer Session;
+        private NetPlayer LocalNetPlayer;
+        private NetPlayer NetPlayer1;
+        private NetPlayer NetPlayer2;
+        private NetPlayer NetPlayer3;
+        private NetPlayer NetPlayer4;
+        private NetPlayer NetPlayer5;
 
-        private List<PHPointer> NetPlayerList = new();
+        private ItemCategory ArmorCat;
+        private ItemCategory TalismansCat;
+
+        private List<NetPlayer> NetPlayerList = new();
         public NetPlayerCommand(ErdHook hook)
         {
             Name = "NetPlayer Command";
@@ -35,12 +40,13 @@ namespace PvPHelper.Console.Commands
 
             this.hook = hook;
 
-            LocalNetPlayer = hook.CreateChildPointer(hook.WorldChrMan, new int[] { 0x10EF8, 0x0*10 });
-            NetPlayer1 = hook.CreateChildPointer(hook.WorldChrMan, new int[] { 0x10EF8, 0x10 });
-            NetPlayer2 = hook.CreateChildPointer(hook.WorldChrMan, new int[] { 0x10EF8, 0x20 });
-            NetPlayer3 = hook.CreateChildPointer(hook.WorldChrMan, new int[] { 0x10EF8, 0x30 });
-            NetPlayer4 = hook.CreateChildPointer(hook.WorldChrMan, new int[] { 0x10EF8, 0x40 });
-            NetPlayer5 = hook.CreateChildPointer(hook.WorldChrMan, new int[] { 0x10EF8, 0x50 });
+            Session = hook.CreateChildPointer(hook.WorldChrMan, new int[] { 0x10EF8 });
+            LocalNetPlayer = new(hook, Session, 0x0*10);
+            NetPlayer1 = new(hook, Session, 0x10);
+            NetPlayer2 = new(hook, Session, 0x20);
+            NetPlayer3 = new(hook, Session, 0x30);
+            NetPlayer4 = new(hook, Session, 0x40);
+            NetPlayer5 = new(hook, Session, 0x50);
 
             NetPlayerList.Add(LocalNetPlayer);
             NetPlayerList.Add(NetPlayer1);
@@ -48,6 +54,9 @@ namespace PvPHelper.Console.Commands
             NetPlayerList.Add(NetPlayer3);
             NetPlayerList.Add(NetPlayer4);
             NetPlayerList.Add(NetPlayer5);
+
+            ArmorCat = ItemCategory.All.FirstOrDefault(x => x.Name == "Armor");
+            TalismansCat = ItemCategory.All.FirstOrDefault(x => x.Name == "Talismans");
         }
 
         protected override void OnTriggerCommandWithParameters(List<string> parameters)
@@ -58,15 +67,13 @@ namespace PvPHelper.Console.Commands
             if (parameters[0].ToLower() == "list" && parameters.Count == 1)
             {
                 CommandManager.Log("All NetPlayers in Current Session");
-                foreach(PHPointer netPlayer in NetPlayerList)
+                foreach(NetPlayer netPlayer in NetPlayerList)
                 {
                     if (netPlayer == LocalNetPlayer)
                         continue;
 
-                    PHPointer netPlayerChrData = hook.CreateChildPointer(netPlayer, new int[] { 0x580 });
-
-                    string name = netPlayerChrData.ReadString(0x9C, Encoding.Unicode, 0x32);
-                    int level = netPlayerChrData.ReadInt32(0x68);
+                    string name = netPlayer.Name;
+                    int level = netPlayer.Level;
 
                     if (!string.IsNullOrEmpty(name))
                     {
@@ -81,10 +88,9 @@ namespace PvPHelper.Console.Commands
 
             if (parameters.Count > 1)
             {
-                foreach (PHPointer netPlayer in NetPlayerList)
+                foreach (NetPlayer netPlayer in NetPlayerList)
                 {
-                    PHPointer netPlayerChrData = hook.CreateChildPointer(netPlayer, new int[] { 0x580 });
-                    string name = netPlayerChrData.ReadString(0x9C, Encoding.Unicode, 0x32);
+                    string name = netPlayer.Name;
 
                     if (string.IsNullOrEmpty(name))
                         continue;
@@ -93,8 +99,8 @@ namespace PvPHelper.Console.Commands
 
                     if (parameters[0].ToLower() == commandName)
                     {
-                        if (netPlayer == LocalNetPlayer)
-                            continue;
+                        /*if (netPlayer == LocalNetPlayer)
+                            continue;*/
 
                         switch (parameters[1].ToLower())
                         {
@@ -111,7 +117,7 @@ namespace PvPHelper.Console.Commands
                                     dialog.OnSubmit += (color)=> 
                                     { 
                                         SetPhantomColorSubmit(color, phantomId);
-                                        netPlayer.WriteInt32(0x538, phantomId);
+                                        netPlayer.PhantomID = phantomId;
                                         CommandManager.Log($"Set {name}'s phantom color.");
                                     };
                                     dialog.ShowDialog();
@@ -125,8 +131,100 @@ namespace PvPHelper.Console.Commands
                                     if (!int.TryParse(parameters[2], out int phantomId))
                                         throw new InvalidCommandException("Invalid Value.");
 
-                                    netPlayer.WriteInt32(0x538, phantomId);
+                                    netPlayer.PhantomID = phantomId;
                                     CommandManager.Log($"Set {name}'s phantom color.");
+                                    break;
+                                }
+                            case "hp":
+                                {
+                                    CommandManager.Log($"{name}'s Current Health is {netPlayer.Health}");
+                                    break;
+                                }
+                            case "level":
+                                {
+                                    CommandManager.Log($"{name}'s Current Level is {netPlayer.Level}");
+                                    break;
+                                }
+                            case "stats":
+                                {
+                                    CommandManager.Log($"{name}'s Current Stats");
+                                    CommandManager.Log($"Vigor: {netPlayer.Vigor}");
+                                    CommandManager.Log($"Mind: {netPlayer.Mind}");
+                                    CommandManager.Log($"Endurance: {netPlayer.Endurance}");
+                                    CommandManager.Log($"Strength: {netPlayer.Strength}");
+                                    CommandManager.Log($"Dexterity: {netPlayer.Dexterity}");
+                                    CommandManager.Log($"Intelligence: {netPlayer.Intelligence}");
+                                    CommandManager.Log($"Faith: {netPlayer.Faith}");
+                                    CommandManager.Log($"Arcane: {netPlayer.Arcane}");
+                                    break;
+                                }
+                            case "helmet":
+                                {
+                                    Item helmet = ArmorCat.Items.FirstOrDefault(x => x.ID == netPlayer.HelmetID);
+                                    CommandManager.Log($"{name}'s Current Helmet is {helmet.Name}");
+                                    break;
+                                }
+                            case "armor":
+                                {
+                                    Item armor = ArmorCat.Items.FirstOrDefault(x => x.ID == netPlayer.ArmorID);
+                                    CommandManager.Log($"{name}'s Current Armor is {armor.Name}");
+                                    break;
+                                }
+                            case "guantlet":
+                                {
+                                    Item guantlet = ArmorCat.Items.FirstOrDefault(x => x.ID == netPlayer.GauntletID);
+                                    CommandManager.Log($"{name}'s Current Guantlets is {guantlet.Name}");
+                                    break;
+                                }
+                            case "leggings":
+                                {
+                                    Item leggings = ArmorCat.Items.FirstOrDefault(x => x.ID == netPlayer.LeggingsID);
+                                    CommandManager.Log($"{name}'s Current Leggings is {leggings.Name}");
+                                    break;
+                                }
+                            case "tal1":
+                                {
+                                    Item tal = TalismansCat.Items.FirstOrDefault(x => x.ID == netPlayer.Accessory1ID);
+                                    CommandManager.Log($"{name}'s First Slot Talisman is {tal.Name}");
+                                    break;
+                                }
+                            case "tal2":
+                                {
+                                    Item tal = TalismansCat.Items.FirstOrDefault(x => x.ID == netPlayer.Accessory2ID);
+                                    CommandManager.Log($"{name}'s Second Slot Talisman is {tal.Name}");
+                                    break;
+                                }
+                            case "tal3":
+                                {
+                                    Item tal = TalismansCat.Items.FirstOrDefault(x => x.ID == netPlayer.Accessory3ID);
+                                    CommandManager.Log($"{name}'s Third Slot Talisman is {tal.Name}");
+                                    break;
+                                }
+                            case "tal4":
+                                {
+                                    Item tal = TalismansCat.Items.FirstOrDefault(x => x.ID == netPlayer.Accessory4ID);
+                                    CommandManager.Log($"{name}'s Fourth Slot Talisman is {tal.Name}");
+                                    break;
+                                }
+                            case "tp":
+                                {
+                                    LocalNetPlayer.TeleportToPlayer(netPlayer);
+                                    break;
+                                }
+                            case "gcoords":
+                                {
+                                    CommandManager.Log($"{name}'s Coords");
+                                    CommandManager.Log($"X: {netPlayer.GlobalX}");
+                                    CommandManager.Log($"Y: {netPlayer.GlobalY}");
+                                    CommandManager.Log($"Z: {netPlayer.GlobalZ}");
+                                    break;
+                                }
+                            case "lcoords":
+                                {
+                                    CommandManager.Log($"{name}'s Local Coords");
+                                    CommandManager.Log($"X: {netPlayer.LocalX}");
+                                    CommandManager.Log($"Y: {netPlayer.LocalY}");
+                                    CommandManager.Log($"Z: {netPlayer.LocalZ}");
                                     break;
                                 }
                         }

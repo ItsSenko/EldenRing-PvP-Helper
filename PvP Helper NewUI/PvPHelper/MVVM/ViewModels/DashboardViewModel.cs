@@ -165,7 +165,7 @@ namespace PvPHelper.MVVM.ViewModels
             {
                 if (!hook.Hooked)
                 {
-                    CommandManager.Log("Atempting to attach to Elden Ring.");
+                    CommandManager.Log("Attempting to attach to Elden Ring.");
                     CommandManager.Log("Might take a moment..");
 
                     hook.Start();
@@ -194,77 +194,16 @@ namespace PvPHelper.MVVM.ViewModels
                 AttachText = "Attached";
 
                 List<PhantomIDOption> phantomIds = new();
-                phantomIds.Add(new("-1 - Default", -1));
+                phantomIds.Add(new(Helpers.GetNewPhantomName(-1), -1));
                 foreach (var row in PhantomParam.Rows)
                 {
-                    phantomIds.Add(new(GetNewPhantomName(row.ID), row.ID));
+                    phantomIds.Add(new(Helpers.GetNewPhantomName(row.ID), row.ID));
                 }
                 PhantomIDItemsSource = phantomIds;
             });
         }
 
-        public string GetNewPhantomName(int id)
-        {
-            switch(id)
-            {
-                case 51:
-                    {
-                        return $"{id} - White Coop";
-                    }
-                case 60:
-                    {
-                        return $"{id} - Duelist";
-                    }
-                case 61:
-                    {
-                        return $"{id} - Yellow Coop";
-                    }
-                case 1:
-                    {
-                        return $"{id} - Big White Glow";
-                    }
-                case 230:
-                    {
-                        return $"{id} - White Ghost, White Eyes";
-                    }
-                case 901:
-                    {
-                        return $"{id} - White Ghost Normal";
-                    }
-                case 902:
-                    {
-                        return $"{id} - Blood Stain Ghost";
-                    }
-                case 810:
-                    {
-                        return $"{id} - Invisible Cloak";
-                    }
-                case 211:
-                    {
-                        return $"{id} - Black Phantom";
-                    }
-                case 270:
-                    {
-                        return $"{id} - Piss Ghost";
-                    }
-                case 290:
-                    {
-                        return $"{id} - VOID";
-                    }
-                case 811:
-                    {
-                        return $"{id} - Flashbang";
-                    }
-                case 70:
-                    {
-                        return $"{id} - Hunter";
-                    }
-                default:
-                    {
-                        return $"{id} -";
-                    }
-            }
-        }
+        
         private void StatsTimer_Tick(object? sender, EventArgs e)
         {
             if (player != null && hook.Loaded && hook.Hooked)

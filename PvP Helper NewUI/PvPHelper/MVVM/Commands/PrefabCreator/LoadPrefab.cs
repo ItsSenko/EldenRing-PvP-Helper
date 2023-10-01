@@ -24,7 +24,13 @@ namespace PvPHelper.MVVM.Commands.PrefabCreator
             if (!hook.Loaded || !hook.Hooked)
                 return;
 
-            prefabCreator.Update(prefabCreator.SelectedInventory != null ? ((InventoryStateOption)prefabCreator.SelectedInventory).State : prefabCreator.CurrState);
+            InventoryStateOption stateOption = null;
+            if (prefabCreator.SelectedInventory != null)
+            {
+                stateOption = prefabCreator.SelectedInventory as InventoryStateOption;
+            }
+
+            prefabCreator.Update(stateOption != null ? stateOption.State : prefabCreator.CurrState);
 
             if (prefabCreator.weaponPrefabs.Count > 0)
             {
