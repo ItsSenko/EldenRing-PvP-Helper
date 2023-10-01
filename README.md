@@ -31,7 +31,7 @@ Join the [Discord!](https://discord.com/invite/VmyGAS24Gf)
 - No Death
 - No Stamina Loss
 - Console
-- Console Commands
+- [Console Commands](https://github.com/ItsSenko/EldenRing-PvP-Helper/wiki/Console-Commands)
 - Set Phantom ID
 - Change Phantom Color
 - Update Phantom ID (Keeps the phantom id set during loading screens)
@@ -42,7 +42,7 @@ Join the [Discord!](https://discord.com/invite/VmyGAS24Gf)
 - MassItemGib
 - MassWeaponGib
 - ItemGib
-### Prefab Creator
+### [Prefab Creator](https://github.com/ItsSenko/EldenRing-PvP-Helper/wiki/The-Prefab-Creator)
 - ItemGib (Prefab Creator Specific)
 - Create New (Clears current inventory)
 - Save (Saves and makes a prefab of current inventory)
