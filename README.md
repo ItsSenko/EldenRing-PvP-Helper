@@ -19,37 +19,42 @@ This is a tool to give a better experience in pvp in [seamless co-op](https://ww
 Join the [Discord!](https://discord.com/invite/VmyGAS24Gf)
 
 # Features
-### Base PvP Settings
-- No Dead Toggle
-- No Damage Toggle
-- No FP Loss Toggle
-- No Stamina Loss Toggle
-- Auto Revive Toggle
-- Mad Heal Toggle
-- Infinite Consumables Toggle
-- Seamless Animation Change Toggle
-- Heal back to full health
-- Refill your mana
-- Set your Health
-- Set your Mana
-### Settings
+### Dashboard
+- Infinite HP
+- Refill HP
+- Infinite Mana
+- Refill Mana
+- Auto Revive
+- Mad Heal
+- Infinite Consumables
+- Fast Anims (Only effects seamless co-op)
+- No Death
+- No Stamina Loss
+- Console
+- Console Commands
+- Set Phantom ID
+- Change Phantom Color
+- Update Phantom ID (Keeps the phantom id set during loading screens)
+### Items
+- Stats Box
+- Refresh Stats
+- Rune Gib
+- MassItemGib
+- MassWeaponGib
+- ItemGib
+### Prefab Creator
+- ItemGib (Prefab Creator Specific)
+- Create New (Clears current inventory)
+- Save (Saves and makes a prefab of current inventory)
+- Load (Loads current inventory in game)
+- Prefab Selction Dropdown
+- Refresh Prefabs
+- Inventory Type Dropdown
+### Misc
+- Check for updates
+- Auto Update
+- Allow Unsafe Options (Allows the user to use some things that are either unconfirmed or confirmed not safe for online)
 - Show Hitboxes
-### Other Options
-- Change ChrType
-  - Yellow Phantom/Co-op Member
-  - Red Phantom/Invader
-  - Blue Phantom/Hunter
-- Customize Character Type Color
-### Build Creation
-- The Build Creator
-   - All Flash Upgrades
-   - All Talisman Pouches
-   - All Memory Stones
-   - All Maps/Graces
-   - ItemGib
-   - MassItemGib
-   - Loadout Builder
-   - RuneGib
 
 ## Thank You
 - [Nordgaren](https://github.com/Nordgaren) for the library [Erd-Tools](https://github.com/Nordgaren/Erd-Tools). This helped a lot with development. As well as their controbutions with programming help and helping me understand more about modding Elden Ring!
