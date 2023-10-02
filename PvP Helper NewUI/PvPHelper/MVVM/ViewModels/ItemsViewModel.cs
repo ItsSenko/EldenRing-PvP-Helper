@@ -542,30 +542,30 @@ namespace PvPHelper.MVVM.ViewModels
             AllLimitedItems = new RelayCommand((o) => { LimitedItems(); });
             AllWhetblades = new RelayCommand((o) => { Whetblades(); });
 
-            AllCookbooks = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Cookbooks"));
-            AllTools = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Tools"));
-            AllMerchantItems = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Merchant Items"));
-            AllCraftingMaterials = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Crafting Materials"), new string[] { "Cracked Pot", "Ritual Pot", "Celestial Dew" }, true, viewModel: this, 999);
-            AllCrystalTears = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Crystal Tears"));
-            AllAshes = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Gems"), single: true);
-            AllConsumables = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Consumables"),
+            AllCookbooks = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Cookbooks"), this);
+            AllTools = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Tools"), this);
+            AllMerchantItems = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Merchant Items"), this);
+            AllCraftingMaterials = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Crafting Materials"), this, new string[] { "Cracked Pot", "Ritual Pot", "Celestial Dew" }, newMax: 999);
+            AllCrystalTears = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Crystal Tears"), this);
+            AllAshes = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Gems"), this, single: true);
+            AllConsumables = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Consumables"), this,
             new string[] { "Cracked Pot", "Ritual Pot", "Perfume Bottle",
             "Remembrance of the Regal Ancestor","Remembrance of the Naturalborn","Remembrance of the Lichdragon",
             "Remembrance of the Fire Giant", "Remembrance of the Grafted", "Remembrance of the Full Moon Queen",
             "Remembrance of the Blasphemous","Remembrance of the Starscourge","Remembrance of the Omen King",
             "Remembrance of the Blood Lord", "Remembrance of the Rot Goddess", "Remembrance of the Black Blade",
             "Remembrance of Hoarah Loux", "Remembrance of the Dragonlord", "Elden Remembrance", "Shabriri Grape",
-            "Baldachin's Blessing", "Radiant Baldachin's Blessing"}, single: true, viewModel: this, 999);
-            AllSpells = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Magic"));
-            AllAmmo = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Ammo"),null, single: true, viewModel: this, 999);
-            AllUpgradeMaterials = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Upgrade Materials"), new string[] { "Golden Seed", "Sacred Tear", "Memory Stone", "Talisman Pouch" }, single: true);
+            "Baldachin's Blessing", "Radiant Baldachin's Blessing"}, single: true, 999);
+            AllSpells = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Magic"), this);
+            AllAmmo = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Ammo"), this, single: true, newMax: 999);
+            AllUpgradeMaterials = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Upgrade Materials"), this, new string[] { "Golden Seed", "Sacred Tear", "Memory Stone", "Talisman Pouch" }, single: true);
 
             AllMeleeWeapons = new MassWeaponGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Melee Weapons"));
             AllRangedWeapons = new MassWeaponGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Ranged Weapons"));
             AllShields = new MassWeaponGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Shields"));
-            AllArmor = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Armor"));
+            AllArmor = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Armor"), this);
             AllSpellTools = new MassWeaponGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Spell Tools"));
-            AllTalismans = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Talismans"), single: true);
+            AllTalismans = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Talismans"), this, single: true);
 
             AddRunes = new RelayCommand((o) =>
             {

@@ -168,10 +168,10 @@ namespace PvPHelper.MVVM.ViewModels
                 }
                 CurrentView = _viewModels[nameof(PrefabCreatorView)];
             });
-            LobbyManagerCommand = new(o =>
+            /*LobbyManagerCommand = new(o =>
             {
                 CurrentView = _viewModels[nameof(LobbyManagerView)];
-            });
+            });*/
             MiscCommand = new(o => 
             {
                 CurrentView = _viewModels[nameof(MiscView)];

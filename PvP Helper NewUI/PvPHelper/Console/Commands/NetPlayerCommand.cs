@@ -227,6 +227,17 @@ namespace PvPHelper.Console.Commands
                                     CommandManager.Log($"Z: {netPlayer.LocalZ}");
                                     break;
                                 }
+                            case "kick":
+                                {
+                                    if (CustomPointers.SessionMan.ReadInt32(0xC) != 3)
+                                    {
+                                        CommandManager.Log("You are not the host");
+                                        break;
+                                    }
+
+                                    netPlayer.Kick();
+                                    break;
+                                }
                         }
                     }
                 }

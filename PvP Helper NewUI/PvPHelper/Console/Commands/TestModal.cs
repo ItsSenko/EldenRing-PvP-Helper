@@ -31,8 +31,10 @@ namespace PvPHelper.Console.Commands
 
         protected override void OnTriggerCommand()
         {
-            CommandManager.Log(CustomPointers.ChrDbgFlags.Resolve().ToString("X") + " ChrDbgFlags address");
-            CommandManager.Log(CustomPointers.ChrDbgFlags.ReadByte(0x6).ToString());
+            CommandManager.Log("Hi :3");
+
+            /*CommandManager.Log(CustomPointers.ChrDbgFlags.Resolve().ToString("X") + " ChrDbgFlags address");
+            CommandManager.Log(CustomPointers.ChrDbgFlags.ReadByte(0x6).ToString());*/
 
             /*foreach(var netp in LobbyManagerViewModel.PlayerList)
             {

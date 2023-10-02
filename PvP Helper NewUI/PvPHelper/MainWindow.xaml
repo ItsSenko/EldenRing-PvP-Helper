@@ -68,9 +68,9 @@
                 <local:TabButton Label="Prefab Creator" 
                                  UriSource="Resources/Images/auto-fix.svg"
                                  BtnCommand="{Binding PrefabCreatorCommand}"/>
-                <local:TabButton Label="Lobby Manager" 
+                <!--<local:TabButton Label="Lobby Manager" 
                                  UriSource="Resources/Images/format-list-text.svg"
-                                 BtnCommand="{Binding LobbyManagerCommand}"/>
+                                 BtnCommand="{Binding LobbyManagerCommand}"/>-->
                 <local:TabButton Label="Misc" 
                                  UriSource="Resources/Images/misc-dots.svg"
                                  BtnCommand="{Binding MiscCommand}"/>

@@ -20,7 +20,7 @@ namespace PvPHelper.MVVM.Commands.Items
         private int newMax;
         private ItemsViewModel viewModel;
 
-        public MassGib(ErdHook hook, ItemCategory category, string[] excludedItems = null, bool single = false, ItemsViewModel viewModel = null, int newMax = 0)
+        public MassGib(ErdHook hook, ItemCategory category, ItemsViewModel viewModel, string[] excludedItems = null, bool single = false, int newMax = 0)
         {
             _hook = hook;
             _category = category;
@@ -29,7 +29,8 @@ namespace PvPHelper.MVVM.Commands.Items
             this.single = single;
 
             this.viewModel = viewModel;
-            this.newMax = newMax;
+            this.newMax = newMax < 1 ? 1 : newMax;
+            
         }
         public override void Execute(object? parameter)
         {
