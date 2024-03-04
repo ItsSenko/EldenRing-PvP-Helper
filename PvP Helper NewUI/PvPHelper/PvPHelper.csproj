@@ -12,9 +12,18 @@
 
     <None Remove="MVVM\Views\UserControls\grave_scythe.png" />
 
+    <None Remove="Resources\Assembly\FreeCamCode.asm" />
+
+    <None Remove="Resources\Assembly\FreeCamInject.asm" />
+
     <None Remove="Resources\Assembly\KickOutFunction.asm" />
+
+    <None Remove="Resources\Assembly\OpenMenu.asm" />
+
+    <None Remove="Resources\Assembly\OpenShopMenu.asm" />
     <None Remove="Resources\Images\auto-fix.svg" />
     <None Remove="Resources\Images\Discord.png" />
+    <None Remove="Resources\Images\earth.svg" />
     <None Remove="Resources\Images\file-document-alert.svg" />
     <None Remove="Resources\Images\format-list-text.svg" />
     <None Remove="Resources\Images\grave_scythe.png" />
@@ -51,6 +60,9 @@
     <Content Include="Resources\Images\auto-fix.svg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Images\earth.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Images\file-document-alert.svg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -60,7 +72,11 @@
     <Resource Include="Resources\Images\Discord.png" />
     <Resource Include="Resources\Images\shunter.ico" />
     <Resource Include="Resources\Images\shunter.png" />
+    <EmbeddedResource Include="Resources\Assembly\FreeCamCode.asm" />
+    <EmbeddedResource Include="Resources\Assembly\FreeCamInject.asm" />
     <EmbeddedResource Include="Resources\Assembly\KickOutFunction.asm" />
+    <EmbeddedResource Include="Resources\Assembly\OpenMenu.asm" />
+    <EmbeddedResource Include="Resources\Assembly\OpenShopMenu.asm" />
 
     <Resource Include="Resources\Images\grave_scythe.png" />
     
@@ -151,6 +167,9 @@
     <Page Update="MVVM\Views\ItemsView.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Update="MVVM\Views\UserControls\LabeledCircleToggle - Copy.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
     </Page>
 
     <ProjectReference Include="..\..\erdtools\src\Erd-Tools\Erd-Tools.csproj" />
@@ -3463,6 +3482,7 @@
 	</ItemGroup>
 	
 	<ItemGroup>
+	  <ResourceFiles Remove="Resources\Assembly\OpenMenu.asm" />
 	  <ResourceFiles Remove="Resources\Images\format-list-text.svg" />
 	  <ResourceFiles Remove="Resources\Version.txt" />
 	</ItemGroup>

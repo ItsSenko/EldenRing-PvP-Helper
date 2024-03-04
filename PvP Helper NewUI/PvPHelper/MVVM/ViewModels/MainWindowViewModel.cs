@@ -26,6 +26,7 @@ namespace PvPHelper.MVVM.ViewModels
         public RelayCommand MiscCommand { get; set; }
         public RelayCommand CloseCommand { get; set; }
         public RelayCommand LobbyManagerCommand { get; set; }
+        public RelayCommand RegionManagerCommand { get; set; }
         public RelayCommand Discord { get; set; }
 
         private string _versionText;
@@ -47,7 +48,7 @@ namespace PvPHelper.MVVM.ViewModels
         }
 
         #endregion
-        private Dictionary<string, ViewModelBase> _viewModels = new();
+        public Dictionary<string, ViewModelBase> _viewModels = new();
         
 
         private ErdHook _hook;
@@ -150,6 +151,7 @@ namespace PvPHelper.MVVM.ViewModels
             _viewModels.Add(nameof(PrefabCreatorView), new PrefabCreatorViewModel(_hook));
             _viewModels.Add(nameof(LobbyManagerView), new LobbyManagerViewModel(_hook));
             _viewModels.Add(nameof(MiscView), new MiscViewModel(_hook, _vController));
+            _viewModels.Add(nameof(InvasionRegionsView), new InvasionRegionsViewModel(_hook));
 
             DashboardCommand = new(o => 
             {
@@ -172,6 +174,10 @@ namespace PvPHelper.MVVM.ViewModels
             {
                 CurrentView = _viewModels[nameof(LobbyManagerView)];
             });*/
+            RegionManagerCommand = new(o => 
+            {
+                CurrentView = _viewModels[nameof(InvasionRegionsView)];
+            });
             MiscCommand = new(o => 
             {
                 CurrentView = _viewModels[nameof(MiscView)];
@@ -189,11 +195,13 @@ namespace PvPHelper.MVVM.ViewModels
             commandManager.RegisterCommand(new CustomFPS(_hook));
             commandManager.RegisterCommand(new CustomFOV(_hook));
             commandManager.RegisterCommand(new Update(_vController));
-            commandManager.RegisterCommand(new TestModal(_hook));
+            commandManager.RegisterCommand(new TestModal(_hook, this));
             commandManager.RegisterCommand(new TeamTypeChangeCommand(_hook));
             commandManager.RegisterCommand(new NetPlayerCommand(_hook));
             commandManager.RegisterCommand(new ChrTypeChange(_hook));
             commandManager.RegisterCommand(new HelpCommand(commandManager));
+            commandManager.RegisterCommand(new OpenMenuCommand(_hook));
+            commandManager.RegisterCommand(new FreeCamCommand(_hook));
         }
     }
 }

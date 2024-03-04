@@ -1,30 +1,36 @@
-﻿using PvPHelper.Core;
-using System;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
 
 namespace PvPHelper.MVVM.Dialogs
 {
     /// <summary>
-    /// Interaction logic for CreateBuildDialog.xaml
+    /// Interaction logic for InputDialog.xaml
     /// </summary>
-    public partial class CreateBuildDialog : Window
+    public partial class InputDialog : Window
     {
         public event Action OnCancel = new(() => { });
         public event Action<string> OnSave = new((s) => { });
-        public CreateBuildDialog(string title = "")
+        public string MainTitle;
+        public InputDialog(string title)
         {
             InitializeComponent();
-            TextBox.Text = "Build Name...";
+            MainTitle = title;
+            TextBox.Text = MainTitle;
         }
 
         private void Save_Click(object sender, RoutedEventArgs e)
         {
-            if (!Helpers.IsValidFileName(TextBox.Text))
-            {
-                MessageBox.Show("Invalid File Name", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
             this.Close();
             OnSave.Invoke(TextBox.Text);
         }
@@ -37,7 +43,7 @@ namespace PvPHelper.MVVM.Dialogs
 
         private void TextBox_GotFocus(object sender, RoutedEventArgs e)
         {
-            if (TextBox.Text != "Build Name...")
+            if (TextBox.Text != MainTitle)
                 return;
 
             TextBox.Text = string.Empty;

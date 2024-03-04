@@ -112,7 +112,7 @@ namespace PvPHelper.MVVM.ViewModels
                 int playersInLobby = 0;
                 foreach(NetPlayer player in PlayerList)
                 {
-                    if (!string.IsNullOrEmpty(player.Name) /*&& player != LocalPlayer*/)
+                    if (!string.IsNullOrEmpty(player.Name) && player != LocalPlayer)
                     {
                         playersInLobby++;
                     }
@@ -130,7 +130,7 @@ namespace PvPHelper.MVVM.ViewModels
                         continue;
                     }
 
-                    if (!string.IsNullOrEmpty(player.Name) /*&& player != LocalPlayer*/)
+                    if (!string.IsNullOrEmpty(player.Name) && player != LocalPlayer)
                     {
                         NetPlayerControl newPlayer = new();
                         newPlayer.Setup(player, LocalPlayer, Hook);

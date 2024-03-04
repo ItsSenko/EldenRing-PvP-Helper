@@ -1,0 +1,5 @@
+sub rsp,0x48
+lea rcx,[rsp+0x28]
+call 0x{0:X}
+add rsp,0x48
+ret

@@ -9,58 +9,99 @@
              d:DesignHeight="658.285714285714" d:DesignWidth="1092.8">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition Height="159*"/>
+            <RowDefinition Height="328*"/>
+            <RowDefinition Height="171*"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Text="Thank you for using the Helper!" FontSize="64" 
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center"
-                   Foreground="{DynamicResource LighterBrush}"
-                   TextWrapping="Wrap"
-                   TextAlignment="Center"
-                   Padding="10"/>
-        <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center">
-            <StackPanel.Resources>
-                <Style TargetType="{x:Type userControls:LabeledCircleToggle}">
-                    <Setter Property="Margin" Value="20,0,20,0"/>
-                </Style>
-            </StackPanel.Resources>
-            
-            <Button Style="{DynamicResource PrimaryButton}" Width="150" Height="50"
-                    Content="Check for Updates"
-                    Command="{Binding CheckForUpdates}" Cursor="Hand"/>
-            <userControls:LabeledCircleToggle Label="Auto Update"
-                                              Checked="{Binding AutoUpdateToggle.State, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                              ToggleCommand="{Binding AutoUpdateToggle}"/>
-            <userControls:LabeledCircleToggle Label="Allow Unsafe Options"
-                                              Checked="{Binding UnsafeToggle.State, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                              ToggleCommand="{Binding UnsafeToggle}"/>
-            <userControls:LabeledCircleToggle Label="Show Hitboxes"
-                                              Checked="{Binding ShowHitboxesToggle.State, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                              ToggleCommand="{Binding ShowHitboxesToggle}"/>
-            
-        </StackPanel>
 
-        <TextBlock Text="Created by" FontSize="64" Grid.Row="2"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center"
-                   Foreground="{DynamicResource LighterBrush}"
-                   TextWrapping="Wrap"/>
-        <TextBlock Text="Senkopur and Catshark" FontSize="64" Grid.Row="3"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Top"
-                   Foreground="{DynamicResource LighterBrush}"
-                   TextWrapping="Wrap"/>
-        <!--<StackPanel Orientation="Horizontal" Grid.Row="1">
-            <StackPanel.Resources>
-                <Style TargetType="{x:Type userControls:LabeledCircleToggle}">
-                    <Setter Property="Margin" Value="20,0,20,0"/>
-                </Style>
-            </StackPanel.Resources>
-        </StackPanel>-->
+        <Border Margin="25,25,25,25" Background="{DynamicResource BackgroundBrush}">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <StackPanel.Resources>
+                    <Style TargetType="{x:Type userControls:LabeledCircleToggle}">
+                        <Setter Property="Margin" Value="20,0,20,0"/>
+                    </Style>
+                </StackPanel.Resources>
 
+                <Button Style="{DynamicResource PrimaryButton}"
+                        Content="Check for Updates"
+                        Command="{Binding CheckForUpdates}" Cursor="Hand" Width="182" Height="53"/>
+                <userControls:LabeledCircleToggle Label="Auto Update"
+                                                  Checked="{Binding AutoUpdateToggle.State, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                  ToggleCommand="{Binding AutoUpdateToggle}"/>
+                <userControls:LabeledCircleToggle Label="Allow Unsafe Options"
+                                                  Checked="{Binding UnsafeToggle.State, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                  ToggleCommand="{Binding UnsafeToggle}"/>
+
+            </StackPanel>
+        </Border>
+
+        <Border Margin="25,25,25,25" Background="{DynamicResource BackgroundBrush}" Grid.Row="1">
+            <Grid>
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel.Resources>
+                        <Style TargetType="{x:Type userControls:LabeledCircleToggle}">
+                            <Setter Property="Margin" Value="10,10,0,20"/>
+                        </Style>
+                        <Style TargetType="StackPanel">
+                            <Setter Property="Margin" Value="0,0,20,0"/>
+                        </Style>
+                    </StackPanel.Resources>
+
+                    <StackPanel Orientation="Vertical">
+                        <userControls:LabeledCircleToggle Label="Show Hitboxes"
+                                            Checked="{Binding ShowHitboxesToggle.State, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                            ToggleCommand="{Binding ShowHitboxesToggle}"/>
+
+                        <userControls:LabeledCircleToggle Label="Free Cam"
+                                            Checked="{Binding FreeCamToggle.State, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                            ToggleCommand="{Binding FreeCamToggle}"/>
+
+                        <userControls:LabeledCircleToggle Label="Custom FPS"
+                                            Checked="{Binding CustomFPSToggle.State, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                            ToggleCommand="{Binding CustomFPSToggle}"/>
+
+                        <userControls:LabeledCircleToggle Label="Custom FOV"
+                                            Checked="{Binding CustomFOVToggle.State, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                            ToggleCommand="{Binding CustomFOVToggle}"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical">
+                        <userControls:LabeledCircleToggle Label="No Material Cost"
+                                            Checked="{Binding NoMaterialCostToggle.State, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                            ToggleCommand="{Binding NoMaterialCostToggle}"/>
+                    </StackPanel>
+                </StackPanel>
+
+
+                <Button Style="{DynamicResource PrimaryButton}"
+                        Content="Unlock All Colosseums"
+                        Command="{Binding AllArenas}" Cursor="Hand" Height="53" Margin="268,71,585,154"/>
+
+                <!--<Button Style="{DynamicResource PrimaryButton}"
+                        Content="Unlock All Gestures"
+                        Command="{Binding AllGestures}" Cursor="Hand" Height="53" Margin="268,139,585,86"/>-->
+
+                <TextBlock Text="Open Menu"
+                           Foreground="{DynamicResource LighterTextBrush}"
+                           FontSize="24"
+                           HorizontalAlignment="Left" Width="126" Margin="849,8,0,232"/>
+                <userControls:SimpleDropDown ItemsSource="{Binding MenuItemsSource, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                             SelectedIndex="{Binding SelectedMenuIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                             SelectedItem="{Binding SelectedMenu, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="792,51,10,187"/>
+            </Grid>
+        </Border>
+
+        <TextBlock Grid.Row="2" Text="Thank you for using the helper!"
+                   FontSize="30" Foreground="{DynamicResource LighterBrush}"
+                   HorizontalAlignment="Center" Margin="0,10,0,113"/>
+
+        <TextBlock Grid.Row="2" Text="Created by"
+                   FontSize="30" Foreground="{DynamicResource LighterBrush}"
+                   HorizontalAlignment="Center" Margin="0,63,0,61"/>
+
+        <TextBlock Grid.Row="2" Text="SenkoPur and CatShark"
+                   FontSize="30" Foreground="{DynamicResource LighterBrush}"
+                   HorizontalAlignment="Center" Margin="0,110,0,10"/>
     </Grid>
 </UserControl>

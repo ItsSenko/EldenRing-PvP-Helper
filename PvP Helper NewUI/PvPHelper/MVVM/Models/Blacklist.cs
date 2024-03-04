@@ -36,6 +36,5 @@ namespace PvPHelper.MVVM.Models
             CatName = catName;
             ItemID = itemID;
         }
-
     }
 }

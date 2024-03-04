@@ -1,0 +1,131 @@
+﻿<UserControl x:Class="PvPHelper.MVVM.Views.InvasionRegionsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PvPHelper.MVVM.Views"
+             xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
+             xmlns:userControl="clr-namespace:PvPHelper.MVVM.Views.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="658.285714285714" d:DesignWidth="1092.8">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="816*"/>
+            <ColumnDefinition Width="277*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="55*"/>
+                <RowDefinition Height="274*"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="33*"/>
+                    <ColumnDefinition Width="206*"/>
+                    <ColumnDefinition Width="33*"/>
+                </Grid.ColumnDefinitions>
+
+                <userControl:SimpleDropDown Grid.Column="1"
+                                            Height="50" Margin="10,0,10,0"
+                                            FontSize="20"
+                                            ItemsSource="{Binding ContinentItemsSource, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                            SelectedItem="{Binding SelectedContinent, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <Button Grid.Column="0"
+                        Style="{DynamicResource SimpleButtonStyle}"
+                        Command="{Binding InfoCommand, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        Cursor="Help">
+                    <svgc:SvgIcon UriSource="Resources/Images/help-circle.svg"
+                              Fill="{DynamicResource LighterTextBrush}" Height="40" Width="40"/>
+                </Button>
+                <userControl:Refresh Grid.Column="2"
+                                     Height="35"
+                                     Width="35"
+                                     BtnCommand="{Binding RefreshPresetsCommand, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            </Grid>
+
+
+            <Grid Grid.Row="1" 
+                  Background="{DynamicResource BackgroundBrush}"
+                  Margin="10,10,10,10">
+
+                <ScrollViewer VerticalScrollBarVisibility="Hidden" ScrollViewer.CanContentScroll="False">
+                    <ItemsControl ItemsSource="{Binding RegionsItemsSource, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="5">
+
+                        <ItemsControl.ItemContainerStyle>
+                            <Style>
+                                <Setter Property="FrameworkElement.Margin" Value="5"/>
+                            </Style>
+                        </ItemsControl.ItemContainerStyle>
+
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <userControl:RegionToggle/>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+            </Grid>
+        </Grid>
+
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="225*"/>
+                <RowDefinition Height="333*"/>
+                <RowDefinition Height="100*"/>
+            </Grid.RowDefinitions>
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <userControl:SimpleDropDown Height="50"
+                                            Margin="5, 0, 5, 0"
+                                            FontSize="20"
+                                            ItemsSource="{Binding PresetsItemsSource, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                            SelectedItem="{Binding SelectedPreset, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <Button Grid.Row="1" Style="{DynamicResource PrimaryButton}"
+                        Content="Save Preset"
+                        FontSize="28"
+                        Height="65"
+                        VerticalAlignment="Top"
+                        Command="{Binding SavePresetCommand, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            </Grid>
+
+            <StackPanel Grid.Row="1"
+                        Orientation="Vertical"
+                        VerticalAlignment="Center" Height="280">
+
+                <StackPanel.Resources>
+                    <Style TargetType="{x:Type userControl:LabeledCircleToggle}">
+                        <Setter Property="Margin" Value="10,10,0,20"/>
+                    </Style>
+                </StackPanel.Resources>
+
+                <userControl:LabeledCircleToggle Label="All Regions"
+                                                 Checked="{Binding AllRegionsChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                 ToggleCommand="{Binding AllRegionsCommand, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <userControl:LabeledCircleToggle Label="All Open World"
+                                                 Checked="{Binding AllOpenWorldChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                 ToggleCommand="{Binding AllOpenWorldCommand, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <userControl:LabeledCircleToggle Label="All Dungeons"
+                                                 Checked="{Binding AllDungeonsChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                 ToggleCommand="{Binding AllDungeonsCommand, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <userControl:LabeledCircleToggle Label="Bosses"
+                                                 Checked="{Binding NoFogwallsChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                 ToggleCommand="{Binding NoFogwallsCommand, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            </StackPanel>
+
+            <Button Grid.Row="2" 
+                    Style="{DynamicResource PrimaryButton}"
+                    Content="Save Regions"
+                    FontSize="28" Margin="10,18,10,17"
+                    Command="{Binding SaveRegionsCommand, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        </Grid>
+    </Grid>
+</UserControl>

@@ -16,7 +16,7 @@ namespace PvPHelper.Console.Commands
             Description = "Show and Hide hitboxes";
             CommandString = "/hitbox";
             HasParams = true;
-            RequiresParamsString = new string[] { "value" };
+            RequiresParamsString = new string[] { "state" };
         }
         protected override void OnTriggerCommand()
         {

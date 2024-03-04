@@ -84,7 +84,7 @@ namespace PvPHelper.MVVM.Views.UserControls
                     }
                     catch (InvalidCommandException ex)
                     {
-                        Log($"Inavalid Command: {ex.Message}");
+                        Log($"Invalid Command: {ex.Message}");
                     }
                 }
                 else

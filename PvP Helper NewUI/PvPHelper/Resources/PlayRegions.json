@@ -1,0 +1,2632 @@
+[
+  {
+    "Map": "Limgrave",
+    "Name": "Church of Dragon Communion",
+    "PlayRegionID": 6100090,
+    "BonfireFlags": [
+      76110
+    ],
+    "IsOpenWorld": true,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Limgrave",
+    "Name": "The First Step, Church of Elleh",
+    "PlayRegionID": 6100000,
+    "BonfireFlags": [
+      76100,
+      76101
+    ],
+    "IsOpenWorld": true,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Limgrave",
+    "Name": "Seaside Ruins",
+    "PlayRegionID": 6100001,
+    "BonfireFlags": [
+      76113,
+      76106
+    ],
+    "IsOpenWorld": true,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Limgrave",
+    "Name": "Mistwood Outskirts, Fort Haight West",
+    "PlayRegionID": 6100004,
+    "BonfireFlags": [
+      76114,
+      76103,
+      76104,
+      76105
+    ],
+    "IsOpenWorld": true,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Limgrave",
+    "Name": "Agheel Lake North, Murkwater Coast, Gatefront Ruins",
+    "PlayRegionID": 6100002,
+    "BonfireFlags": [
+      76116,
+      76111,
+      76108
+    ],
+    "IsOpenWorld": true,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Limgrave",
+    "Name": "Summonwater Village Outskirts",
+    "PlayRegionID": 6100003,
+    "BonfireFlags": [
+      76119
+    ],
+    "IsOpenWorld": true,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Limgrave",
+    "Name": "Waypoint Ruins Cellar",
+    "PlayRegionID": 6100010,
+    "BonfireFlags": [
+      76120
+    ],
+    "IsOpenWorld": true,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Limgrave",
+    "Name": "Stormfoot Catacombs",
+    "PlayRegionID": 3002001,
+    "BonfireFlags": [
+      73002
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": true,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Limgrave",
+    "Name": "Murkwater Catacombs",
+    "PlayRegionID": 3004001,
+    "BonfireFlags": [
+      73004
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": true,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Limgrave",
+    "Name": "Groveside Cave",
+    "PlayRegionID": 3103001,
+    "BonfireFlags": [
+      73103
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": true,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Limgrave",
+    "Name": "Coastal Cave",
+    "PlayRegionID": 3115001,
+    "BonfireFlags": [
+      73115
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": true,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Limgrave",
+    "Name": "Murkwater Cave",
+    "PlayRegionID": 3100001,
+    "BonfireFlags": [
+      73100
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": true,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Limgrave",
+    "Name": "Highroad Cave",
+    "PlayRegionID": 3117001,
+    "BonfireFlags": [
+      73117
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": true,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Limgrave",
+    "Name": "Limgrave Tunnels",
+    "PlayRegionID": 3201001,
+    "BonfireFlags": [
+      73201
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": true,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Stranded Graveyard",
+    "Name": "Cave of Knowledge",
+    "PlayRegionID": 1800090,
+    "BonfireFlags": [
+      71800
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": true,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Stranded Graveyard",
+    "Name": "Stranded Graveyard",
+    "PlayRegionID": 1800001,
+    "BonfireFlags": [
+      71801
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": true,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Stormhill",
+    "Name": "Stormhill",
+    "PlayRegionID": 6101000,
+    "BonfireFlags": [
+      76102,
+      71002,
+      76117,
+      76118
+    ],
+    "IsOpenWorld": true,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Stormhill",
+    "Name": "Margit, the Fell Omen",
+    "PlayRegionID": 6101010,
+    "BonfireFlags": [
+      71001
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": true,
+    "IsActive": false
+  },
+  {
+    "Map": "Stormhill",
+    "Name": "Deathtouched Catacombs",
+    "PlayRegionID": 3011001,
+    "BonfireFlags": [
+      73011
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": true,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Stormhill",
+    "Name": "Divine Tower of Limgrave",
+    "PlayRegionID": 3410090,
+    "BonfireFlags": [
+      73412,
+      73410
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Weeping Peninsula",
+    "Name": "Castle Morne",
+    "PlayRegionID": 6102001,
+    "BonfireFlags": [
+      76158,
+      76159,
+      76160
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": true,
+    "IsActive": false
+  },
+  {
+    "Map": "Weeping Peninsula",
+    "Name": "Morne Moangrave",
+    "PlayRegionID": 6102020,
+    "BonfireFlags": [
+      76161
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": true,
+    "IsActive": false
+  },
+  {
+    "Map": "Weeping Peninsula",
+    "Name": "Weeping Peninsula East",
+    "PlayRegionID": 6102000,
+    "BonfireFlags": [
+      76151,
+      76153,
+      76154,
+      76155,
+      76157
+    ],
+    "IsOpenWorld": true,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Weeping Peninsula",
+    "Name": "Weeping Peninsula West",
+    "PlayRegionID": 6102002,
+    "BonfireFlags": [
+      76150,
+      76152,
+      76156,
+      76162
+    ],
+    "IsOpenWorld": true,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Weeping Peninsula",
+    "Name": "Impaler's Catacombs",
+    "PlayRegionID": 3001001,
+    "BonfireFlags": [
+      73001
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": true,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Weeping Peninsula",
+    "Name": "Tombsward Catacombs",
+    "PlayRegionID": 3000001,
+    "BonfireFlags": [
+      73000
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": true,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Weeping Peninsula",
+    "Name": "Earthbore Cave",
+    "PlayRegionID": 3101001,
+    "BonfireFlags": [
+      73101
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": true,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Weeping Peninsula",
+    "Name": "Tombsward Cave",
+    "PlayRegionID": 3102001,
+    "BonfireFlags": [
+      73102
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": true,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Weeping Peninsula",
+    "Name": "Morne Tunnel",
+    "PlayRegionID": 3200001,
+    "BonfireFlags": [
+      73200
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": true,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Stormveil Castle",
+    "Name": "Stormveil Main Gate, Stormveil Cliffside",
+    "PlayRegionID": 1000001,
+    "BonfireFlags": [
+      71008,
+      71004
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Stormveil Castle",
+    "Name": "Gateside Chamber",
+    "PlayRegionID": 1000006,
+    "BonfireFlags": [
+      71003
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Stormveil Castle",
+    "Name": "Rampart Tower",
+    "PlayRegionID": 1000003,
+    "BonfireFlags": [
+      71005
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Stormveil Castle",
+    "Name": "Liftside Chamber, Secluded Cell",
+    "PlayRegionID": 1000005,
+    "BonfireFlags": [
+      71006,
+      71007
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": true,
+    "IsActive": false
+  },
+  {
+    "Map": "Stormveil Castle",
+    "Name": "Godrick the Grafted",
+    "PlayRegionID": 1000000,
+    "BonfireFlags": [
+      71000
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": true,
+    "IsActive": false
+  },
+  {
+    "Map": "Liurnia of the Lakes",
+    "Name": "Liurnia South-East",
+    "PlayRegionID": 6200001,
+    "BonfireFlags": [
+      76217,
+      76200,
+      76201,
+      76202,
+      76203,
+      76244,
+      76221,
+      76222
+    ],
+    "IsOpenWorld": true,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Liurnia of the Lakes",
+    "Name": "Liurnia East",
+    "PlayRegionID": 6200004,
+    "BonfireFlags": [
+      76223,
+      76234,
+      76224,
+      76225,
+      76226
+    ],
+    "IsOpenWorld": true,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Liurnia of the Lakes",
+    "Name": "Behind Caria Manor",
+    "PlayRegionID": 6200008,
+    "BonfireFlags": [
+      76247,
+      76228,
+      76238
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Liurnia of the Lakes",
+    "Name": "Slumbering Wolf's Shack",
+    "PlayRegionID": 3105090,
+    "BonfireFlags": [
+      76215
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Liurnia of the Lakes",
+    "Name": "Liurnia South",
+    "PlayRegionID": 6200000,
+    "BonfireFlags": [
+      76205,
+      76204,
+      76216,
+      76236,
+      76241,
+      76243,
+      76242,
+      76233
+    ],
+    "IsOpenWorld": true,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Liurnia of the Lakes",
+    "Name": "Liurnia South-West",
+    "PlayRegionID": 6200002,
+    "BonfireFlags": [
+      76219,
+      76220,
+      76237
+    ],
+    "IsOpenWorld": true,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Liurnia of the Lakes",
+    "Name": "Liurnia West",
+    "PlayRegionID": 6200005,
+    "BonfireFlags": [
+      76218,
+      76210,
+      76227,
+      76213
+    ],
+    "IsOpenWorld": true,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Liurnia of the Lakes",
+    "Name": "Kingsrealm Ruins",
+    "PlayRegionID": 6200003,
+    "BonfireFlags": [
+      76212
+    ],
+    "IsOpenWorld": true,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Liurnia of the Lakes",
+    "Name": "Main Caria Manor Gate",
+    "PlayRegionID": 6200007,
+    "BonfireFlags": [
+      76214
+    ],
+    "IsOpenWorld": true,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Liurnia of the Lakes",
+    "Name": "Caria Manor",
+    "PlayRegionID": 6200007,
+    "BonfireFlags": [
+      76230
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Liurnia of the Lakes",
+    "Name": "Manor Lower Level",
+    "PlayRegionID": 6200007,
+    "BonfireFlags": [
+      76231
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Liurnia of the Lakes",
+    "Name": "Royal Moongazing Grounds",
+    "PlayRegionID": 6200010,
+    "BonfireFlags": [
+      76232
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Liurnia of the Lakes",
+    "Name": "The Ravine",
+    "PlayRegionID": 6200006,
+    "BonfireFlags": [
+      76235,
+      76229,
+      76211
+    ],
+    "IsOpenWorld": true,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Liurnia of the Lakes",
+    "Name": "Cliffbottom Catacombs",
+    "PlayRegionID": 3006001,
+    "BonfireFlags": [
+      73006
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": true,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Liurnia of the Lakes",
+    "Name": "Road's End Catacombs",
+    "PlayRegionID": 3003001,
+    "BonfireFlags": [
+      73003
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": true,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Liurnia of the Lakes",
+    "Name": "Black Knife Catacombs",
+    "PlayRegionID": 3005001,
+    "BonfireFlags": [
+      73005
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": true,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Liurnia of the Lakes",
+    "Name": "Stillwater Cave",
+    "PlayRegionID": 3104001,
+    "BonfireFlags": [
+      73104
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": true,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Liurnia of the Lakes",
+    "Name": "Lakeside Crystal Cave",
+    "PlayRegionID": 3105001,
+    "BonfireFlags": [
+      73105
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": true,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Liurnia of the Lakes",
+    "Name": "Academy Crystal Cave",
+    "PlayRegionID": 3106001,
+    "BonfireFlags": [
+      73106
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": true,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Liurnia of the Lakes",
+    "Name": "Main Academy Gate",
+    "PlayRegionID": 1400011,
+    "BonfireFlags": [
+      76206
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Liurnia of the Lakes",
+    "Name": "Raya Lucaria Crystal Tunnel",
+    "PlayRegionID": 3202001,
+    "BonfireFlags": [
+      73202
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": true,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Liurnia of the Lakes",
+    "Name": "Divine Tower of Liurnia",
+    "PlayRegionID": 3411090,
+    "BonfireFlags": [
+      73422,
+      73421,
+      73420
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Bellum Highway",
+    "Name": "Bellum Highway",
+    "PlayRegionID": 6201000,
+    "BonfireFlags": [
+      76207,
+      76208,
+      76239,
+      76240
+    ],
+    "IsOpenWorld": true,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Bellum Highway",
+    "Name": "Grand Lift of Dectus, Jarburg",
+    "PlayRegionID": 6200090,
+    "BonfireFlags": [
+      76209,
+      76245
+    ],
+    "IsOpenWorld": true,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Ruin-Strewn Precipice",
+    "Name": "Ruin-Strewn Precipice",
+    "PlayRegionID": 3920002,
+    "BonfireFlags": [
+      73901
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Ruin-Strewn Precipice",
+    "Name": "Ruin-Strewn Precipice Overlook",
+    "PlayRegionID": 3920003,
+    "BonfireFlags": [
+      73902
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": true,
+    "IsActive": false
+  },
+  {
+    "Map": "Ruin-Strewn Precipice",
+    "Name": "Magma Wyrm Makar",
+    "PlayRegionID": 3920000,
+    "BonfireFlags": [
+      73900
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": true,
+    "IsActive": false
+  },
+  {
+    "Map": "Moonlight Altar",
+    "Name": "Moonlight Altar",
+    "PlayRegionID": 6202000,
+    "BonfireFlags": [
+      76250,
+      76251,
+      76252
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Academy of Raya Lucaria",
+    "Name": "Church of the Cuckoo",
+    "PlayRegionID": 1400013,
+    "BonfireFlags": [
+      71402
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Academy of Raya Lucaria",
+    "Name": "Schoolhouse Classroom",
+    "PlayRegionID": 1400015,
+    "BonfireFlags": [
+      71403
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Academy of Raya Lucaria",
+    "Name": "Debate Parlor",
+    "PlayRegionID": 1400010,
+    "BonfireFlags": [
+      71401
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Academy of Raya Lucaria",
+    "Name": "Raya Lucaria Grand Library",
+    "PlayRegionID": 1400000,
+    "BonfireFlags": [
+      71400
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": true,
+    "IsActive": false
+  },
+  {
+    "Map": "Altus Plateau",
+    "Name": "Rampartside Path",
+    "PlayRegionID": 6300005,
+    "BonfireFlags": [
+      76305
+    ],
+    "IsOpenWorld": true,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Altus Plateau",
+    "Name": "Stormcaller Church, Lux Ruins",
+    "PlayRegionID": 6300000,
+    "BonfireFlags": [
+      76300,
+      76302
+    ],
+    "IsOpenWorld": true,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Altus Plateau",
+    "Name": "The Shaded Castle",
+    "PlayRegionID": 6300001,
+    "BonfireFlags": [
+      76320,
+      76321
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Altus Plateau",
+    "Name": "Altus Highway Junction",
+    "PlayRegionID": 6300002,
+    "BonfireFlags": [
+      76301,
+      76303
+    ],
+    "IsOpenWorld": true,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Altus Plateau",
+    "Name": "Castellan's Hall",
+    "PlayRegionID": 6300030,
+    "BonfireFlags": [
+      76322
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Altus Plateau",
+    "Name": "Forest-Spanning Greatbridge",
+    "PlayRegionID": 6300003,
+    "BonfireFlags": [
+      76304,
+      76306
+    ],
+    "IsOpenWorld": true,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Altus Plateau",
+    "Name": "Unsightly Catacombs",
+    "PlayRegionID": 3012001,
+    "BonfireFlags": [
+      73012
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": true,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Altus Plateau",
+    "Name": "Sainted Hero's Grave",
+    "PlayRegionID": 3008001,
+    "BonfireFlags": [
+      73008
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": true,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Altus Plateau",
+    "Name": "Sage's Cave",
+    "PlayRegionID": 3119001,
+    "BonfireFlags": [
+      73119
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": true,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Altus Plateau",
+    "Name": "Perfumer's Grotto",
+    "PlayRegionID": 3118001,
+    "BonfireFlags": [
+      73118
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": true,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Altus Plateau",
+    "Name": "Dominula, Windmill Village, Road of Iniquity Side Path",
+    "PlayRegionID": 6300004,
+    "BonfireFlags": [
+      76307,
+      76308,
+      76313
+    ],
+    "IsOpenWorld": true,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Altus Plateau",
+    "Name": "Old Altus Tunnel",
+    "PlayRegionID": 3204001,
+    "BonfireFlags": [
+      73204
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": true,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Altus Plateau",
+    "Name": "Altus Tunnel",
+    "PlayRegionID": 3205001,
+    "BonfireFlags": [
+      73205
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": true,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Mt. Gelmir",
+    "Name": "Ninth Mt. Gelmir Campsite",
+    "PlayRegionID": 6302000,
+    "BonfireFlags": [
+      76352,
+      76351,
+      76350
+    ],
+    "IsOpenWorld": true,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Mt. Gelmir",
+    "Name": "Road of Iniquity",
+    "PlayRegionID": 6302001,
+    "BonfireFlags": [
+      76353
+    ],
+    "IsOpenWorld": true,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Mt. Gelmir",
+    "Name": "Seethewater Terminus, Primeval Sorcerer Azur",
+    "PlayRegionID": 6302002,
+    "BonfireFlags": [
+      76354,
+      76355,
+      76356,
+      76357
+    ],
+    "IsOpenWorld": true,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Mt. Gelmir",
+    "Name": "Wyndham Catacombs",
+    "PlayRegionID": 3007001,
+    "BonfireFlags": [
+      73007
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": true,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Mt. Gelmir",
+    "Name": "Gelmir Hero's Grave",
+    "PlayRegionID": 3009001,
+    "BonfireFlags": [
+      73009
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": true,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Mt. Gelmir",
+    "Name": "Seethewater Cave",
+    "PlayRegionID": 3107001,
+    "BonfireFlags": [
+      73107
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": true,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Mt. Gelmir",
+    "Name": "Volcano Cave",
+    "PlayRegionID": 3109001,
+    "BonfireFlags": [
+      73109
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": true,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Capital Outskirts",
+    "Name": "Capital Outskirts",
+    "PlayRegionID": 6301000,
+    "BonfireFlags": [
+      76309,
+      76310,
+      76311,
+      76312
+    ],
+    "IsOpenWorld": true,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Capital Outskirts",
+    "Name": "Capital Rampart",
+    "PlayRegionID": 6301090,
+    "BonfireFlags": [
+      76314
+    ],
+    "IsOpenWorld": true,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Capital Outskirts",
+    "Name": "Auriza Side Tomb",
+    "PlayRegionID": 3013091,
+    "BonfireFlags": [
+      73013
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": true,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Capital Outskirts",
+    "Name": "Auriza Hero's Grave",
+    "PlayRegionID": 3010001,
+    "BonfireFlags": [
+      73010
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": true,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Capital Outskirts",
+    "Name": "Sealed Tunnel",
+    "PlayRegionID": 3412011,
+    "BonfireFlags": [
+      73431
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": true,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Capital Outskirts",
+    "Name": "Divine Tower of West Altus",
+    "PlayRegionID": 3412090,
+    "BonfireFlags": [
+      73430,
+      73432
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Volcano Manor",
+    "Name": "Volcano Manor",
+    "PlayRegionID": 1600012,
+    "BonfireFlags": [
+      71602
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Volcano Manor",
+    "Name": "Prison Town Church",
+    "PlayRegionID": 1600014,
+    "BonfireFlags": [
+      71603
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Volcano Manor",
+    "Name": "Temple of Eiglay",
+    "PlayRegionID": 1600010,
+    "BonfireFlags": [
+      71601
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Volcano Manor",
+    "Name": "Guest Hall",
+    "PlayRegionID": 1600016,
+    "BonfireFlags": [
+      71604
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Volcano Manor",
+    "Name": "Audience Pathway",
+    "PlayRegionID": 1600006,
+    "BonfireFlags": [
+      71605
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": true,
+    "IsActive": false
+  },
+  {
+    "Map": "Volcano Manor",
+    "Name": "Abductor Virgin",
+    "PlayRegionID": 1600020,
+    "BonfireFlags": [
+      71606
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": true,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Volcano Manor",
+    "Name": "Subterranean Inquisition Chamber",
+    "PlayRegionID": 1600022,
+    "BonfireFlags": [
+      71607
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Volcano Manor",
+    "Name": "Rykard, Lord of Blasphemy",
+    "PlayRegionID": 1600000,
+    "BonfireFlags": [
+      71600
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": true,
+    "IsActive": false
+  },
+  {
+    "Map": "Leyndell, Royal Capital",
+    "Name": "Erdtree Sanctuary",
+    "PlayRegionID": 1100010,
+    "BonfireFlags": [
+      71101
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Leyndell, Royal Capital",
+    "Name": "East Capital Rampart",
+    "PlayRegionID": 1100012,
+    "BonfireFlags": [
+      71102
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Leyndell, Royal Capital",
+    "Name": "Lower Capital Church",
+    "PlayRegionID": 1100015,
+    "BonfireFlags": [
+      71103
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Leyndell, Royal Capital",
+    "Name": "Avenue Balcony",
+    "PlayRegionID": 1100013,
+    "BonfireFlags": [
+      71104
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Leyndell, Royal Capital",
+    "Name": "Queen's Bedchamber",
+    "PlayRegionID": 1100001,
+    "BonfireFlags": [
+      71107
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": true,
+    "IsActive": false
+  },
+  {
+    "Map": "Leyndell, Royal Capital",
+    "Name": "West Capital Rampart, Fortified Manor, First Floor",
+    "PlayRegionID": 1100016,
+    "BonfireFlags": [
+      71105,
+      71108
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Leyndell, Royal Capital",
+    "Name": "Divine Bridge",
+    "PlayRegionID": 1100017,
+    "BonfireFlags": [
+      71109
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Leyndell, Royal Capital",
+    "Name": "Elden Throne",
+    "PlayRegionID": 1100000,
+    "BonfireFlags": [
+      71100
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": true,
+    "IsActive": false
+  },
+  {
+    "Map": "Subterranean Shunning-Grounds",
+    "Name": "Underground Roadside",
+    "PlayRegionID": 3500002,
+    "BonfireFlags": [
+      73501
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Subterranean Shunning-Grounds",
+    "Name": "Forsaken Depths",
+    "PlayRegionID": 3500008,
+    "BonfireFlags": [
+      73502
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": true,
+    "IsActive": false
+  },
+  {
+    "Map": "Subterranean Shunning-Grounds",
+    "Name": "Leyndell Catacombs",
+    "PlayRegionID": 3500010,
+    "BonfireFlags": [
+      73503
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Subterranean Shunning-Grounds",
+    "Name": "Leyndell Catacombs Part II",
+    "PlayRegionID": 3500011,
+    "BonfireFlags": [
+      73503
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Subterranean Shunning-Grounds",
+    "Name": "Frenzied Flame Proscription",
+    "PlayRegionID": 3500092,
+    "BonfireFlags": [
+      73504
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Subterranean Shunning-Grounds",
+    "Name": "Cathedral of the Forsaken",
+    "PlayRegionID": 3500000,
+    "BonfireFlags": [
+      73500
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Leyndell, Ashen Capital",
+    "Name": "Leyndell, Capital of Ash",
+    "PlayRegionID": 1105011,
+    "BonfireFlags": [
+      71122,
+      71123
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": true,
+    "IsActive": false
+  },
+  {
+    "Map": "Leyndell, Ashen Capital",
+    "Name": "Queen's Bedchamber",
+    "PlayRegionID": 1105001,
+    "BonfireFlags": [
+      71124
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": true,
+    "IsActive": false
+  },
+  {
+    "Map": "Leyndell, Ashen Capital",
+    "Name": "Divine Bridge",
+    "PlayRegionID": 1105092,
+    "BonfireFlags": [
+      71125
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Leyndell, Ashen Capital",
+    "Name": "Elden Throne",
+    "PlayRegionID": 1105000,
+    "BonfireFlags": [
+      71120
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": true,
+    "IsActive": false
+  },
+  {
+    "Map": "Stone Platform",
+    "Name": "Fractured Marika",
+    "PlayRegionID": 1900000,
+    "BonfireFlags": [
+      71900
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": true,
+    "IsActive": false
+  },
+  {
+    "Map": "Stone Platform",
+    "Name": "Elden Beast",
+    "PlayRegionID": 1900001,
+    "BonfireFlags": [
+      71900
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": true,
+    "IsActive": false
+  },
+  {
+    "Map": "Caelid",
+    "Name": "Central Caelid",
+    "PlayRegionID": 6400001,
+    "BonfireFlags": [
+      76406,
+      76407,
+      76416,
+      76414,
+      76411,
+      76404,
+      76405,
+      76417,
+      76418
+    ],
+    "IsOpenWorld": true,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Caelid",
+    "Name": "Caelid North",
+    "PlayRegionID": 6400000,
+    "BonfireFlags": [
+      76400,
+      76401,
+      76403,
+      76410,
+      76402,
+      76409
+    ],
+    "IsOpenWorld": true,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Caelid",
+    "Name": "Chamber Outside the Plaza",
+    "PlayRegionID": 6400002,
+    "BonfireFlags": [
+      76420
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": true,
+    "IsActive": false
+  },
+  {
+    "Map": "Caelid",
+    "Name": "Redmane Castle Plaza",
+    "PlayRegionID": 6400010,
+    "BonfireFlags": [
+      76419
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Caelid",
+    "Name": "Starscourge Radahn",
+    "PlayRegionID": 6400040,
+    "BonfireFlags": [
+      76422
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": true,
+    "IsActive": false
+  },
+  {
+    "Map": "Caelid",
+    "Name": "Minor Erdtree Catacombs",
+    "PlayRegionID": 3014001,
+    "BonfireFlags": [
+      73014
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": true,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Caelid",
+    "Name": "Caelid Catacombs",
+    "PlayRegionID": 3015001,
+    "BonfireFlags": [
+      73015
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": true,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Caelid",
+    "Name": "War-Dead Catacombs",
+    "PlayRegionID": 3016001,
+    "BonfireFlags": [
+      73016
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": true,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Caelid",
+    "Name": "Abandoned Cave",
+    "PlayRegionID": 3120001,
+    "BonfireFlags": [
+      73120
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": true,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Caelid",
+    "Name": "Gaol Cave",
+    "PlayRegionID": 3121001,
+    "BonfireFlags": [
+      73121
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": true,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Caelid",
+    "Name": "Gael Tunnel",
+    "PlayRegionID": 3207001,
+    "BonfireFlags": [
+      73207
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": true,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Caelid",
+    "Name": "Gael Tunnel Part II",
+    "PlayRegionID": 3207002,
+    "BonfireFlags": [
+      73207
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": true,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Caelid",
+    "Name": "Rear Gael Tunnel Entrance",
+    "PlayRegionID": 3207090,
+    "BonfireFlags": [
+      73257
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": true,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Caelid",
+    "Name": "Sellia Crystal Tunnel",
+    "PlayRegionID": 3208001,
+    "BonfireFlags": [
+      73208
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": true,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Caelid",
+    "Name": "Chair-Crypt of Sellia",
+    "PlayRegionID": 6400020,
+    "BonfireFlags": [
+      76415
+    ],
+    "IsOpenWorld": true,
+    "IsDungeon": false,
+    "IsBoss": true,
+    "IsActive": false
+  },
+  {
+    "Map": "Swamp of Aeonia",
+    "Name": "Swamp of Aeonia",
+    "PlayRegionID": 6401000,
+    "BonfireFlags": [
+      76412,
+      76413
+    ],
+    "IsOpenWorld": true,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Greyoll's Dragonbarrow",
+    "Name": "Dragonbarrow",
+    "PlayRegionID": 6402000,
+    "BonfireFlags": [
+      76450,
+      76451,
+      76453,
+      76452,
+      76455
+    ],
+    "IsOpenWorld": true,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Greyoll's Dragonbarrow",
+    "Name": "Sellia Hideaway",
+    "PlayRegionID": 3111001,
+    "BonfireFlags": [
+      73111
+    ],
+    "IsOpenWorld": true,
+    "IsDungeon": true,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Greyoll's Dragonbarrow",
+    "Name": "Dragonbarrow Cave",
+    "PlayRegionID": 3110001,
+    "BonfireFlags": [
+      73110
+    ],
+    "IsOpenWorld": true,
+    "IsDungeon": true,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Greyoll's Dragonbarrow",
+    "Name": "Bestial Sanctum",
+    "PlayRegionID": 6402001,
+    "BonfireFlags": [
+      76454,
+      76456
+    ],
+    "IsOpenWorld": true,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Greyoll's Dragonbarrow",
+    "Name": "Divine Tower of Caelid: Center",
+    "PlayRegionID": 3413003,
+    "BonfireFlags": [
+      73441
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Greyoll's Dragonbarrow",
+    "Name": "Divine Tower of Caelid: Basement",
+    "PlayRegionID": 3413013,
+    "BonfireFlags": [
+      73440
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": true,
+    "IsActive": false
+  },
+  {
+    "Map": "Greyoll's Dragonbarrow",
+    "Name": "Isolated Divine Tower",
+    "PlayRegionID": 3415090,
+    "BonfireFlags": [
+      73460
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Forbidden Lands",
+    "Name": "Forbidden Lands",
+    "PlayRegionID": 6500000,
+    "BonfireFlags": [
+      76500
+    ],
+    "IsOpenWorld": true,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Forbidden Lands",
+    "Name": "Grand Lift of Rold",
+    "PlayRegionID": 6500090,
+    "BonfireFlags": [
+      76502
+    ],
+    "IsOpenWorld": true,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Forbidden Lands",
+    "Name": "Hidden Path to the Haligtree",
+    "PlayRegionID": 3020001,
+    "BonfireFlags": [
+      73020
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": true,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Forbidden Lands",
+    "Name": "Hidden Path to the Haligtree Part II",
+    "PlayRegionID": 3020002,
+    "BonfireFlags": [
+      73020
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": true,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Forbidden Lands",
+    "Name": "Divine Tower of East Altus",
+    "PlayRegionID": 3414011,
+    "BonfireFlags": [
+      73450,
+      73451
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Mountaintops of the Giants",
+    "Name": "Zamor Ruins",
+    "PlayRegionID": 6501000,
+    "BonfireFlags": [
+      76501,
+      76503
+    ],
+    "IsOpenWorld": true,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Mountaintops of the Giants",
+    "Name": "Central Mountaintops",
+    "PlayRegionID": 6501001,
+    "BonfireFlags": [
+      76505,
+      76504,
+      76520
+    ],
+    "IsOpenWorld": true,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Mountaintops of the Giants",
+    "Name": "Castle Sol",
+    "PlayRegionID": 6501002,
+    "BonfireFlags": [
+      76521
+    ],
+    "IsOpenWorld": true,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Mountaintops of the Giants",
+    "Name": "Spiritcaller's Cave",
+    "PlayRegionID": 3122001,
+    "BonfireFlags": [
+      73122
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": true,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Mountaintops of the Giants",
+    "Name": "Castle Sol Main Gate, Church of the Eclipse",
+    "PlayRegionID": 6501003,
+    "BonfireFlags": [
+      76522,
+      76523
+    ],
+    "IsOpenWorld": true,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Mountaintops of the Giants",
+    "Name": "Castle Sol Rooftop",
+    "PlayRegionID": 6501010,
+    "BonfireFlags": [
+      76524
+    ],
+    "IsOpenWorld": true,
+    "IsDungeon": false,
+    "IsBoss": true,
+    "IsActive": false
+  },
+  {
+    "Map": "Flame Peak",
+    "Name": "Giants' Gravepost, Foot of the Forge",
+    "PlayRegionID": 6502000,
+    "BonfireFlags": [
+      76506,
+      76507,
+      76508
+    ],
+    "IsOpenWorld": true,
+    "IsDungeon": false,
+    "IsBoss": true,
+    "IsActive": false
+  },
+  {
+    "Map": "Flame Peak",
+    "Name": "Fire Giant",
+    "PlayRegionID": 6502010,
+    "BonfireFlags": [
+      76509,
+      76510
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": true,
+    "IsActive": false
+  },
+  {
+    "Map": "Flame Peak",
+    "Name": "Giants' Mountaintop Catacombs",
+    "PlayRegionID": 3018001,
+    "BonfireFlags": [
+      73018
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": true,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Flame Peak",
+    "Name": "Giant-Conquering Hero's Grave",
+    "PlayRegionID": 3017002,
+    "BonfireFlags": [
+      73017
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": true,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Consecrated Snowfield",
+    "Name": "Consecrated Snowfield",
+    "PlayRegionID": 6503000,
+    "BonfireFlags": [
+      76550,
+      76551,
+      76652,
+      76653
+    ],
+    "IsOpenWorld": true,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Consecrated Snowfield",
+    "Name": "Consecrated Snowfield Catacombs",
+    "PlayRegionID": 3019001,
+    "BonfireFlags": [
+      73019
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": true,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Consecrated Snowfield",
+    "Name": "Cave of the Forlorn",
+    "PlayRegionID": 3112001,
+    "BonfireFlags": [
+      73112
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": true,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Consecrated Snowfield",
+    "Name": "Yelough Anix Tunnel",
+    "PlayRegionID": 3211001,
+    "BonfireFlags": [
+      73211
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": true,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Miquella's Haligtree",
+    "Name": "Haligtree Canopy",
+    "PlayRegionID": 1500011,
+    "BonfireFlags": [
+      71506
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Miquella's Haligtree",
+    "Name": "Haligtree Town Plaza",
+    "PlayRegionID": 1500012,
+    "BonfireFlags": [
+      71507,
+      71508
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": true,
+    "IsActive": false
+  },
+  {
+    "Map": "Miquella's Haligtree",
+    "Name": "Haligtree Promenade",
+    "PlayRegionID": 1500010,
+    "BonfireFlags": [
+      71505
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": true,
+    "IsActive": false
+  },
+  {
+    "Map": "Elphael, Brace of the Haligtree",
+    "Name": "Prayer Room",
+    "PlayRegionID": 1500001,
+    "BonfireFlags": [
+      71501
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Elphael, Brace of the Haligtree",
+    "Name": "Elphael Inner Wall, Drainage Channel",
+    "PlayRegionID": 1500002,
+    "BonfireFlags": [
+      71503,
+      71502
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Elphael, Brace of the Haligtree",
+    "Name": "Haligtree Roots",
+    "PlayRegionID": 1500003,
+    "BonfireFlags": [
+      71504
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": true,
+    "IsActive": false
+  },
+  {
+    "Map": "Elphael, Brace of the Haligtree",
+    "Name": "Malenia, Goddess of Rot",
+    "PlayRegionID": 1500000,
+    "BonfireFlags": [
+      71500
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": true,
+    "IsActive": false
+  },
+  {
+    "Map": "Ainsel River",
+    "Name": "Ainsel River Well Depths",
+    "PlayRegionID": 1201001,
+    "BonfireFlags": [
+      71211,
+      71212
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Ainsel River",
+    "Name": "Ainsel River Downstream",
+    "PlayRegionID": 1201002,
+    "BonfireFlags": [
+      71213
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Ainsel River",
+    "Name": "Ainsel River Downstream Part II",
+    "PlayRegionID": 1201003,
+    "BonfireFlags": [
+      71213
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Ainsel River",
+    "Name": "Astel, Naturalborn of the Void",
+    "PlayRegionID": 1204000,
+    "BonfireFlags": [
+      71240
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": true,
+    "IsActive": false
+  },
+  {
+    "Map": "Ainsel River",
+    "Name": "Dragonkin Soldier of Nokstella",
+    "PlayRegionID": 1201000,
+    "BonfireFlags": [
+      71210
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Ainsel River Main",
+    "Name": "Ainsel River Main",
+    "PlayRegionID": 1201011,
+    "BonfireFlags": [
+      71214
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Ainsel River Main",
+    "Name": "Nokstella, Eternal City",
+    "PlayRegionID": 1201013,
+    "BonfireFlags": [
+      71215
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Ainsel River Main",
+    "Name": "Nokstella Waterfall Basin",
+    "PlayRegionID": 1201014,
+    "BonfireFlags": [
+      71219
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Lake of Rot",
+    "Name": "Lake of Rot Shoreside",
+    "PlayRegionID": 1201015,
+    "BonfireFlags": [
+      71216
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Lake of Rot",
+    "Name": "Grand Cloister",
+    "PlayRegionID": 1201016,
+    "BonfireFlags": [
+      71218
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Lake of Rot",
+    "Name": "Grand Cloister Part II",
+    "PlayRegionID": 1201017,
+    "BonfireFlags": [
+      71218
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Nokron, Eternal City",
+    "Name": "Nokron, Eternal City",
+    "PlayRegionID": 1207026,
+    "BonfireFlags": [
+      71271
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Nokron, Eternal City",
+    "Name": "Mimic Tear",
+    "PlayRegionID": 1202020,
+    "BonfireFlags": [
+      71221
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Nokron, Eternal City",
+    "Name": "Ancestral Woods",
+    "PlayRegionID": 1202002,
+    "BonfireFlags": [
+      71224
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Nokron, Eternal City",
+    "Name": "Night's Sacred Ground",
+    "PlayRegionID": 1202007,
+    "BonfireFlags": [
+      71226
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Nokron, Eternal City",
+    "Name": "Aqueduct-Facing Cliffs",
+    "PlayRegionID": 1202003,
+    "BonfireFlags": [
+      71225
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Nokron, Eternal City",
+    "Name": "Aqueduct-Facing Cliffs Part II",
+    "PlayRegionID": 1202004,
+    "BonfireFlags": [
+      71225
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": true,
+    "IsActive": false
+  },
+  {
+    "Map": "Nokron, Eternal City",
+    "Name": "Great Waterfall Basin",
+    "PlayRegionID": 1202000,
+    "BonfireFlags": [
+      71220
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": true,
+    "IsActive": false
+  },
+  {
+    "Map": "Mohgwyn Palace",
+    "Name": "Palace Approach Ledge-Road",
+    "PlayRegionID": 1205001,
+    "BonfireFlags": [
+      71251
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Mohgwyn Palace",
+    "Name": "Dynasty Mausoleum Entrance",
+    "PlayRegionID": 1205004,
+    "BonfireFlags": [
+      71252
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Mohgwyn Palace",
+    "Name": "Dynasty Mausoleum Midpoint",
+    "PlayRegionID": 1205006,
+    "BonfireFlags": [
+      71253
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": true,
+    "IsActive": false
+  },
+  {
+    "Map": "Mohgwyn Palace",
+    "Name": "Cocoon of the Empyrean",
+    "PlayRegionID": 1205000,
+    "BonfireFlags": [
+      71250
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": true,
+    "IsActive": false
+  },
+  {
+    "Map": "Siofra River",
+    "Name": "Siofra River Well Depths",
+    "PlayRegionID": 1207031,
+    "BonfireFlags": [
+      71270
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Siofra River",
+    "Name": "Siofra River Bank",
+    "PlayRegionID": 1202033,
+    "BonfireFlags": [
+      71222
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Siofra River",
+    "Name": "Worshippers' Woods",
+    "PlayRegionID": 1202034,
+    "BonfireFlags": [
+      71223,
+      71227
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Deeproot Depths",
+    "Name": "Root-Facing Cliffs",
+    "PlayRegionID": 1203001,
+    "BonfireFlags": [
+      71231
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Deeproot Depths",
+    "Name": "Great Waterfall Crest Part II",
+    "PlayRegionID": 1203002,
+    "BonfireFlags": [
+      71232
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Deeproot Depths",
+    "Name": "Deeproot Depths",
+    "PlayRegionID": 1203003,
+    "BonfireFlags": [
+      71232,
+      71233
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Deeproot Depths",
+    "Name": "The Nameless Eternal City",
+    "PlayRegionID": 1203004,
+    "BonfireFlags": [
+      71234
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Deeproot Depths",
+    "Name": "Across the Roots",
+    "PlayRegionID": 1203005,
+    "BonfireFlags": [
+      71235
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": true,
+    "IsActive": false
+  },
+  {
+    "Map": "Deeproot Depths",
+    "Name": "Prince of Death's Throne",
+    "PlayRegionID": 1203000,
+    "BonfireFlags": [
+      71230
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": true,
+    "IsActive": false
+  },
+  {
+    "Map": "Crumbling Farum Azula",
+    "Name": "Crumbling Beast Grave",
+    "PlayRegionID": 1300012,
+    "BonfireFlags": [
+      71303
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Crumbling Farum Azula",
+    "Name": "Crumbling Beast Grave Depths, Tempest-Facing Balcony",
+    "PlayRegionID": 1300013,
+    "BonfireFlags": [
+      71304,
+      71305
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Crumbling Farum Azula",
+    "Name": "Dragon Temple",
+    "PlayRegionID": 1300017,
+    "BonfireFlags": [
+      71306
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": true,
+    "IsActive": false
+  },
+  {
+    "Map": "Crumbling Farum Azula",
+    "Name": "Dragon Temple Transept",
+    "PlayRegionID": 1300018,
+    "BonfireFlags": [
+      71307
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": true,
+    "IsActive": false
+  },
+  {
+    "Map": "Crumbling Farum Azula",
+    "Name": "Dragon Temple Altar",
+    "PlayRegionID": 1300010,
+    "BonfireFlags": [
+      71302
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": true,
+    "IsActive": false
+  },
+  {
+    "Map": "Crumbling Farum Azula",
+    "Name": "Dragon Temple Lift",
+    "PlayRegionID": 1300019,
+    "BonfireFlags": [
+      71308
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Crumbling Farum Azula",
+    "Name": "Dragon Temple Rooftop",
+    "PlayRegionID": 1300003,
+    "BonfireFlags": [
+      71309
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Crumbling Farum Azula",
+    "Name": "Dragonlord Placidusax",
+    "PlayRegionID": 1300020,
+    "BonfireFlags": [
+      71301
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": true,
+    "IsActive": false
+  },
+  {
+    "Map": "Crumbling Farum Azula",
+    "Name": "Beside the Great Bridge",
+    "PlayRegionID": 1300006,
+    "BonfireFlags": [
+      71310
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": true,
+    "IsActive": false
+  },
+  {
+    "Map": "Crumbling Farum Azula",
+    "Name": "Maliketh, the Black Blade",
+    "PlayRegionID": 1300000,
+    "BonfireFlags": [
+      71300
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": true,
+    "IsActive": false
+  }
+]

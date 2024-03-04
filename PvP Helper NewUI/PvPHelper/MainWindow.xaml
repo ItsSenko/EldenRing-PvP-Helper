@@ -71,11 +71,13 @@
                 <!--<local:TabButton Label="Lobby Manager" 
                                  UriSource="Resources/Images/format-list-text.svg"
                                  BtnCommand="{Binding LobbyManagerCommand}"/>-->
+                <local:TabButton Label="Region Manager" 
+                                 UriSource="Resources/Images/earth.svg"
+                                 BtnCommand="{Binding RegionManagerCommand}"/>
                 <local:TabButton Label="Misc" 
                                  UriSource="Resources/Images/misc-dots.svg"
                                  BtnCommand="{Binding MiscCommand}"/>
-                <local:TabButton Label="Coming Soon" 
-                                 UriSource="Resources/Images/help-circle.svg"/>
+                
 
             </StackPanel>
 
