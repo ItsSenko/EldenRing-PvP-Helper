@@ -1,4 +1,4 @@
 [submodule "Erd-Tools"]
 	path = Erd-Tools
 	url = https://github.com/ItsSenko/Erd-Tools
-	branch= dlc
+	branch = dlc
