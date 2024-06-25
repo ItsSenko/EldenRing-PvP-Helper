@@ -1,4 +1,9 @@
-﻿using System.Windows;
+﻿using PvPHelper.Console;
+using PvPHelper.MVVM.ViewModels;
+using System;
+using System.Threading;
+using System.Windows;
+using System.Windows.Threading;
 
 namespace PvPHelper
 {
@@ -7,5 +12,6 @@ namespace PvPHelper
     /// </summary>
     public partial class App : Application
     {
+        
     }
 }

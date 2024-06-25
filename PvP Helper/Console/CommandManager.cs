@@ -11,15 +11,25 @@ namespace PvPHelper.Console
         public CommandManager()
         {
             instance = this;
+            Program.OnUnhandledException += OnError;
         }
+
+        private void OnError(Exception args)
+        {
+            Log($"Unhandled Exception: {args.Message}");
+            Log($"Stack Trace: {args.StackTrace}");
+        }
+
         public void RegisterCommand(CommandBase newCommand)
         {
             _commands.Add(newCommand);
         }
 
-        public List<CommandBase> GetAllRegisteredCommands() {return _commands;}
+        public List<CommandBase> GetAllRegisteredCommands() {return _commands; }
 
         public static event Action LogLoaded;
+
+        
         private static Action<string> logAction;
         public static CommandManager RegisterConsole(Action<string> action)
         {
@@ -27,9 +37,22 @@ namespace PvPHelper.Console
             //LogLoaded.Invoke();
             return instance;
         }
-        public static void Log(string text)
+        public static void Log(string text, bool withTime = false)
         {
-            logAction.Invoke(text);
+            string SystemTime = DateTime.Now.ToString("[" + "hh:mm:ss" + "]");
+
+            if (text.Length > (withTime ? 64 : 75))
+            {
+                var startString = text.Substring(0, 64);
+
+                var endString = text.Substring(64);
+                Log(startString);
+                Log(endString, withTime = false);
+                return;
+            }
+            string final = withTime ? $"{SystemTime} {text}" : text;
+            logAction.Invoke(final);
+            Program.InvokeLog(final);
         }
         public void HandleInput(string input)
         {

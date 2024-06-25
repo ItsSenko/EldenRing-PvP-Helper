@@ -6,8 +6,8 @@
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
 	  <IncludeAllContentForSelfExtract>true</IncludeAllContentForSelfExtract>
+	  <StartupObject>PvPHelper.Program</StartupObject>
   </PropertyGroup>
-
   <ItemGroup>
 
     <None Remove="MVVM\Views\UserControls\grave_scythe.png" />

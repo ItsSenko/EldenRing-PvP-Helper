@@ -13,6 +13,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Threading;
 
 namespace PvPHelper.MVVM.ViewModels
 {
@@ -49,8 +50,8 @@ namespace PvPHelper.MVVM.ViewModels
 
         #endregion
         public Dictionary<string, ViewModelBase> _viewModels = new();
-        
 
+        
         private ErdHook _hook;
         private VersionController _vController;
         public static Player player;

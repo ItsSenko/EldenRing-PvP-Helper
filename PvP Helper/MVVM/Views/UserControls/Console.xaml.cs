@@ -52,20 +52,10 @@ namespace PvPHelper.MVVM.Views.UserControls
         private CommandManager commandManager; 
 
         #endregion
-        public void Log(string text, bool withTime = true)
+        public void Log(string text)
         {
-            string SystemTime = DateTime.Now.ToString("[" + "hh:mm:ss" + "]");
-
-            if (text.Length > (withTime ? 64 : 75))
-            {
-                var startString = text.Substring(0, 64);
-
-                var endString = text.Substring(64);
-                Log(startString);
-                Log(endString, withTime = false);
-                return;
-            }
-            ConsoleOutput.Add(withTime ? $"{SystemTime} {text}" : text);
+            
+            ConsoleOutput.Add(text);
             Scroller.ScrollToBottom();
         }
 
