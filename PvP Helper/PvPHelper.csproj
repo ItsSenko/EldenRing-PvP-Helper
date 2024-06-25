@@ -172,10 +172,6 @@
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
     </Page>
 
-    <ProjectReference Include="..\..\erdtools\src\Erd-Tools\Erd-Tools.csproj" />
-    <ProjectReference Include="..\..\erdtools\src\PropertyHook\PropertyHook\PropertyHook.csproj" />
-    <ProjectReference Include="..\..\erdtools\src\SoulsFormats\SoulsFormats\SoulsFormats.csproj" />
-
   </ItemGroup>
 
 	<ItemGroup>
@@ -3485,6 +3481,12 @@
 	  <ResourceFiles Remove="Resources\Assembly\OpenMenu.asm" />
 	  <ResourceFiles Remove="Resources\Images\format-list-text.svg" />
 	  <ResourceFiles Remove="Resources\Version.txt" />
+	</ItemGroup>
+	
+	<ItemGroup>
+	  <ProjectReference Include="..\Erd-Tools\src\Erd-Tools\Erd-Tools.csproj" />
+	  <ProjectReference Include="..\Erd-Tools\src\PropertyHook\PropertyHook\PropertyHook.csproj" />
+	  <ProjectReference Include="..\Erd-Tools\src\SoulsFormats\SoulsFormats\SoulsFormats.csproj" />
 	</ItemGroup>
 	
 	<Target Name="CopyResources" Condition="'$(Configuration)'!='Publish'" AfterTargets="Build">

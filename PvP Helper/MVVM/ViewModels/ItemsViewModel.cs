@@ -172,8 +172,8 @@ namespace PvPHelper.MVVM.ViewModels
                 _runesToAdd = value;
                 OnPropertyChanged();
                 CurrRunesToAddText = value.ToString();
-                if (value < 999999999 - _player.HeldRunes)
-                    MaxChecked = false;
+                /*if (value < 999999999 - _player.HeldRunes)
+                    MaxChecked = false;*/
             }
         }
         private string _currRunesToAddText;
@@ -195,13 +195,13 @@ namespace PvPHelper.MVVM.ViewModels
                     MaxChecked = false;
                 _maxChecked = value;
                 OnPropertyChanged();
-                if (value && _hook.Loaded && _hook.Hooked)
+               /* if (value && _hook.Loaded && _hook.Hooked)
                 {
                     CurrRunesToAdd = 999999999 - _player.HeldRunes;
-                }
+                }*/
 
-                if (_hook.Loaded && _hook.Hooked)
-                    MaxRunes = 999999999 - _player.HeldRunes;
+                /*if (_hook.Loaded && _hook.Hooked)
+                    MaxRunes = 999999999 - _player.HeldRunes;*/
             }
         }
         #endregion
@@ -470,7 +470,7 @@ namespace PvPHelper.MVVM.ViewModels
         {
             if (_hook.Loaded && _hook.Hooked)
             {
-                CurrHeldRunes = _player.HeldRunes.ToString();
+                //CurrHeldRunes = _player.HeldRunes.ToString();
             }
         }
 
@@ -572,7 +572,7 @@ namespace PvPHelper.MVVM.ViewModels
                 if (!_hook.Loaded || !_hook.Hooked)
                     return;
 
-                _hook.AddRunes(CurrRunesToAdd);
+                //_hook.AddRunes(CurrRunesToAdd);
             });
             Gib = new RelayCommand((o) => { GibItem(); });
         }
@@ -581,8 +581,8 @@ namespace PvPHelper.MVVM.ViewModels
             if (!_hook.Loaded)
                 return;
 
-            ChrName = _player.PlayerName;
-            ChrLevel = "Lvl: " + _player.SoulLevel.ToString();
+            ChrName = _player.Name;
+            ChrLevel = "Lvl: " + "smth"/*_player..ToString()*/;
 
             Vigor = "Vigor: " + _player.Vigor.ToString();
             Mind = "Mind: " + _player.Mind.ToString();
