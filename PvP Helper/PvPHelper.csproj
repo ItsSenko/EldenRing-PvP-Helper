@@ -12,6 +12,8 @@
 
     <None Remove="MVVM\Views\UserControls\grave_scythe.png" />
 
+    <None Remove="Resources\Assembly\AddRunes.asm" />
+
     <None Remove="Resources\Assembly\FreeCamCode.asm" />
 
     <None Remove="Resources\Assembly\FreeCamInject.asm" />
@@ -72,6 +74,7 @@
     <Resource Include="Resources\Images\Discord.png" />
     <Resource Include="Resources\Images\shunter.ico" />
     <Resource Include="Resources\Images\shunter.png" />
+    <EmbeddedResource Include="Resources\Assembly\AddRunes.asm" />
     <EmbeddedResource Include="Resources\Assembly\FreeCamCode.asm" />
     <EmbeddedResource Include="Resources\Assembly\FreeCamInject.asm" />
     <EmbeddedResource Include="Resources\Assembly\KickOutFunction.asm" />
@@ -3478,6 +3481,7 @@
 	</ItemGroup>
 	
 	<ItemGroup>
+	  <ResourceFiles Remove="Resources\Assembly\AddRunes.asm" />
 	  <ResourceFiles Remove="Resources\Assembly\OpenMenu.asm" />
 	  <ResourceFiles Remove="Resources\Images\format-list-text.svg" />
 	  <ResourceFiles Remove="Resources\Version.txt" />

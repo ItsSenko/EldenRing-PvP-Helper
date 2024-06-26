@@ -12,6 +12,8 @@ using PvPHelper.MVVM.ViewModels;
 using PvPHelper.MVVM.Models.Regions;
 using System.Runtime.InteropServices;
 using PvPHelper.MVVM.Views;
+using Erd_Tools.Models.Entities;
+using PvPHelper.Core.Extensions;
 
 namespace PvPHelper.Console.Commands
 {
@@ -36,13 +38,12 @@ namespace PvPHelper.Console.Commands
 
         protected override void OnTriggerCommand()
         {
-            CommandManager.Log("Hi :3");
+            Player player = new(hook.PlayerIns, hook);
 
-            CommandManager.Log(CustomPointers.CSMenuMan.ReadByte(0x13C).ToString());
-            CommandManager.Log(CustomPointers.CSMenuMan.Resolve().ToString("X"));
-
-            hook.GameMan.WriteByte(0xB42, 1);
-
+            CommandManager.Log(player._instance.Resolve().ToString("X"));
+            CommandManager.Log(player.Data.Resolve().ToString("X"));
+            CommandManager.Log(player.ChrData.Resolve().ToString("X"));
+            CommandManager.Log(player.GetRunes().ToString());
         }
         protected override void OnTriggerCommandWithParameters(List<string> parameters)
         {

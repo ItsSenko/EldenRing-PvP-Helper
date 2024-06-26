@@ -37,19 +37,10 @@ namespace PvPHelper.Console
             //LogLoaded.Invoke();
             return instance;
         }
-        public static void Log(string text, bool withTime = false)
+        public static void Log(string text, bool withTime = true)
         {
             string SystemTime = DateTime.Now.ToString("[" + "hh:mm:ss" + "]");
 
-            if (text.Length > (withTime ? 64 : 75))
-            {
-                var startString = text.Substring(0, 64);
-
-                var endString = text.Substring(64);
-                Log(startString);
-                Log(endString, withTime = false);
-                return;
-            }
             string final = withTime ? $"{SystemTime} {text}" : text;
             logAction.Invoke(final);
             Program.InvokeLog(final);

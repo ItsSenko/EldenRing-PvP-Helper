@@ -54,7 +54,15 @@ namespace PvPHelper.MVVM.Views.UserControls
         #endregion
         public void Log(string text)
         {
-            
+            if (text.Length > 74)
+            {
+                var startString = text.Substring(0, 64);
+
+                var endString = text.Substring(64);
+                Log(startString);
+                Log(endString);
+                return;
+            }
             ConsoleOutput.Add(text);
             Scroller.ScrollToBottom();
         }

@@ -15,6 +15,7 @@ using System.Threading;
 using Erd_Tools.Models.Items;
 using static Erd_Tools.Models.Weapon;
 using PvPHelper.MVVM.Commands.Items;
+using PvPHelper.Core.Extensions;
 
 namespace PvPHelper.MVVM.ViewModels
 {
@@ -172,8 +173,8 @@ namespace PvPHelper.MVVM.ViewModels
                 _runesToAdd = value;
                 OnPropertyChanged();
                 CurrRunesToAddText = value.ToString();
-                /*if (value < 999999999 - _player.HeldRunes)
-                    MaxChecked = false;*/
+                if (value < 999999999 - _player.GetRunes())
+                    MaxChecked = false;
             }
         }
         private string _currRunesToAddText;
@@ -195,13 +196,13 @@ namespace PvPHelper.MVVM.ViewModels
                     MaxChecked = false;
                 _maxChecked = value;
                 OnPropertyChanged();
-               /* if (value && _hook.Loaded && _hook.Hooked)
+                if (value && _hook.Loaded && _hook.Hooked)
                 {
-                    CurrRunesToAdd = 999999999 - _player.HeldRunes;
-                }*/
+                    CurrRunesToAdd = 999999999 - _player.GetRunes();
+                }
 
-                /*if (_hook.Loaded && _hook.Hooked)
-                    MaxRunes = 999999999 - _player.HeldRunes;*/
+                if (_hook.Loaded && _hook.Hooked)
+                    MaxRunes = 999999999 - _player.GetRunes();
             }
         }
         #endregion
@@ -470,7 +471,7 @@ namespace PvPHelper.MVVM.ViewModels
         {
             if (_hook.Loaded && _hook.Hooked)
             {
-                //CurrHeldRunes = _player.HeldRunes.ToString();
+                CurrHeldRunes = _player.GetRunes().ToString();
             }
         }
 
@@ -572,7 +573,7 @@ namespace PvPHelper.MVVM.ViewModels
                 if (!_hook.Loaded || !_hook.Hooked)
                     return;
 
-                //_hook.AddRunes(CurrRunesToAdd);
+                _player.AddRunes(CurrRunesToAdd);
             });
             Gib = new RelayCommand((o) => { GibItem(); });
         }
@@ -581,17 +582,17 @@ namespace PvPHelper.MVVM.ViewModels
             if (!_hook.Loaded)
                 return;
 
-            ChrName = _player.Name;
-            ChrLevel = "Lvl: " + "smth"/*_player..ToString()*/;
+            ChrName = _player.PlayerName;
+            ChrLevel = "Lvl: " + _player.GetLevel().ToString();
 
-            Vigor = "Vigor: " + _player.Vigor.ToString();
-            Mind = "Mind: " + _player.Mind.ToString();
-            Endurance = "Endurance: " + _player.Endurance.ToString();
-            Strength = "Strength: " + _player.Strength.ToString();
-            Dexterity = "Dexterity: " + _player.Dexterity.ToString();
-            Intelligence = "Intelligence: " + _player.Intelligence.ToString();
-            Faith = "Faith: " + _player.Faith.ToString();
-            Arcane = "Arcane: " + _player.Arcane.ToString();
+            Vigor = "Vigor: " + _player.GetVigor().ToString();
+            Mind = "Mind: " + _player.GetMind().ToString();
+            Endurance = "Endurance: " + _player.GetEndurance().ToString();
+            Strength = "Strength: " + _player.GetStrength().ToString();
+            Dexterity = "Dexterity: " + _player.GetDexterity().ToString();
+            Intelligence = "Intelligence: " + _player.GetIntelligence().ToString();
+            Faith = "Faith: " + _player.GetFaith().ToString();
+            Arcane = "Arcane: " + _player.GetArcane().ToString();
         }
 
         private void FlaskUpgrades()

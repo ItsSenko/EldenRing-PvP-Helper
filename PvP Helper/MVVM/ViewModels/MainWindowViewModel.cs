@@ -4,6 +4,7 @@ using PropertyHook;
 using PvPHelper.Console;
 using PvPHelper.Console.Commands;
 using PvPHelper.Core;
+using PvPHelper.Core.Extensions;
 using PvPHelper.MVVM.Dialogs;
 using PvPHelper.MVVM.Models;
 using PvPHelper.MVVM.Views;
@@ -52,7 +53,7 @@ namespace PvPHelper.MVVM.ViewModels
         public Dictionary<string, ViewModelBase> _viewModels = new();
 
         
-        private ErdHook _hook;
+        private static ErdHook _hook;
         private VersionController _vController;
         public static Player player;
         public bool HookCompletelyLoaded 
@@ -60,12 +61,14 @@ namespace PvPHelper.MVVM.ViewModels
             get { return _hook is not null && _hook.Hooked && _hook.Loaded; }
         }
         
+        public static ErdHook GetMainHook() => _hook;
         
         public CommandManager commandManager;
         public PHPointer LocalPlayer;
         public MainWindowViewModel()
         {
             _hook = new(5000, 1000, new(x => x.MainWindowTitle is "ELDEN RING™" or "ELDEN RING"));
+            ExtensionsCore.Initialize();
             commandManager = new();
             _vController = new(Directory.GetCurrentDirectory());
             VersionText = _vController.CurrentLocalVersion;
