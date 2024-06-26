@@ -106,6 +106,8 @@ namespace PvPHelper.MVVM.Models
         {
             List<BuildPrefab> builds = new();
             string FilePath = Path.Combine(Directory.GetCurrentDirectory(), "Builds/");
+            if (!Directory.Exists(FilePath))
+                Directory.CreateDirectory(FilePath);
             foreach (string fileName in Directory.GetFiles(FilePath, "*.json"))
             {
                 try

@@ -50,7 +50,7 @@ namespace PvPHelper.Core
             string basePath = Directory.GetCurrentDirectory();
             string versionFilePath = Path.Combine(basePath, $"{path}/Version.txt");
 
-            return File.ReadAllText(versionFilePath);
+            return File.Exists(versionFilePath) ? File.ReadAllText(versionFilePath) : "0.0.0";
         }
 
         private string GetCurrentGlobalVersion(string releaseUrl)

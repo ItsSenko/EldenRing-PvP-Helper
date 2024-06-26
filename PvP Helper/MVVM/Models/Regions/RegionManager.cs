@@ -32,6 +32,8 @@ namespace PvPHelper.MVVM.Models.Regions
         {
             List<SavedRegion> savedRegions = new();
             string filePath = Path.Combine(Directory.GetCurrentDirectory(), "Saved Regions/");
+            if (!Directory.Exists(filePath))
+                Directory.CreateDirectory(filePath);
             foreach(string fileName in Directory.GetFiles(filePath, "*.json"))
             {
                 try
