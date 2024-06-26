@@ -14,6 +14,8 @@ using System.Runtime.InteropServices;
 using PvPHelper.MVVM.Views;
 using Erd_Tools.Models.Entities;
 using PvPHelper.Core.Extensions;
+using SoulsFormats;
+using System.IO;
 
 namespace PvPHelper.Console.Commands
 {
@@ -24,7 +26,11 @@ namespace PvPHelper.Console.Commands
         private PHPointer ArrayStartPtr;
         private PHPointer ArrayEndPtr;
 
+        private static List<Infusion> infusions = new List<Infusion>() { Infusion.Blood, Infusion.Cold, Infusion.Fire, Infusion.FlameArt, Infusion.Heavy, Infusion.Keen, Infusion.Lightning, Infusion.Magic, Infusion.Occult, Infusion.Posion, Infusion.Quality, Infusion.Sacred, Infusion.Standard};
+
         private MainWindowViewModel viewModel;
+
+        private static string resourcesPath => Path.Combine(Directory.GetCurrentDirectory(), "Resources/Items");
         public TestModal(ErdHook hook, MainWindowViewModel viewModel)
         {
             CommandString = "/test";
@@ -38,12 +44,91 @@ namespace PvPHelper.Console.Commands
 
         protected override void OnTriggerCommand()
         {
-            Player player = new(hook.PlayerIns, hook);
+            var path = Path.Combine("C:/Users/eleme/Documents/PvP Helper Project/EldenRing-PvP-Helper - DLC Branch/", "msg/engus/");
+            CommandManager.Log("Getting Data...");
+            GetFilesBytes(path);
+            CommandManager.Log("Got all data");
+        }
 
-            CommandManager.Log(player._instance.Resolve().ToString("X"));
-            CommandManager.Log(player.Data.Resolve().ToString("X"));
-            CommandManager.Log(player.ChrData.Resolve().ToString("X"));
-            CommandManager.Log(player.GetRunes().ToString());
+        static void GetFilesBytes(string folderPath)
+        {
+            string[] files = Directory.GetFiles(folderPath);
+            foreach (string file in files)
+            {
+                try
+                {
+                    byte[] fileBytes = File.ReadAllBytes(file);
+                    foreach (var bnd in BND4.Read(fileBytes).Files)
+                    {
+                        /*CommandManager.Log($"From file: {Path.GetFileName(file)}");
+                        CommandManager.Log($"BND: {bnd.ID} - {bnd.Name}");*/
+
+                        if (bnd.Name.Contains("WeaponName_dlc01"))
+                        {
+                            var fmg = FMG.Read(bnd.Bytes);
+                            CommandManager.Log(bnd.Name);
+                            foreach (var entry in fmg.Entries)
+                            {
+                                if (isInFile("Weapons", $"{entry.ID} {entry.Text}"))
+                                    continue;
+                                if (entry.ID == 0)
+                                    continue;
+                                if (string.IsNullOrEmpty(entry.Text) || entry.Text.Contains("[ERROR]"))
+                                    continue;
+                                if (hasInfusion(entry.Text))
+                                    continue;
+
+                                CommandManager.Log($"{entry.ID} - {entry.Text}", false);
+                            }
+                            
+                        }
+                        /*var fmg = FMG.Read(bnd.Bytes);
+                        foreach(var entry in fmg.Entries)
+                        {
+                            CommandManager.Log($"FMG: {entry.ID} - {entry.Text}");
+                        }*/
+
+                    }
+                }
+                catch (Exception ex)
+                {
+                    CommandManager.Log($"Unhandled Exception: {ex.Message} {ex.StackTrace}");
+                }
+            }
+
+            // Recursively get files from subdirectories
+            string[] subdirectories = Directory.GetDirectories(folderPath);
+            foreach (string subdirectory in subdirectories)
+            {
+                GetFilesBytes(subdirectory);
+            }
+        }
+
+        public static bool isInFile(string path, string text)
+        {
+            foreach (var file in Directory.GetFiles(Path.Combine(resourcesPath, path)))
+            {
+                string[] items = File.ReadAllLines(file);
+                if (items.FirstOrDefault(x => x.Contains(text)) != null)
+                    return true;
+                if (items.FirstOrDefault(x => x.StartsWith(text)) != null)
+                    return true;
+            }
+            return false;
+        }
+
+        public static bool hasInfusion(string name)
+        {
+            if (name.Contains("Flame Art"))
+                return true;
+            if (name.Contains("Poison"))
+                return true;
+            foreach(var inf in infusions)
+            {
+                if (name.Contains(inf.ToString()))
+                    return true;
+            }
+            return false;
         }
         protected override void OnTriggerCommandWithParameters(List<string> parameters)
         {

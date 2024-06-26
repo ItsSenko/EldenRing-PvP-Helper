@@ -3493,6 +3493,10 @@
 	  <ProjectReference Include="..\Erd-Tools\src\SoulsFormats\SoulsFormats\SoulsFormats.csproj" />
 	</ItemGroup>
 	
+	<ItemGroup>
+	  <Folder Include="Resources\Items\DLC\" />
+	</ItemGroup>
+	
 	<Target Name="CopyResources" Condition="'$(Configuration)'!='Publish'" AfterTargets="Build">
 		<Message Text="Copy resource files" Importance="High" />
 		<Message Text="Files: @(ResourceFiles)" Importance="High" />
