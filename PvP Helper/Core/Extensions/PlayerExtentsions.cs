@@ -24,7 +24,7 @@ namespace PvPHelper.Core.Extensions
 
         public static void AddRunes(this Player player, int amount)
         {
-            string asmString = Utils.GetEmbededResource("Resources.Assembly.AddRunes.asm");
+            string asmString = Helpers.GetEmbededResource("Resources.Assembly.AddRunes.asm");
             string asm = string.Format(asmString, ExtensionsCore.GetMainHook().PlayerGameData.Resolve(), amount, ExtensionsCore.AddSoul_Call.Resolve());
             ExtensionsCore.GetMainHook().AsmExecute(asm);
         }

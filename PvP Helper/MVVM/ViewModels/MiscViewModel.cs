@@ -84,10 +84,23 @@ namespace PvPHelper.MVVM.ViewModels
             });
 
             MenuItemsSource = new();
-            MenuItemsSource.Add(new("Respec", 0x7FF180));
-            MenuItemsSource.Add(new("Level", 0x7FE720));
-            MenuItemsSource.Add(new("Cosmetics", 0x7FC270));
-            MenuItemsSource.Add(new("Shop", 0x7FCD30));
+            MenuItemsSource.Add(new("Memorize Spells", 0x80f600));
+            MenuItemsSource.Add(new("Sort Chest", 0x8104c0));
+            MenuItemsSource.Add(new("Level", 0x810160));
+            MenuItemsSource.Add(new("Ashes of War", 0x80eee0));
+            MenuItemsSource.Add(new("Flask Allocation", 0x80e080));
+            MenuItemsSource.Add(new("Wondrous Physick Mix", 0x80de30));
+            MenuItemsSource.Add(new("Great Runes", 0x80d940));
+            MenuItemsSource.Add(new("Rebirth", 0x810bc0));
+            MenuItemsSource.Add(new("Cosmetics (Mirror)", 0x80dcb0));
+            MenuItemsSource.Add(new("Spirit Tuning", 0x80daf0));
+            MenuItemsSource.Add(new("Blacksmith", 0x80ebb0));
+            MenuItemsSource.Add(new("Smithing Table", 0x80f4f0));
+            MenuItemsSource.Add(new("Sell Item", 0x80edd0));
+            MenuItemsSource.Add(new("Shop (All)", 0x80e770));
+            MenuItemsSource.Add(new("Shop (Rememberance)", 0x810920));
+            MenuItemsSource.Add(new("Shop (Dragon Communion)", 0x810a70, 101950, 101999));
+            //MenuItemsSource.Add(new("Shop (Champions Equipment)", 0x80e400));
         }
 
         private void OnMenuChanged()
@@ -100,12 +113,13 @@ namespace PvPHelper.MVVM.ViewModels
 
             MenuItem menu = SelectedMenu as MenuItem;
 
-            OpenMenu(menu.Name, GetAddress(menu.Offset)); 
+            OpenMenu(menu.Name, GetAddress(menu.Offset), menu.startId, menu.endId); 
         }
-        private void OpenMenu(string name, IntPtr address)
+        private void OpenMenu(string name, IntPtr address, int startId, int endId)
         {
-            string asmStr = Helpers.GetEmbededResource(name.ToLower() == "shop" ? "Resources.Assembly.OpenShopMenu.asm" : "Resources.Assembly.OpenMenu.asm");
-            string asm = string.Format(asmStr, address.ToString("X"));
+            bool isShop = name.ToLower().StartsWith("shop");
+            string asmStr = Helpers.GetEmbededResource(isShop ? "Resources.Assembly.OpenShopMenu.asm" : "Resources.Assembly.OpenMenu.asm");
+            string asm = isShop ? string.Format(asmStr, startId.ToString(), endId.ToString(), address.ToString("X")) : string.Format(asmStr, address.ToString("X"));
             hook.AsmExecute(asm);
         }
         private IntPtr GetAddress(int offset)

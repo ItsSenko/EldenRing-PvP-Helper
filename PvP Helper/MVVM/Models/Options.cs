@@ -55,10 +55,14 @@ namespace PvPHelper.MVVM.Models
     public class MenuItem : BaseOption
     {
         public int Offset { get; set; }
-        public MenuItem(string name, int offset)
+        public int startId { get; set; }
+        public int endId { get; set; }
+        public MenuItem(string name, int offset, int startId = 0, int endId = 9999999)
         {
             this.Offset = offset;
             this.Name = name;
+            this.startId = startId;
+            this.endId = endId;
         }
     }
 }
