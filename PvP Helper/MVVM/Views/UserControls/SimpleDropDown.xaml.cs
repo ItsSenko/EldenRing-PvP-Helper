@@ -16,6 +16,21 @@ namespace PvPHelper.MVVM.Views.UserControls
         #region Data Bindings
 
 
+
+
+        public bool Border
+        {
+            get { return (bool)GetValue(BorderProperty); }
+            set { SetValue(BorderProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for Border.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty BorderProperty =
+            DependencyProperty.Register("Border", typeof(bool), typeof(SimpleDropDown));
+
+
+
+
         public object SelectedItem
         {
             get { return (object)GetValue(SelectedItemProperty); }

@@ -24,7 +24,10 @@
                           HorizontalAlignment="Left"
                           Margin="10,0,0,0"
                           Height="15"/>
-                <local:ComboBoxSimple ItemContainerStyle="{DynamicResource ComboBoxItemStyle}" x:Name="comboBox" Style="{DynamicResource ComboBoxStyle}"
+                <local:ComboBoxSimple 
+                        ItemContainerStyle="{DynamicResource ComboBoxItemStyle}" 
+                        Style="{DynamicResource ComboBoxStyle}"
+                        x:Name="comboBox" 
                           IsEditable="True"
                           IsTextSearchEnabled="False"
                           Height="Auto"

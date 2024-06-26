@@ -7,7 +7,19 @@
              x:Name="SimpleDropDownRoot"
              mc:Ignorable="d" 
              d:DesignHeight="20" d:DesignWidth="200">
-    <Border Background="#1e1e1e" CornerRadius="5">
+    <!--<Border Background="#1e1e1e" CornerRadius="5" BorderBrush="{DynamicResource LighterTextBrush}">
+        <Border.Style>
+            <Style TargetType="Border">
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding Border, ElementName=SimpleDropDownRoot}" Value="True">
+                        <Setter Property="BorderThickness" Value="1"/>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Border, ElementName=SimpleDropDownRoot}" Value="False">
+                        <Setter Property="BorderThickness" Value="0"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </Border.Style>
         <Grid>
             <ComboBox Style="{DynamicResource ComboBoxStyle}"
                       ItemContainerStyle="{DynamicResource ComboBoxItemStyle}"
@@ -22,7 +34,36 @@
                       SelectedItem="{Binding SelectedItem, ElementName=SimpleDropDownRoot}"
                       ItemsSource="{Binding ItemsSource, ElementName=SimpleDropDownRoot}"
                       IsSynchronizedWithCurrentItem="True"
-                      VerticalContentAlignment="Center"/>
+                      VerticalContentAlignment="Center"
+                      />
         </Grid>
+    </Border>-->
+    <Border Background="#1e1e1e" CornerRadius="5" BorderBrush="{DynamicResource LighterTextBrush}">
+        <!--<Border.Style>
+            <Style TargetType="Border">
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding Border, ElementName=SimpleDropDownRoot}" Value="True">
+                        <Setter Property="BorderThickness" Value="1"/>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Border, ElementName=SimpleDropDownRoot}" Value="False">
+                        <Setter Property="BorderThickness" Value="0"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </Border.Style>-->
+        <ComboBox Style="{DynamicResource ComboBoxStyle}"
+                  ItemContainerStyle="{DynamicResource ComboBoxItemStyle}"
+                  BorderThickness="1"
+                  Foreground="#757575"
+                  Background="#1e1e1e"
+                  ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                  IsTextSearchEnabled="False"
+                  IsEditable="False"
+                  SelectedIndex="{Binding SelectedIndex, ElementName=SimpleDropDownRoot}"
+                  SelectedItem="{Binding SelectedItem, ElementName=SimpleDropDownRoot}"
+                  ItemsSource="{Binding ItemsSource, ElementName=SimpleDropDownRoot}"
+                  IsSynchronizedWithCurrentItem="True"
+                  VerticalContentAlignment="Center"
+                  />
     </Border>
 </UserControl>

@@ -1,10 +1,12 @@
-﻿using System.Windows.Controls;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Controls;
 
 namespace PvPHelper.MVVM.Views
 {
-    /// <summary>
-    /// Interaction logic for MiscView.xaml
-    /// </summary>
     public partial class MiscView : UserControl
     {
         public MiscView()

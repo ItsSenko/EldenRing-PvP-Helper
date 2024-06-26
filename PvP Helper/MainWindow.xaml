@@ -28,10 +28,11 @@
     </Window.DataContext>
     <Grid Width="Auto">
         <Grid.Background>
-            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <SolidColorBrush Color="{DynamicResource Dark}"/>
+            <!--<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                 <GradientStop Color="{DynamicResource Background}"/>
                 <GradientStop Color="{DynamicResource Dark}" Offset="1"/>
-            </LinearGradientBrush>
+            </LinearGradientBrush>-->
         </Grid.Background>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*"/>
@@ -68,9 +69,9 @@
                 <local:TabButton Label="Prefab Creator" 
                                  UriSource="Resources/Images/auto-fix.svg"
                                  BtnCommand="{Binding PrefabCreatorCommand}"/>
-                <!--<local:TabButton Label="Lobby Manager" 
+                <local:TabButton Label="Lobby Manager" 
                                  UriSource="Resources/Images/format-list-text.svg"
-                                 BtnCommand="{Binding LobbyManagerCommand}"/>-->
+                                 BtnCommand="{Binding LobbyManagerCommand}"/>
                 <local:TabButton Label="Region Manager" 
                                  UriSource="Resources/Images/earth.svg"
                                  BtnCommand="{Binding RegionManagerCommand}"/>
