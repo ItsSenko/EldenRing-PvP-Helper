@@ -75,33 +75,40 @@ namespace PvPHelper.Console.Commands
 
             if (parameters.Count > 2)
             {
-                
                 int.TryParse(parameters[1], out int startId);
                 int.TryParse(parameters[2], out int endId);
-                OpenShop(parameters[0], startId, endId);
+                if (parameters[0].ToLower() == "shop")
+                {
+                    OpenShop(0x80e770, startId, endId);
+                    return;
+                }
+                
+                OpenShop(Convert.ToInt32(parameters[0], 16), startId, endId);
+                return;
             }
             else
             {
                 if (parameters[0].ToLower() == "shop")
                 {
-                    OpenShop("0x80e770", 0, 9999999);
+                    OpenShop(0x80e770, 0, 9999999);
                     return;
                 }
             }
+            OpenMenu(new("Custom", Convert.ToInt32(parameters[0], 16)));
         }
 
         private void OpenMenu(MenuItem menu)
         {
             string asmStr = Helpers.GetEmbededResource("Resources.Assembly.OpenMenu.asm");
-            string asm = string.Format(asmStr, menu.Offset.ToString("X"));
+            string asm = string.Format(asmStr, GetAddress(menu.Offset));
             Hook.AsmExecute(asm);
             CommandManager.Log($"Opened {menu.Name} menu.");
         }
 
-        private void OpenShop(string address, int startId, int endId)
+        private void OpenShop(int address, int startId, int endId)
         {
             string asmStr = Helpers.GetEmbededResource("Resources.Assembly.OpenShopMenu.asm");
-            string asm = string.Format(asmStr, startId.ToString(), endId.ToString(), address);
+            string asm = string.Format(asmStr, startId.ToString(), endId.ToString(), GetAddress(address));
             Hook.AsmExecute(asm);
             CommandManager.Log($"Opened menu at offset: {address}");
             CommandManager.Log($"StartID: {startId}");
