@@ -38,7 +38,6 @@
                       />
         </Grid>
     </Border>-->
-    <Border Background="#1e1e1e" CornerRadius="5" BorderBrush="{DynamicResource LighterTextBrush}">
         <!--<Border.Style>
             <Style TargetType="Border">
                 <Style.Triggers>
@@ -65,5 +64,4 @@
                   IsSynchronizedWithCurrentItem="True"
                   VerticalContentAlignment="Center"
                   />
-    </Border>
 </UserControl>
