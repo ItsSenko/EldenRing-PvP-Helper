@@ -4,5 +4,6 @@
 31530000 - Golden Lion Shield
 32500000 - Black Steel Greatshield
 32520000 - Verdigris Greatshield
+30510000 Smithscript Shield
 62500000 - Dueling Shield
 62510000 - Carian Thrusting Shield

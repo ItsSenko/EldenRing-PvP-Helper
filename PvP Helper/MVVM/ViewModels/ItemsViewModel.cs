@@ -683,7 +683,7 @@ namespace PvPHelper.MVVM.ViewModels
             WeaponsItemsSource = gibOptions;
             
         }
-        private string[] allowedCatsForUpgrade = new string[] { "Melee Weapons", "Ranged Weapons", "Spell Tools", "Shields" };
+        private string[] allowedCatsForUpgrade = new string[] { "Melee Weapons", "Ranged Weapons", "Spell Tools", "Shields", "DLC Melee Weapons", "DLC Ranged Weapons", "DLC Spell Tools", "DLC Shields" };
         private void OnItemChanged()
         {
            if (!_hook.Loaded || !_hook.Hooked)

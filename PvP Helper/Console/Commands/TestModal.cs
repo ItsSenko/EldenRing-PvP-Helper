@@ -34,7 +34,7 @@ namespace PvPHelper.Console.Commands
         public TestModal(ErdHook hook, MainWindowViewModel viewModel)
         {
             CommandString = "/test";
-            //RequireParams = true;
+            RequireParams = true;
             HasParams = true;
             this.hook = hook;
             this.viewModel = viewModel;
@@ -44,49 +44,42 @@ namespace PvPHelper.Console.Commands
 
         protected override void OnTriggerCommand()
         {
-            var path = Path.Combine("C:/Users/eleme/Documents/PvP Helper Project/EldenRing-PvP-Helper - DLC Branch/", "msg/engus/");
-            CommandManager.Log("Getting Data...");
-            GetFilesBytes(path);
-            CommandManager.Log("Got all data");
+            
         }
 
-        static void GetFilesBytes(string folderPath)
+        static void LogFMGItemsInFolder(string folderPath, string fmgFileName)
         {
+            //Get all files from path
             string[] files = Directory.GetFiles(folderPath);
             foreach (string file in files)
             {
                 try
                 {
+                    //Trun file into bytes and then use BND4.Read() to read them
                     byte[] fileBytes = File.ReadAllBytes(file);
                     foreach (var bnd in BND4.Read(fileBytes).Files)
                     {
-                        /*CommandManager.Log($"From file: {Path.GetFileName(file)}");
-                        CommandManager.Log($"BND: {bnd.ID} - {bnd.Name}");*/
-
-                        if (bnd.Name.Contains("WeaponName_dlc01"))
+                        if (bnd.Name.Contains(fmgFileName))
                         {
+                            //Get FMG
                             var fmg = FMG.Read(bnd.Bytes);
+
+                            //Log Current bnd
                             CommandManager.Log(bnd.Name);
                             foreach (var entry in fmg.Entries)
                             {
-                                if (isInFile("Weapons", $"{entry.ID} {entry.Text}"))
+                                //This can be removed, I use this to check if we already have the item somewhere
+                                if (isInFile("DLC", $"{entry.ID} {entry.Text}"))
                                     continue;
                                 if (entry.ID == 0)
                                     continue;
                                 if (string.IsNullOrEmpty(entry.Text) || entry.Text.Contains("[ERROR]"))
                                     continue;
-                                if (hasInfusion(entry.Text))
-                                    continue;
-
-                                CommandManager.Log($"{entry.ID} - {entry.Text}", false);
+                                //Log the item
+                                CommandManager.Log($"{entry.ID} {entry.Text}", false);
                             }
                             
                         }
-                        /*var fmg = FMG.Read(bnd.Bytes);
-                        foreach(var entry in fmg.Entries)
-                        {
-                            CommandManager.Log($"FMG: {entry.ID} - {entry.Text}");
-                        }*/
 
                     }
                 }
@@ -100,7 +93,7 @@ namespace PvPHelper.Console.Commands
             string[] subdirectories = Directory.GetDirectories(folderPath);
             foreach (string subdirectory in subdirectories)
             {
-                GetFilesBytes(subdirectory);
+                LogFMGItemsInFolder(subdirectory, fmgFileName);
             }
         }
 
@@ -110,8 +103,6 @@ namespace PvPHelper.Console.Commands
             {
                 string[] items = File.ReadAllLines(file);
                 if (items.FirstOrDefault(x => x.Contains(text)) != null)
-                    return true;
-                if (items.FirstOrDefault(x => x.StartsWith(text)) != null)
                     return true;
             }
             return false;
@@ -132,22 +123,10 @@ namespace PvPHelper.Console.Commands
         }
         protected override void OnTriggerCommandWithParameters(List<string> parameters)
         {
-            switch(parameters[1])
-            {
-                case "r":
-                    {
-                        int.TryParse(parameters[0], out int result);
-                        CommandManager.Log(hook.IsEventFlag(result).ToString());
-                        break;
-                    }
-                case "s":
-                    {
-                        int.TryParse(parameters[0], out int result);
-                        bool.TryParse(parameters[2], out bool state);
-                        hook.SetEventFlag(result, state);
-                        break;
-                    }
-            }
+            var path = Path.Combine("C:/Users/eleme/Documents/PvP Helper Project/", "msg/engus/");
+            CommandManager.Log("Getting Data...");
+            LogFMGItemsInFolder(path, parameters[0]);
+            CommandManager.Log("Got all data");
         }
     }
 }
