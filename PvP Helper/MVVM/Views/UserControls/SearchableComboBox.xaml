@@ -12,11 +12,11 @@
         <Grid>
             <TextBlock Text="{Binding Placeholder, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ElementName=SearchableComboBoxRoot}"
                    VerticalAlignment="Center"
-                   Margin="40, 0, 0, 1"
+                   Padding="40,0,0,0"
                    Foreground="#404040"/>
-            <StackPanel Orientation="Horizontal" 
+            <!--<StackPanel Orientation="Horizontal" 
                         HorizontalAlignment="Stretch" 
-                        VerticalAlignment="Stretch">
+                        VerticalAlignment="Stretch">-->
 
                 <svgc:SvgIcon UriSource="Resources/Images/magnify.svg"
                           Fill="#404040"
@@ -31,7 +31,6 @@
                           IsEditable="True"
                           IsTextSearchEnabled="False"
                           Height="Auto"
-                          Width="210"
                           BorderThickness="0"
                           Foreground="#757575"
                           Background= "#1e1e1e"
@@ -51,7 +50,7 @@
                     </ComboBox.ItemsPanel>
                 </local:ComboBoxSimple>
 
-            </StackPanel>
+            <!--</StackPanel>-->
         </Grid>
     </Border>
 </UserControl>
