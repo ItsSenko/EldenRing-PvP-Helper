@@ -190,43 +190,6 @@ namespace PvPHelper.Core
                 }
             }
             return null;
-            /*Assembly assembly = Assembly.GetExecutingAssembly();
-            string[] resourceNames = assembly.GetManifestResourceNames();
-
-            string itempicfolder = "PvPHelper.Resources.Images.Items";
-            string infusionpicfolder = "PvPHelper.Resources.Images.Infusions";
-
-            foreach (string name in resourceNames)
-            {
-                if (name.StartsWith(itempicfolder))
-                {
-                    string fileName = name.Substring(itempicfolder.Length + 1);
-                    if (fileName.StartsWith(searchStr, StringComparison.OrdinalIgnoreCase))
-                    {
-                        var image = LoadImageFromResource(name);
-                        AllImages.Add(fileName, image);
-                        return image;
-                    }
-                }
-
-                if (name.StartsWith(infusionpicfolder))
-                {
-                    string fileName = name.Substring(infusionpicfolder.Length + 1);
-                    if (fileName.StartsWith(searchStr, StringComparison.OrdinalIgnoreCase))
-                    {
-                        var image = LoadImageFromResource(name);
-                        AllImages.Add(fileName, image);
-                        return image;
-                    }
-                }
-
-                if (name.StartsWith(searchStr, StringComparison.OrdinalIgnoreCase))
-                {
-                    var image = LoadImageFromResource(name);
-                    AllImages.Add(name, image);
-                    return image;
-                }
-            }*/
         }
         public static ImageSource GetImageSource(string searchStr)
         {

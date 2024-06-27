@@ -274,20 +274,20 @@ namespace PvPHelper.MVVM.ViewModels
                 InventoryItems.Clear();
             });
             Save = new SavePrefab(this);
-            ItemCategory category = ItemCategory.All.FirstOrDefault(x => x.Name == "Melee Weapons");
-            ItemCategory category1 = ItemCategory.All.FirstOrDefault(x => x.Name == "Ranged Weapons");
-            ItemCategory category2 = ItemCategory.All.FirstOrDefault(x => x.Name == "Armor");
-            ItemCategory category3 = ItemCategory.All.FirstOrDefault(x => x.Name == "Spell Tools");
-            ItemCategory category4 = ItemCategory.All.FirstOrDefault(x => x.Name == "Shields");
-            ItemCategory category5 = ItemCategory.All.FirstOrDefault(x => x.Name == "Talismans");
 
             List<ItemCategoryOption> categorys = new();
-            categorys.Add(new(category.Name, category));
-            categorys.Add(new(category1.Name, category1));
-            categorys.Add(new(category2.Name, category2));
-            categorys.Add(new(category3.Name, category3));
-            categorys.Add(new(category4.Name, category4));
-            categorys.Add(new(category5.Name, category5));
+            categorys.Add(new(GetCategoryByName("Melee Weapons").Name, GetCategoryByName("Melee Weapons")));
+            categorys.Add(new(GetCategoryByName("Ranged Weapons").Name, GetCategoryByName("Ranged Weapons")));
+            categorys.Add(new(GetCategoryByName("Armor").Name, GetCategoryByName("Armor")));
+            categorys.Add(new(GetCategoryByName("Spell Tools").Name, GetCategoryByName("Spell Tools")));
+            categorys.Add(new(GetCategoryByName("Shields").Name, GetCategoryByName("Shields")));
+            categorys.Add(new(GetCategoryByName("Talismans").Name, GetCategoryByName("Talismans")));
+            categorys.Add(new(GetCategoryByName("DLC Melee Weapons").Name, GetCategoryByName("DLC Melee Weapons")));
+            categorys.Add(new(GetCategoryByName("DLC Ranged Weapons").Name, GetCategoryByName("DLC Ranged Weapons")));
+            categorys.Add(new(GetCategoryByName("DLC Armor").Name, GetCategoryByName("DLC Armor")));
+            categorys.Add(new(GetCategoryByName("DLC Spell Tools").Name, GetCategoryByName("DLC Spell Tools")));
+            categorys.Add(new(GetCategoryByName("DLC Shields").Name, GetCategoryByName("DLC Shields")));
+            categorys.Add(new(GetCategoryByName("DLC Talismans").Name, GetCategoryByName("DLC Talismans")));
 
             List<InventoryStateOption> inventoryStates = new();
             inventoryStates.Add(new(InventoryState.Weapons));
@@ -338,6 +338,11 @@ namespace PvPHelper.MVVM.ViewModels
             SomberToSmithy.Add(9, 24);
             SomberToSmithy.Add(10, 25);
         }
+
+        public ItemCategory GetCategoryByName(string name)
+        {
+            return ItemCategory.All.FirstOrDefault(x => x.Name == name);
+        }
         private void SetupCommands()
         {
             AddItem = new RelayCommand((o) => { AddItemToInventory(); });
@@ -375,7 +380,7 @@ namespace PvPHelper.MVVM.ViewModels
                     ImageSource icon = Helpers.GetImageSource(item.item.Name);
                     ImageSource infusionIcon = Helpers.GetImageSource(inf == null ? Infusion.Standard.ToString() : inf.infusion.ToString());
                     ImageSource ashIcon = null;
-
+                    PvPHelper.Console.CommandManager.Log(item.item.EventID.ToString());
                     if (gem != null)
                     {
                         string gemName = gem.Name;
@@ -394,6 +399,7 @@ namespace PvPHelper.MVVM.ViewModels
                                 SelectedInventoryIndex = 1;
                                 ArmorPrefab prefab = new(item.item.ID);
                                 armorPrefabs.Add(prefab);
+                                PvPHelper.Console.CommandManager.Log(item.item.ID.ToString());
                                 CreateNewBtn(item.item.Name,
                                     Helpers.GetImageSource(item.item.Name), "",null, null, armorItems, armPrefab: prefab);
                                 break;
@@ -403,6 +409,7 @@ namespace PvPHelper.MVVM.ViewModels
                                 SelectedInventoryIndex = 2;
                                 TalismanPrefab prefab = new(item.item.ID);
                                 talismanPrefabs.Add(prefab);
+                                PvPHelper.Console.CommandManager.Log(item.item.ID.ToString());
                                 CreateNewBtn(item.item.Name,
                                     Helpers.GetImageSource(item.item.Name), "",null, null, talismanItems, talPrefab: prefab);
                                 break;
