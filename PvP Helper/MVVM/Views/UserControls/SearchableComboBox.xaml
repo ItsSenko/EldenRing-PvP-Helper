@@ -8,23 +8,9 @@
              mc:Ignorable="d" 
              x:Name="SearchableComboBoxRoot"
              d:DesignHeight="40" d:DesignWidth="200">
-    <Border Background="#1e1e1e" CornerRadius="10">
+    <Border>
         <Grid>
-            <TextBlock Text="{Binding Placeholder, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ElementName=SearchableComboBoxRoot}"
-                   VerticalAlignment="Center"
-                   Padding="40,0,0,0"
-                   Foreground="#404040"/>
-            <!--<StackPanel Orientation="Horizontal" 
-                        HorizontalAlignment="Stretch" 
-                        VerticalAlignment="Stretch">-->
-
-                <svgc:SvgIcon UriSource="Resources/Images/magnify.svg"
-                          Fill="#404040"
-                          VerticalAlignment="Center"
-                          HorizontalAlignment="Left"
-                          Margin="10,0,0,0"
-                          Height="15"/>
-                <local:ComboBoxSimple 
+            <local:ComboBoxSimple 
                         ItemContainerStyle="{DynamicResource ComboBoxItemStyle}" 
                         Style="{DynamicResource ComboBoxStyle}"
                         x:Name="comboBox" 
@@ -35,7 +21,7 @@
                           Foreground="#757575"
                           Background= "#1e1e1e"
                           Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged, ElementName=SearchableComboBoxRoot}"
-                                      SelectedIndex="{Binding SelectedIndex, UpdateSourceTrigger=PropertyChanged, ElementName=SearchableComboBoxRoot}"
+                          SelectedIndex="{Binding SelectedIndex, UpdateSourceTrigger=PropertyChanged, ElementName=SearchableComboBoxRoot}"
                           SelectedItem="{Binding SelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ElementName=SearchableComboBoxRoot}"
                           ItemsSource="{Binding ItemsSource, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ElementName=SearchableComboBoxRoot}"
                           TextBoxBase.TextChanged="comboBox_TextChanged"
@@ -48,7 +34,17 @@
                             <VirtualizingStackPanel />
                         </ItemsPanelTemplate>
                     </ComboBox.ItemsPanel>
-                </local:ComboBoxSimple>
+            </local:ComboBoxSimple>
+            <TextBlock IsHitTestVisible="False" Text="{Binding Placeholder, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ElementName=SearchableComboBoxRoot}"
+                   VerticalAlignment="Center"
+                   Padding="40,0,0,0"
+                   Foreground="#404040"/>
+            <svgc:SvgIcon UriSource="Resources/Images/magnify.svg"
+                          Fill="#404040"
+                          VerticalAlignment="Center"
+                          HorizontalAlignment="Left"
+                          Margin="10,0,0,0"
+                          Height="15"/>
 
             <!--</StackPanel>-->
         </Grid>

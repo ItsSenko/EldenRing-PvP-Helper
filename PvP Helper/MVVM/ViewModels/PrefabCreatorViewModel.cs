@@ -94,6 +94,8 @@ namespace PvPHelper.MVVM.ViewModels
             get { return _weaponsItemsSource; }
             set 
             { 
+                if (value == null)
+                    return;
                 _weaponsItemsSource = value; 
                 OnPropertyChanged();
                 if (OriginWeapons == null)
@@ -124,6 +126,8 @@ namespace PvPHelper.MVVM.ViewModels
             get { return _ashesItemSource; }
             set 
             { 
+                if( value == null)
+                    return;
                 _ashesItemSource = value; 
                 OnPropertyChanged();
                 if (OriginAshes == null)
@@ -152,8 +156,10 @@ namespace PvPHelper.MVVM.ViewModels
         public IEnumerable<object> InfusionsItemsSource
         {
             get { return _infItemsSource; }
-            set 
-            { 
+            set
+            {
+                if (value == null)
+                    return;
                 _infItemsSource = value; 
                 OnPropertyChanged();
                 if (OriginInfusions == null)
