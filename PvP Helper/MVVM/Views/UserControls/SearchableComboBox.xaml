@@ -17,7 +17,6 @@
                           IsEditable="True"
                           IsTextSearchEnabled="False"
                           Height="Auto"
-                          BorderThickness="0"
                           Foreground="#757575"
                           Background= "#1e1e1e"
                           Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged, ElementName=SearchableComboBoxRoot}"

@@ -23,7 +23,7 @@
                                   Border="True"
                                   ItemsSource="{Binding CategoryItemsSource, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                   SelectedItem="{Binding CategorySelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-            <Border Grid.Row="1" Background="{DynamicResource BackgroundBrush}" Margin="10">
+            <Border Grid.Row="1"  Margin="10">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition/>

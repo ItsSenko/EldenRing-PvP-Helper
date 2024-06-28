@@ -37,9 +37,9 @@
     <SolidColorBrush x:Key="ComboBox.Static.Border" Color="{DynamicResource Lighter}"/>
     <SolidColorBrush x:Key="ComboBox.Static.Glyph" Color="{DynamicResource Lighter}"/>
     <SolidColorBrush x:Key="ComboBox.Static.Editable.Background" Color="{DynamicResource Dark}"/>
-    <SolidColorBrush x:Key="ComboBox.Static.Editable.Border" Color="#FFABADB3"/>
+    <SolidColorBrush x:Key="ComboBox.Static.Editable.Border" Color="{DynamicResource Lighter}"/>
     <SolidColorBrush x:Key="ComboBox.Static.Editable.Button.Background" Color="{DynamicResource Dark}"/>
-    <SolidColorBrush x:Key="ComboBox.Static.Editable.Button.Border" Color="Transparent"/>
+    <SolidColorBrush x:Key="ComboBox.Static.Editable.Button.Border" Color="{DynamicResource Lighter}"/>
     <LinearGradientBrush x:Key="ComboBox.MouseOver.Background" EndPoint="0,1" StartPoint="0,0">
         <GradientStop Color="#1e1e1e" Offset="0.0"/>
         <GradientStop Color="#1e1e1e" Offset="1.0"/>
@@ -47,7 +47,7 @@
     <SolidColorBrush x:Key="ComboBox.MouseOver.Border" Color="{DynamicResource LighterText}"/>
     <SolidColorBrush x:Key="ComboBox.MouseOver.Glyph" Color="{DynamicResource LighterText}"/>
     <SolidColorBrush x:Key="ComboBox.MouseOver.Editable.Background" Color="{DynamicResource Dark}"/>
-    <SolidColorBrush x:Key="ComboBox.MouseOver.Editable.Border" Color="Transparent"/>
+    <SolidColorBrush x:Key="ComboBox.MouseOver.Editable.Border" Color="{DynamicResource Lighter}"/>
     <LinearGradientBrush x:Key="ComboBox.MouseOver.Editable.Button.Background" EndPoint="0,1" StartPoint="0,0">
         <GradientStop Color="{DynamicResource Dark}" Offset="0.0"/>
         <GradientStop Color="{DynamicResource Dark}" Offset="1.0"/>
@@ -60,19 +60,19 @@
     <SolidColorBrush x:Key="ComboBox.Pressed.Border" Color="{DynamicResource LighterText}"/>
     <SolidColorBrush x:Key="ComboBox.Pressed.Glyph" Color="{DynamicResource LighterText}"/>
     <SolidColorBrush x:Key="ComboBox.Pressed.Editable.Background" Color="{DynamicResource Dark}"/>
-    <SolidColorBrush x:Key="ComboBox.Pressed.Editable.Border" Color="Transparent"/>
+    <SolidColorBrush x:Key="ComboBox.Pressed.Editable.Border" Color="{DynamicResource Lighter}"/>
     <LinearGradientBrush x:Key="ComboBox.Pressed.Editable.Button.Background" EndPoint="0,1" StartPoint="0,0">
         <GradientStop Color="{DynamicResource Dark}" Offset="0.0"/>
         <GradientStop Color="{DynamicResource Dark}" Offset="1.0"/>
     </LinearGradientBrush>
-    <SolidColorBrush x:Key="ComboBox.Pressed.Editable.Button.Border" Color="Transparent"/>
+    <SolidColorBrush x:Key="ComboBox.Pressed.Editable.Button.Border" Color="{DynamicResource Lighter}"/>
     <SolidColorBrush x:Key="ComboBox.Disabled.Background" Color="#1e1e1e"/>
     <SolidColorBrush x:Key="ComboBox.Disabled.Border" Color="#1e1e1e"/>
     <SolidColorBrush x:Key="ComboBox.Disabled.Glyph" Color="#1e1e1e"/>
     <SolidColorBrush x:Key="ComboBox.Disabled.Editable.Background" Color="{DynamicResource Dark}"/>
-    <SolidColorBrush x:Key="ComboBox.Disabled.Editable.Border" Color="Transparent"/>
+    <SolidColorBrush x:Key="ComboBox.Disabled.Editable.Border" Color="{DynamicResource Lighter}"/>
     <SolidColorBrush x:Key="ComboBox.Disabled.Editable.Button.Background" Color="{DynamicResource Dark}"/>
-    <SolidColorBrush x:Key="ComboBox.Disabled.Editable.Button.Border" Color="Transparent"/>
+    <SolidColorBrush x:Key="ComboBox.Disabled.Editable.Button.Border" Color="{DynamicResource Lighter}"/>
     <Style x:Key="ComboBoxToggleButton" TargetType="{x:Type ToggleButton}">
         <Setter Property="OverridesDefaultStyle" Value="true"/>
         <Setter Property="IsTabStop" Value="false"/>
@@ -82,7 +82,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ToggleButton}">
                     <Border CornerRadius="10,10,10,10" Background="{DynamicResource DarkBrush}" BorderThickness="1" BorderBrush="{DynamicResource LighterBrush}" x:Name="templateRoot" SnapsToDevicePixels="true">
-                        <Border x:Name="splitBorder"  BorderThickness="1" HorizontalAlignment="Right" Margin="0,0,10,0" SnapsToDevicePixels="true" Width="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}">
+                        <Border x:Name="splitBorder" HorizontalAlignment="Right" Margin="0,0,10,0" SnapsToDevicePixels="true" Width="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}">
                             <Path x:Name="arrow" RenderTransformOrigin="0 0" Data="F1 M 0,0 L 2.667,2.66665 L 5.3334,0 L 5.3334,-1.78168 L 2.6667,0.88501 L0,-1.78168 L0,0 Z" Fill="{StaticResource ComboBox.Static.Glyph}" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center">
                                 <Path.RenderTransform>
                                     <ScaleTransform ScaleX="2" ScaleY="2"/>
@@ -110,9 +110,9 @@
                             <Setter Property="CornerRadius" TargetName="templateRoot" Value="10,10,0,0"/>
                             <Setter Property="BorderThickness" TargetName="templateRoot" Value="1,1,1,0"/>
                         </Trigger>
-                        <DataTrigger Binding="{Binding IsEditable, RelativeSource={RelativeSource AncestorType={x:Type ComboBox}}}" Value="true">
-                            <Setter Property="BorderThickness" TargetName="templateRoot" Value="0"/>
-                        </DataTrigger>
+                        <!--<DataTrigger Binding="{Binding IsEditable, RelativeSource={RelativeSource AncestorType={x:Type ComboBox}}}" Value="true">
+                            <Setter Property="BorderThickness" TargetName="templateRoot" Value="1"/>
+                        </DataTrigger>-->
                         <MultiDataTrigger>
                             <MultiDataTrigger.Conditions>
                                 <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}" Value="true"/>

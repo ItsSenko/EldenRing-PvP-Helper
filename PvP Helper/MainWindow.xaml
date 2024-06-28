@@ -78,7 +78,7 @@
                 <local:TabButton Label="Misc" 
                                  UriSource="Resources/Images/misc-dots.svg"
                                  BtnCommand="{Binding MiscCommand}"/>
-                
+
 
             </StackPanel>
 
@@ -121,9 +121,9 @@
 
                 </TextBlock>
 
-                <Button Margin="1065,0,0,33" Content="X"
-                        FontSize="16"
-                        Style="{DynamicResource SimpleButtonStyle}"
+                <Button Margin="1057,-18,-6,12" Content="x"
+                        FontSize="32"
+                        Style="{StaticResource SimpleButtonStyle}"
                         Foreground="{DynamicResource LighterTextBrush}"
                         Command="{Binding CloseCommand}"/>
             </Grid>
