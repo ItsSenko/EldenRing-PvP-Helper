@@ -23,6 +23,8 @@
     <None Remove="Resources\Assembly\OpenMenu.asm" />
 
     <None Remove="Resources\Assembly\OpenShopMenu.asm" />
+
+    <None Remove="Resources\Images\attached.svg" />
     <None Remove="Resources\Images\auto-fix.svg" />
     <None Remove="Resources\Images\Discord.png" />
     <None Remove="Resources\Images\earth.svg" />
@@ -45,6 +47,7 @@
     <None Remove="Resources\Images\minus-circle-outline.svg" />
     <None Remove="Resources\Images\minus-circle.svg" />
     <None Remove="Resources\Images\misc-dots.svg" />
+    <None Remove="Resources\Images\not_attached.svg" />
     <None Remove="Resources\Images\plus-circle-outline.svg" />
     <None Remove="Resources\Images\plus-circle.svg" />
     <None Remove="Resources\Images\refresh.svg" />
@@ -59,6 +62,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Resources\Images\attached.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Content Include="Resources\Images\auto-fix.svg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -71,6 +77,9 @@
     <Content Include="Resources\Images\format-list-text.svg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Resources\Images\not_attached.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Resources\Images\Discord.png" />
     <Resource Include="Resources\Images\shunter.ico" />
     <Resource Include="Resources\Images\shunter.png" />
@@ -88,12 +97,6 @@
     </Content>
 
     <Content Include="Resources\Images\hospital.svg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Images\link-box-outline.svg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Images\link-box.svg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\magnify.svg">

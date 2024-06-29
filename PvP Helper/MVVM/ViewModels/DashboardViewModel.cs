@@ -172,7 +172,7 @@ namespace PvPHelper.MVVM.ViewModels
                 }
             });
 
-            AttachIcon = "Resources/Images/link-box-outline.svg";
+            AttachIcon = "Resources/Images/not_attached.svg";
             AttachText = "Not Attached";
         }
         private void Hook_OnUnhooked(object? sender, PropertyHook.PHEventArgs e)
@@ -180,7 +180,7 @@ namespace PvPHelper.MVVM.ViewModels
             Application.Current.Dispatcher.Invoke(() => 
             {
                 statsTimer.Stop();
-                AttachIcon = "Resources/Images/link-box-outline.svg";
+                AttachIcon = "Resources/Images/not_attached.svg";
                 AttachText = "Not Attached";
             });
         }
@@ -190,7 +190,7 @@ namespace PvPHelper.MVVM.ViewModels
             Application.Current.Dispatcher.Invoke(() =>
             {
                 statsTimer.Start();
-                AttachIcon = "Resources/Images/link-box.svg";
+                AttachIcon = "Resources/Images/attached.svg";
                 AttachText = "Attached";
 
                 List<PhantomIDOption> phantomIds = new();

@@ -18,5 +18,6 @@ namespace PvPHelper.MVVM.Views
                 OnLoaded.Invoke();
             };
         }
+
     }
 }

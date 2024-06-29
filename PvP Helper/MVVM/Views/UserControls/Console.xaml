@@ -3,14 +3,19 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:PvPHelper.MVVM.Views.UserControls"
+             xmlns:local="clr-namespace:PvPHelper.MVVM.Views.UserControls" xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
              mc:Ignorable="d"
              x:Name="ConsoleRoot"
              d:DesignHeight="450" d:DesignWidth="800">
     <Border Background="#2e2e2e" CornerRadius="5">
         <Grid>
-            <ScrollViewer Name="Scroller"
-                          Margin="0,0,0,37"
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <ScrollViewer 
+                          Grid.Row="0"
+                          Name="Scroller"
                           VerticalScrollBarVisibility="Hidden">
                 <StackPanel>
                     <ItemsControl ItemsSource="{Binding ConsoleOutput, ElementName=ConsoleRoot}">
@@ -25,16 +30,65 @@
                     </ItemsControl>
                 </StackPanel>
             </ScrollViewer>
-            <TextBox Height="22" 
-                     Width="754" 
-                     Margin="23,0,23,10"
-                     Background="Transparent"
-                     Foreground="#adadad"
-                     BorderThickness="3"
-                     BorderBrush="#404040"
-                     Text="{Binding InputText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ElementName=ConsoleRoot}"
-                     KeyDown="TextBox_KeyDown"
-                     VerticalAlignment="Bottom"/>
+            <Grid Height="Auto" Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBox 
+                         Grid.Column="0"
+                         Padding="5"
+                         Background="Transparent"
+                         Foreground="#adadad"
+                         BorderThickness="3"
+                         BorderBrush="#404040"
+                         CaretBrush="{DynamicResource ForegroundBrush}"
+                         SelectionBrush="{DynamicResource HighlightBrush}"
+                         Text="{Binding InputText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ElementName=ConsoleRoot}"
+                         KeyDown="TextBox_KeyDown"
+                         VerticalAlignment="Bottom">
+                    <TextBox.Style>
+                        <Style TargetType="TextBox">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type TextBox}">
+                                        <Border x:Name="Border" 
+			                    BorderBrush="{TemplateBinding BorderBrush}" 
+			                    BorderThickness="{TemplateBinding BorderThickness}" 
+			                    Background="{TemplateBinding Background}">
+                                            <ScrollViewer x:Name="PART_ContentHost" 
+					                      Focusable="false" 
+					                      HorizontalScrollBarVisibility="Hidden" 
+					                      VerticalScrollBarVisibility="Hidden">
+                                            </ScrollViewer>
+                                        </Border>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsFocused" Value="true">
+                                                <Setter Property="BorderBrush" 
+					                    TargetName="Border" 
+					                    Value="{DynamicResource HighlightBrush}">
+                                                </Setter>
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </TextBox.Style>
+                </TextBox>
+                <Button Grid.Column="1"
+                    Margin="5,0,5,0"
+                    Width="Auto"
+                    Style="{DynamicResource SimpleButtonStyle}"
+                    Command="{Binding HelpCommand}"
+                    Cursor="Help">
+                    <svgc:SvgIcon 
+                        UriSource="Resources/Images/help-circle.svg" 
+                        Cursor="Hand"
+                        Fill="{DynamicResource LighterTextBrush}" 
+                        Height="22" Width="23"/>
+                </Button>
+            </Grid>
         </Grid>
     </Border>
 </UserControl>

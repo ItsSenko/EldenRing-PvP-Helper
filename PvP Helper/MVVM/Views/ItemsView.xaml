@@ -16,10 +16,12 @@
         <Grid Grid.Column="0" Name="Left">
             <Grid.RowDefinitions>
                 <RowDefinition Height="2*"/>
+                <RowDefinition Height="10"/>
                 <RowDefinition Height="4*"/>
+                <RowDefinition Height="10"/>
                 <RowDefinition Height="2*"/>
             </Grid.RowDefinitions>
-            <Border Grid.Row="0" Background="{DynamicResource BackgroundBrush}" Margin="10">
+            <Border Grid.Row="0" Margin="10">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition/>
@@ -29,7 +31,8 @@
                     <Label Content="{Binding ChrLevel, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" HorizontalAlignment="Center" FontSize="18" Foreground="{DynamicResource ForegroundBrush}"/>
                 </Grid>
             </Border>
-            <Border Grid.Row="1" Background="{DynamicResource BackgroundBrush}" Margin="10">
+            <Separator Grid.Row="1" Margin="10,0,10,0" Background="{DynamicResource LighterTextBrush}"/>
+            <Border Grid.Row="2">
                 <Grid>
                     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                         <StackPanel.Resources>
@@ -51,7 +54,8 @@
                     <local:Refresh BtnCommand="{Binding RefreshStats}" Margin="10,264,299,10" Width="35" Height="35"/>
                 </Grid>
             </Border>
-            <Border Grid.Row="2" Background="{DynamicResource BackgroundBrush}" Margin="10">
+            <Separator Grid.Row="3" Margin="10,0,10,0" Background="{DynamicResource LighterTextBrush}"/>
+            <Border Grid.Row="4" Margin="10">
                 <StackPanel>
                     <Label Content="Runes" HorizontalAlignment="Center" Foreground="{DynamicResource ForegroundBrush}" FontSize="20"/>
                     <Label Content="{Binding CurrHeldRunes, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" Foreground="{DynamicResource ForegroundBrush}" FontSize="18"/>
@@ -83,11 +87,15 @@
         <Grid Grid.Column="1" Name="Right">
             <Grid Grid.Column="0">
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="10"/>
                     <RowDefinition Height="2*"/>
+                    <RowDefinition Height="10"/>
                     <RowDefinition Height="1*"/>
+                    <RowDefinition Height="10"/>
                     <RowDefinition Height="2*"/>
                 </Grid.RowDefinitions>
-                <Border x:Name="Massive_Gains" Grid.Row="0" Margin="10" Background="{DynamicResource BackgroundBrush}">
+                <local:SeparatorTextControl Text="Massive Gains" Grid.Row="0"/>
+                <Border x:Name="Massive_Gains" Grid.Row="1" Margin="10">
                     <UniformGrid Columns="4" Rows="4">
 
                         <Button Style="{DynamicResource PrimaryButton}"  Content="All Flask Upgrades" Command="{Binding AllFlaskUpgrades}" Cursor="Hand"/>
@@ -108,7 +116,9 @@
                         <Button Style="{DynamicResource PrimaryButton}"  Content="All Whetblades" Command="{Binding AllWhetblades}" Cursor="Hand"/>
                     </UniformGrid>
                 </Border>
-                <Border Name="Massive_Item_Gib" Grid.Row="1" Margin="10" Background="{DynamicResource BackgroundBrush}">
+                <!--<TextBox Style="{StaticResource SeparatorStyle}"/>-->
+                <local:SeparatorTextControl Text="Massive Gains" Grid.Row="2"/>
+                <Border Name="Massive_Item_Gib" Grid.Row="3" Margin="10">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
@@ -143,7 +153,8 @@
                         </UniformGrid>
                     </Grid>
                 </Border>
-                <Border Name="Item_Gib" Grid.Row="2" Background="{DynamicResource BackgroundBrush}" Margin="10">
+                <local:SeparatorTextControl Text="Massive Gains" Grid.Row="4"/>
+                <Border Name="Item_Gib" Grid.Row="5" Margin="10">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>

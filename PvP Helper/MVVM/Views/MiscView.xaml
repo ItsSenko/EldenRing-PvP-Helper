@@ -9,13 +9,15 @@
              d:DesignHeight="658.285714285714" d:DesignWidth="1092.8">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="159*"/>
-            <RowDefinition Height="328*"/>
-            <RowDefinition Height="171*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-
-        <Border Margin="25,25,25,25" Background="{DynamicResource BackgroundBrush}">
+        <userControls:SeparatorTextControl Text="Settings" Grid.Row="0" FontSize="20"/>
+        <Border Margin="25,25,25,25" Grid.Row="1">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <StackPanel.Resources>
                     <Style TargetType="{x:Type userControls:LabeledCircleToggle}">
@@ -35,16 +37,13 @@
 
             </StackPanel>
         </Border>
-
-        <Border Margin="25,25,25,25" Background="{DynamicResource BackgroundBrush}" Grid.Row="1">
+        <userControls:SeparatorTextControl Text="Miscellaneous" Grid.Row="2" FontSize="20"/>
+        <Border Margin="25,0,25,0" Grid.Row="3">
             <Grid>
                 <StackPanel Orientation="Horizontal">
                     <StackPanel.Resources>
                         <Style TargetType="{x:Type userControls:LabeledCircleToggle}">
                             <Setter Property="Margin" Value="10,10,0,20"/>
-                        </Style>
-                        <Style TargetType="StackPanel">
-                            <Setter Property="Margin" Value="0,0,20,0"/>
                         </Style>
                     </StackPanel.Resources>
 
@@ -66,17 +65,18 @@
                                             ToggleCommand="{Binding CustomFOVToggle}"/>
                     </StackPanel>
 
-                    <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Vertical" Margin="10,0,0,0">
                         <userControls:LabeledCircleToggle Label="No Material Cost"
                                             Checked="{Binding NoMaterialCostToggle.State, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                             ToggleCommand="{Binding NoMaterialCostToggle}"/>
+
+                        <Button Style="{DynamicResource PrimaryButton}"
+                        Content="Unlock All Colosseums"
+                        Command="{Binding AllArenas}" Cursor="Hand" Height="53"/>
+
                     </StackPanel>
                 </StackPanel>
 
-
-                <Button Style="{DynamicResource PrimaryButton}"
-                        Content="Unlock All Colosseums"
-                        Command="{Binding AllArenas}" Cursor="Hand" Height="53" Margin="268,71,585,154"/>
 
                 <!--<Button Style="{DynamicResource PrimaryButton}"
                         Content="Unlock All Gestures"
@@ -91,17 +91,18 @@
                                              SelectedItem="{Binding SelectedMenu, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="792,51,10,187"/>
             </Grid>
         </Border>
-
-        <TextBlock Grid.Row="2" Text="Thank you for using the helper!"
+        <Grid Grid.Row="4">
+            <TextBlock Grid.Row="2" Text="Thank you for using the helper!"
                    FontSize="30" Foreground="{DynamicResource LighterBrush}"
                    HorizontalAlignment="Center" Margin="0,10,0,113"/>
 
-        <TextBlock Grid.Row="2" Text="Created by"
+            <TextBlock Grid.Row="2" Text="Created by"
                    FontSize="30" Foreground="{DynamicResource LighterBrush}"
                    HorizontalAlignment="Center" Margin="0,63,0,61"/>
 
-        <TextBlock Grid.Row="2" Text="SenkoPur and CatShark"
-                   FontSize="30" Foreground="{DynamicResource LighterBrush}"
+            <TextBlock Grid.Row="2" Text="Senko and CatShark"
+                   FontSize="30" Foreground="{DynamicResource HighlightBrush}"
                    HorizontalAlignment="Center" Margin="0,110,0,10"/>
+        </Grid>
     </Grid>
 </UserControl>
