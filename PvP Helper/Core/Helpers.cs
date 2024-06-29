@@ -78,34 +78,21 @@ namespace PvPHelper.Core
                 yield return line;
             }
         }
+        private static bool imagesLoaded = false;
         public static void LoadAllImages()
         {
-            Assembly assembly = Assembly.GetExecutingAssembly();
-            string[] resourceNames = assembly.GetManifestResourceNames();
-
-            string itempicfolder = "PvPHelper.Resources.Images.Items";
-            string infusionpicfolder = "PvPHelper.Resources.Images.Infusions";
+            if (imagesLoaded)
+                return;
+            string[] resourceNames = Directory.GetFiles(Path.Combine(Directory.GetCurrentDirectory(), "Icons"));
 
             foreach (string name in resourceNames)
             {
                 if (name.EndsWith(".png") || name.EndsWith(".jpg"))
                 {
-                    if (name.StartsWith(itempicfolder))
-                    {
-                        string fileName = name.Substring(itempicfolder.Length + 1);
-                        AllImages.Add(fileName, LoadImageFromResource(name));
-                        continue;
-                    }
-
-                    if (name.StartsWith(infusionpicfolder))
-                    {
-                        string fileName = name.Substring(infusionpicfolder.Length + 1);
-                        AllImages.Add(fileName, LoadImageFromResource(name));
-                        continue;
-                    }
-                    AllImages.Add(name, LoadImageFromResource(name));
+                    AllImages.Add(name, LoadImageFromPath(name));
                 }
             }
+            imagesLoaded = true;
         }
         public static string GetNewPhantomName(int id)
         {
@@ -181,9 +168,11 @@ namespace PvPHelper.Core
             {
                 foreach(var fileName in Directory.GetFiles(iconsDirectory))
                 {
-                    if (Path.GetFileName(fileName).ToLower().StartsWith(searchStr.ToLower()))
+                    if (Path.GetFileName(fileName).ToLower().Contains(searchStr.ToLower()))
                     {
                         var image = LoadImageFromPath(fileName);
+                        if (AllImages.Keys.Contains(Path.GetFileName(fileName)))
+                            return image;
                         AllImages.Add(Path.GetFileName(fileName), image);
                         return image;
                     }
@@ -191,13 +180,19 @@ namespace PvPHelper.Core
             }
             return null;
         }
-        public static ImageSource GetImageSource(string searchStr)
+
+        public static short GetFullIconID(short id)
+        {
+            string str = id.ToString().PadLeft(5, '0');
+            return short.Parse(str);
+        }
+        public static ImageSource GetImageSource(string searchStr, bool exact = false)
         {
             if (searchStr.Contains("'"))
             {
                 searchStr = searchStr.Replace('\'', '_');
             }
-            ImageSource image = AllImages.FirstOrDefault(x => x.Key.StartsWith(searchStr, StringComparison.OrdinalIgnoreCase)).Value;
+            ImageSource image = AllImages.FirstOrDefault(x => exact ? x.Key.Contains(searchStr.ToLower() + ".png") : (x.Key.Contains(searchStr, StringComparison.OrdinalIgnoreCase))).Value;
 
             if (image == null)
             {

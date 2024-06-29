@@ -112,6 +112,10 @@ namespace PvPHelper.MVVM.ViewModels
                     };
                     dialog.ShowDialog();
                 }
+                else
+                {
+                    Helpers.LoadAllImages();
+                }
             };
         }
 

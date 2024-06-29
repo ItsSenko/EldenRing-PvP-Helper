@@ -26,7 +26,7 @@ namespace PvPHelper.Console.Commands
         private PHPointer ArrayStartPtr;
         private PHPointer ArrayEndPtr;
 
-        private static List<Infusion> infusions = new List<Infusion>() { Infusion.Blood, Infusion.Cold, Infusion.Fire, Infusion.FlameArt, Infusion.Heavy, Infusion.Keen, Infusion.Lightning, Infusion.Magic, Infusion.Occult, Infusion.Posion, Infusion.Quality, Infusion.Sacred, Infusion.Standard};
+        private static List<Infusion> infusions = new List<Infusion>() { Infusion.Blood, Infusion.Cold, Infusion.Fire, Infusion.FlameArt, Infusion.Heavy, Infusion.Keen, Infusion.Lightning, Infusion.Magic, Infusion.Occult, Infusion.Poison, Infusion.Quality, Infusion.Sacred, Infusion.Standard};
 
         private MainWindowViewModel viewModel;
 
@@ -34,7 +34,7 @@ namespace PvPHelper.Console.Commands
         public TestModal(ErdHook hook, MainWindowViewModel viewModel)
         {
             CommandString = "/test";
-            RequireParams = true;
+            RequireParams = false;
             HasParams = true;
             this.hook = hook;
             this.viewModel = viewModel;
@@ -44,7 +44,51 @@ namespace PvPHelper.Console.Commands
 
         protected override void OnTriggerCommand()
         {
-            
+            ItemCategory cat = ItemCategory.All.FirstOrDefault(x => x.Name == "DLC Gems");
+            foreach(var item in ItemCategory.All.FirstOrDefault(x => x.Name == "DLC Gems").Items)
+            {
+                if (item.ID == 411000)
+                {
+                    CommandManager.Log(item.Name);
+                    foreach(var type in (item as Gem).WeaponTypes)
+                    {
+                        CommandManager.Log(type.ToString());
+                    }
+                    
+                }
+                if (item.ID == 412000)
+                {
+                    CommandManager.Log(item.Name);
+                    foreach (var type in (item as Gem).WeaponTypes)
+                    {
+                        CommandManager.Log(type.ToString());
+                    }
+                }
+                
+            }
+            foreach (var item in ItemCategory.All.FirstOrDefault(x => x.Name == "DLC Melee Weapons").Items)
+            {
+                if (item.ID == 64500000)
+                {
+                    CommandManager.Log(item.Name);
+                    CommandManager.Log((item as Weapon).Type.ToString());
+
+                }
+                if (item.ID == 68500000)
+                {
+                    CommandManager.Log(item.Name);
+                    CommandManager.Log((item as Weapon).Type.ToString());
+                }
+            }
+            foreach (var item in ItemCategory.All.FirstOrDefault(x => x.Name == "DLC Shields").Items)
+            {
+                if (item.ID == 62500000)
+                {
+                    CommandManager.Log(item.Name);
+                    CommandManager.Log((item as Weapon).Type.ToString());
+
+                }
+            }
         }
 
         static void LogFMGItemsInFolder(string folderPath, string fmgFileName)
@@ -123,10 +167,10 @@ namespace PvPHelper.Console.Commands
         }
         protected override void OnTriggerCommandWithParameters(List<string> parameters)
         {
-            var path = Path.Combine("C:/Users/eleme/Documents/PvP Helper Project/", "msg/engus/");
+            /*var path = Path.Combine("C:/Users/eleme/Documents/PvP Helper Project/", "msg/engus/");
             CommandManager.Log("Getting Data...");
             LogFMGItemsInFolder(path, parameters[0]);
-            CommandManager.Log("Got all data");
+            CommandManager.Log("Got all data");*/
         }
     }
 }

@@ -19,7 +19,7 @@ namespace PvPHelper
         [STAThread()]
         static void Main()
         {
-            AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
+            //AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
             ProgramLogs.Initialize();
 
             (new Program()).Run();

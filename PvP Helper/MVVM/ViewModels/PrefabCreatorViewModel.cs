@@ -383,15 +383,15 @@ namespace PvPHelper.MVVM.ViewModels
                     GemOption gem = AshesSelectedItem as GemOption;
                     WeaponPrefab newWeapon = new(wep.Name, wep.ID, inf == null ? Infusion.Standard : inf.infusion, gem == null ? -1 : gem.gem.ID, UpgradeLevel);
                     weaponPrefabs.Add(newWeapon);
-                    ImageSource icon = Helpers.GetImageSource(item.item.Name);
-                    ImageSource infusionIcon = Helpers.GetImageSource(inf == null ? Infusion.Standard.ToString() : inf.infusion.ToString());
+                    ImageSource icon = Helpers.GetImageSource(Helpers.GetFullIconID(item.item.IconID).ToString());
+                    ImageSource infusionIcon = Helpers.GetImageSource(inf == null ? Infusion.Standard.ToString() : inf.infusion.ToString(), true);
                     ImageSource ashIcon = null;
                     PvPHelper.Console.CommandManager.Log(item.item.EventID.ToString());
                     if (gem != null)
                     {
                         string gemName = gem.Name;
                         gemName = gemName.StartsWith("Ash of War") ? gemName.Replace(":", "_") : ("Ash of War_ " + gemName);
-                        ashIcon = Helpers.GetImageSource(gemName);
+                        ashIcon = Helpers.GetImageSource(Helpers.GetFullIconID(gem.gem.IconID).ToString());
                     }
 
                     CreateNewBtn(item.item.Name, icon, "+" + UpgradeLevel.ToString(), infusionIcon, ashIcon, weaponItems, wpnPrefab: newWeapon);
@@ -407,7 +407,7 @@ namespace PvPHelper.MVVM.ViewModels
                                 armorPrefabs.Add(prefab);
                                 PvPHelper.Console.CommandManager.Log(item.item.ID.ToString());
                                 CreateNewBtn(item.item.Name,
-                                    Helpers.GetImageSource(item.item.Name), "",null, null, armorItems, armPrefab: prefab);
+                                    Helpers.GetImageSource(Helpers.GetFullIconID(item.item.IconID).ToString()), "",null, null, armorItems, armPrefab: prefab);
                                 break;
                             }
                         case Item.Category.Accessory:
@@ -417,7 +417,7 @@ namespace PvPHelper.MVVM.ViewModels
                                 talismanPrefabs.Add(prefab);
                                 PvPHelper.Console.CommandManager.Log(item.item.ID.ToString());
                                 CreateNewBtn(item.item.Name,
-                                    Helpers.GetImageSource(item.item.Name), "",null, null, talismanItems, talPrefab: prefab);
+                                    Helpers.GetImageSource(Helpers.GetFullIconID(item.item.IconID).ToString()), "",null, null, talismanItems, talPrefab: prefab);
                                 break;
                             }
                     }
@@ -432,7 +432,7 @@ namespace PvPHelper.MVVM.ViewModels
 
             if (item.WeaponPrefab.Infusion != prefab.Infusion)
             {
-                item.InfusionIconPath = Helpers.GetImageSource(prefab.Infusion == null ? Infusion.Standard.ToString() : ((Infusion)prefab.Infusion).ToString());
+                item.InfusionIconPath = Helpers.GetImageSource(prefab.Infusion == null ? Infusion.Standard.ToString() : ((Infusion)prefab.Infusion).ToString(), true);
             }
 
             if (item.WeaponPrefab.SwordArtID != prefab.SwordArtID)
@@ -442,7 +442,7 @@ namespace PvPHelper.MVVM.ViewModels
                     Gem gem = Gem.All.FirstOrDefault(x => x.ID == prefab.SwordArtID);
                     string gemName = gem.Name.Replace(":", "_");
 
-                    item.AshOfWarIcon = Helpers.GetImageSource(gemName);
+                    item.AshOfWarIcon = Helpers.GetImageSource(Helpers.GetFullIconID(gem.IconID).ToString());
                 }
             }
 
@@ -632,7 +632,7 @@ namespace PvPHelper.MVVM.ViewModels
                     {
                         Item item = itemCat.Items.FirstOrDefault(x => x.ID == prefab.ID);
                         CreateNewBtn(item.Name,
-                            Helpers.GetImageSource(item.Name), "", null, null, armorItems, armPrefab: prefab, add: false);
+                            Helpers.GetImageSource(Helpers.GetFullIconID(item.IconID).ToString()), "", null, null, armorItems, armPrefab: prefab, add: false);
                     }
                 }
             }
@@ -646,7 +646,7 @@ namespace PvPHelper.MVVM.ViewModels
                     {
                         Item item = itemCat.Items.FirstOrDefault(x => x.ID == prefab.ID);
                         CreateNewBtn(item.Name,
-                            Helpers.GetImageSource(item.Name), "", null, null, talismanItems, talPrefab: prefab, add: false);
+                            Helpers.GetImageSource(Helpers.GetFullIconID(item.IconID).ToString()), "", null, null, talismanItems, talPrefab: prefab, add: false);
                     }
                 }
             }
@@ -658,14 +658,14 @@ namespace PvPHelper.MVVM.ViewModels
                     if (itemCat != null)
                     {
                         Item item = itemCat.Items.FirstOrDefault(x => x.ID == prefab.ID);
-                        ImageSource icon = Helpers.GetImageSource(item.Name);
-                        ImageSource infusionIcon = Helpers.GetImageSource(((Infusion)prefab.Infusion).ToString());
+                        ImageSource icon = Helpers.GetImageSource(Helpers.GetFullIconID(item.IconID).ToString());
+                        ImageSource infusionIcon = Helpers.GetImageSource(((Infusion)prefab.Infusion).ToString(), true);
                         ImageSource ashIcon = null;
 
                         if (prefab.SwordArtID != null)
                         {
-                            string gemName = Gem.All.FirstOrDefault(x => x.ID == prefab.SwordArtID).Name.Replace(":", "_");
-                            ashIcon = Helpers.GetImageSource(gemName);
+                            var gem = Gem.All.FirstOrDefault(x => x.ID == prefab.SwordArtID);
+                            ashIcon = Helpers.GetImageSource(Helpers.GetFullIconID(gem.IconID).ToString());
                         }
 
                         CreateNewBtn(item.Name, icon, "+" + prefab.UpgradeLevel.ToString(), infusionIcon, ashIcon, weaponItems, wpnPrefab: prefab, add: false);
@@ -702,6 +702,8 @@ namespace PvPHelper.MVVM.ViewModels
             AshesSelectedItem = null;
             InfusionsSelectedItem = null;
         }
+
+        private bool lastWasInfusible = true;
         private void OnItemSelectedChanged()
         {
             if (!Hook.Loaded || !Hook.Hooked)
@@ -718,7 +720,7 @@ namespace PvPHelper.MVVM.ViewModels
             if (option.item is Weapon weapon)
             {
                 MaxUpgradeLevel = weapon.MaxUpgrade;
-                if (!weapon.Unique)
+                if (weapon.Infusible)
                 {
                     List<GemOption> gemOptions = new();
                     foreach (Gem gem in Gem.All)
@@ -730,14 +732,17 @@ namespace PvPHelper.MVVM.ViewModels
                     }
                     MaxUpgradeLevel = 25;
                     AshesItemsSource = gemOptions;
-                    UpgradeLevel = SomberToSmithy[UpgradeLevel];
+                    if (!lastWasInfusible)
+                        UpgradeLevel = SomberToSmithy[UpgradeLevel];
                     UpgradeLevelString = UpgradeLevel.ToString();
+                    lastWasInfusible = true;
                 }
                 else
                 {
                     MaxUpgradeLevel = 10;
                     UpgradeLevel = SmithyToSomber[UpgradeLevel];
                     UpgradeLevelString = UpgradeLevel.ToString();
+                    lastWasInfusible = false;
                 }
             }
             AshesSelectedItem = null;
