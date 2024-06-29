@@ -161,7 +161,7 @@
                     </Grid>
                 </Border>
                 <Grid Margin="10" Background="{StaticResource BackgroundBrush}" Grid.Row="1">
-                    <Button Height="150" Margin="0,0,0,35" Grid.Row="0" Command="{Binding AttachCommand}" Style="{DynamicResource SimpleButtonStyle}" Cursor="Hand">
+                    <Button Height="150" Margin="10,0,10,35" Grid.Row="0" Command="{Binding AttachCommand}" Style="{DynamicResource SimpleButtonStyle}" Cursor="Hand">
                             <svgc:SvgIcon 
                                   Fill="{DynamicResource ForegroundBrush}" 
                                   UriSource="{Binding AttachIcon, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
