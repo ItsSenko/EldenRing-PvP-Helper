@@ -1,6 +1,7 @@
 ﻿using PvPHelper.Console;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -19,7 +20,7 @@ namespace PvPHelper
         [STAThread()]
         static void Main()
         {
-            //AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
+            AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
             ProgramLogs.Initialize();
 
             (new Program()).Run();
@@ -33,8 +34,7 @@ namespace PvPHelper
             Thread.CurrentThread.IsBackground = true;
             Thread.CurrentThread.Name = "Dead thread";
 
-            while (true)
-                Thread.Sleep(TimeSpan.FromHours(1));
+            Thread.CurrentThread.Abort();
         }
 
         private static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
@@ -48,8 +48,7 @@ namespace PvPHelper
             Thread.CurrentThread.IsBackground = true;
             Thread.CurrentThread.Name = "Dead thread";
 
-            while (true)
-                Thread.Sleep(TimeSpan.FromHours(1));
+            Process.GetCurrentProcess().Kill();
         }
 
         void Run()

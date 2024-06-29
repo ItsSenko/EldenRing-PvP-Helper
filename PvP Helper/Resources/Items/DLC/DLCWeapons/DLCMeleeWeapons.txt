@@ -58,8 +58,11 @@
 51500000 Igon's Harpoon
 60500000 Dryleaf Arts
 60510000 Dane's Footwork
+61500000 Firespark Perfume Bottle
 61510000 Chilling Perfume Bottle
 61520000 Frenzyflame Perfume Bottle
+61530000 Lightning Perfume Bottle
+61540000 Deadly Poison Perfume Bottle
 63500000 Smithscript Dagger
 64500000 Backhand Blade
 64510000 Smithscript Cirque

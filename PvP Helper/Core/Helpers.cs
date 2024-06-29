@@ -1,9 +1,11 @@
 ﻿using Erd_Tools.Models;
+using PvPHelper.Console;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -166,14 +168,16 @@ namespace PvPHelper.Core
 
             if (Directory.Exists(iconsDirectory))
             {
-                foreach(var fileName in Directory.GetFiles(iconsDirectory))
+                foreach(var file in Directory.GetFiles(iconsDirectory))
                 {
-                    if (Path.GetFileName(fileName).ToLower().Contains(searchStr.ToLower()))
+                    string fileName = Path.GetFileName(file);
+                    string str = fileName.Substring(0, (fileName.Length - 4) );
+                    if (str.ToLower() == searchStr.ToLower())
                     {
-                        var image = LoadImageFromPath(fileName);
-                        if (AllImages.Keys.Contains(Path.GetFileName(fileName)))
+                        var image = LoadImageFromPath(file);
+                        if (AllImages.Keys.Contains(Path.GetFileName(file)))
                             return image;
-                        AllImages.Add(Path.GetFileName(fileName), image);
+                        AllImages.Add(Path.GetFileName(file), image);
                         return image;
                     }
                 }
@@ -181,10 +185,10 @@ namespace PvPHelper.Core
             return null;
         }
 
-        public static short GetFullIconID(short id)
+        public static string GetFullIconID(short id)
         {
             string str = id.ToString().PadLeft(5, '0');
-            return short.Parse(str);
+            return str;
         }
         public static ImageSource GetImageSource(string searchStr, bool exact = false)
         {
@@ -192,7 +196,16 @@ namespace PvPHelper.Core
             {
                 searchStr = searchStr.Replace('\'', '_');
             }
-            ImageSource image = AllImages.FirstOrDefault(x => exact ? x.Key.Contains(searchStr.ToLower() + ".png") : (x.Key.Contains(searchStr, StringComparison.OrdinalIgnoreCase))).Value;
+            ImageSource image = AllImages.FirstOrDefault(x => Path.GetFileName(x.Key.ToLower()).Contains(searchStr.ToLower() + ".png")).Value;
+            if (searchStr == "0")
+            {
+                if (AllImages.FirstOrDefault(x => x.Key == "null.png").Value == null)
+                {
+                    image = LoadImage("null.png");
+                }
+                else
+                    image = AllImages.FirstOrDefault(x => x.Key == "null.png").Value;
+            }
 
             if (image == null)
             {
@@ -232,6 +245,41 @@ namespace PvPHelper.Core
             }
         }
 
+        public static void RenameFilesInDirectory(string directory)
+        {
+            // Check if the provided directory exists
+            if (!Directory.Exists(directory))
+            {
+                CommandManager.Log($"The directory {directory} does not exist.");
+                return;
+            }
+
+            // Iterate over each file in the directory
+            foreach (string filePath in Directory.GetFiles(directory))
+            {
+                // Extract the file name
+                string fileName = Path.GetFileName(filePath);
+                fileName = fileName.Substring(0, fileName.Length - 4);
+
+                // Use regular expression to find the last 5-digit number
+                Match match = Regex.Match(fileName, @"\d{5}$");
+
+                if (match.Success && fileName.Length > 5)
+                {
+                    // New file name is the matched 5-digit number
+                    string newFileName = match.Value + Path.GetExtension(filePath);
+                    string newFilePath = Path.Combine(directory, newFileName);
+
+                    // Rename the file
+                    if (!File.Exists(newFilePath))
+                        File.Move(filePath, newFilePath);
+                    else
+                        File.Delete(filePath);
+                }
+            }
+
+            CommandManager.Log("Successfully renamed all files.");
+        }
         public static ImageSource LoadImageFromPath(string path)
         {
             BitmapImage img = new();

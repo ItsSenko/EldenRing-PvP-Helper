@@ -18,5 +18,10 @@ namespace PvPHelper.Core.Extensions
         public static ErdHook GetMainHook() => MainWindowViewModel.GetMainHook();
         public const string AddSoul_CallAoB = "44 8B 49 ? 45 33 DB 44 89 5C 24";
         public static PHPointer AddSoul_Call = null;
+
+        public static string RemoveSpaces(this string str)
+        {
+            return str.Replace(" ", string.Empty);
+        }
     }
 }

@@ -114,7 +114,7 @@ namespace PvPHelper.MVVM.ViewModels
                 }
                 else
                 {
-                    Helpers.LoadAllImages();
+                    //Helpers.LoadAllImages();
                 }
             };
         }
@@ -203,13 +203,14 @@ namespace PvPHelper.MVVM.ViewModels
             commandManager.RegisterCommand(new CustomFPS(_hook));
             commandManager.RegisterCommand(new CustomFOV(_hook));
             commandManager.RegisterCommand(new Update(_vController));
-            commandManager.RegisterCommand(new TestModal(_hook, this));
+            //commandManager.RegisterCommand(new TestModal(_hook, this));
             commandManager.RegisterCommand(new TeamTypeChangeCommand(_hook));
             commandManager.RegisterCommand(new NetPlayerCommand(_hook));
             commandManager.RegisterCommand(new ChrTypeChange(_hook));
             commandManager.RegisterCommand(new HelpCommand(commandManager));
             commandManager.RegisterCommand(new OpenMenuCommand(_hook));
             commandManager.RegisterCommand(new FreeCamCommand(_hook));
+            commandManager.RegisterCommand(new MassGibConsoleCommand(_hook));
         }
     }
 }

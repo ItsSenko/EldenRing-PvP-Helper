@@ -49,14 +49,14 @@ namespace PvPHelper.Console
             CurrErrorPath = Path.Combine(CurrErrorDir, $"Error {time}.txt");
 
             Program.OnLogged += OnNewLog;
-            AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
+            Program.OnUnhandledException += CurrentDomain_UnhandledException;
         }
 
-        private static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
+        private static void CurrentDomain_UnhandledException(Exception e)
         {
             using (var sw = new StreamWriter(CurrErrorPath, true))
             {
-                sw.WriteLine((e.ExceptionObject as Exception).StackTrace);
+                sw.WriteLine($"{e.Message} {e.StackTrace}");
             }
         }
 
