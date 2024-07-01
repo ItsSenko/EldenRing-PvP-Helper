@@ -29,6 +29,7 @@
 12510000 Anvil Hammer
 12520000 Black Steel Greathammer
 13500000 Serpent Flail
+12530000 Bloodfiend's Arm
 14500000 Smithscript Axe
 14510000 Death Knight's Twin Axes
 14520000 Messmer Soldier's Axe

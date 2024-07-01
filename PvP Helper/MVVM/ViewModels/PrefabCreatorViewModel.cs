@@ -631,6 +631,15 @@ namespace PvPHelper.MVVM.ViewModels
                     if (itemCat != null)
                     {
                         Item item = itemCat.Items.FirstOrDefault(x => x.ID == prefab.ID);
+                        if (item == null)
+                        {
+                            item = ItemCategory.All.FirstOrDefault(x => x.Name == "DLC Armor").Items.FirstOrDefault(x => x.ID == prefab.ID);
+                            if (item == null)
+                            {
+                                PvPHelper.Console.CommandManager.Log($"Couldnt find item in armor for prefab id: {prefab.ID}");
+                                return;
+                            }
+                        }
                         CreateNewBtn(item.Name,
                             Helpers.GetImageSource(Helpers.GetFullIconID(item.IconID).ToString()), "", null, null, armorItems, armPrefab: prefab, add: false);
                     }
@@ -645,6 +654,15 @@ namespace PvPHelper.MVVM.ViewModels
                     if (itemCat != null)
                     {
                         Item item = itemCat.Items.FirstOrDefault(x => x.ID == prefab.ID);
+                        if (item == null)
+                        {
+                            item = ItemCategory.All.FirstOrDefault(x => x.Name == "DLC Talismans").Items.FirstOrDefault(x => x.ID == prefab.ID);
+                            if (item == null)
+                            {
+                                PvPHelper.Console.CommandManager.Log($"Couldnt find item in Talismans for prefab id: {prefab.ID}");
+                                return;
+                            }
+                        }
                         CreateNewBtn(item.Name,
                             Helpers.GetImageSource(Helpers.GetFullIconID(item.IconID).ToString()), "", null, null, talismanItems, talPrefab: prefab, add: false);
                     }
@@ -658,6 +676,15 @@ namespace PvPHelper.MVVM.ViewModels
                     if (itemCat != null)
                     {
                         Item item = itemCat.Items.FirstOrDefault(x => x.ID == prefab.ID);
+                        /*if (item == null)
+                        {
+                            item = ItemCategory.All.FirstOrDefault(x => x.Name == "DLC Talismans").Items.FirstOrDefault(x => x.ID == prefab.ID);
+                            if (item == null)
+                            {
+                                PvPHelper.Console.CommandManager.Log($"Couldnt find item in Talismans for prefab id: {prefab.ID}");
+                                return;
+                            }
+                        }*/
                         ImageSource icon = Helpers.GetImageSource(Helpers.GetFullIconID(item.IconID).ToString());
                         ImageSource infusionIcon = Helpers.GetImageSource(((Infusion)prefab.Infusion).ToString(), true);
                         ImageSource ashIcon = null;

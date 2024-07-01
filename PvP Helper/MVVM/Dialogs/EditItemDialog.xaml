@@ -39,7 +39,6 @@
                                        VerticalAlignment="Top"
                                        Height="40" Margin="0,42,0,0"
                                        x:Name="AshOfWarBox"
-                                       OnSelectedItemChanged="AshOfWarBox_OnSelectedItemChanged"
                                        SelectedItem="{Binding AshSelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
                 <TextBlock Text="Infusion"

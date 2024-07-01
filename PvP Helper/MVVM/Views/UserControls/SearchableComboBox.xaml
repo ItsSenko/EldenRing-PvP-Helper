@@ -19,14 +19,15 @@
                           Height="Auto"
                           Foreground="#757575"
                           Background= "#1e1e1e"
-                          Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged, ElementName=SearchableComboBoxRoot}"
+                          Text="{Binding SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ElementName=SearchableComboBoxRoot}"
                           SelectedIndex="{Binding SelectedIndex, UpdateSourceTrigger=PropertyChanged, ElementName=SearchableComboBoxRoot}"
                           SelectedItem="{Binding SelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ElementName=SearchableComboBoxRoot}"
                           ItemsSource="{Binding ItemsSource, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ElementName=SearchableComboBoxRoot}"
                           TextBoxBase.TextChanged="comboBox_TextChanged"
                           ScrollViewer.VerticalScrollBarVisibility="Hidden"
                           VerticalContentAlignment="Center"
-                                      OnTextBoxSet="comboBox_OnTextBoxSet">
+                          SelectionChanged="comboBox_SelectionChanged"
+                          KeyDown="comboBox_KeyUp">
 
                     <ComboBox.ItemsPanel>
                         <ItemsPanelTemplate>

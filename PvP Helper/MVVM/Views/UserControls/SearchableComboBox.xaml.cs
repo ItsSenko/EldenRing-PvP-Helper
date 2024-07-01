@@ -21,28 +21,11 @@ namespace PvPHelper.MVVM.Views.UserControls
         }
         #region DataBindings
 
-
-        public ICommand ShiftUpCommand
-        {
-            get { return (ICommand)GetValue(ShiftUpCommandProperty); }
-            set { SetValue(ShiftUpCommandProperty, value); }
-        }
-
-        // Using a DependencyProperty as the backing store for ShiftUpCommand.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty ShiftUpCommandProperty =
-            DependencyProperty.Register("ShiftUpCommand", typeof(ICommand), typeof(SearchableComboBox));
-
-
         public object SelectedItem
         {
             get { return (object)GetValue(SelectedItemProperty); }
-            set 
-            { 
-                SetValue(SelectedItemProperty, value); 
-                OnSelectedItemChanged.Invoke(value); 
-            }
+            set { SetValue(SelectedItemProperty, value); }
         }
-        public event Action<object> OnSelectedItemChanged = new((obj) => { });
         // Using a DependencyProperty as the backing store for SelectedItem.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty SelectedItemProperty =
             DependencyProperty.Register("SelectedItem", typeof(object), typeof(SearchableComboBox));
@@ -67,7 +50,6 @@ namespace PvPHelper.MVVM.Views.UserControls
             set { SetValue(SearchTextProperty, value); }
         }
 
-        // Using a DependencyProperty as the backing store for SearchText.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty SearchTextProperty =
             DependencyProperty.Register("SearchText", typeof(string), typeof(SearchableComboBox), new PropertyMetadata(string.Empty));
 
@@ -79,7 +61,6 @@ namespace PvPHelper.MVVM.Views.UserControls
             set { SetValue(PlaceholderProperty, value); }
         }
 
-        // Using a DependencyProperty as the backing store for Placeholder.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty PlaceholderProperty =
             DependencyProperty.Register("Placeholder", typeof(string), typeof(SearchableComboBox), new PropertyMetadata(string.Empty));
 
@@ -88,111 +69,56 @@ namespace PvPHelper.MVVM.Views.UserControls
         public IEnumerable<object> ItemsSource
         {
             get { return (IEnumerable<object>)GetValue(ItemsSourceProperty); }
-            set 
-            {
-                if (OriginItems == null && value != null)
-                {
-                    OriginItems = value.ToList();
-                }
-                SetValue(ItemsSourceProperty, value);
-            }
+            set { SetValue(ItemsSourceProperty, value); }
         }
 
-        // Using a DependencyProperty as the backing store for ItemsSource.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty ItemsSourceProperty =
             DependencyProperty.Register("ItemsSource", typeof(IEnumerable<object>), typeof(SearchableComboBox));
         #endregion
-        #region Search Functionality
-
-
-        public List<object> OriginItems
+        private void comboBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            get { return (List<object>)GetValue(OriginItemsProperty); }
-            set { SetValue(OriginItemsProperty, value); }
+            if (!string.IsNullOrEmpty(SearchText))
+                Placeholder = string.Empty;
+            else
+                Placeholder = "Search...";
         }
 
-        // Using a DependencyProperty as the backing store for OriginItems.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty OriginItemsProperty =
-            DependencyProperty.Register("OriginItems", typeof(List<object>), typeof(SearchableComboBox));
-
-        
-        public List<object> FilteredItems { get; set; }
-        /*public override void OnApplyTemplate()
+        private void comboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            base.OnApplyTemplate();
-
-            var element = GetTemplateChild("comboBox");
-            if (element != null)
+            if (!comboBox.IsDropDownOpen)
             {
-                var textBox = Helpers.FindVisualChild<TextBox>(element);
-
-                if (textBox!= null)
+                var textBox = (TextBox)this.Template.FindName("PART_EditableTextBox", this);
+                if (textBox != null)
                 {
-                    textBox.SelectionChanged += OnDropSelectionChanged;
+                    textBox.SelectionLength = 0;
+                }
+            }
+            else if (SearchText != null && SearchText.Length < 2)
+            {
+                var textBox = (TextBox)this.Template.FindName("PART_EditableTextBox", this);
+                if (textBox != null)
+                {
+                    textBox.SelectionLength = 0;
                 }
             }
         }
 
-        bool dropDownOpened = false;
-        private void OnDropSelectionChanged(object sender, RoutedEventArgs e)
+        private void comboBox_KeyUp(object sender, KeyEventArgs e)
         {
-            TextBox box = sender as TextBox;
-
-            if (dropDownOpened)
+            var textBox = (TextBox)comboBox.Template.FindName("PART_EditableTextBox", comboBox);
+            if (!comboBox.IsDropDownOpen && string.IsNullOrEmpty(SearchText) && textBox.IsFocused)
             {
-                box.SelectionLength = 0;
-            }
-        }*/
-        private void comboBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            // Check for empty to reset ComboBox List
-            if (string.IsNullOrEmpty(SearchText))
-            {
-                if (SelectedItem != null)
-                    SelectedItem = null;
-                FilteredItems = null;
-                ItemsSource = OriginItems;
-                Placeholder = "Search...";
-                return;
-            }
-            Placeholder = string.Empty;
-
-            if (SelectedItem != null)
-                return;
-
-            if (ItemsSource == null || ItemsSource.ToList().Count == 0)
-                return;
-
-            ItemsSource = OriginItems.Where(item => item.ToString().ToLower().Contains(SearchText.ToLower()));
-
-            bool doDropDown = ItemsSource.ToList().Count <= 0 ? false : true && !string.IsNullOrEmpty(SearchText);
-
-            if (comboBox.IsDropDownOpen != doDropDown)
-            {
-                comboBox.IsManuallyDroppedDown = doDropDown;
-                comboBox.IsDropDownOpen = doDropDown;
+                comboBox.IsDropDownOpen = true;
+                if (textBox != null)
+                {
+                    textBox.SelectionLength = 0;
+                }
             }
 
-            /*if (SelectedItem != null)
-                return;
-            // Check if there is any items in the ItemsSource
-            if (ItemsSource == null || ItemsSource.ToList().Count == 0) return;
-
-            // Filter the list based on the search text and order by position
-            FilteredItems = OriginItems.Where(item => item.ToString().ToLower().Contains(SearchText.ToLower())).OrderBy(item => item.ToString().IndexOf(SearchText.ToLower())).ToList();
-
-            // Update the ComboBox with the new items that match the search text
-            ItemsSource = FilteredItems;
-
-            // hide or show drop down depedning on FilteredItems
-            comboBox.IsDropDownOpen = FilteredItems.Count <= 0 ? false : true;*/
-        }
-        #endregion
-
-        private TextBox box;
-        private void comboBox_OnTextBoxSet(TextBox obj)
-        {
-            box = obj;
+            if (textBox != null && textBox.SelectionLength < 1)
+            {
+                textBox.SelectionLength = 0;
+            }
         }
     }
 }

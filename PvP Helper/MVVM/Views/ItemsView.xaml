@@ -94,7 +94,7 @@
                     <RowDefinition Height="10"/>
                     <RowDefinition Height="2*"/>
                 </Grid.RowDefinitions>
-                <local:SeparatorTextControl Text="Massive Gains" Grid.Row="0"/>
+                <local:SeparatorTextControl Text="Mass Item Give" Grid.Row="0"/>
                 <Border x:Name="Massive_Gains" Grid.Row="1" Margin="10">
                     <UniformGrid Columns="4" Rows="4">
 
@@ -117,7 +117,7 @@
                     </UniformGrid>
                 </Border>
                 <!--<TextBox Style="{StaticResource SeparatorStyle}"/>-->
-                <local:SeparatorTextControl Text="Massive Gains" Grid.Row="2"/>
+                <local:SeparatorTextControl Text="Mass Equipment Give" Grid.Row="2"/>
                 <Border Name="Massive_Item_Gib" Grid.Row="3" Margin="10">
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -153,7 +153,7 @@
                         </UniformGrid>
                     </Grid>
                 </Border>
-                <local:SeparatorTextControl Text="Massive Gains" Grid.Row="4"/>
+                <local:SeparatorTextControl Text="Item Give" Grid.Row="4"/>
                 <Border Name="Item_Gib" Grid.Row="5" Margin="10">
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -178,22 +178,23 @@
                                 Width="200"
                                 ItemsSource="{Binding CategoryItemsSource, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                 SelectedItem="{Binding CategorySelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                
                                 />
                             <Label Content="WEAPON"/>
                             <local:SearchableComboBox
                                 ItemsSource="{Binding WeaponsItemsSource, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                 SelectedItem="{Binding WeaponsSelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                OriginItems="{Binding OriginWeapons, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                SearchText="{Binding WeaponsSearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                             <Label Content="ASH OF WAR"/>
                             <local:SearchableComboBox
                                 ItemsSource="{Binding AshesItemsSource, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                 SelectedItem="{Binding AshesSelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                OriginItems="{Binding OriginAshes, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                SearchText="{Binding GemSearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                             <Label Content="INFUSION"/>
                             <local:SearchableComboBox
                                 ItemsSource="{Binding InfusionsItemsSource, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                 SelectedItem="{Binding InfusionsSelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                OriginItems="{Binding OriginInfusions, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                SearchText="{Binding InfusionsSearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
                         <Grid Grid.Column="1">
                             <Grid.RowDefinitions>

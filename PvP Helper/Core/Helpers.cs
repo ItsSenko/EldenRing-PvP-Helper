@@ -1,5 +1,7 @@
 ﻿using Erd_Tools.Models;
 using PvPHelper.Console;
+using PvPHelper.Core.Extensions;
+using SoulsFormats;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -9,12 +11,93 @@ using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using static Erd_Tools.Models.Weapon;
 
 namespace PvPHelper.Core
 {
     public class Helpers
     {
         public static Dictionary<string, ImageSource> AllImages = new();
+
+        public static void LogFMGItemsInFolder(string folderPath, string fmgFileName)
+        {
+            //Get all files from path
+            string[] files = Directory.GetFiles(folderPath);
+            foreach (string file in files)
+            {
+                try
+                {
+                    //Trun file into bytes and then use BND4.Read() to read them
+                    byte[] fileBytes = File.ReadAllBytes(file);
+                    foreach (var bnd in BND4.Read(fileBytes).Files)
+                    {
+                        if (bnd.Name.Contains(fmgFileName))
+                        {
+                            //Get FMG
+                            var fmg = FMG.Read(bnd.Bytes);
+
+                            //Log Current bnd
+                            CommandManager.Log(bnd.Name);
+                            foreach (var entry in fmg.Entries)
+                            {
+                                //This can be removed, I use this to check if we already have the item somewhere
+                                if (isInFile("DLC", $"{entry.ID} {entry.Text}"))
+                                    continue;
+                                if (entry.ID == 0)
+                                    continue;
+                                if (string.IsNullOrEmpty(entry.Text) || entry.Text.Contains("[ERROR]"))
+                                    continue;
+                                //Log the item
+                                CommandManager.Log($"{entry.ID} {entry.Text}", false);
+                            }
+
+                        }
+
+                    }
+                }
+                catch (Exception ex)
+                {
+                    CommandManager.Log($"Unhandled Exception: {ex.Message} {ex.StackTrace}");
+                }
+            }
+
+            // Recursively get files from subdirectories
+            string[] subdirectories = Directory.GetDirectories(folderPath);
+            foreach (string subdirectory in subdirectories)
+            {
+                LogFMGItemsInFolder(subdirectory, fmgFileName);
+            }
+        }
+
+        public static bool isInFile(string path, string text)
+        {
+            foreach (var file in Directory.GetFiles(path))
+            {
+                string[] items = File.ReadAllLines(file);
+                if (items.FirstOrDefault(x => x.Contains(text)) != null)
+                    return true;
+            }
+            return false;
+        }
+
+        public static bool hasInfusion(string name, List<Infusion> infusions)
+        {
+            if (name.Contains("Flame Art"))
+                return true;
+            if (name.Contains("Poison"))
+                return true;
+            foreach (var inf in infusions)
+            {
+                if (name.Contains(inf.ToString()))
+                    return true;
+            }
+            return false;
+        }
+
+        public static ItemCategory GetCategoryByName(string name)
+        {
+            return ItemCategory.All.FirstOrDefault(x => x.Name.RemoveSpaces().ToLower() == name.ToLower().RemoveSpaces());
+        }
         public static byte SetBit(byte b, int bitIndex, bool value)
         {
             if ((bitIndex < 0) || (bitIndex > 7))

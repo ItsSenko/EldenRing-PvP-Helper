@@ -49,8 +49,8 @@
                         </Grid.Resources>
                         <Label Content="WEAPON"/>
                         <local:SearchableComboBox ItemsSource="{Binding WeaponsItemsSource, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                                  OriginItems="{Binding OriginWeapons, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                                  SelectedItem="{Binding WeaponsSelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                                  SelectedItem="{Binding WeaponsSelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                  SearchText="{Binding WeaponsSearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                     </Grid>
 
                     <Grid Grid.Row="1">
@@ -68,8 +68,8 @@
                         </Grid.Resources>
                         <Label Content="ASH OF WAR"/>
                         <local:SearchableComboBox ItemsSource="{Binding AshesItemsSource, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                                  OriginItems="{Binding OriginAshes, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                                  SelectedItem="{Binding AshesSelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                                  SelectedItem="{Binding AshesSelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                  SearchText="{Binding GemSearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                     </Grid>
 
                     <Grid Grid.Row="2">
@@ -87,8 +87,8 @@
                         </Grid.Resources>
                         <Label Content="INFUSION"/>
                         <local:SearchableComboBox ItemsSource="{Binding InfusionsItemsSource, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                                  OriginItems="{Binding OriginInfusions, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                                  SelectedItem="{Binding InfusionsSelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                                  SelectedItem="{Binding InfusionsSelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                  SearchText="{Binding InfusionsSearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                     </Grid>
                     <Border Grid.Row="3"/>
                     <Grid Grid.Row="3">

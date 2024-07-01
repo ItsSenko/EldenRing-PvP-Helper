@@ -95,7 +95,7 @@ namespace PvPHelper.MVVM.Dialogs
                 InfusionBox.ItemsSource = infusionOptions;
                 InfusionBox.SelectedIndex = infusionOptions.IndexOf(infusionOptions.FirstOrDefault(inf => (int)inf.infusion == Prefab.Infusion));
             }
-            AshOfWarBox.OnSelectedItemChanged += AshOfWarBox_OnSelectedItemChanged;
+            //AshOfWarBox.OnSelectedItemChanged += AshOfWarBox_OnSelectedItemChanged;
         }
 
         private WeaponPrefab _prefab;
@@ -114,7 +114,7 @@ namespace PvPHelper.MVVM.Dialogs
             if (obj == null)
                 return;
 
-            InfusionBox.OriginItems = null;
+            //InfusionBox.OriginItems = null;
             GemOption option = obj as GemOption;
             List<InfusionOption> infusionOptions = new();
             foreach (Infusion infusion in option.gem.Infusions)
@@ -127,7 +127,7 @@ namespace PvPHelper.MVVM.Dialogs
             if (obj == null)
                 return;
 
-            InfusionBox.OriginItems = null;
+            //InfusionBox.OriginItems = null;
             GemOption option = obj as GemOption;
             List<InfusionOption> infusionOptions = new();
             foreach (Infusion infusion in option.gem.Infusions)
