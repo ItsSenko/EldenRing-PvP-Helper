@@ -1,4 +1,5 @@
 1500000 Main-gauche
+1510000 Fire Knight's Shortsword
 2510000 Velvet Sword of St. Trina
 2520000 Star-Lined Sword
 2530000 Carian Sorcery Sword
@@ -10,6 +11,7 @@
 3520000 Lizard Greatsword
 3550000 Greatsword of Solitude
 4500000 Ancient Meteoric Ore Greatsword
+4520000 Fire Knight's Greatsword
 4530000 Greatsword of Radahn (Lord)
 4540000 Moonrithyll's Knight Sword
 4550000 Greatsword of Radahn (Light)

@@ -56,7 +56,8 @@ namespace PvPHelper.Console
         {
             using (var sw = new StreamWriter(CurrErrorPath, true))
             {
-                sw.WriteLine($"{e.Message} {e.StackTrace}");
+                sw.WriteLine($"{e.Message} | {e.Source} | {e.TargetSite}" +
+                    $"{e.StackTrace}");
             }
         }
 

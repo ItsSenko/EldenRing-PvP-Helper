@@ -21,9 +21,9 @@ namespace PvPHelper.Console.Commands
         private ErdHook hook;
         public UpdateBuildCommand(ErdHook hook)
         {
-            Name = "Update Build";
-            Description = "Updates the old build format pre-v1.6.2-beta to the post v1.6.2-beta format.";
-            CommandString = "/transferbuild";
+            Name = "Format Build";
+            Description = "Updates the old build format pre-v1.7.0-beta to the post v1.7.0-beta format.";
+            CommandString = "/format";
             HasParams = true;
             RequireParams = true;
             this.hook = hook;

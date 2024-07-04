@@ -1,4 +1,5 @@
 ﻿using PvPHelper.Console;
+using PvPHelper.MVVM.Dialogs;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -20,7 +21,7 @@ namespace PvPHelper
         [STAThread()]
         static void Main()
         {
-            //AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
+            AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
             ProgramLogs.Initialize();
 
             (new Program()).Run();
@@ -42,22 +43,35 @@ namespace PvPHelper
             OnUnhandledException.Invoke(e.ExceptionObject as Exception);
 
             var ex = e.ExceptionObject as Exception;
-            MessageBox.Show(ex.Message, "Uncaught Thread Exception",
-                        MessageBoxButton.OK, MessageBoxImage.Error);
-
-            Thread.CurrentThread.IsBackground = true;
-            Thread.CurrentThread.Name = "Dead thread";
-
-            Process.GetCurrentProcess().Kill();
+            InformationDialog dialog = new($"Uncaught exception: {ex.Message}");
+            dialog.ShowDialog();
         }
 
         void Run()
         {
-            App app = new App();
-         
-            app.InitializeComponent();
+            try
+            {
+                App app = new App();
+                app.Dispatcher.UnhandledException += Dispatcher_UnhandledException;
 
-            app.Run();
+
+                app.InitializeComponent();
+
+                app.Run();
+            }
+            catch { };
+        }
+
+        private void Dispatcher_UnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
+        {
+            try
+            {
+                OnUnhandledException.Invoke(e.Exception);
+                e.Handled = true;
+                InformationDialog dialog = new($"Uncaught exception: {e.Exception.Message}");
+                dialog.ShowDialog();
+            }
+            catch { }
         }
 
         public static void InvokeLog(string message)

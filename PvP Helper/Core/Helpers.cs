@@ -1,6 +1,9 @@
 ﻿using Erd_Tools.Models;
+using Newtonsoft.Json.Linq;
 using PvPHelper.Console;
 using PvPHelper.Core.Extensions;
+using PvPHelper.MVVM.Dialogs;
+using PvPHelper.MVVM.Models.Builds;
 using SoulsFormats;
 using System;
 using System.Collections.Generic;
@@ -280,6 +283,92 @@ namespace PvPHelper.Core
                 return null;
 
             return item;
+        }
+
+        public static void UpdateBuild(string path)
+        {
+            var hook = ExtensionsCore.GetMainHook();
+
+            if (!hook.Loaded || !hook.Setup)
+                return;
+
+            string json = File.ReadAllText(path);
+
+            JObject jObject = JObject.Parse(json);
+            string name = jObject["BuildName"].ToString();
+
+            JArray weaponsJArray = (JArray)jObject["weapons"];
+            JArray armorsJArray = (JArray)jObject["armors"];
+            JArray talismansJArray = (JArray)jObject["talismans"];
+
+            List<WeaponItem> weaponItems = new();
+            List<BuildItem> armorItems = new();
+            List<BuildItem> talismanItems = new();
+
+            foreach (var weaponJObject in weaponsJArray)
+            {
+                string Name = weaponJObject["Name"].ToString();
+                int ID = weaponJObject["ID"].ToObject<int>();
+                int infusion = weaponJObject["Infusion"].ToObject<int>();
+                int SwordArtID = weaponJObject["SwordArtID"].ToObject<int>();
+                int UpgradeLevel = weaponJObject["UpgradeLevel"].ToObject<int>();
+
+                WeaponItem newWeapon = new(Name, ID, 0, null, infusion, ((Infusion)infusion).ToString(), SwordArtID, 0, UpgradeLevel);
+
+                if (hook.Loaded && hook.Setup)
+                {
+                    Weapon weapon = Helpers.GetWeaponFromID(ID);
+                    Gem gem = Helpers.GetGemFromID(SwordArtID);
+
+                    if (weapon != null)
+                    {
+                        newWeapon.IconID = weapon.IconID;
+                        newWeapon.Category = weapon.ItemCategory.ToString();
+                    }
+
+                    if (gem != null)
+                    {
+                        newWeapon.GemIconID = gem.IconID;
+                    }
+                }
+
+                weaponItems.Add(newWeapon);
+            }
+
+            foreach (var talismanJObj in talismansJArray)
+            {
+                int ID = talismanJObj["ID"].ToObject<int>();
+                BuildItem talismanItem = new(null, ID, 0, null);
+                Item item = Helpers.GetItemFromID(ID, Item.Category.Accessory.ToString());
+
+                talismanItem.Name = item.Name;
+                talismanItem.IconID = item.IconID;
+                talismanItem.Category = item.ItemCategory.ToString();
+
+                talismanItems.Add(talismanItem);
+            }
+
+            foreach (var armorJObj in armorsJArray)
+            {
+                int ID = armorJObj["ID"].ToObject<int>();
+                BuildItem armorItem = new(null, ID, 0, null);
+                Item item = Helpers.GetItemFromID(ID, Item.Category.Protector.ToString());
+
+                armorItem.Name = item.Name;
+                armorItem.IconID = item.IconID;
+                armorItem.Category = item.ItemCategory.ToString();
+
+                armorItems.Add(armorItem);
+            }
+
+            Build updatedBuild = new(name, new() { new("Weapons", new()), new("Talismans", talismanItems), new("Armors", armorItems) });
+            updatedBuild.Inventories[0].Items.AddRange(weaponItems);
+
+            updatedBuild.Author = "Unknown";
+            updatedBuild.Description = "No description.";
+
+            BuildSaver.saveBuild(updatedBuild);
+            CommandManager.Log($"Automatically Updated Build '{updatedBuild.Name}'!");
         }
 
         public static Gem GetGemFromID(int ID)

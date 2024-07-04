@@ -44,6 +44,7 @@ namespace PvPHelper.Console.Commands
 
         protected override void OnTriggerCommand()
         {
+            throw new Exception("test");
             var pah = Path.Combine(Directory.GetCurrentDirectory(), "Builds/Test.json");
             string str = File.ReadAllText(pah);
             JObject jObject = JObject.Parse(str);

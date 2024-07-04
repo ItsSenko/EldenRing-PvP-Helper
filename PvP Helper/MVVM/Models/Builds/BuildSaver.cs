@@ -9,6 +9,8 @@ using System.Collections.Generic;
 using System.IO;
 using static Erd_Tools.Models.Weapon;
 using Newtonsoft.Json.Linq;
+using PvPHelper.Core.Extensions;
+using PvPHelper.Core;
 
 namespace PvPHelper.MVVM.Models.Builds
 {
@@ -72,7 +74,16 @@ namespace PvPHelper.MVVM.Models.Builds
                         JObject jObject = JObject.Parse(json);
                         JArray jArray = (JArray)jObject["Inventories"];
                         if (jObject["Name"] == null)
+                        {
+                            if (jObject["BuildName"] != null)
+                            {
+                                if (ExtensionsCore.GetMainHook().Loaded && ExtensionsCore.GetMainHook().Setup)
+                                {
+                                    Helpers.UpdateBuild(fileName);
+                                }
+                            }
                             continue;
+                        }
                         Build build = new(jObject["Name"].ToString(), new());
                         foreach (var inventory in jArray)
                         {

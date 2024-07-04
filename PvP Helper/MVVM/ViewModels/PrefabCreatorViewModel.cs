@@ -408,8 +408,6 @@ namespace PvPHelper.MVVM.ViewModels
 
             CurrentBuild = new("New Build", new List<Inventory>() { new("Weapons", new()), new("Talismans", new()), new("Armors", new()) });
             SelectedInventoryItemsSource = CurrentBuild.Inventories;
-
-            
         }
 
         private void OnCurrentBuildChanged(Build build)
@@ -568,6 +566,13 @@ namespace PvPHelper.MVVM.ViewModels
 
                 if (newInvItem.Item is WeaponItem wpn)
                 {
+                    if (!Hook.Loaded || !Hook.Setup)
+                    {
+                        InformationDialog info = new("You cannot edit items while you are not attached. Please attach to Elden Ring first.");
+                        info.ShowDialog();
+                        return;
+                    }
+
                     EditItemDialog dialog = new();
                     dialog.Prefab = newInvItem.Item as WeaponItem;
                     dialog.ItemIcon.Source = icon;
@@ -678,7 +683,8 @@ namespace PvPHelper.MVVM.ViewModels
                 else
                 {
                     MaxUpgradeLevel = 10;
-                    UpgradeLevel = SmithyToSomber[UpgradeLevel];
+                    if (lastWasInfusible)
+                        UpgradeLevel = SmithyToSomber[UpgradeLevel];
                     UpgradeLevelString = UpgradeLevel.ToString();
                     lastWasInfusible = false;
                 }

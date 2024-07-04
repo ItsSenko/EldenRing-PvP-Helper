@@ -146,7 +146,8 @@ namespace PvPHelper.MVVM.Views.UserControls
 
         private void Minus_MouseLeave(object sender, MouseEventArgs e)
         {
-            Minus.Fill = Brushes.White;
+            var bc = new BrushConverter();
+            Minus.Fill = (Brush)bc.ConvertFrom("#A953FF"); ;
         }
 
         private void Plus_MouseEnter(object sender, MouseEventArgs e)
@@ -157,7 +158,8 @@ namespace PvPHelper.MVVM.Views.UserControls
 
         private void Plus_MouseLeave(object sender, MouseEventArgs e)
         {
-            Plus.Fill = Brushes.White;
+            var bc = new BrushConverter();
+            Plus.Fill = (Brush)bc.ConvertFrom("#A953FF");
         }
     }
 }
