@@ -23,6 +23,7 @@ namespace PvPHelper.MVVM.ViewModels
         #region RelayCommands
         public RelayCommand DashboardCommand { get; set; }
         public RelayCommand ItemsCommand { get; set; }
+        public RelayCommand ItemGiveCommand { get; set; }
         public RelayCommand PrefabCreatorCommand { get; set; }
         public RelayCommand YourPrefabsCommand { get; set; }
         public RelayCommand MiscCommand { get; set; }

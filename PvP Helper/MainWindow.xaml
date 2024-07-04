@@ -66,6 +66,9 @@
                 <local:TabButton Label="Items" 
                                  UriSource="Resources/Images/tab-plus.svg"
                                  BtnCommand="{Binding ItemsCommand}"/>
+                <local:TabButton Label="Item Give" 
+                                 UriSource="Resources/Images/tab-plus.svg"
+                                 BtnCommand="{Binding ItemGiveCommand}"/>
                 <local:TabButton Label="Prefab Creator" 
                                  UriSource="Resources/Images/auto-fix.svg"
                                  BtnCommand="{Binding PrefabCreatorCommand}"/>

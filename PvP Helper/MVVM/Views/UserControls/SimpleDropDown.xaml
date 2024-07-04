@@ -50,6 +50,7 @@
                 </Style.Triggers>
             </Style>
         </Border.Style>-->
+    <Grid>
         <ComboBox Style="{DynamicResource ComboBoxStyle}"
                   ItemContainerStyle="{DynamicResource ComboBoxItemStyle}"
                   BorderThickness="1"
@@ -63,5 +64,13 @@
                   ItemsSource="{Binding ItemsSource, ElementName=SimpleDropDownRoot}"
                   IsSynchronizedWithCurrentItem="True"
                   VerticalContentAlignment="Center"
+                  DropDownOpened="ComboBox_DropDownOpened"
+                  DropDownClosed="ComboBox_DropDownClosed"
+                  x:Name="comboBox"
                   />
+        <TextBlock Text="{Binding GhostText, ElementName=SimpleDropDownRoot}" Padding="8, 0, 0, 0"
+                   VerticalAlignment="Center"
+                   Foreground="{DynamicResource LighterTextBrush}"
+                   x:Name="GhostTextBlock"/>
+    </Grid>
 </UserControl>
