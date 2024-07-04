@@ -1,6 +1,9 @@
 ﻿using Erd_Tools.Models;
 using PvPHelper.Core;
 using PvPHelper.MVVM.Models;
+using PvPHelper.MVVM.Models.Builds;
+using PvPHelper.MVVM.Models.Search;
+using PvPHelper.MVVM.Models.Search.SortOrders;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -35,10 +38,23 @@ namespace PvPHelper.MVVM.Dialogs
         {
             InitializeComponent();
             DataContext = this;
-
-            this.Loaded += EditItemDialog_Loaded;
         }
 
+        private object _infusionSelectedItem;
+
+        public object InfusionSelectedItem
+        {
+            get { return _infusionSelectedItem; }
+            set 
+            { 
+                _infusionSelectedItem = value;
+                if (value == null && !string.IsNullOrEmpty(InfSearchText) && infusionSearch != null && infusionSearch.ShownItems != null)
+                {
+                    _infusionSelectedItem = infusionSearch.ShownItems.FirstOrDefault(x => x.ToString() == InfSearchText);
+                }
+                OnPropertyChanged();
+            }
+        }
 
 
         private object _ashSelectedItem;
@@ -49,19 +65,51 @@ namespace PvPHelper.MVVM.Dialogs
             set 
             {
                 _ashSelectedItem = value;
+                if (value == null && !string.IsNullOrEmpty(AshSearchText) && gemSearch != null && gemSearch.ShownItems != null)
+                {
+                    _ashSelectedItem = gemSearch.ShownItems.FirstOrDefault(x => x.ToString() == AshSearchText);
+                }
                 OnPropertyChanged();
                 OnAshChanged(value);
             }
         }
 
+        private string _ashSearch;
 
-
-        private void EditItemDialog_Loaded(object sender, RoutedEventArgs e)
+        public string AshSearchText
         {
+            get { return _ashSearch; }
+            set { _ashSearch = value;
+                if (gemSearch != null)
+                    gemSearch.SearchString = _ashSearch;
+            }
+        }
+
+        private string _infSearch;
+
+        public string InfSearchText
+        {
+            get { return _infSearch; }
+            set { _infSearch = value;
+                if (infusionSearch != null)
+                    infusionSearch.SearchString = _infSearch;
+            }
+        }
+
+        private SearchAlgorithm<Gem> gemSearch;
+        private SearchAlgorithm<Infusion> infusionSearch;
+
+        private void EditItemDialog_Loaded()
+        {
+            gemSearch = new(new(), new AlphabeticalSort<Gem>());
+            gemSearch.OnItemsChanged += (items) => { AshOfWarBox.ItemsSource = items; };
+            infusionSearch = new(new(), new AlphabeticalSort<Infusion>());
+            infusionSearch.OnItemsChanged += (items) => { InfusionBox.ItemsSource = items; };
+
             UpgradeBox.CurrValue = Prefab.UpgradeLevel;
             UpgradeBox.InputText = Prefab.UpgradeLevel.ToString();
 
-            List<GemOption> gemOptions = new();
+            List<SearchItem<Gem>> gemOptions = new();
             ItemCategory category = ItemCategory.All.FirstOrDefault(x => x.Items.FirstOrDefault(x => x.ID == Prefab.ID && x is Weapon) != null);
             if (category != null)
             {
@@ -74,72 +122,70 @@ namespace PvPHelper.MVVM.Dialogs
                         {
                             if (gem.WeaponTypes.Contains(wpn.Type))
                             {
-                                gemOptions.Add(new(gem.Name.Contains("Ash of War: ") ? gem.Name.Substring(12) : gem.Name, gem));
+                                gemOptions.Add(new(gem, gem.Name.Contains("Ash of War: ") ? gem.Name.Substring(12) : gem.Name));
                             }
                         }
-                        AshOfWarBox.ItemsSource = gemOptions;
+                        gemSearch.Items = gemOptions;
                         UpgradeBox.Max = 25;
                     }
                     else
                         UpgradeBox.Max = 10;
                 }
             }
-            AshOfWarBox.SelectedIndex = gemOptions.IndexOf(gemOptions.FirstOrDefault(gem => gem.gem.ID == Prefab.SwordArtID));
+            AshOfWarBox.SelectedIndex = gemOptions.IndexOf(gemOptions.FirstOrDefault(gem => gem.Item.ID == Prefab.SwordArtID));
 
-            GemOption option = AshOfWarBox.SelectedItem as GemOption;
+            SearchItem<Gem> option = AshOfWarBox.SelectedItem as SearchItem<Gem>;
             if (option != null)
             {
-                List<InfusionOption> infusionOptions = new();
-                foreach (Infusion infusion in option.gem.Infusions)
-                    infusionOptions.Add(new(infusion.ToString(), infusion));
-                InfusionBox.ItemsSource = infusionOptions;
-                InfusionBox.SelectedIndex = infusionOptions.IndexOf(infusionOptions.FirstOrDefault(inf => (int)inf.infusion == Prefab.Infusion));
+                List<SearchItem<Infusion>> infusionOptions = new();
+                foreach (Infusion infusion in option.Item.Infusions)
+                    infusionOptions.Add(new(infusion, infusion.ToString()));
+                infusionSearch.Items = infusionOptions;
+                InfusionBox.SelectedIndex = infusionOptions.IndexOf(infusionOptions.FirstOrDefault(inf => (int)inf.Item == Prefab.Infusion));
             }
             //AshOfWarBox.OnSelectedItemChanged += AshOfWarBox_OnSelectedItemChanged;
         }
 
-        private WeaponPrefab _prefab;
+        private WeaponItem _prefab;
 
-        public WeaponPrefab Prefab
+        public WeaponItem Prefab
         {
             get { return _prefab; }
-            set { _prefab = value; }
+            set { 
+                if (_prefab == null && value != null)
+                {
+                    _prefab = value;
+                    EditItemDialog_Loaded();
+                }
+                else
+                    _prefab = value;  
+            }
         }
 
         public event Action OnCancel = new(() => { });
-        public event Action<WeaponPrefab> OnSubmit = new((prefab) => { });
+        public event Action<WeaponItem> OnSubmit = new((prefab) => { });
 
         public void OnAshChanged(object obj)
         {
             if (obj == null)
                 return;
-
-            //InfusionBox.OriginItems = null;
-            GemOption option = obj as GemOption;
-            List<InfusionOption> infusionOptions = new();
-            foreach (Infusion infusion in option.gem.Infusions)
-                infusionOptions.Add(new(infusion.ToString(), infusion));
-            InfusionBox.ItemsSource = infusionOptions;
+            SearchItem<Gem> option = obj as SearchItem<Gem>;
+            List<SearchItem<Infusion>> infusionOptions = new();
+            foreach (Infusion infusion in option.Item.Infusions)
+                infusionOptions.Add(new(infusion, infusion.ToString()));
+            infusionSearch.Items = infusionOptions;
         }
-
-        private void AshOfWarBox_OnSelectedItemChanged(object obj)
-        {
-            if (obj == null)
-                return;
-
-            //InfusionBox.OriginItems = null;
-            GemOption option = obj as GemOption;
-            List<InfusionOption> infusionOptions = new();
-            foreach (Infusion infusion in option.gem.Infusions)
-                infusionOptions.Add(new(infusion.ToString(), infusion));
-            InfusionBox.ItemsSource = infusionOptions;
-        }
-
+        
         private void Save_Click(object sender, RoutedEventArgs e)
         {
-            InfusionOption infOption = InfusionBox.SelectedItem as InfusionOption;
-            GemOption gemOption = AshOfWarBox.SelectedItem as GemOption;
-            WeaponPrefab prefab = new(Prefab.Name, Prefab.ID, infOption == null ? Infusion.Standard : infOption.infusion, gemOption == null ? -1 : gemOption.gem.ID, UpgradeBox.CurrValue);
+            SearchItem<Infusion> infOption = InfusionBox.SelectedItem as SearchItem<Infusion>;
+            SearchItem<Gem> gemOption = AshOfWarBox.SelectedItem as SearchItem<Gem>;
+            WeaponItem prefab = new(Prefab.Name, Prefab.ID, Prefab.IconID, Prefab.Category,
+                infOption == null ? (int)Infusion.Standard : (int)infOption.Item,
+                infOption == null ? "" : infOption.Item.ToString(),
+                gemOption == null ? -1 : gemOption.Item.ID,
+                gemOption == null ? (short)0 : gemOption.Item.IconID,
+                UpgradeBox.CurrValue);
             OnSubmit.Invoke(prefab);
             this.Close();
         }

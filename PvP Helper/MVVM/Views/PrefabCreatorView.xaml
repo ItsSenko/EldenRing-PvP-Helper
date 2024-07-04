@@ -167,11 +167,11 @@
                                 <WrapPanel Orientation="Horizontal" Width="668"/>
                             </ItemsPanelTemplate>
                         </ItemsControl.ItemsPanel>
-                        <ItemsControl.ItemTemplate>
+                        <!--<ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <local:InventoryItem/>
                             </DataTemplate>
-                        </ItemsControl.ItemTemplate>
+                        </ItemsControl.ItemTemplate>-->
                     </ItemsControl>
                 </ScrollViewer>
             </Border>

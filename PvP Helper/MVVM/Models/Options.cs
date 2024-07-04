@@ -42,7 +42,7 @@ namespace PvPHelper.MVVM.Models
             this.gem = item;
         }
     }
-    public class InventoryStateOption : BaseOption
+    /*public class InventoryStateOption : BaseOption
     {
         public PrefabCreatorViewModel.InventoryState State { get; set; }
         public InventoryStateOption(PrefabCreatorViewModel.InventoryState state)
@@ -50,7 +50,7 @@ namespace PvPHelper.MVVM.Models
             Name = state.ToString();
             State = state;
         }
-    }
+    }*/
 
     public class MenuItem : BaseOption
     {

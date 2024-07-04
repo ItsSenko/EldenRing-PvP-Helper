@@ -268,6 +268,37 @@ namespace PvPHelper.Core
             return null;
         }
 
+        public static Item GetItemFromID(int id, string category)
+        {
+            ItemCategory cat = ItemCategory.All.FirstOrDefault(x => x.Items.FirstOrDefault(w => w.ID == id && w.ItemCategory.ToString() == category) != null);
+
+            if (cat == null)
+                return null;
+            Item item = cat.Items.FirstOrDefault(w => w.ID == id);
+
+            if (item == null)
+                return null;
+
+            return item;
+        }
+
+        public static Gem GetGemFromID(int ID)
+        {
+            return Gem.All.FirstOrDefault(x => x.ID == ID || x.SwordArtID == ID);
+        }
+        public static Weapon GetWeaponFromID(int id)
+        {
+            ItemCategory cat = ItemCategory.All.FirstOrDefault(x => x.Items.FirstOrDefault(w => w is Weapon && w.ID == id) != null);
+
+            if (cat == null)
+                return null;
+            Weapon wpn = cat.Items.FirstOrDefault(w => w is Weapon && w.ID == id) as Weapon;
+
+            if (wpn == null)
+                return null;
+
+            return wpn;
+        }
         public static string GetFullIconID(short id)
         {
             string str = id.ToString().PadLeft(5, '0');

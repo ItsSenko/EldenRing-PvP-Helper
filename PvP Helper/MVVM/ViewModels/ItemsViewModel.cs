@@ -724,7 +724,7 @@ namespace PvPHelper.MVVM.ViewModels
             List<SearchItem<Gem>> gemItems = new();
             if (item.Item is Weapon weapon)
             {
-                if (!weapon.Unique)
+                if (weapon.Infusible)
                 {
                     foreach (Gem gem in Gem.All)
                     {

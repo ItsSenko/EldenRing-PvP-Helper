@@ -18,6 +18,9 @@ using SoulsFormats;
 using System.IO;
 using PvPHelper.MVVM.Models.Search;
 using PvPHelper.MVVM.Models.Search.SortOrders;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using PvPHelper.MVVM.Models.Builds;
 
 namespace PvPHelper.Console.Commands
 {
@@ -41,7 +44,32 @@ namespace PvPHelper.Console.Commands
 
         protected override void OnTriggerCommand()
         {
-            
+            var pah = Path.Combine(Directory.GetCurrentDirectory(), "Builds/Test.json");
+            string str = File.ReadAllText(pah);
+            JObject jObject = JObject.Parse(str);
+            JArray jArray = (JArray)jObject["Inventories"];
+
+            foreach(var inventory in jArray)
+            {
+                JArray items = (JArray)inventory["Items"];
+
+                if(inventory["Name"].ToString() == "Weapons")
+                {
+                    List<WeaponItem> wpnItems = items.ToObject<List<WeaponItem>>();
+                    foreach(var wpn in wpnItems)
+                    {
+                        CommandManager.Log($"Weapon: {wpn.Name} {wpn.ID}");
+                    }
+                }
+                else
+                {
+                    List<BuildItem> buildItem = items.ToObject<List<BuildItem>>();
+                    foreach(var bldItem in buildItem)
+                    {
+                        CommandManager.Log($"BuildItem: {bldItem.Name} {bldItem.ID}");
+                    }
+                }
+            }
         }
 
         

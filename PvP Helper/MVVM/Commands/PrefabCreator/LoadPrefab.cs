@@ -1,8 +1,12 @@
 ﻿using Erd_Tools;
 using Erd_Tools.Models;
+using Erd_Tools.Models.Items;
 using PvPHelper.MVVM.Models;
+using PvPHelper.MVVM.Models.Builds;
 using PvPHelper.MVVM.ViewModels;
+using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using static Erd_Tools.Models.Weapon;
 using CommandBase = PvPHelper.Core.CommandBase;
 
@@ -11,65 +15,45 @@ namespace PvPHelper.MVVM.Commands.PrefabCreator
     internal class LoadPrefab : CommandBase
     {
         private ErdHook hook;
-        private PrefabCreatorViewModel prefabCreator;
+        private PrefabCreatorViewModel vm;
 
-        public LoadPrefab(ErdHook hook, PrefabCreatorViewModel prefabCreator)
+        public LoadPrefab(ErdHook hook, PrefabCreatorViewModel vm)
         {
             this.hook = hook;
-            this.prefabCreator = prefabCreator;
+            this.vm = vm;
         }
 
         public override void Execute(object? parameter)
         {
-            if (!hook.Loaded || !hook.Hooked)
+            /*if (!hook.Loaded || !hook.Hooked)
                 return;
 
-            InventoryStateOption stateOption = null;
-            if (prefabCreator.SelectedInventory != null)
+            List<ItemSpawnInfo> info = new();
+            foreach(var inventory in vm.CurrentBuild.Inventories)
             {
-                stateOption = prefabCreator.SelectedInventory as InventoryStateOption;
-            }
-
-            prefabCreator.Update(stateOption != null ? stateOption.State : prefabCreator.CurrState);
-
-            if (prefabCreator.weaponPrefabs.Count > 0)
-            {
-                foreach (WeaponPrefab wpn in prefabCreator.weaponPrefabs)
+                foreach(var item in inventory.Items)
                 {
-                    ItemCategory category = ItemCategory.All.FirstOrDefault(x => x.Items.FirstOrDefault(x => x.ID == wpn.ID && x is Weapon) != null);
-                    if (category != null)
+                    if (item is WeaponItem weaponItem)
                     {
-                        Item item = category.Items.FirstOrDefault(x => x.ID == wpn.ID);
-                        hook.GetItem(new(item.ID, item.ItemCategory, 1, item.MaxQuantity, wpn.Infusion, wpn.UpgradeLevel, wpn.SwordArtID, item.EventID));
+                        Weapon weapon = GetWeaponFromID(weaponItem.ID);
+                        if (weapon == null)
+                            throw new System.Exception($"Couldnt find weapon at ID: {weaponItem.ID}");
+                        info.Add(new(weapon.ID, weapon.ItemCategory, 1, weapon.MaxQuantity, weaponItem.Infusion, weaponItem.UpgradeLevel, weaponItem.SwordArtID, weapon.EventID));
+                    }
+                    else
+                    {
+                        Item item1 = GetItemFromID(item.ID, item.Category);
+
+                        if (item1 == null)
+                            throw new System.Exception($"Couldnt find item at ID: {item.ID} With name: {item.Name}");
+
+                        info.Add(new(item1.ID, item1.ItemCategory, 1, item1.MaxQuantity, (int)Infusion.Standard, 0, -1, item1.EventID));
                     }
                 }
             }
-
-            if (prefabCreator.armorPrefabs.Count > 0)
-            {
-                foreach (ArmorPrefab armor in prefabCreator.armorPrefabs)
-                {
-                    ItemCategory category = ItemCategory.All.FirstOrDefault(x => x.Name == "Armor");
-                    if (category != null)
-                    {
-                        Item item = category.Items.FirstOrDefault(x => x.ID == armor.ID);
-                        hook.GetItem(new(item.ID, item.ItemCategory, 1, item.MaxQuantity, (int)Infusion.Standard, 0, -1, item.EventID));
-                    }
-                }
-            }
-
-            if (prefabCreator.talismanPrefabs.Count > 0)
-            {
-                foreach (TalismanPrefab talisman in prefabCreator.talismanPrefabs)
-                {
-                    ItemCategory category = ItemCategory.All.FirstOrDefault(x => x.Name == "Talismans");
-                    if (category != null)
-                    {
-                        Item item = category.Items.FirstOrDefault(x => x.ID == talisman.ID);
-                        hook.GetItem(new(item.ID, item.ItemCategory, 1, item.MaxQuantity, (int)Infusion.Standard, 0, -1, item.EventID));
-                    }
-                }
-            }
+            hook.GetItem(info, CancellationToken.None);*/
         }
+
+        
     }
 }

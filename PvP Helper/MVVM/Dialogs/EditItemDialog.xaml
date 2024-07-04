@@ -39,7 +39,8 @@
                                        VerticalAlignment="Top"
                                        Height="40" Margin="0,42,0,0"
                                        x:Name="AshOfWarBox"
-                                       SelectedItem="{Binding AshSelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                       SelectedItem="{Binding AshSelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                       SearchText="{Binding AshSearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="199"/>
 
                 <TextBlock Text="Infusion"
                            HorizontalAlignment="Center"
@@ -51,7 +52,9 @@
                                        VerticalAlignment="Top"
                                        Height="40" Margin="0,42,0,0"
                                        Grid.Row="1"
-                                       x:Name="InfusionBox"/>
+                                       SelectedItem="{Binding InfusionSelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                       SearchText="{Binding InfSearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                       x:Name="InfusionBox" Width="199"/>
 
                 <uc:NumberInput Grid.Row="2"
                                 Width="150" Margin="110,44,109,19"
@@ -62,13 +65,13 @@
                            Foreground="{StaticResource ForegroundBrush}" 
                            Margin="0,10,0,0"
                            Grid.Row="2"/>
-                
+
                 <Button Grid.Row="3" Style="{DynamicResource PrimaryButton}"
                         Content="Save"
                         Width="150"
                         Height="50" Margin="209,27,10,28"
                         Click="Save_Click"/>
-                
+
                 <Button Grid.Row="3" Style="{DynamicResource PrimaryButton}"
                         Content="Cancel"
                         Width="150"

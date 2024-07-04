@@ -11,12 +11,20 @@ using System.Collections.ObjectModel;
 using PvPHelper.MVVM.Commands.PrefabCreator;
 using System.Windows.Media;
 using PvPHelper.MVVM.Dialogs;
+using PvPHelper.MVVM.Models.Search.SortOrders;
+using PvPHelper.MVVM.Models.Search;
+using PvPHelper.MVVM.Models.Builds;
+using System.ComponentModel;
+using System.Windows;
+using System.Threading;
+using Erd_Tools.Models.Items;
 
 namespace PvPHelper.MVVM.ViewModels
 {
     public class PrefabCreatorViewModel : ViewModelBase
     {
         #region DataBindings
+       
         private IEnumerable<object> _categoryItemsSource;
 
         public IEnumerable<object> CategoryItemsSource
@@ -48,7 +56,7 @@ namespace PvPHelper.MVVM.ViewModels
         public object SelectedInventory
         {
             get { return _selectedInventory; }
-            set { _selectedInventory = value; OnPropertyChanged(); OnInventoryChanged(true); }
+            set { _selectedInventory = value; OnPropertyChanged(); OnSelectedInventoryChanged(); }
         }
         private int _selectedInvIdx;
 
@@ -58,9 +66,9 @@ namespace PvPHelper.MVVM.ViewModels
             set { _selectedInvIdx = value; OnPropertyChanged(); }
         }
 
-        private ObservableCollection<InventoryItem> _inventoryItems;
+        private BindingList<InventoryItem> _inventoryItems;
 
-        public ObservableCollection<InventoryItem> InventoryItems
+        public BindingList<InventoryItem> InventoryItems
         {
             get { return _inventoryItems; }
             set { _inventoryItems = value; OnPropertyChanged(); }
@@ -87,6 +95,47 @@ namespace PvPHelper.MVVM.ViewModels
         public ICommand CreateNew { get; set; }
         public ICommand Save { get; set; }
         #region ItemGib
+        private string _weaponSearchString;
+
+        public string WeaponsSearchText
+        {
+            get { return _weaponSearchString; }
+            set
+            {
+                _weaponSearchString = value;
+                if (weaponSearch != null)
+                    weaponSearch.SearchString = _weaponSearchString;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _gemSearchText;
+
+        public string GemSearchText
+        {
+            get { return _gemSearchText; }
+            set
+            {
+                _gemSearchText = value;
+                if (gemSearch != null)
+                    gemSearch.SearchString = _gemSearchText;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _infusionSearchText;
+
+        public string InfusionsSearchText
+        {
+            get { return _infusionSearchText; }
+            set
+            {
+                _infusionSearchText = value;
+                if (infusionSearch != null)
+                    infusionSearch.SearchString = _infusionSearchText;
+                OnPropertyChanged();
+            }
+        }
         private IEnumerable<object> _weaponsItemsSource;
 
         public IEnumerable<object> WeaponsItemsSource
@@ -94,20 +143,9 @@ namespace PvPHelper.MVVM.ViewModels
             get { return _weaponsItemsSource; }
             set 
             { 
-                if (value == null)
-                    return;
                 _weaponsItemsSource = value; 
                 OnPropertyChanged();
-                if (OriginWeapons == null)
-                    OriginWeapons = value.ToList();
             }
-        }
-        private List<object> _originWeapons;
-
-        public List<object> OriginWeapons
-        {
-            get { return _originWeapons; }
-            set { _originWeapons = value; OnPropertyChanged(); }
         }
 
         private object _weaponsSelectedItem;
@@ -115,7 +153,12 @@ namespace PvPHelper.MVVM.ViewModels
         public object WeaponsSelectedItem
         {
             get { return _weaponsSelectedItem; }
-            set { _weaponsSelectedItem = value; OnPropertyChanged(); OnItemSelectedChanged(); }
+            set { _weaponsSelectedItem = value;
+                if (value == null && !string.IsNullOrEmpty(WeaponsSearchText) && weaponSearch != null && weaponSearch.ShownItems != null)
+                {
+                    _weaponsSelectedItem = weaponSearch.ShownItems.FirstOrDefault(x => x.ToString() == WeaponsSearchText);
+                }
+                OnPropertyChanged(); OnItemSelectedChanged(); }
         }
 
 
@@ -126,20 +169,9 @@ namespace PvPHelper.MVVM.ViewModels
             get { return _ashesItemSource; }
             set 
             { 
-                if( value == null)
-                    return;
                 _ashesItemSource = value; 
                 OnPropertyChanged();
-                if (OriginAshes == null)
-                    OriginAshes = value.ToList();
             }
-        }
-        private List<object> _originAshes;
-
-        public List<object> OriginAshes
-        {
-            get { return _originAshes; }
-            set { _originAshes = value; OnPropertyChanged(); }
         }
 
         private object _ashesSelectedItem;
@@ -147,7 +179,12 @@ namespace PvPHelper.MVVM.ViewModels
         public object AshesSelectedItem
         {
             get { return _ashesSelectedItem; }
-            set { _ashesSelectedItem = value; OnPropertyChanged(); OnAshSelectedChanged(); }
+            set { _ashesSelectedItem = value;
+                if (value == null && !string.IsNullOrEmpty(GemSearchText) && gemSearch != null && gemSearch.ShownItems != null)
+                {
+                    _ashesSelectedItem = gemSearch.ShownItems.FirstOrDefault(x => x.ToString() == GemSearchText);
+                }
+                OnPropertyChanged(); OnAshSelectedChanged(); }
         }
 
 
@@ -158,20 +195,9 @@ namespace PvPHelper.MVVM.ViewModels
             get { return _infItemsSource; }
             set
             {
-                if (value == null)
-                    return;
                 _infItemsSource = value; 
                 OnPropertyChanged();
-                if (OriginInfusions == null)
-                    OriginInfusions = value.ToList();
             }
-        }
-        private List<object> _originInfusions;
-
-        public List<object> OriginInfusions
-        {
-            get { return _originInfusions; }
-            set { _originInfusions = value; OnPropertyChanged(); }
         }
 
         private object _infSelectedItem;
@@ -179,7 +205,12 @@ namespace PvPHelper.MVVM.ViewModels
         public object InfusionsSelectedItem
         {
             get { return _infSelectedItem; }
-            set { _infSelectedItem = value; OnPropertyChanged(); }
+            set { _infSelectedItem = value;
+                if (value == null && !string.IsNullOrEmpty(InfusionsSearchText) && infusionSearch != null && infusionSearch.ShownItems != null)
+                {
+                    _infSelectedItem = infusionSearch.ShownItems.FirstOrDefault(x => x.ToString() == InfusionsSearchText);
+                }
+                OnPropertyChanged(); }
         }
 
 
@@ -230,17 +261,23 @@ namespace PvPHelper.MVVM.ViewModels
         public ICommand AddItem { get; set; }
         #endregion
         #endregion
-        public enum InventoryState
-        {
-            Weapons,
-            Armors,
-            Talismans
-        }
         private ErdHook Hook;
 
-        private bool refreshing = false;
         Dictionary<int, int> SmithyToSomber = new();
         Dictionary<int, int> SomberToSmithy = new();
+
+        private SearchAlgorithm<Item> weaponSearch;
+        private SearchAlgorithm<Gem> gemSearch;
+        private SearchAlgorithm<Infusion> infusionSearch;
+
+        private Build _currentBuild;
+
+        public Build CurrentBuild
+        {
+            get { return _currentBuild; }
+            set { _currentBuild = value; OnCurrentBuildChanged(_currentBuild); }
+        }
+
         public PrefabCreatorViewModel(ErdHook hook)
         {
             Hook = hook;
@@ -253,31 +290,54 @@ namespace PvPHelper.MVVM.ViewModels
             MaxQuantity = 10;
             Quantity = 0;
             QuantityString = "0";
-            InventoryItems = new();
 
-            Load = new LoadPrefab(hook, this);
+            InventoryItems = new();
+            InventoryItems.ListChanged += OnInventoryChanged;
+
+            Load = new RelayCommand((o) =>
+            {
+                if (!hook.Loaded || !hook.Hooked)
+                    return;
+
+                List<ItemSpawnInfo> info = new();
+                foreach (var inventory in CurrentBuild.Inventories)
+                {
+                    foreach (var item in inventory.Items)
+                    {
+                        if (item is WeaponItem weaponItem)
+                        {
+                            Weapon weapon = Helpers.GetWeaponFromID(weaponItem.ID);
+                            if (weapon == null)
+                                throw new System.Exception($"Couldnt find weapon at ID: {weaponItem.ID}");
+                            info.Add(new(weapon.ID, weapon.ItemCategory, 1, weapon.MaxQuantity, weaponItem.Infusion, weaponItem.UpgradeLevel, weaponItem.SwordArtID, weapon.EventID));
+                        }
+                        else
+                        {
+                            Item item1 = Helpers.GetItemFromID(item.ID, item.Category);
+
+                            if (item1 == null)
+                                throw new System.Exception($"Couldnt find item at ID: {item.ID} With name: {item.Name}");
+
+                            info.Add(new(item1.ID, item1.ItemCategory, 1, item1.MaxQuantity, (int)Infusion.Standard, 0, -1, item1.EventID));
+                        }
+                    }
+                }
+                hook.GetItem(info, CancellationToken.None);
+            });
             RefreshBuilds = new RelayCommand((o) => 
             {
-                refreshing = true;
-                BuildItemsSource = BuildSaver.getBuilds();
+                CurrentBuild = new("New Build", new List<Inventory>() { new("Weapons", new()), new("Talismans", new()), new("Armors", new()) });
                 SelectedBuild = null;
+                List<Build> builds = new();
+                builds.Add(new("New Build", new List<Inventory>() { new("Weapons", new()), new("Talismans", new()), new("Armors", new()) }));
+                builds.AddRange(BuildSaver.getBuilds());
+                BuildItemsSource = builds;
             });
             CreateNew = new RelayCommand((o) =>
             {
-                refreshing = true;
                 BuildItemsSource = BuildSaver.getBuilds();
+                CurrentBuild = new("New Build", new List<Inventory>() { new("Weapons", new()), new("Talismans", new()), new("Armors", new()) });
                 SelectedBuild = null;
-
-                weaponItems.Clear();
-                weaponPrefabs.Clear();
-
-                armorItems.Clear();
-                armorPrefabs.Clear();
-
-                talismanItems.Clear();
-                talismanPrefabs.Clear();
-
-                InventoryItems.Clear();
             });
             Save = new SavePrefab(this);
 
@@ -295,13 +355,8 @@ namespace PvPHelper.MVVM.ViewModels
             categorys.Add(new(GetCategoryByName("DLC Shields").Name, GetCategoryByName("DLC Shields")));
             categorys.Add(new(GetCategoryByName("DLC Talismans").Name, GetCategoryByName("DLC Talismans")));
 
-            List<InventoryStateOption> inventoryStates = new();
-            inventoryStates.Add(new(InventoryState.Weapons));
-            inventoryStates.Add(new(InventoryState.Armors));
-            inventoryStates.Add(new(InventoryState.Talismans));
 
             CategoryItemsSource = categorys;
-            SelectedInventoryItemsSource = inventoryStates;
 
             BuildItemsSource = BuildSaver.getBuilds();
 
@@ -343,7 +398,54 @@ namespace PvPHelper.MVVM.ViewModels
             SomberToSmithy.Add(8, 21);
             SomberToSmithy.Add(9, 24);
             SomberToSmithy.Add(10, 25);
+
+            weaponSearch = new(new(), new AlphabeticalSort<Item>());
+            weaponSearch.OnItemsChanged += (items) => { WeaponsSelectedItem = null; WeaponsItemsSource = items; };
+            gemSearch = new(new(), new AlphabeticalSort<Gem>());
+            gemSearch.OnItemsChanged += (items) => { AshesSelectedItem = null; AshesItemsSource = items; };
+            infusionSearch = new(new(), new AlphabeticalSort<Infusion>());
+            infusionSearch.OnItemsChanged += (items) => { InfusionsSelectedItem = null; InfusionsItemsSource = items; };
+
+            CurrentBuild = new("New Build", new List<Inventory>() { new("Weapons", new()), new("Talismans", new()), new("Armors", new()) });
+            SelectedInventoryItemsSource = CurrentBuild.Inventories;
+
+            
         }
+
+        private void OnCurrentBuildChanged(Build build)
+        {
+            InventoryItems.Clear();
+            SelectedInventoryItemsSource = build.Inventories;
+            SelectedInventoryIndex = 0;
+            OnSelectedInventoryChanged();
+        }
+        private bool settingUpInventory = false;
+        private void OnSelectedInventoryChanged()
+        {
+            if (SelectedInventory == null)
+                return;
+
+            if (SelectedInventory is Inventory selectedInventory)
+            {
+                settingUpInventory = true;
+                InventoryItems.Clear();
+
+                if (selectedInventory.Items != null)
+                    foreach (var item in selectedInventory.Items)
+                        if (item is WeaponItem wpnItem)
+                            CreateNewBtn(item.Name,
+                                        Helpers.GetImageSource(Helpers.GetFullIconID(item.IconID)),
+                                        wpnItem.UpgradeLevel.ToString(),
+                                        string.IsNullOrWhiteSpace(wpnItem.InfusionIconID) ? null : Helpers.GetImageSource(wpnItem.InfusionIconID.ToString()),
+                                        Helpers.GetImageSource(Helpers.GetFullIconID(wpnItem.GemIconID)), item);
+                        else
+                            CreateNewBtn(item.Name, 
+                                        Helpers.GetImageSource(Helpers.GetFullIconID(item.IconID)),
+                                        string.Empty, null, null, item);
+                settingUpInventory = false;
+            }
+        }
+
 
         public ItemCategory GetCategoryByName(string name)
         {
@@ -353,104 +455,103 @@ namespace PvPHelper.MVVM.ViewModels
         {
             AddItem = new RelayCommand((o) => { AddItemToInventory(); });
         }
-        public List<WeaponPrefab> weaponPrefabs = new();
-        public List<InventoryItem> weaponItems = new();
-
-        public List<TalismanPrefab> talismanPrefabs = new();
-        public List<InventoryItem> talismanItems = new();
-
-        public List<ArmorPrefab> armorPrefabs = new();
-        public List<InventoryItem> armorItems = new();
 
         private void AddItemToInventory()
         {
             if (!Hook.Loaded || !Hook.Hooked)
                 return;
 
+            if (SelectedInventory == null)
+                return;
+
             if (WeaponsSelectedItem == null)
                 return;
-            string itempicfolder = "PvPHelper.Resources.Images.Items";
-            string infusionpicfolder = "PvPHelper.Resources.Images.Infusions";
 
-            var item = WeaponsSelectedItem as ItemGibOption;
-
+            Inventory selectedInventory = SelectedInventory as Inventory;
             for (int i = 0; i < Quantity; i++)
             {
-                if (item.item is Weapon wep)
+                if (WeaponsSelectedItem is SearchItem<Item> item)
                 {
-                    SelectedInventoryIndex = 0;
-                    InfusionOption inf = InfusionsSelectedItem != null ? InfusionsSelectedItem as InfusionOption : null;
-                    GemOption gem = AshesSelectedItem as GemOption;
-                    WeaponPrefab newWeapon = new(wep.Name, wep.ID, inf == null ? Infusion.Standard : inf.infusion, gem == null ? -1 : gem.gem.ID, UpgradeLevel);
-                    weaponPrefabs.Add(newWeapon);
-                    ImageSource icon = Helpers.GetImageSource(Helpers.GetFullIconID(item.item.IconID).ToString());
-                    ImageSource infusionIcon = Helpers.GetImageSource(inf == null ? Infusion.Standard.ToString() : inf.infusion.ToString(), true);
-                    ImageSource ashIcon = null;
-                    PvPHelper.Console.CommandManager.Log(item.item.EventID.ToString());
-                    if (gem != null)
+                    if (item.Item is Weapon weapon)
                     {
-                        string gemName = gem.Name;
-                        gemName = gemName.StartsWith("Ash of War") ? gemName.Replace(":", "_") : ("Ash of War_ " + gemName);
-                        ashIcon = Helpers.GetImageSource(Helpers.GetFullIconID(gem.gem.IconID).ToString());
-                    }
+                        if (selectedInventory.Name.ToLower() != "weapons")
+                        {
+                            SelectedInventoryIndex = 0;
+                        }
+                        if ((SelectedInventory as Inventory).Name.ToLower() != "weapons")
+                            return;
+                        var gem = AshesSelectedItem as SearchItem<Gem>;
+                        var infusion = InfusionsSelectedItem as SearchItem<Infusion>;
 
-                    CreateNewBtn(item.item.Name, icon, "+" + UpgradeLevel.ToString(), infusionIcon, ashIcon, weaponItems, wpnPrefab: newWeapon);
-                }
-                else
-                {
-                    switch (item.item.ItemCategory)
+                        WeaponItem wpnItem = new(weapon.Name, weapon.ID, weapon.IconID, weapon.ItemCategory.ToString(),
+                            infusion != null ? (int)infusion.Item : (int)Infusion.Standard,
+                            infusion != null ? infusion.Item.ToString() : "",
+                            gem != null ? gem.Item.ID : -1,
+                            gem != null ? gem.Item.IconID : (short)0,
+                            UpgradeLevel);
+
+                        CreateNewBtn(weapon.Name,
+                                    Helpers.GetImageSource(Helpers.GetFullIconID(wpnItem.IconID)),
+                                    wpnItem.UpgradeLevel.ToString(),
+                                    string.IsNullOrWhiteSpace(wpnItem.InfusionIconID) ? null : Helpers.GetImageSource(wpnItem.InfusionIconID),
+                                    wpnItem.GemIconID != 0 ? Helpers.GetImageSource(Helpers.GetFullIconID(wpnItem.GemIconID)) : null, wpnItem);
+                    }
+                    else
                     {
-                        case Item.Category.Protector:
+                        BuildItem buildItem = new(item.Item.Name, item.Item.ID, item.Item.IconID, item.Item.ItemCategory.ToString());
+                        if (item.Item.ItemCategory == Item.Category.Accessory)
+                        {
+                            if (selectedInventory.Name.ToLower() != "talismans")
                             {
                                 SelectedInventoryIndex = 1;
-                                ArmorPrefab prefab = new(item.item.ID);
-                                armorPrefabs.Add(prefab);
-                                PvPHelper.Console.CommandManager.Log(item.item.ID.ToString());
-                                CreateNewBtn(item.item.Name,
-                                    Helpers.GetImageSource(Helpers.GetFullIconID(item.item.IconID).ToString()), "",null, null, armorItems, armPrefab: prefab);
-                                break;
                             }
-                        case Item.Category.Accessory:
+                            if ((SelectedInventory as Inventory).Name.ToLower() != "talismans")
+                                return;
+                            CreateNewBtn(item.Item.Name,
+                                     Helpers.GetImageSource(Helpers.GetFullIconID(item.Item.IconID)),
+                                     string.Empty, null, null, buildItem);
+                        }
+                        else if (item.Item.ItemCategory == Item.Category.Protector)
+                        {
+                            if (selectedInventory.Name.ToLower() != "armors")
                             {
                                 SelectedInventoryIndex = 2;
-                                TalismanPrefab prefab = new(item.item.ID);
-                                talismanPrefabs.Add(prefab);
-                                PvPHelper.Console.CommandManager.Log(item.item.ID.ToString());
-                                CreateNewBtn(item.item.Name,
-                                    Helpers.GetImageSource(Helpers.GetFullIconID(item.item.IconID).ToString()), "",null, null, talismanItems, talPrefab: prefab);
-                                break;
                             }
+                            if ((SelectedInventory as Inventory).Name.ToLower() != "armors")
+                                return;
+                            CreateNewBtn(item.Item.Name,
+                                     Helpers.GetImageSource(Helpers.GetFullIconID(item.Item.IconID)),
+                                     string.Empty, null, null, buildItem);
+                        }
+
+
                     }
+
+
                 }
             }
         }
 
-        public void OnSaveEditedItem(WeaponPrefab prefab, InventoryItem item)
+        public void OnSaveEditedItem(WeaponItem prefab, InventoryItem item)
         {
-            string itempicfolder = "PvPHelper.Resources.Images.Items";
-            string infusionpicfolder = "PvPHelper.Resources.Images.Infusions";
+            if (prefab == null)
+                return;
 
-            if (item.WeaponPrefab.Infusion != prefab.Infusion)
-            {
-                item.InfusionIconPath = Helpers.GetImageSource(prefab.Infusion == null ? Infusion.Standard.ToString() : ((Infusion)prefab.Infusion).ToString(), true);
-            }
+            if (item == null)
+                return;
 
-            if (item.WeaponPrefab.SwordArtID != prefab.SwordArtID)
-            {
-                if (prefab.SwordArtID != null)
-                {
-                    Gem gem = Gem.All.FirstOrDefault(x => x.ID == prefab.SwordArtID);
-                    string gemName = gem.Name.Replace(":", "_");
+            if (!InventoryItems.Contains(item))
+                return;
 
-                    item.AshOfWarIcon = Helpers.GetImageSource(Helpers.GetFullIconID(gem.IconID).ToString());
-                }
-            }
-
-            item.WeaponPrefab = prefab;
+            item.Item = prefab;
+            item.ItemIconPath = Helpers.GetImageSource(Helpers.GetFullIconID(prefab.IconID));
             item.UpgradeLevel = prefab.UpgradeLevel.ToString();
-            Update(CurrState);
+            item.InfusionIconPath = string.IsNullOrEmpty(prefab.InfusionIconID) ? null : Helpers.GetImageSource(prefab.InfusionIconID);
+            item.AshOfWarIcon = prefab.GemIconID == 0 ? null : Helpers.GetImageSource(Helpers.GetFullIconID(prefab.GemIconID));
+
+            OnInventoryChanged(null, null);
         }
-        private void CreateNewBtn(string name, ImageSource icon, string upgradelevel, ImageSource infusionicon, ImageSource ashIcon, List<InventoryItem> list, WeaponPrefab wpnPrefab = null, ArmorPrefab armPrefab = null, TalismanPrefab talPrefab = null, bool add = true)
+        private void CreateNewBtn(string name, ImageSource icon, string upgradelevel, ImageSource infusionicon, ImageSource ashIcon, BuildItem item)
         {
             InventoryItem newInvItem = new();
             newInvItem.ItemName = name;
@@ -458,25 +559,25 @@ namespace PvPHelper.MVVM.ViewModels
             newInvItem.UpgradeLevel = upgradelevel;
             newInvItem.InfusionIconPath = infusionicon;
             newInvItem.AshOfWarIcon = ashIcon;
-
-            newInvItem.WeaponPrefab = wpnPrefab == null ? null : wpnPrefab;
-            newInvItem.ArmorPrefab = armPrefab == null ? null : armPrefab;
-            newInvItem.TalismanPrefab = talPrefab == null ? null : talPrefab;
-
+            newInvItem.Item = item;
+            
             newInvItem.MouseRightButtonDown += (o, e) => 
             {
-                if (newInvItem.WeaponPrefab == null)
+                if (newInvItem.Item == null)
                     return;
 
-                EditItemDialog dialog = new();
-                dialog.Prefab = newInvItem.WeaponPrefab;
-                dialog.ItemIcon.Source = icon;
-                dialog.OnSubmit += (p) =>
+                if (newInvItem.Item is WeaponItem wpn)
                 {
-                    OnSaveEditedItem(p, newInvItem);
-                };
+                    EditItemDialog dialog = new();
+                    dialog.Prefab = newInvItem.Item as WeaponItem;
+                    dialog.ItemIcon.Source = icon;
+                    dialog.OnSubmit += (p) =>
+                    {
+                        OnSaveEditedItem(p, newInvItem);
+                    };
 
-                dialog.ShowDialog();
+                    dialog.ShowDialog();
+                }
             };
 
             newInvItem.MouseDown += (s, e) => 
@@ -485,249 +586,60 @@ namespace PvPHelper.MVVM.ViewModels
                 {
                     if (InventoryItems.Contains(newInvItem))
                         InventoryItems.Remove(newInvItem);
-
-                    list.Remove(newInvItem);
-
-                    if (wpnPrefab != null)
-                        weaponPrefabs.Remove(wpnPrefab);
-
-                    if (talPrefab != null)
-                        talismanPrefabs.Remove(talPrefab);
-
-                    if (armPrefab != null)
-                        armorPrefabs.Remove(armPrefab);
                 }
             };
-            list.Add(newInvItem);
-            if (add)
-                InventoryItems.Add(newInvItem);
+            InventoryItems.Add(newInvItem);
         }
 
-        public void Update(InventoryState state, bool updateDrag = true)
+        private void OnInventoryChanged(object? sender, ListChangedEventArgs e)
         {
-            
-            switch (state)
-            {
-                case InventoryState.Weapons:
-                    {
-                        weaponItems.Clear();
-                        weaponPrefabs.Clear();
-                        foreach (InventoryItem item in InventoryItems)
-                        {
-                            weaponItems.Add(item);
-                            weaponPrefabs.Add(item.WeaponPrefab);
-                        }
-                        break;
-                    }
-                case InventoryState.Armors:
-                    {
-                        armorItems.Clear();
-                        armorPrefabs.Clear();
-                        foreach (InventoryItem item in InventoryItems)
-                        {
-                            armorItems.Add(item);
-                            armorPrefabs.Add(item.ArmorPrefab);
-                        }
-                        break;
-                    }
-                case InventoryState.Talismans:
-                    {
-                        talismanItems.Clear();
-                        talismanPrefabs.Clear();
-                        foreach (InventoryItem item in InventoryItems)
-                        {
-                            talismanItems.Add(item);
-                            talismanPrefabs.Add(item.TalismanPrefab);
-                        }
-                        break;
-                    }
-            }
-        }
-        public InventoryState CurrState = InventoryState.Weapons;
-        private void OnInventoryChanged(bool updateDrag = false)
-        {
+            if (settingUpInventory)
+                return;
+
             if (SelectedInventory == null)
                 return;
 
-            if (refreshing)
-            {
-                SelectedInventory = null;
-                refreshing = false;
+            if (InventoryItems == null)
                 return;
-            }
-            if (updateDrag)
-                Update(state: CurrState);
 
-            InventoryStateOption state = SelectedInventory as InventoryStateOption;
-
-            switch(state != null ? state.State : InventoryState.Weapons)
+            Inventory selectedInventory = SelectedInventory as Inventory;
+            selectedInventory.Items = new();
+            foreach(var invItem in InventoryItems)
             {
-                case InventoryState.Weapons:
-                    {
-                        InventoryItems.Clear();
-                        foreach (var item in weaponItems)
-                            InventoryItems.Add(item);
-                        CurrState = InventoryState.Weapons;
-                        break;
-                    }
-                case InventoryState.Armors:
-                    {
-                        InventoryItems.Clear();
-                        foreach (var item in armorItems)
-                            InventoryItems.Add(item);
-                        CurrState = InventoryState.Armors;
-                        break;
-                    }
-                case InventoryState.Talismans:
-                    {
-                        InventoryItems.Clear();
-                        foreach (var item in talismanItems)
-                            InventoryItems.Add(item);
-                        CurrState = InventoryState.Talismans;
-                        break;
-                    }
+                selectedInventory.Items.Add(invItem.Item);
             }
         }
 
         private void OnBuildChanged()
         {
-            if (SelectedBuild == null || refreshing)
-            {
-                weaponItems.Clear();
-                weaponPrefabs.Clear();
-
-                armorItems.Clear();
-                armorPrefabs.Clear();
-
-                talismanItems.Clear();
-                talismanPrefabs.Clear();
-
-                InventoryItems.Clear();
-                refreshing = false;
+            if (SelectedBuild == null)
                 return;
-            }
-                
 
-            BuildPrefab build = SelectedBuild as BuildPrefab;
-            SelectedInventory = 0;
-            
-            weaponPrefabs = build.weapons;
-            armorPrefabs = build.armors;
-            talismanPrefabs = build.talismans;
-
-            weaponItems.Clear();
-            armorItems.Clear();
-            talismanItems.Clear();
-            InventoryItems.Clear();
-
-            string itempicfolder = "PvPHelper.Resources.Images.Items";
-            string infusionpicfolder = "PvPHelper.Resources.Images.Infusions";
-
-            if (armorPrefabs.Count > 0)
-            {
-                foreach (ArmorPrefab prefab in armorPrefabs)
-                {
-                    ItemCategory itemCat = ItemCategory.All.FirstOrDefault(x => x.Name == "Armor");
-                    if (itemCat != null)
-                    {
-                        Item item = itemCat.Items.FirstOrDefault(x => x.ID == prefab.ID);
-                        if (item == null)
-                        {
-                            item = ItemCategory.All.FirstOrDefault(x => x.Name == "DLC Armor").Items.FirstOrDefault(x => x.ID == prefab.ID);
-                            if (item == null)
-                            {
-                                PvPHelper.Console.CommandManager.Log($"Couldnt find item in armor for prefab id: {prefab.ID}");
-                                return;
-                            }
-                        }
-                        CreateNewBtn(item.Name,
-                            Helpers.GetImageSource(Helpers.GetFullIconID(item.IconID).ToString()), "", null, null, armorItems, armPrefab: prefab, add: false);
-                    }
-                }
-            }
-
-            if (talismanPrefabs.Count > 0)
-            {
-                foreach (TalismanPrefab prefab in talismanPrefabs)
-                {
-                    ItemCategory itemCat = ItemCategory.All.FirstOrDefault(x => x.Name == "Talismans");
-                    if (itemCat != null)
-                    {
-                        Item item = itemCat.Items.FirstOrDefault(x => x.ID == prefab.ID);
-                        if (item == null)
-                        {
-                            item = ItemCategory.All.FirstOrDefault(x => x.Name == "DLC Talismans").Items.FirstOrDefault(x => x.ID == prefab.ID);
-                            if (item == null)
-                            {
-                                PvPHelper.Console.CommandManager.Log($"Couldnt find item in Talismans for prefab id: {prefab.ID}");
-                                return;
-                            }
-                        }
-                        CreateNewBtn(item.Name,
-                            Helpers.GetImageSource(Helpers.GetFullIconID(item.IconID).ToString()), "", null, null, talismanItems, talPrefab: prefab, add: false);
-                    }
-                }
-            }
-            if (weaponPrefabs.Count > 0)
-            {
-                foreach (var prefab in weaponPrefabs)
-                {
-                    ItemCategory itemCat = ItemCategory.All.FirstOrDefault(x => x.Items.Any(x => x.Name == prefab.Name));
-                    if (itemCat != null)
-                    {
-                        Item item = itemCat.Items.FirstOrDefault(x => x.ID == prefab.ID);
-                        /*if (item == null)
-                        {
-                            item = ItemCategory.All.FirstOrDefault(x => x.Name == "DLC Talismans").Items.FirstOrDefault(x => x.ID == prefab.ID);
-                            if (item == null)
-                            {
-                                PvPHelper.Console.CommandManager.Log($"Couldnt find item in Talismans for prefab id: {prefab.ID}");
-                                return;
-                            }
-                        }*/
-                        ImageSource icon = Helpers.GetImageSource(Helpers.GetFullIconID(item.IconID).ToString());
-                        ImageSource infusionIcon = Helpers.GetImageSource(((Infusion)prefab.Infusion).ToString(), true);
-                        ImageSource ashIcon = null;
-
-                        if (prefab.SwordArtID != null)
-                        {
-                            var gem = Gem.All.FirstOrDefault(x => x.ID == prefab.SwordArtID);
-                            ashIcon = Helpers.GetImageSource(Helpers.GetFullIconID(gem.IconID).ToString());
-                        }
-
-                        CreateNewBtn(item.Name, icon, "+" + prefab.UpgradeLevel.ToString(), infusionIcon, ashIcon, weaponItems, wpnPrefab: prefab, add: false);
-                    }
-                }
-            }
-
-            foreach (var item in weaponItems)
-                InventoryItems.Add(item);
+            CurrentBuild = SelectedBuild as Build;
         }
+
         private void OnCategoryChanged()
         {
             if (!Hook.Loaded || !Hook.Hooked)
                 return;
 
+            
+
             if (CategorySelectedItem == null)
                 return;
-            AshesItemsSource = Enumerable.Empty<object>();
-            InfusionsItemsSource = Enumerable.Empty<object>();
-            WeaponsItemsSource = Enumerable.Empty<object>();
-            OriginAshes = null;
-            OriginInfusions = null;
-            OriginWeapons = null;
+
+            weaponSearch.Items = null;
+            gemSearch.Items = null;
+            infusionSearch.Items = null;
 
             ItemCategoryOption option = CategorySelectedItem as ItemCategoryOption;
-            List<ItemGibOption> gibOptions = new();
+            List<SearchItem<Item>> items = new();
 
-            foreach(Item item in option.category.Items)
-                gibOptions.Add(new(item.Name, option.Name, item));
+            foreach (var item in option.category.Items)
+                items.Add(new(item, item.Name));
 
-            WeaponsItemsSource = gibOptions;
-
-            WeaponsSelectedItem = null;
-            AshesSelectedItem = null;
-            InfusionsSelectedItem = null;
+            weaponSearch.Items = items;
+            WeaponsSearchText = string.Empty;
         }
 
         private bool lastWasInfusible = true;
@@ -735,30 +647,29 @@ namespace PvPHelper.MVVM.ViewModels
         {
             if (!Hook.Loaded || !Hook.Hooked)
                 return;
-            InfusionsItemsSource = Enumerable.Empty<object>();
-            OriginInfusions = null;
 
-            AshesItemsSource = Enumerable.Empty<object>();
-            OriginAshes = null;
             if (WeaponsSelectedItem == null)
                 return;
 
-            ItemGibOption option = WeaponsSelectedItem as ItemGibOption;
-            if (option.item is Weapon weapon)
+            gemSearch.Items = null;
+            infusionSearch.Items = null;
+
+            SearchItem<Item> item = WeaponsSelectedItem as SearchItem<Item>;
+            if (item.Item is Weapon weapon)
             {
                 MaxUpgradeLevel = weapon.MaxUpgrade;
                 if (weapon.Infusible)
                 {
-                    List<GemOption> gemOptions = new();
+                    List<SearchItem<Gem>> gemOptions = new();
                     foreach (Gem gem in Gem.All)
                     {
                         if (gem.WeaponTypes.Contains(weapon.Type))
                         {
-                            gemOptions.Add(new(gem.Name.Contains("Ash of War: ") ? gem.Name.Substring(12) : gem.Name, gem));
+                            gemOptions.Add(new(gem, gem.Name.Contains("Ash of War: ") ? gem.Name.Substring(12) : gem.Name));
                         }
                     }
                     MaxUpgradeLevel = 25;
-                    AshesItemsSource = gemOptions;
+                    gemSearch.Items = gemOptions;
                     if (!lastWasInfusible)
                         UpgradeLevel = SomberToSmithy[UpgradeLevel];
                     UpgradeLevelString = UpgradeLevel.ToString();
@@ -772,7 +683,6 @@ namespace PvPHelper.MVVM.ViewModels
                     lastWasInfusible = false;
                 }
             }
-            AshesSelectedItem = null;
         }
 
         private void OnAshSelectedChanged()
@@ -783,14 +693,13 @@ namespace PvPHelper.MVVM.ViewModels
             if (AshesSelectedItem == null)
                 return;
 
-            OriginInfusions = null;
-            GemOption option = AshesSelectedItem as GemOption;
-            List<InfusionOption> infusionOptions = new();
-            foreach (Infusion infusion in option.gem.Infusions)
-                infusionOptions.Add(new(infusion.ToString(), infusion));
-            InfusionsItemsSource = infusionOptions;
+            infusionSearch.Items = null;
 
-            InfusionsSelectedItem = null;
+            SearchItem<Gem> option = AshesSelectedItem as SearchItem<Gem>;
+            List<SearchItem<Infusion>> infusionOptions = new();
+            foreach (Infusion infusion in option.Item.Infusions)
+                infusionOptions.Add(new(infusion, infusion.ToString()));
+            infusionSearch.Items = infusionOptions;
         }
     }
 }

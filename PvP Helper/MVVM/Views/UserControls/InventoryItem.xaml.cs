@@ -1,5 +1,6 @@
 ﻿using Erd_Tools.Models;
 using PvPHelper.MVVM.Models;
+using PvPHelper.MVVM.Models.Builds;
 using PvPHelper.MVVM.ViewModels;
 using System;
 using System.Globalization;
@@ -38,11 +39,7 @@ namespace PvPHelper.MVVM.Views.UserControls
             //PreviewMouseLeftButtonDown += InventoryItem_PreviewMouseLeftButtonDown;
         }
         public string Name { get; set; }
-        public Item Item { get; set; }
-        public PrefabCreatorViewModel.InventoryState InventoryState { get; set; }
-        public ArmorPrefab ArmorPrefab { get; set; }
-        public WeaponPrefab WeaponPrefab { get; set; }
-        public TalismanPrefab TalismanPrefab { get; set; }
+        public BuildItem Item { get; set; }
         public string ItemName
         {
             get { return (string)GetValue(ItemNameProperty); }
@@ -68,7 +65,13 @@ namespace PvPHelper.MVVM.Views.UserControls
         public ImageSource AshOfWarIcon
         {
             get { return (ImageSource)GetValue(AshOfWarIconProperty); }
-            set { SetValue(AshOfWarIconProperty, value); }
+            set { 
+                SetValue(AshOfWarIconProperty, value);
+                if (AshOfWarIcon == null)
+                    GemUI.Visibility = Visibility.Hidden;
+                else
+                    GemUI.Visibility = Visibility.Visible;
+            }
         }
 
         // Using a DependencyProperty as the backing store for AshOfWarIcon.  This enables animation, styling, binding, etc...
@@ -79,7 +82,12 @@ namespace PvPHelper.MVVM.Views.UserControls
         public string UpgradeLevel
         {
             get { return (string)GetValue(UpgradeLevelProperty); }
-            set { SetValue(UpgradeLevelProperty, value); }
+            set { SetValue(UpgradeLevelProperty, value);
+                if (string.IsNullOrWhiteSpace(UpgradeLevel))
+                    UpgradeUI.Visibility = Visibility.Hidden;
+                else
+                    UpgradeUI.Visibility = Visibility.Visible;
+            }
         }
 
         // Using a DependencyProperty as the backing store for UpgradeLevel.  This enables animation, styling, binding, etc...
@@ -89,7 +97,12 @@ namespace PvPHelper.MVVM.Views.UserControls
         public ImageSource InfusionIconPath
         {
             get { return (ImageSource)GetValue(InfusionIconPathProperty); }
-            set { SetValue(InfusionIconPathProperty, value); }
+            set { SetValue(InfusionIconPathProperty, value);
+                if (InfusionIconPath == null)
+                    InfusionUI.Visibility = Visibility.Hidden;
+                else
+                    InfusionUI.Visibility = Visibility.Visible;
+            }
         }
 
         // Using a DependencyProperty as the backing store for InfusionIconPath.  This enables animation, styling, binding, etc...

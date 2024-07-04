@@ -211,6 +211,7 @@ namespace PvPHelper.MVVM.ViewModels
             commandManager.RegisterCommand(new OpenMenuCommand(_hook));
             commandManager.RegisterCommand(new FreeCamCommand(_hook));
             commandManager.RegisterCommand(new MassGibConsoleCommand(_hook));
+            commandManager.RegisterCommand(new UpdateBuildCommand(_hook));
         }
     }
 }

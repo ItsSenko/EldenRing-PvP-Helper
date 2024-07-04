@@ -57,8 +57,9 @@ namespace PvPHelper.MVVM.Models.Search
             get { return _shownItems; }
             private set 
             { 
-                _shownItems = value; 
-                OnItemsChanged?.Invoke(_shownItems);
+                if (value != _shownItems)
+                    OnItemsChanged?.Invoke(value);
+                _shownItems = value;
             }
         }
 
