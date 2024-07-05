@@ -147,6 +147,7 @@
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="PixiEditor.ColorPicker" Version="3.3.1" />
     <PackageReference Include="SharpVectors" Version="1.8.1" />
+    <PackageReference Include="VirtualizingWrapPanel" Version="2.0.6" />
   </ItemGroup>
 
   <ItemGroup>
@@ -175,6 +176,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="MVVM\Views\UserControls\LabeledCircleToggle - Copy.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+    </Page>
+    <Page Update="MVVM\Views\UserControls\SearchableTextBox.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
     </Page>
 

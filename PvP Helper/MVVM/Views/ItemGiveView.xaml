@@ -9,38 +9,82 @@
 
     <Grid>
         <Grid.RowDefinitions>
-                <RowDefinition Height="30"/>
+                <RowDefinition Height="70"/>
                 <RowDefinition/>
         </Grid.RowDefinitions>
 
         <StackPanel Orientation="Horizontal"
-                    HorizontalAlignment="Center">
+                    HorizontalAlignment="Left" VerticalAlignment="Bottom">
             <StackPanel.Resources>
                 <Style TargetType="{x:Type local:SimpleDropDown}">
                     <Setter Property="Margin" Value="20,0,20,0"/>
                 </Style>
+                <Style TargetType="{x:Type local:SearchableTextBox}">
+                    <Setter Property="Margin" Value="10,40,10,0"/>
+                </Style>
+                <Style TargetType="{x:Type local:Refresh}">
+                    <Setter Property="Margin" Value="0,45,20,0"/>
+                </Style>
             </StackPanel.Resources>
-            
+
+            <local:SearchableTextBox Width="450" Height="30"/>
             <local:Refresh Height="20" BtnCommand="{Binding RefreshBuilds}"/>
-            <local:SimpleDropDown Width="250"
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <StackPanel.Resources>
+                    <Style TargetType="{x:Type StackPanel}">
+                        <Setter Property="Margin" Value="8,0,0,0"/>
+                    </Style>
+                </StackPanel.Resources>
+                <StackPanel Orientation="Vertical">
+                    <StackPanel.Resources>
+                        <Style TargetType="{x:Type local:SimpleDropDown}">
+                            <Setter Property="Margin" Value="52,5,0,3"/>
+                        </Style>
+                    </StackPanel.Resources>
+                    <local:SimpleDropDown Width="250"
                                   GhostText="Sort Order"
-                                  ItemsSource="{Binding BuildItemsSource, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                  SelectedItem="{Binding SelectedBuild, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-            <local:SimpleDropDown Width="250"
+                                  ItemsSource="{Binding SortOrderItemsSource, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                  SelectedItem="{Binding SelectedSortOrder, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    <local:SimpleDropDown Width="250"
                                   GhostText="Weapon Class"
-                                ItemsSource="{Binding SelectedInventoryItemsSource, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                SelectedItem="{Binding SelectedInventory, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                SelectedIndex="{Binding SelectedInventoryIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                ItemsSource="{Binding WeaponClassItemsSource, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                SelectedItem="{Binding SelectedWeaponClass, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                </StackPanel>
+                <StackPanel Orientation="Vertical">
+                    <StackPanel.Resources>
+                        <Style TargetType="{x:Type local:SimpleDropDown}">
+                            <Setter Property="Margin" Value="0,5,0,3"/>
+                        </Style>
+                        <Style TargetType="{x:Type local:SearchableTextBox}">
+                            <Setter Property="Margin" Value="10,0,20,0"/>
+                        </Style>
+                    </StackPanel.Resources>
+                    <local:SimpleDropDown Width="250"
+                                  GhostText="Sort Order"
+                                  ItemsSource="{Binding SortOrderItemsSource, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                  SelectedItem="{Binding SelectedSortOrder, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    <local:SimpleDropDown Width="250"
+                                  GhostText="Weapon Class"
+                                ItemsSource="{Binding WeaponClassItemsSource, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                SelectedItem="{Binding SelectedWeaponClass, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                </StackPanel>
+            </StackPanel>
+
+
         </StackPanel>
+
+
         
         <Border Margin="10" Background="{DynamicResource BackgroundBrush}" Grid.Row="1">
             <ScrollViewer Style="{DynamicResource ScrollViewerStyleDark}" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Visible" ScrollViewer.CanContentScroll="True">
                 <ItemsControl ItemsSource="{Binding InventoryItems, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="20" Background="{DynamicResource BackgroundBrush}"
                                   BorderThickness="0"
+                              VirtualizingStackPanel.IsVirtualizing="True"
                                   x:Name="Items">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
-                            <WrapPanel Orientation="Horizontal" Width="668"/>
+                            <VirtualizingStackPanel Orientation="Horizontal" Width="668"/>
                         </ItemsPanelTemplate>
                     </ItemsControl.ItemsPanel>
                 </ItemsControl>

@@ -157,6 +157,7 @@ namespace PvPHelper.MVVM.ViewModels
         {
             _viewModels.Add(nameof(DashboardView), new DashboardViewModel(_hook, LocalPlayer));
             _viewModels.Add(nameof(ItemsView), new ItemsViewModel(_hook));
+            _viewModels.Add(nameof(ItemGiveView), new ItemGiveViewModel(_hook));
             _viewModels.Add(nameof(PrefabCreatorView), new PrefabCreatorViewModel(_hook));
             _viewModels.Add(nameof(LobbyManagerView), new LobbyManagerViewModel(_hook));
             _viewModels.Add(nameof(MiscView), new MiscViewModel(_hook, _vController));
@@ -169,6 +170,10 @@ namespace PvPHelper.MVVM.ViewModels
             ItemsCommand = new(o => 
             {
                 CurrentView = _viewModels[nameof(ItemsView)];
+            });
+            ItemGiveCommand = new(o =>
+            {
+                CurrentView = _viewModels[nameof(ItemGiveView)];
             });
             PrefabCreatorCommand = new(o => 
             {

@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PvPHelper.MVVM.Views.UserControls"
+             xmlns:vwp="clr-namespace:WpfToolkit.Controls;assembly=VirtualizingWrapPanel"
              xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              xmlns:dd="urn:gong-wpf-dragdrop"
@@ -157,7 +158,7 @@
             </StackPanel>
             <Border Margin="10" Background="{DynamicResource BackgroundBrush}" Grid.Row="1">
                 <ScrollViewer Style="{DynamicResource ScrollViewerStyleDark}" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Visible" ScrollViewer.CanContentScroll="True">
-                    <ItemsControl ItemsSource="{Binding InventoryItems, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="20" Background="{DynamicResource BackgroundBrush}"
+                    <ItemsControl ItemsSource="{Binding InventoryItems, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Background="{DynamicResource BackgroundBrush}"
                                   dd:DragDrop.IsDragSource="True"
                                   dd:DragDrop.IsDropTarget="True"
                                   BorderThickness="0"

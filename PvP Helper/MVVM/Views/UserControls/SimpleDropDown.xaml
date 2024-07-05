@@ -71,6 +71,8 @@
         <TextBlock Text="{Binding GhostText, ElementName=SimpleDropDownRoot}" Padding="8, 0, 0, 0"
                    VerticalAlignment="Center"
                    Foreground="{DynamicResource LighterTextBrush}"
-                   x:Name="GhostTextBlock"/>
+                   x:Name="GhostTextBlock"
+                   IsHitTestVisible="False"
+                   />
     </Grid>
 </UserControl>

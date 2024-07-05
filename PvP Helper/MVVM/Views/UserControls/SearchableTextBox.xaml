@@ -1,0 +1,57 @@
+﻿<UserControl x:Class="PvPHelper.MVVM.Views.UserControls.SearchableTextBox"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PvPHelper.MVVM.Views.UserControls"
+             xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
+             mc:Ignorable="d" 
+             x:Name="SearchableTextBoxRoot"
+             d:DesignHeight="40" d:DesignWidth="200">
+    <Border>
+        <Grid>
+            <TextBox Text="{Binding SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ElementName=SearchableTextBoxRoot}" VerticalContentAlignment="Center" Padding="30, 0, 0, 0" BorderBrush="{DynamicResource LighterBrush}" Background="{DynamicResource DarkBrush}" SelectionBrush="{DynamicResource HighlightBrush}" Foreground="#404040" TextChanged="textBox_TextChanged">
+                <TextBox.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                    <Style TargetType="TextBox">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type TextBox}">
+                                    <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                                        <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsEnabled" Value="false">
+                                            <Setter Property="Opacity" TargetName="border" Value="0.56"/>
+                                        </Trigger>
+                                        <Trigger Property="IsMouseOver" Value="true">
+                                            <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource LighterTextBrush}"/>
+                                        </Trigger>
+                                        <Trigger Property="IsFocused" Value="true">
+                                            <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource LighterBrush}"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </TextBox.Resources>
+            </TextBox>
+
+            <TextBlock IsHitTestVisible="False" Text="{Binding Placeholder, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ElementName=SearchableTextBoxRoot}"
+                   VerticalAlignment="Center"
+                   Padding="35,0,0,0"
+                   Foreground="#404040"/>
+            <svgc:SvgIcon UriSource="Resources/Images/magnify.svg"
+                          Fill="#404040"
+                          VerticalAlignment="Center"
+                          HorizontalAlignment="Left"
+                          Margin="10,0,0,0"
+                          Height="15"/>
+
+            <!--</StackPanel>-->
+        </Grid>
+    </Border>
+</UserControl>
