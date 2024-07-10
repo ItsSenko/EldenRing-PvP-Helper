@@ -23,10 +23,33 @@ namespace PvPHelper.MVVM.ViewModels
 {
     public class ItemGiveViewModel : ViewModelBase
     {
+        private ObservableCollection<InventoryItemModel> _inventoryItems;
+
+        public ObservableCollection<InventoryItemModel> InventoryItems
+        {
+            get { return _inventoryItems; }
+            set { _inventoryItems = value; OnPropertyChanged(); }
+        }
+        public ICommand RefreshBuilds { get; set; }
         private ErdHook hook;
         public ItemGiveViewModel(ErdHook hook)
         {
             this.hook = hook;
+            InventoryItems = new();
+            RefreshBuilds = new RelayCommand(o =>
+            {
+                
+                ObservableCollection<InventoryItemModel> list = new();
+                foreach (var cat in ItemCategory.All)
+                {
+                    foreach (var item in cat.Items)
+                    {
+                        list.Add(new(Helpers.GetImageSource(Helpers.GetFullIconID(item.IconID)), null, null, item.Name));
+                    }
+                }
+                InventoryItems = list;
+            });
+            
         }
     }
 }

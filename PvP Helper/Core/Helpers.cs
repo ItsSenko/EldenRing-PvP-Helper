@@ -20,7 +20,7 @@ namespace PvPHelper.Core
 {
     public class Helpers
     {
-        public static Dictionary<string, ImageSource> AllImages = new();
+        //public static Dictionary<string, ImageSource> AllImages = new();
 
         public static void LogFMGItemsInFolder(string folderPath, string fmgFileName)
         {
@@ -167,7 +167,7 @@ namespace PvPHelper.Core
             }
         }
         private static bool imagesLoaded = false;
-        public static void LoadAllImages()
+        /*public static void LoadAllImages()
         {
             if (imagesLoaded)
                 return;
@@ -181,7 +181,7 @@ namespace PvPHelper.Core
                 }
             }
             imagesLoaded = true;
-        }
+        }*/
         public static string GetNewPhantomName(int id)
         {
             switch (id)
@@ -261,14 +261,30 @@ namespace PvPHelper.Core
                     if (str.ToLower() == searchStr.ToLower())
                     {
                         var image = LoadImageFromPath(file);
-                        if (AllImages.Keys.Contains(Path.GetFileName(file)))
-                            return image;
-                        AllImages.Add(Path.GetFileName(file), image);
                         return image;
                     }
                 }
             }
             return null;
+        }
+
+        public static string GetImagePathBySearch(string searchStr, string path = "")
+        {
+            var iconsDirectory = string.IsNullOrEmpty(path) ? Path.Combine(Directory.GetCurrentDirectory(), "Icons") : Path.Combine(Directory.GetCurrentDirectory(), "Resources/Images");
+
+            if (Directory.Exists(iconsDirectory))
+            {
+                foreach (var file in Directory.GetFiles(iconsDirectory))
+                {
+                    string fileName = Path.GetFileName(file);
+                    string str = fileName.Substring(0, (fileName.Length - 4));
+                    if (str.ToLower() == searchStr.ToLower())
+                    {
+                        return file;
+                    }
+                }
+            }
+            return Path.Combine(Directory.GetCurrentDirectory(), "Resources/Images/null.png");
         }
 
         public static Item GetItemFromID(int id, string category)
@@ -399,30 +415,10 @@ namespace PvPHelper.Core
             {
                 searchStr = searchStr.Replace('\'', '_');
             }
-            ImageSource image = AllImages.FirstOrDefault(x => Path.GetFileName(x.Key.ToLower()).Contains(searchStr.ToLower() + ".png")).Value;
-            if (searchStr == "0")
-            {
-                if (AllImages.FirstOrDefault(x => x.Key == "null.png").Value == null)
-                {
-                    image = LoadImage("null.png");
-                }
-                else
-                    image = AllImages.FirstOrDefault(x => x.Key == "null.png").Value;
-            }
-
-            if (image == null)
+            ImageSource image = null;
+            if (searchStr != "0")
             {
                 image = LoadImage(searchStr);
-
-                if (image == null)
-                {
-                    if (AllImages.FirstOrDefault(x => x.Key == "null.png").Value == null)
-                    {
-                        image = LoadImage("null.png");
-                    }
-                    else
-                        image = AllImages.FirstOrDefault(x => x.Key == "null.png").Value;
-                }
             }
 
             return image;
@@ -488,6 +484,8 @@ namespace PvPHelper.Core
             BitmapImage img = new();
             img.BeginInit();
             img.UriSource = new(path, UriKind.RelativeOrAbsolute);
+            img.CacheOption = BitmapCacheOption.OnLoad;
+            img.DecodePixelWidth = 200;
             img.EndInit();
 
             return img;

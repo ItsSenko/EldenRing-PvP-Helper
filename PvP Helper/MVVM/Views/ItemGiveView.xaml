@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:PvPHelper.MVVM.Views.UserControls"
+      xmlns:vwp="clr-namespace:WpfToolkit.Controls;assembly=VirtualizingWrapPanel"
       mc:Ignorable="d"
       d:DesignHeight="658.285714285714" d:DesignWidth="1092.8">
 
@@ -76,19 +77,36 @@
 
 
         
-        <Border Margin="10" Background="{DynamicResource BackgroundBrush}" Grid.Row="1">
-            <ScrollViewer Style="{DynamicResource ScrollViewerStyleDark}" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Visible" ScrollViewer.CanContentScroll="True">
-                <ItemsControl ItemsSource="{Binding InventoryItems, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="20" Background="{DynamicResource BackgroundBrush}"
-                                  BorderThickness="0"
-                              VirtualizingStackPanel.IsVirtualizing="True"
-                                  x:Name="Items">
-                    <ItemsControl.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <VirtualizingStackPanel Orientation="Horizontal" Width="668"/>
-                        </ItemsPanelTemplate>
-                    </ItemsControl.ItemsPanel>
-                </ItemsControl>
-            </ScrollViewer>
+        <Border Grid.Row="1">
+
+            <vwp:VirtualizingItemsControl VirtualizingStackPanel.VirtualizationMode="Recycling"  Background="Transparent" ItemsSource="{Binding InventoryItems, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                    BorderThickness="0"
+                                    VirtualizingStackPanel.IsVirtualizing="True"
+                                    ScrollViewer.CanContentScroll="True"
+                                    ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                                    ScrollViewer.VerticalScrollBarVisibility="Visible"
+                                    ScrollViewer.IsDeferredScrollingEnabled="True"
+                                    VirtualizingPanel.ScrollUnit="Pixel"
+                                    VirtualizingPanel.IsContainerVirtualizable="True"
+                                    VirtualizingPanel.IsVirtualizingWhenGrouping="True"
+                                    VirtualizingPanel.CacheLengthUnit="Item" 
+                                    x:Name="Items">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <vwp:VirtualizingWrapPanel Orientation="Horizontal" Width="1080"/>
+                    </ItemsPanelTemplate>
+                    
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <local:InventoryItem ItemIconPath="{Binding ItemIconPath, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                         AshOfWarIcon="{Binding AshOfWarIcon, UpdateSourceTrigger=PropertyChanged}"
+                                         InfusionIconPath="{Binding InfusionIconPath, UpdateSourceTrigger=PropertyChanged}"
+                                         ItemName="{Binding ItemName, UpdateSourceTrigger=PropertyChanged}"
+                                             Width="220" Height="220" Margin="6"/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </vwp:VirtualizingItemsControl>
         </Border>
     </Grid>
 </UserControl>

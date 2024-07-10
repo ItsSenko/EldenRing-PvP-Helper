@@ -81,6 +81,8 @@ namespace PvPHelper.Core
 
         public long SteamID => SteamData.ReadInt64(0x10);
         public PHPointer SteamIDPtr { get; set; }
+
+        public PHPointer AnimationData { get; set; }
         #endregion
 
         public NetPlayer(ErdHook hook, PHPointer session, int offset, PHPointer KickOutFunction = null)
@@ -88,6 +90,7 @@ namespace PvPHelper.Core
             Hook = hook;
             NetPlayerData = hook.CreateChildPointer(session, offset);
             ChrData = hook.CreateChildPointer(NetPlayerData, 0x580);
+            AnimationData = hook.CreateChildPointer(NetPlayerData, 0x190, 0x58);
             LocalPositionData = hook.CreateChildPointer(NetPlayerData, new int[] { 0x190, 0x68 });
             SteamData = hook.CreateChildPointer(NetPlayerData, 0x6B8);
             SteamIDPtr = hook.CreateChildPointer(SteamData, 0x10);
@@ -114,6 +117,11 @@ namespace PvPHelper.Core
             string asmStr = Helpers.GetEmbededResource("Resources.Assembly.KickOutFunction.asm");
             string asm = string.Format(asmStr, CustomPointers.GlobalSessionMan.Resolve(), (SteamData.Resolve().ToInt64() + 0x10), KickOutFunction.Resolve());
             Hook.AsmExecute(asm);
+        }
+
+        public void KillTest()
+        {
+            AnimationData.WriteInt32(0x18, 17140);
         }
     }
 }

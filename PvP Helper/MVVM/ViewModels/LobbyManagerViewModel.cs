@@ -84,6 +84,7 @@ namespace PvPHelper.MVVM.ViewModels
 
         private void Hook_OnSetup(object? sender, PHEventArgs e)
         {
+
             Application.Current.Dispatcher.Invoke(() =>
             {
                 UpdateTimer.Start();

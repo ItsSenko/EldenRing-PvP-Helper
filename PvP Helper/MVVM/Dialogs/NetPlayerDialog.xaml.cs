@@ -2,6 +2,7 @@
 using Erd_Tools.Models;
 using PvPHelper.Console;
 using PvPHelper.Core;
+using PvPHelper.MVVM.Commands.Misc;
 using PvPHelper.MVVM.Models;
 using System;
 using System.Collections.Generic;
@@ -110,39 +111,39 @@ namespace PvPHelper.MVVM.Dialogs
             Item gauntlet = Helpers.GetItemFromID(Armors, Player.GauntletID);
             Item leggings = Helpers.GetItemFromID(Armors, Player.LeggingsID);
 
-            Item rWpn1 = Helpers.GetItemFromID(WeaponsCategories, Helpers.GetProperID(Player.RWeapon1));
-            Item rWpn2 = Helpers.GetItemFromID(WeaponsCategories, Helpers.GetProperID(Player.RWeapon2));
-            Item rWpn3 = Helpers.GetItemFromID(WeaponsCategories, Helpers.GetProperID(Player.RWeapon3));
+            //Item rWpn1 = Helpers.GetItemFromID(WeaponsCategories, Helpers.GetProperID(Player.RWeapon1));
+            //Item rWpn2 = Helpers.GetItemFromID(WeaponsCategories, Helpers.GetProperID(Player.RWeapon2));
+            //Item rWpn3 = Helpers.GetItemFromID(WeaponsCategories, Helpers.GetProperID(Player.RWeapon3));
 
-            Item lWpn1 = Helpers.GetItemFromID(WeaponsCategories, Helpers.GetProperID(Player.LWeapon1));
-            Item lWpn2 = Helpers.GetItemFromID(WeaponsCategories, Helpers.GetProperID(Player.LWeapon2));
-            Item lWpn3 = Helpers.GetItemFromID(WeaponsCategories, Helpers.GetProperID(Player.LWeapon3));
+            //Item lWpn1 = Helpers.GetItemFromID(WeaponsCategories, Helpers.GetProperID(Player.LWeapon1));
+            //Item lWpn2 = Helpers.GetItemFromID(WeaponsCategories, Helpers.GetProperID(Player.LWeapon2));
+            //Item lWpn3 = Helpers.GetItemFromID(WeaponsCategories, Helpers.GetProperID(Player.LWeapon3));
 
-            Helmet.Source = helmet != null ? Helpers.GetImageSource(helmet.Name) : null;
-            Armor.Source = armor != null ? Helpers.GetImageSource(armor.Name) : null;
-            Gauntlets.Source = gauntlet != null ? Helpers.GetImageSource(gauntlet.Name) : null;
-            Leggings.Source = leggings != null ? Helpers.GetImageSource(leggings.Name) : null;
+            Helmet.Source = helmet != null ? Helpers.GetImageSource(Helpers.GetFullIconID(helmet.IconID)) : null;
+            Armor.Source = armor != null ? Helpers.GetImageSource(Helpers.GetFullIconID(armor.IconID)) : null;
+            Gauntlets.Source = gauntlet != null ? Helpers.GetImageSource(Helpers.GetFullIconID(gauntlet.IconID)) : null;
+            Leggings.Source = leggings != null ? Helpers.GetImageSource(Helpers.GetFullIconID(leggings.IconID)) : null;
 
-            RWpn1.Source = rWpn1 != null ? Helpers.GetImageSource(rWpn1.Name) : null;
-            RWpn2.Source = rWpn2 != null ? Helpers.GetImageSource(rWpn2.Name) : null;
-            RWpn3.Source = rWpn3 != null ? Helpers.GetImageSource(rWpn3.Name) : null;
+            //RWpn1.Source = rWpn1 != null ? Helpers.GetImageSource(Helpers.GetFullIconID(rWpn1.IconID)) : null;
+            //RWpn2.Source = rWpn2 != null ? Helpers.GetImageSource(Helpers.GetFullIconID(rWpn2.IconID)) : null;
+            //RWpn3.Source = rWpn3 != null ? Helpers.GetImageSource(Helpers.GetFullIconID(rWpn3.IconID)) : null;
 
-            LWpn1.Source = lWpn1 != null ? Helpers.GetImageSource(lWpn1.Name) : null;
-            LWpn2.Source = lWpn2 != null ? Helpers.GetImageSource(lWpn2.Name) : null;
-            LWpn3.Source = lWpn3 != null ? Helpers.GetImageSource(lWpn3.Name) : null;
+            //LWpn1.Source = lWpn1 != null ? Helpers.GetImageSource(Helpers.GetFullIconID(lWpn1.IconID)) : null;
+            //LWpn2.Source = lWpn2 != null ? Helpers.GetImageSource(Helpers.GetFullIconID(lWpn2.IconID)) : null;
+            //LWpn3.Source = lWpn3 != null ? Helpers.GetImageSource(Helpers.GetFullIconID(lWpn3.IconID)) : null;
 
             Helmet.ToolTip = helmet != null ? helmet.Name : "Empty";
             Armor.ToolTip = armor != null ? armor.Name : "Empty";
             Gauntlets.ToolTip = gauntlet != null ? gauntlet.Name : "Empty";
             Leggings.ToolTip = leggings != null ? leggings.Name : "Empty";
 
-            RWpn1.ToolTip = rWpn1 != null ? rWpn1.Name : "Empty";
-            RWpn2.ToolTip = rWpn2 != null ? rWpn2.Name : "Empty";
-            RWpn3.ToolTip = rWpn3 != null ? rWpn3.Name : "Empty";
+            //RWpn1.ToolTip = rWpn1 != null ? rWpn1.Name : "Empty";
+            //RWpn2.ToolTip = rWpn2 != null ? rWpn2.Name : "Empty";
+            //RWpn3.ToolTip = rWpn3 != null ? rWpn3.Name : "Empty";
 
-            LWpn1.ToolTip = lWpn1 != null ? lWpn1.Name : "Empty";
-            LWpn2.ToolTip = lWpn2 != null ? lWpn2.Name : "Empty";
-            LWpn3.ToolTip = lWpn3 != null ? lWpn3.Name : "Empty";
+            //LWpn1.ToolTip = lWpn1 != null ? lWpn1.Name : "Empty";
+            //LWpn2.ToolTip = lWpn2 != null ? lWpn2.Name : "Empty";
+            //LWpn3.ToolTip = lWpn3 != null ? lWpn3.Name : "Empty";
 
             XBlock.Text = $"X: {Math.Round(Player.LocalX, 1)}";
             YBlock.Text = $"Y: {Math.Round(Player.LocalY, 1)}";
@@ -157,11 +158,11 @@ namespace PvPHelper.MVVM.Dialogs
 
             XBtn.Click += (s, e) => { this.Close(); };
             ChangeClrBtn.Click += (s, e) => { ChangeColor(); };
-            TpToBtn.Click += (s, e) => { LocalPlayer.TeleportToPlayer(Player); };
+            TpToBtn.Click += (s, e) => { BetterSeamlessInvasionsToggle.RespawnPlayer(Player); };
             KickBtn.Click += (s, e) => { Player.Kick(); };
 
             if (CustomPointers.SessionMan.ReadInt32(0xC) != 3)
-                KickBtn.IsEnabled = false;
+                KickBtn.IsEnabled = true;
         }
 
         public void OnSelectedPhantomIDChanged()

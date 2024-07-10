@@ -1,0 +1,39 @@
+﻿<Window x:Class="PvPHelper.MVVM.Dialogs.DropDownDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PvPHelper.MVVM.Views.UserControls"
+        mc:Ignorable="d"
+        Height="266" Width="577"
+        WindowStyle="None"
+        Background="Transparent"
+        ResizeMode="NoResize"
+        AllowsTransparency="True"
+        Style="{StaticResource WinAll}"
+        WindowStartupLocation="CenterScreen">
+    <Border CornerRadius="20" Background="{DynamicResource DarkBrush}">
+        <Grid Height="266" VerticalAlignment="Top">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="75"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock x:Name="Text" Foreground="{DynamicResource LighterTextBrush}" HorizontalAlignment="Center" Padding="0,20,0,0" FontSize="25" TextWrapping="Wrap"/>
+            <local:SimpleDropDown x:Name="DropDown" Width="500" Height="50"/>
+
+            <StackPanel Orientation="Horizontal" Grid.Row="1">
+                <Button Style="{DynamicResource PrimaryButton}"
+                        Width="268"
+                        Content="Cancel"
+                        FontSize="24"
+                        Click="Cancel_Click"/>
+                <Button Style="{DynamicResource PrimaryButton}"
+                        Width="268"
+                        Content="Ok"
+                        FontSize="24"
+                        Click="Ok_Click"/>
+            </StackPanel>
+        </Grid>
+    </Border>
+</Window>

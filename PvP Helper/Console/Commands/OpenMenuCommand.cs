@@ -30,6 +30,7 @@ namespace PvPHelper.Console.Commands
 
         private void Hook_OnSetup(object? sender, PropertyHook.PHEventArgs e)
         {
+
             Application.Current.Dispatcher.Invoke(() => 
             {
                 Menus.Add(new("Memorize Spells", 0x80f600));

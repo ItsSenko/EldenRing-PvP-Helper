@@ -11,7 +11,7 @@
     </UserControl.Resources>
 
     <Grid>
-        <Grid Width="123" Height="88" Cursor="Hand" Margin="5"
+        <Grid Width="120" Height="110" Cursor="Hand" Margin="6"
               MouseEnter="Grid_MouseEnter" MouseLeave="Grid_MouseLeave">
             <Border Background="{DynamicResource ItemGradientActive}" CornerRadius="10" Opacity="0" Name="borderActive">
                 <Border.Effect>
@@ -19,21 +19,16 @@
                 </Border.Effect>
             </Border>
 
-            <Border Background="{DynamicResource ItemGradient}" CornerRadius="10" Name="borderInActive">
+            <Border Background="{DynamicResource BackgroundBrush}" CornerRadius="10" Name="borderInActive">
                 <Border.Effect>
                     <DropShadowEffect Direction="0" BlurRadius="10" ShadowDepth="0"/>
                 </Border.Effect>
             </Border>
 
-            <Border Background="{DynamicResource DarkBrush}" Padding="0.5" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,10" CornerRadius="2" Width="30" Height="30" x:Name="GemUI">
-                <Border.Effect>
-                    <DropShadowEffect ShadowDepth="0" Direction="0" BlurRadius="5"/>
-                </Border.Effect>
-                <Image Source="{Binding Path=AshOfWarIcon, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource nullImageConverter}}" Margin="-2,-2,-2,-2"/>
-            </Border>
-            
-            <Image Name="WeaponIcon" Source="{Binding Path=ItemIconPath, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource nullImageConverter}}" Width="Auto" Height="Auto" Margin="0 30 0 5" Opacity="1"/>
 
+
+            <Image Name="WeaponIcon" Source="{Binding Path=ItemIconPath, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource nullImageConverter}}" Width="80" Height="80" Margin="10,20,5,5" Opacity="1"/>
+            <Image Source="{Binding Path=AshOfWarIcon, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource nullImageConverter}}" Margin="0,0,10,10" Width="35" Height="35" HorizontalAlignment="Right" VerticalAlignment="Bottom" x:Name="GemUI"/>
             <Border CornerRadius="10 10 0 0" Height="60" VerticalAlignment="Top">
                 <Border.Effect>
                     <DropShadowEffect ShadowDepth="0" Direction="0"/>
@@ -41,23 +36,10 @@
                 <TextBlock Text="{Binding Path=ItemName, UpdateSourceTrigger=PropertyChanged}" TextWrapping="WrapWithOverflow" TextAlignment="Center"
                        Foreground="{DynamicResource ForegroundBrush}" FontSize="12" Margin="5"/>
             </Border>
-            
-            
-            <Border Background="{DynamicResource DarkBrush}" Padding="2" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10,0,0,10" CornerRadius="2" Width="25" Height="25" x:Name="InfusionUI">
-                <Border.Effect>
-                    <DropShadowEffect ShadowDepth="0" Direction="0" BlurRadius="5"/>
-                </Border.Effect>
-                <Image Source="{Binding Path=InfusionIconPath, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource nullImageConverter}}"/>
-            </Border>
 
-            
+            <Image Source="{Binding Path=InfusionIconPath, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource nullImageConverter}}"  Width="22" Height="22" Margin="10,0,0,10" HorizontalAlignment="Left" VerticalAlignment="Bottom" x:Name="InfusionUI"/>
 
-            <Border Background="{DynamicResource DarkBrush}" Padding="2" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="9,0,0,37" CornerRadius="10" Width="26" Height="25" x:Name="UpgradeUI">
-                <Border.Effect>
-                    <DropShadowEffect ShadowDepth="0" Direction="0" BlurRadius="5"/>
-                </Border.Effect>
-                <Label Padding="0" Content="{Binding UpgradeLevel, UpdateSourceTrigger=PropertyChanged}" FontSize="9" Foreground="{DynamicResource ForegroundBrush}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-            </Border>
+            <Label Content="{Binding UpgradeLevel, UpdateSourceTrigger=PropertyChanged}" FontSize="9" Foreground="{DynamicResource ForegroundBrush}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="26" Height="25" HorizontalAlignment="Left" Margin="9,38,0,38" x:Name="UpgradeUI"/>
         </Grid>
     </Grid>
 </UserControl>

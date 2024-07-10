@@ -42,7 +42,7 @@ namespace PvPHelper.Console
             string SystemTime = DateTime.Now.ToString("[" + "hh:mm:ss" + "]");
 
             string final = withTime ? $"{SystemTime} {text}" : text;
-            logAction.Invoke(final);
+            logAction?.Invoke(final);
             Program.InvokeLog(final);
         }
         public void HandleInput(string input)

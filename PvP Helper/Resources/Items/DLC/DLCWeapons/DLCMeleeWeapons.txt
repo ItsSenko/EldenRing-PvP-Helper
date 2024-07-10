@@ -49,6 +49,7 @@
 20500000 Tooth Whip
 21500000 Thiollier's Hidden Needle
 21510000 Pata
+21520000 Poisoned Hand
 21530000 Madding Hand
 21540000 Golem Fist
 21550000 Shield of Night

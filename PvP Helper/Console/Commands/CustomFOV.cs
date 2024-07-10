@@ -26,6 +26,7 @@ namespace PvPHelper.Console.Commands
 
         private void Hook_OnSetup(object? sender, PropertyHook.PHEventArgs e)
         {
+
             Application.Current.Dispatcher.Invoke(() => { LockCamParam = Hook.Params.FirstOrDefault(x => x.Name == "LockCamParam"); });
         }
 

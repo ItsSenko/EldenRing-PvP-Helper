@@ -170,7 +170,12 @@
                         </ItemsControl.ItemsPanel>
                         <!--<ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <local:InventoryItem/>
+                                <local:InventoryItem ItemIconPath="{Binding ItemIconPath, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                                     AshOfWarIcon="{Binding AshOfWarIcon, UpdateSourceTrigger=PropertyChanged}"
+                                                     InfusionIconPath="{Binding InfusionIconPath, UpdateSourceTrigger=PropertyChanged}"
+                                                     ItemName="{Binding ItemName, UpdateSourceTrigger=PropertyChanged}"
+                                                     UpgradeLevel="{Binding UpgradeLevel, UpdateSourceTrigger=PropertyChanged}"
+                                                     Width="220" Height="210" Margin="6"/>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>-->
                     </ItemsControl>

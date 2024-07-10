@@ -18,6 +18,7 @@ namespace PvPHelper.MVVM.ViewModels
         public CustomFOVToggle CustomFOVToggle { get; set; }
         public CustomFPSToggle CustomFPSToggle { get; set; }
         public NoMaterialCostToggle NoMaterialCostToggle { get; set; }
+        public BetterSeamlessInvasionsToggle BSI { get; set; }
         public RelayCommand AllArenas { get; set; }
         public RelayCommand AllGestures { get; set; }
 
@@ -82,6 +83,7 @@ namespace PvPHelper.MVVM.ViewModels
                     hook.SetEventFlag(id, true);
                 }
             });
+            BSI = new(hook);
 
             MenuItemsSource = new();
             MenuItemsSource.Add(new("Memorize Spells", 0x80f600));

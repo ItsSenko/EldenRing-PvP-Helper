@@ -69,7 +69,9 @@
                         <userControls:LabeledCircleToggle Label="No Material Cost"
                                             Checked="{Binding NoMaterialCostToggle.State, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                             ToggleCommand="{Binding NoMaterialCostToggle}"/>
-
+                        <userControls:LabeledCircleToggle Label="Better Seamless Invasions"
+                                            Checked="{Binding BSI.State, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                            ToggleCommand="{Binding BSI}"/>
                         <Button Style="{DynamicResource PrimaryButton}"
                         Content="Unlock All Colosseums"
                         Command="{Binding AllArenas}" Cursor="Hand" Height="53"/>

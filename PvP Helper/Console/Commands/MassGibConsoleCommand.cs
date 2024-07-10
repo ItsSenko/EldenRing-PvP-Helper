@@ -59,6 +59,8 @@ namespace PvPHelper.Console.Commands
             if (!hook.Setup || !hook.Loaded)
                 throw new InvalidCommandException("Not attached or loaded.");
 
+            if (parameters.Count != 3)
+                throw new InvalidCommandException("Missing parameters.");
             ItemCategory cat = ItemCategory.All.FirstOrDefault(x => x.Name.RemoveSpaces().ToLower() == parameters[0].ToLower());
 
             if (cat == null)

@@ -15,6 +15,9 @@ using System.Diagnostics;
 using PvPHelper.MVVM.Commands.Dashboard;
 using Erd_Tools.Models;
 using PropertyHook;
+using System.Threading.Tasks;
+using System.Threading;
+using PvPHelper.MVVM.Dialogs;
 
 namespace PvPHelper.MVVM.ViewModels
 {
@@ -119,6 +122,7 @@ namespace PvPHelper.MVVM.ViewModels
             player = new Player(hook.PlayerIns, hook);
             hook.OnSetup += Hook_OnSetup;
             hook.OnUnhooked += Hook_OnUnhooked;
+            hook.OnHooked += Hook_OnHooked;
             LocalPlayer = localPlayer;
 
             SetupCommands();
@@ -127,6 +131,11 @@ namespace PvPHelper.MVVM.ViewModels
             statsTimer.Interval = TimeSpan.FromSeconds(1);
             statsTimer.Tick += StatsTimer_Tick;
             //CommandManager.LogLoaded += Console_LogLoaded;
+        }
+
+        private void Hook_OnHooked(object? sender, PHEventArgs e)
+        {
+            Application.Current.Dispatcher.Invoke(() => { CommandManager.Log("Hooked but not setup"); });
         }
 
         private void SetupCommands()
@@ -185,8 +194,10 @@ namespace PvPHelper.MVVM.ViewModels
             });
         }
 
+       
         private void Hook_OnSetup(object? sender, PropertyHook.PHEventArgs e)
         {
+
             Application.Current.Dispatcher.Invoke(() =>
             {
                 statsTimer.Start();

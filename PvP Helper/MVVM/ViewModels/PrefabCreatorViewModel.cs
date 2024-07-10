@@ -673,17 +673,18 @@ namespace PvPHelper.MVVM.ViewModels
                             gemOptions.Add(new(gem, gem.Name.Contains("Ash of War: ") ? gem.Name.Substring(12) : gem.Name));
                         }
                     }
-                    MaxUpgradeLevel = 25;
+                    MaxUpgradeLevel = weapon.MaxUpgrade;
                     gemSearch.Items = gemOptions;
-                    if (!lastWasInfusible)
-                        UpgradeLevel = SomberToSmithy[UpgradeLevel];
+                    if (weapon.MaxUpgrade > 10 && !lastWasInfusible)
+                        UpgradeLevel = SomberToSmithy[UpgradeLevel]; lastWasInfusible = true;
+
                     UpgradeLevelString = UpgradeLevel.ToString();
-                    lastWasInfusible = true;
+                    
                 }
                 else
                 {
-                    MaxUpgradeLevel = 10;
-                    if (lastWasInfusible)
+                    MaxUpgradeLevel = weapon.MaxUpgrade;
+                    if (weapon.MaxUpgrade < 11 && lastWasInfusible)
                         UpgradeLevel = SmithyToSomber[UpgradeLevel];
                     UpgradeLevelString = UpgradeLevel.ToString();
                     lastWasInfusible = false;

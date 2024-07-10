@@ -35,6 +35,7 @@ namespace PvPHelper.Console.Commands
 
         private void Hook_OnSetup(object? sender, PHEventArgs e)
         {
+
             Application.Current.Dispatcher.Invoke(() => { Base = Hook.CreateBasePointer(Hook.Process.MainModule.BaseAddress); });
         }
 

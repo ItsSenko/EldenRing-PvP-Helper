@@ -12,6 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
@@ -68,7 +69,28 @@ namespace PvPHelper.MVVM.ViewModels
         public PHPointer LocalPlayer;
         public MainWindowViewModel()
         {
-            _hook = new(5000, 1000, new(x => x.MainWindowTitle is "ELDEN RING™" or "ELDEN RING"));
+            var proc = Process.GetProcesses().FirstOrDefault(x => (x.MainWindowTitle is "ELDEN RING™" or "ELDEN RING") || x.ProcessName is "eldenring");
+            if (proc == null)
+            {
+                List<DropDownObject<object>> list = new();
+                foreach (var process in Process.GetProcesses())
+                {
+                    if (!string.IsNullOrEmpty(process.MainWindowTitle))
+                        list.Add(new(process, process.MainWindowTitle));
+                }
+
+                DropDownDialog dialog = new("Select Process", list);
+                dialog.OnOk += (obj) =>
+                {
+                    if (obj != null && obj is DropDownObject<object> process)
+                    {
+                        proc = (process.Value as Process);
+                    }
+                };
+                dialog.ShowDialog();
+            }
+            _hook = new(500, 1000, new(x => proc == null ? ((x.MainWindowTitle is "ELDEN RING™" or "ELDEN RING") || x.ProcessName is "eldenring") : x.Id == proc.Id));
+            
             ExtensionsCore.Initialize();
             commandManager = new();
             _vController = new(Directory.GetCurrentDirectory());
@@ -113,10 +135,6 @@ namespace PvPHelper.MVVM.ViewModels
                     };
                     dialog.ShowDialog();
                 }
-                else
-                {
-                    //Helpers.LoadAllImages();
-                }
             };
         }
 
@@ -157,11 +175,11 @@ namespace PvPHelper.MVVM.ViewModels
         {
             _viewModels.Add(nameof(DashboardView), new DashboardViewModel(_hook, LocalPlayer));
             _viewModels.Add(nameof(ItemsView), new ItemsViewModel(_hook));
-            _viewModels.Add(nameof(ItemGiveView), new ItemGiveViewModel(_hook));
+            //_viewModels.Add(nameof(ItemGiveView), new ItemGiveViewModel(_hook));
             _viewModels.Add(nameof(PrefabCreatorView), new PrefabCreatorViewModel(_hook));
             _viewModels.Add(nameof(LobbyManagerView), new LobbyManagerViewModel(_hook));
             _viewModels.Add(nameof(MiscView), new MiscViewModel(_hook, _vController));
-            _viewModels.Add(nameof(InvasionRegionsView), new InvasionRegionsViewModel(_hook));
+            //_viewModels.Add(nameof(InvasionRegionsView), new InvasionRegionsViewModel(_hook));
 
             DashboardCommand = new(o => 
             {
@@ -184,10 +202,10 @@ namespace PvPHelper.MVVM.ViewModels
                 }
                 CurrentView = _viewModels[nameof(PrefabCreatorView)];
             });
-            /*LobbyManagerCommand = new(o =>
+            LobbyManagerCommand = new(o =>
             {
                 CurrentView = _viewModels[nameof(LobbyManagerView)];
-            });*/
+            });
             RegionManagerCommand = new(o => 
             {
                 CurrentView = _viewModels[nameof(InvasionRegionsView)];
@@ -209,7 +227,7 @@ namespace PvPHelper.MVVM.ViewModels
             commandManager.RegisterCommand(new CustomFPS(_hook));
             commandManager.RegisterCommand(new CustomFOV(_hook));
             commandManager.RegisterCommand(new Update(_vController));
-            //commandManager.RegisterCommand(new TestModal(_hook, this));
+            commandManager.RegisterCommand(new TestModal(_hook, this));
             commandManager.RegisterCommand(new TeamTypeChangeCommand(_hook));
             commandManager.RegisterCommand(new NetPlayerCommand(_hook));
             commandManager.RegisterCommand(new ChrTypeChange(_hook));
@@ -218,6 +236,7 @@ namespace PvPHelper.MVVM.ViewModels
             commandManager.RegisterCommand(new FreeCamCommand(_hook));
             commandManager.RegisterCommand(new MassGibConsoleCommand(_hook));
             commandManager.RegisterCommand(new UpdateBuildCommand(_hook));
+            commandManager.RegisterCommand(new BetterSeamlessInvasionsCommand(_hook));
         }
     }
 }

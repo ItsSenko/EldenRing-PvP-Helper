@@ -44,33 +44,7 @@ namespace PvPHelper.Console.Commands
 
         protected override void OnTriggerCommand()
         {
-            throw new Exception("test");
-            var pah = Path.Combine(Directory.GetCurrentDirectory(), "Builds/Test.json");
-            string str = File.ReadAllText(pah);
-            JObject jObject = JObject.Parse(str);
-            JArray jArray = (JArray)jObject["Inventories"];
-
-            foreach(var inventory in jArray)
-            {
-                JArray items = (JArray)inventory["Items"];
-
-                if(inventory["Name"].ToString() == "Weapons")
-                {
-                    List<WeaponItem> wpnItems = items.ToObject<List<WeaponItem>>();
-                    foreach(var wpn in wpnItems)
-                    {
-                        CommandManager.Log($"Weapon: {wpn.Name} {wpn.ID}");
-                    }
-                }
-                else
-                {
-                    List<BuildItem> buildItem = items.ToObject<List<BuildItem>>();
-                    foreach(var bldItem in buildItem)
-                    {
-                        CommandManager.Log($"BuildItem: {bldItem.Name} {bldItem.ID}");
-                    }
-                }
-            }
+            CustomPointers.idleAnimation.WriteInt32(0x18, 63020);
         }
 
         

@@ -35,8 +35,8 @@ namespace PvPHelper.MVVM.Views.UserControls
         public InventoryItem()
         {
             InitializeComponent();
-            DataContext = this;
             //PreviewMouseLeftButtonDown += InventoryItem_PreviewMouseLeftButtonDown;
+            DataContext = this;
         }
         public string Name { get; set; }
         public BuildItem Item { get; set; }
@@ -50,6 +50,7 @@ namespace PvPHelper.MVVM.Views.UserControls
         public static readonly DependencyProperty ItemNameProperty =
             DependencyProperty.Register("ItemName", typeof(string), typeof(InventoryItem));
 
+        
         public ImageSource ItemIconPath
         {
             get { return (ImageSource)GetValue(ItemIconPathProperty); }

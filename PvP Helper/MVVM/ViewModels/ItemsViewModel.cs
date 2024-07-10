@@ -498,6 +498,7 @@ namespace PvPHelper.MVVM.ViewModels
 
         private void _hook_OnSetup(object? sender, PropertyHook.PHEventArgs e)
         {
+
             Application.Current.Dispatcher.Invoke(() => 
             { 
                 SetStats(); 
@@ -734,13 +735,9 @@ namespace PvPHelper.MVVM.ViewModels
                             gemItems.Add(newGem);
                         }
                     }
-                    MaxUpgradeLvl = 25;
                     gemSearch.Items = gemItems;
                 }
-                else
-                {
-                    MaxUpgradeLvl = 10;
-                }
+                MaxUpgradeLvl = weapon.MaxUpgrade;
             }
             else
             {

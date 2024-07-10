@@ -167,6 +167,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Page Update="MVVM\Dialogs\DropDownDialog.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+    </Page>
     <Page Update="MVVM\Views\PrefabCreatorView.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <SubType>Designer</SubType>

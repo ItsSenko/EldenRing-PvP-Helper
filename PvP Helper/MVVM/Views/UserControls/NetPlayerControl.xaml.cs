@@ -4,6 +4,7 @@ using PvPHelper.Core;
 using PvPHelper.MVVM.Dialogs;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,7 +28,7 @@ namespace PvPHelper.MVVM.Views.UserControls
         public NetPlayer Player;
         private NetPlayer LocalPlayer;
         private ErdHook hook;
-        private string ItemPicFolder = "PvPHelper.Resources.Images.Items";
+        private string ItemPicFolder => System.IO.Path.Combine(Directory.GetCurrentDirectory(), "Icons");
         private ItemCategory TalismanCat;
         public NetPlayerControl()
         {
@@ -54,10 +55,10 @@ namespace PvPHelper.MVVM.Views.UserControls
             var tal3Item = Helpers.GetItemFromID(TalismanCat, Player.Accessory3ID);
             var tal4Item = Helpers.GetItemFromID(TalismanCat, Player.Accessory4ID);
 
-            Tal1.Source = tal1Item != null ? Helpers.GetImageSource(tal1Item.Name) : null;
-            Tal2.Source = tal2Item != null ? Helpers.GetImageSource(tal2Item.Name) : null;
-            Tal3.Source = tal3Item != null ? Helpers.GetImageSource(tal3Item.Name) : null;
-            Tal4.Source = tal4Item != null ? Helpers.GetImageSource(tal4Item.Name) : null;
+            Tal1.Source = tal1Item != null ? Helpers.GetImageSource(Helpers.GetFullIconID(tal1Item.IconID)) : null;
+            Tal2.Source = tal2Item != null ? Helpers.GetImageSource(Helpers.GetFullIconID(tal2Item.IconID)) : null;
+            Tal3.Source = tal3Item != null ? Helpers.GetImageSource(Helpers.GetFullIconID(tal3Item.IconID)) : null;
+            Tal4.Source = tal4Item != null ? Helpers.GetImageSource(Helpers.GetFullIconID(tal4Item.IconID)) : null;
 
             Tal1.ToolTip = tal1Item != null ? tal1Item.Name : "Empty";
             Tal2.ToolTip = tal2Item != null ? tal2Item.Name : "Empty";
@@ -77,10 +78,10 @@ namespace PvPHelper.MVVM.Views.UserControls
             var tal3Item = Helpers.GetItemFromID(TalismanCat, Player.Accessory3ID);
             var tal4Item = Helpers.GetItemFromID(TalismanCat, Player.Accessory4ID);
 
-            Tal1.Source = tal1Item != null ? Helpers.GetImageSource(tal1Item.Name) : null;
-            Tal2.Source = tal2Item != null ? Helpers.GetImageSource(tal2Item.Name) : null;
-            Tal3.Source = tal3Item != null ? Helpers.GetImageSource(tal3Item.Name) : null;
-            Tal4.Source = tal4Item != null ? Helpers.GetImageSource(tal4Item.Name) : null;
+            Tal1.Source = tal1Item != null ? Helpers.GetImageSource(Helpers.GetFullIconID(tal1Item.IconID)) : null;
+            Tal2.Source = tal2Item != null ? Helpers.GetImageSource(Helpers.GetFullIconID(tal2Item.IconID)) : null;
+            Tal3.Source = tal3Item != null ? Helpers.GetImageSource(Helpers.GetFullIconID(tal3Item.IconID)) : null;
+            Tal4.Source = tal4Item != null ? Helpers.GetImageSource(Helpers.GetFullIconID(tal4Item.IconID)) : null;
 
             Tal1.ToolTip = tal1Item != null ? tal1Item.Name : "Empty";
             Tal2.ToolTip = tal2Item != null ? tal2Item.Name : "Empty";

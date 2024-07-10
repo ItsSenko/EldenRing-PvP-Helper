@@ -238,6 +238,11 @@ namespace PvPHelper.Console.Commands
                                     netPlayer.Kick();
                                     break;
                                 }
+                            case "kill":
+                                {
+                                    netPlayer.KillTest();
+                                    break;
+                                }
                         }
                     }
                 }
