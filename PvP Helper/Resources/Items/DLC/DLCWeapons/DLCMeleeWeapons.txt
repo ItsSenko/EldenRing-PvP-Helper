@@ -59,7 +59,6 @@
 23520000 Gazing Finger
 24500000 Nanaya's Torch
 24510000 Lamenting Visage
-51500000 Igon's Harpoon
 60500000 Dryleaf Arts
 60510000 Dane's Footwork
 61500000 Firespark Perfume Bottle

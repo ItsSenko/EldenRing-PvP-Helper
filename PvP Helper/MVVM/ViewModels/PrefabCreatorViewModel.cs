@@ -66,9 +66,9 @@ namespace PvPHelper.MVVM.ViewModels
             set { _selectedInvIdx = value; OnPropertyChanged(); }
         }
 
-        private BindingList<InventoryItem> _inventoryItems;
+        private BindingList<InventoryItemModel> _inventoryItems;
 
-        public BindingList<InventoryItem> InventoryItems
+        public BindingList<InventoryItemModel> InventoryItems
         {
             get { return _inventoryItems; }
             set { _inventoryItems = value; OnPropertyChanged(); }
@@ -268,7 +268,7 @@ namespace PvPHelper.MVVM.ViewModels
 
         private SearchAlgorithm<Item> weaponSearch;
         private SearchAlgorithm<Gem> gemSearch;
-        private SearchAlgorithm<Infusion> infusionSearch;
+        private SearchAlgorithm<NamedObject<Infusion>> infusionSearch;
 
         private Build _currentBuild;
 
@@ -399,11 +399,11 @@ namespace PvPHelper.MVVM.ViewModels
             SomberToSmithy.Add(9, 24);
             SomberToSmithy.Add(10, 25);
 
-            weaponSearch = new(new(), new AlphabeticalSort<Item>());
+            weaponSearch = new(new List<Item>(), new AlphabeticalSort<Item>());
             weaponSearch.OnItemsChanged += (items) => { WeaponsSelectedItem = null; WeaponsItemsSource = items; };
-            gemSearch = new(new(), new AlphabeticalSort<Gem>());
+            gemSearch = new(new List<Gem>(), new AlphabeticalSort<Gem>());
             gemSearch.OnItemsChanged += (items) => { AshesSelectedItem = null; AshesItemsSource = items; };
-            infusionSearch = new(new(), new AlphabeticalSort<Infusion>());
+            infusionSearch = new(new List<NamedObject<Infusion>>(), new AlphabeticalSort<NamedObject<Infusion>>());
             infusionSearch.OnItemsChanged += (items) => { InfusionsSelectedItem = null; InfusionsItemsSource = items; };
 
             CurrentBuild = new("New Build", new List<Inventory>() { new("Weapons", new()), new("Talismans", new()), new("Armors", new()) });
@@ -468,9 +468,9 @@ namespace PvPHelper.MVVM.ViewModels
             Inventory selectedInventory = SelectedInventory as Inventory;
             for (int i = 0; i < Quantity; i++)
             {
-                if (WeaponsSelectedItem is SearchItem<Item> item)
+                if (WeaponsSelectedItem is Item item)
                 {
-                    if (item.Item is Weapon weapon)
+                    if (item is Weapon weapon)
                     {
                         if (selectedInventory.Name.ToLower() != "weapons")
                         {
@@ -478,14 +478,14 @@ namespace PvPHelper.MVVM.ViewModels
                         }
                         if ((SelectedInventory as Inventory).Name.ToLower() != "weapons")
                             return;
-                        var gem = AshesSelectedItem as SearchItem<Gem>;
-                        var infusion = InfusionsSelectedItem as SearchItem<Infusion>;
+                        var gem = AshesSelectedItem as Gem;
+                        var infusion = InfusionsSelectedItem as NamedObject<Infusion>;
 
                         WeaponItem wpnItem = new(weapon.Name, weapon.ID, weapon.IconID, weapon.ItemCategory.ToString(),
-                            infusion != null ? (int)infusion.Item : (int)Infusion.Standard,
-                            infusion != null ? infusion.Item.ToString() : "",
-                            gem != null ? gem.Item.ID : -1,
-                            gem != null ? gem.Item.IconID : (short)0,
+                            infusion != null ? (int)infusion.Value : (int)Infusion.Standard,
+                            infusion != null ? infusion.ToString() : "",
+                            gem != null ? gem.ID : -1,
+                            gem != null ? gem.IconID : (short)0,
                             UpgradeLevel);
 
                         CreateNewBtn(weapon.Name,
@@ -496,8 +496,8 @@ namespace PvPHelper.MVVM.ViewModels
                     }
                     else
                     {
-                        BuildItem buildItem = new(item.Item.Name, item.Item.ID, item.Item.IconID, item.Item.ItemCategory.ToString());
-                        if (item.Item.ItemCategory == Item.Category.Accessory)
+                        BuildItem buildItem = new(item.Name, item.ID, item.IconID, item.ItemCategory.ToString());
+                        if (item.ItemCategory == Item.Category.Accessory)
                         {
                             if (selectedInventory.Name.ToLower() != "talismans")
                             {
@@ -505,11 +505,11 @@ namespace PvPHelper.MVVM.ViewModels
                             }
                             if ((SelectedInventory as Inventory).Name.ToLower() != "talismans")
                                 return;
-                            CreateNewBtn(item.Item.Name,
-                                     Helpers.GetImageSource(Helpers.GetFullIconID(item.Item.IconID)),
+                            CreateNewBtn(item.Name,
+                                     Helpers.GetImageSource(Helpers.GetFullIconID(item.IconID)),
                                      string.Empty, null, null, buildItem);
                         }
-                        else if (item.Item.ItemCategory == Item.Category.Protector)
+                        else if (item.ItemCategory == Item.Category.Protector)
                         {
                             if (selectedInventory.Name.ToLower() != "armors")
                             {
@@ -517,8 +517,8 @@ namespace PvPHelper.MVVM.ViewModels
                             }
                             if ((SelectedInventory as Inventory).Name.ToLower() != "armors")
                                 return;
-                            CreateNewBtn(item.Item.Name,
-                                     Helpers.GetImageSource(Helpers.GetFullIconID(item.Item.IconID)),
+                            CreateNewBtn(item.Name,
+                                     Helpers.GetImageSource(Helpers.GetFullIconID(item.IconID)),
                                      string.Empty, null, null, buildItem);
                         }
 
@@ -530,7 +530,7 @@ namespace PvPHelper.MVVM.ViewModels
             }
         }
 
-        public void OnSaveEditedItem(WeaponItem prefab, InventoryItem item)
+        public void OnSaveEditedItem(WeaponItem prefab, InventoryItemModel item)
         {
             if (prefab == null)
                 return;
@@ -551,17 +551,11 @@ namespace PvPHelper.MVVM.ViewModels
         }
         private void CreateNewBtn(string name, ImageSource icon, string upgradelevel, ImageSource infusionicon, ImageSource ashIcon, BuildItem item)
         {
-            InventoryItem newInvItem = new();
-            newInvItem.ItemName = name;
-            newInvItem.ItemIconPath = icon;
-            newInvItem.UpgradeLevel = upgradelevel;
-            newInvItem.InfusionIconPath = infusionicon;
-            newInvItem.AshOfWarIcon = ashIcon;
-            newInvItem.Item = item;
+            InventoryItemModel newInvItem = new(item, icon, ashIcon, infusionicon, item.Name, upgradelevel);
             
-            newInvItem.MouseRightButtonDown += (o, e) => 
+            newInvItem.OnRightClick += (item) => 
             {
-                if (newInvItem.Item == null)
+                if (item == null)
                     return;
 
                 if (newInvItem.Item is WeaponItem wpn)
@@ -585,13 +579,10 @@ namespace PvPHelper.MVVM.ViewModels
                 }
             };
 
-            newInvItem.MouseDown += (s, e) => 
+            newInvItem.OnMiddleClick += (item) => 
             {
-                if (e.ChangedButton == MouseButton.Middle && e.ButtonState == MouseButtonState.Pressed)
-                {
-                    if (InventoryItems.Contains(newInvItem))
-                        InventoryItems.Remove(newInvItem);
-                }
+                if (InventoryItems.Contains(newInvItem))
+                    InventoryItems.Remove(newInvItem);
             };
             InventoryItems.Add(newInvItem);
         }
@@ -638,10 +629,10 @@ namespace PvPHelper.MVVM.ViewModels
             infusionSearch.Items = null;
 
             ItemCategoryOption option = CategorySelectedItem as ItemCategoryOption;
-            List<SearchItem<Item>> items = new();
+            List<Item> items = new();
 
             foreach (var item in option.category.Items)
-                items.Add(new(item, item.Name));
+                items.Add(item);
 
             weaponSearch.Items = items;
             WeaponsSearchText = string.Empty;
@@ -659,18 +650,18 @@ namespace PvPHelper.MVVM.ViewModels
             gemSearch.Items = null;
             infusionSearch.Items = null;
 
-            SearchItem<Item> item = WeaponsSelectedItem as SearchItem<Item>;
-            if (item.Item is Weapon weapon)
+            Item item = WeaponsSelectedItem as Item;
+            if (item is Weapon weapon)
             {
                 MaxUpgradeLevel = weapon.MaxUpgrade;
                 if (weapon.Infusible)
                 {
-                    List<SearchItem<Gem>> gemOptions = new();
+                    List<Gem> gemOptions = new();
                     foreach (Gem gem in Gem.All)
                     {
                         if (gem.WeaponTypes.Contains(weapon.Type))
                         {
-                            gemOptions.Add(new(gem, gem.Name.Contains("Ash of War: ") ? gem.Name.Substring(12) : gem.Name));
+                            gemOptions.Add(gem);
                         }
                     }
                     MaxUpgradeLevel = weapon.MaxUpgrade;
@@ -702,11 +693,12 @@ namespace PvPHelper.MVVM.ViewModels
 
             infusionSearch.Items = null;
 
-            SearchItem<Gem> option = AshesSelectedItem as SearchItem<Gem>;
-            List<SearchItem<Infusion>> infusionOptions = new();
-            foreach (Infusion infusion in option.Item.Infusions)
+            Gem option = AshesSelectedItem as Gem;
+            List<NamedObject<Infusion>> infusionOptions = new();
+            foreach (Infusion infusion in option.Infusions)
                 infusionOptions.Add(new(infusion, infusion.ToString()));
             infusionSearch.Items = infusionOptions;
+
         }
     }
 }

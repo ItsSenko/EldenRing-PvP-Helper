@@ -47,10 +47,10 @@ namespace PvPHelper.MVVM.Commands.Dashboard.Toggles
                 var row = _hook.EquipParamGoods.Rows.FirstOrDefault(x => x.ID == consumableIds[i]);
                 var dataOffset = row.DataOffset;
 
-                byte b = row.Param.Pointer.ReadByte(dataOffset + consumeOffset);
+                byte b = row.Param.Pointer.ReadByte((int)dataOffset + consumeOffset);
                 b = Helpers.SetBit(b, bitIndex, State ? false : true);
 
-                row.Param.Pointer.WriteByte(dataOffset + consumeOffset, b);
+                row.Param.Pointer.WriteByte((int)dataOffset + consumeOffset, b);
             }
 
             CustomPointers.ChrDbgFlags.WriteByte(0x6, State ? (byte)1 : (byte)0);

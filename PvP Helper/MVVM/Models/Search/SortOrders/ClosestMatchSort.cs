@@ -10,7 +10,7 @@ namespace PvPHelper.MVVM.Models.Search.SortOrders
     {
         public string Name => "Closest Match";
 
-        public List<SearchItem<T>> Sort(List<SearchItem<T>> items, object? sender)
+        public List<T> Sort(IEnumerable<T> items, object? sender)
         {
             string searchString = string.Empty;
 
@@ -19,9 +19,9 @@ namespace PvPHelper.MVVM.Models.Search.SortOrders
             else
                 searchString = sender.ToString();
 
-            List<SearchItem<T>> newItems = items;
+            List<T> newItems = items.ToList();
 
-            newItems.Sort((x, y) => CustomStringDistance(x.ToString(), searchString).CompareTo(CustomStringDistance(y.ToString(), searchString)));
+            newItems.ToList().Sort((x, y) => CustomStringDistance(x.ToString(), searchString).CompareTo(CustomStringDistance(y.ToString(), searchString)));
 
             return newItems;
         }
@@ -99,6 +99,11 @@ namespace PvPHelper.MVVM.Models.Search.SortOrders
             }
 
             return d[d.GetUpperBound(0), d.GetUpperBound(1)];
+        }
+
+        public override string ToString()
+        {
+            return Name;
         }
     }
 }

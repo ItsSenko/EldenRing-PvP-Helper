@@ -69,9 +69,9 @@
                         <userControls:LabeledCircleToggle Label="No Material Cost"
                                             Checked="{Binding NoMaterialCostToggle.State, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                             ToggleCommand="{Binding NoMaterialCostToggle}"/>
-                        <userControls:LabeledCircleToggle Label="Better Seamless Invasions"
-                                            Checked="{Binding BSI.State, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                            ToggleCommand="{Binding BSI}"/>
+                        <userControls:LabeledCircleToggle Label="Fast Seamless Co-op Items"
+                                            Checked="{Binding FastAnims.State, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                            ToggleCommand="{Binding FastAnims}" Visibility="{Binding SeamlessEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                         <Button Style="{DynamicResource PrimaryButton}"
                         Content="Unlock All Colosseums"
                         Command="{Binding AllArenas}" Cursor="Hand" Height="53"/>
@@ -84,13 +84,33 @@
                         Content="Unlock All Gestures"
                         Command="{Binding AllGestures}" Cursor="Hand" Height="53" Margin="268,139,585,86"/>-->
 
-                <TextBlock Text="Open Menu"
+                <StackPanel Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Right">
+                    <StackPanel.Resources>
+                        <Style TargetType="{x:Type userControls:SimpleDropDown}">
+                            <Setter Property="Margin" Value="0,10,30,0"/>
+                        </Style>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="Margin" Value="0,0,30,0"/>
+                        </Style>
+                    </StackPanel.Resources>
+                    <TextBlock Text="Open Menu"
                            Foreground="{DynamicResource LighterTextBrush}"
-                           FontSize="24"
-                           HorizontalAlignment="Left" Width="126" Margin="849,8,0,232"/>
-                <userControls:SimpleDropDown ItemsSource="{Binding MenuItemsSource, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                             SelectedIndex="{Binding SelectedMenuIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                             SelectedItem="{Binding SelectedMenu, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="792,51,10,187"/>
+                           FontSize="24" Width="126"/>
+                    <userControls:SimpleDropDown ItemsSource="{Binding MenuItemsSource, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                             SelectedItem="{Binding SelectedMenu, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="250"/>
+
+                    <TextBlock
+                           Foreground="{DynamicResource LighterTextBrush}"
+                           FontSize="24" Width="200" TextAlignment="Center" Visibility="{Binding SeamlessEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                        Invasion <LineBreak/>
+                        Spawn Animation
+                    </TextBlock>
+                    <userControls:SimpleDropDown ItemsSource="{Binding AnimItemsSource, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                 SelectedIndex="{Binding SelectedAnimIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                 SelectedItem="{Binding SelectedAnim, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="250" Visibility="{Binding SeamlessEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                 Synced="True"/>
+                </StackPanel>
+                
             </Grid>
         </Border>
         <Grid Grid.Row="4">

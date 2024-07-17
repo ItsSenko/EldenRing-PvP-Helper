@@ -2,7 +2,7 @@
 using Erd_Tools.Models;
 using PvPHelper.Console;
 using PvPHelper.Core;
-using PvPHelper.MVVM.Commands.Misc;
+using PvPHelper.MVVM.Commands.Dashboard.Toggles;
 using PvPHelper.MVVM.Models;
 using System;
 using System.Collections.Generic;
@@ -199,18 +199,18 @@ namespace PvPHelper.MVVM.Dialogs
                 Row row = PhantomParam.Rows.FirstOrDefault(x => x.ID == phantom.ID);
                 var dataOffset = row.DataOffset;
 
-                row.Param.Pointer.WriteByte(dataOffset + edgeColorR, color.R);
-                row.Param.Pointer.WriteByte(dataOffset + edgeColorG, color.G);
-                row.Param.Pointer.WriteByte(dataOffset + edgeColorB, color.B);
+                row.Param.Pointer.WriteByte((int)dataOffset + edgeColorR, color.R);
+                row.Param.Pointer.WriteByte((int)dataOffset + edgeColorG, color.G);
+                row.Param.Pointer.WriteByte((int)dataOffset + edgeColorB, color.B);
 
-                row.Param.Pointer.WriteByte(dataOffset + diffMulColorR, 255);
-                row.Param.Pointer.WriteByte(dataOffset + diffMulColorG, 255);
-                row.Param.Pointer.WriteByte(dataOffset + diffMulColorB, 255);
+                row.Param.Pointer.WriteByte((int)dataOffset + diffMulColorR, 255);
+                row.Param.Pointer.WriteByte((int)dataOffset + diffMulColorG, 255);
+                row.Param.Pointer.WriteByte((int)dataOffset + diffMulColorB, 255);
 
                 Color invertedColor = invertColor(color);
-                row.Param.Pointer.WriteByte(dataOffset + frontColorR, (byte)Math.Round(invertedColor.R * 0.3, 0));
-                row.Param.Pointer.WriteByte(dataOffset + frontColorG, (byte)Math.Round(invertedColor.G * 0.3, 0));
-                row.Param.Pointer.WriteByte(dataOffset + frontColorB, (byte)Math.Round(invertedColor.B * 0.3, 0));
+                row.Param.Pointer.WriteByte((int)dataOffset + frontColorR, (byte)Math.Round(invertedColor.R * 0.3, 0));
+                row.Param.Pointer.WriteByte((int)dataOffset + frontColorG, (byte)Math.Round(invertedColor.G * 0.3, 0));
+                row.Param.Pointer.WriteByte((int)dataOffset + frontColorB, (byte)Math.Round(invertedColor.B * 0.3, 0));
 
                 CommandManager.Log("Color Updated");
                 CommandManager.Log($"R: {color.R} G: {color.G} B: {color.B}");

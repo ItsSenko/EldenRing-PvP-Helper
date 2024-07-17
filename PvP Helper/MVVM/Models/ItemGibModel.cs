@@ -1,7 +1,8 @@
-﻿using Erd_Tools.Models;
+﻿using Erd_Tools;
+using Erd_Tools.Models;
+using Erd_Tools.Models.Items;
 using PvPHelper.Core;
 using PvPHelper.Core.Extensions;
-using PvPHelper.MVVM.Models.Builds;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,15 +15,16 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
+using static Erd_Tools.Models.Weapon;
 
 namespace PvPHelper.MVVM.Models
 {
-    public class InventoryItemModel : ViewModelBase
+    public class ItemGibModel : ViewModelBase
     {
-        public delegate void OnClickHandler(BuildItem item);
+        public delegate void OnClickHandler(Item item);
         public event OnClickHandler OnLeftClick;
         public event OnClickHandler OnRightClick;
-        public event OnClickHandler OnMiddleClick;
+
 
         private ImageSource _itemIcon;
 
@@ -63,36 +65,34 @@ namespace PvPHelper.MVVM.Models
             set { _itemName = value; OnPropertyChanged(); }
         }
 
-        private string _upgradeLevel;
+        public string UpgradeLevel { get; set; }
 
-        public string UpgradeLevel
-        {
-            get { return _upgradeLevel; }
-            set { _upgradeLevel = value; OnPropertyChanged(); }
-        }
-
-
-        public BuildItem Item { get; set; }
+        public Item Item { get; set; }
+        public Infusion Infusion { get; set; }
 
         public ICommand ClickCommand { get; set; }
         public ICommand RightClickCommand { get; set; }
-        public ICommand MiddleClickCommand { get; set; }
 
-        public InventoryItemModel(BuildItem item, ImageSource itemIconPath, ImageSource ashOfWarIcon, ImageSource infusionIconPath, string itemName, string upgradeLevel = "")
+        public ItemGibModel(ImageSource itemIconPath, ImageSource ashOfWarIcon, ImageSource infusionIconPath, string itemName, string upgradeLevel = "")
         {
             ItemIconPath = itemIconPath;
             AshOfWarIcon = ashOfWarIcon;
             InfusionIconPath = infusionIconPath;
             ItemName = itemName;
             UpgradeLevel = upgradeLevel;
-            Item = item;
 
             ClickCommand = new RelayCommand((o) => OnLeftClick?.Invoke(Item));
             RightClickCommand = new RelayCommand((o) => OnRightClick?.Invoke(Item));
-            MiddleClickCommand = new RelayCommand((o) => OnMiddleClick?.Invoke(Item));
         }
 
-        /*public void SetupFromItem(Item item)
+        public ItemGibModel(Infusion infusion, ImageSource Icon, string Name)
+        {
+            Infusion = infusion;
+            ItemIconPath = Icon;
+            ItemName = Name;
+        }
+
+        public void SetupFromItem(Item item)
         {
             if (item == null)
             {
@@ -102,7 +102,8 @@ namespace PvPHelper.MVVM.Models
             Visibility = Visibility.Visible;
             ItemIconPath = Helpers.GetImageSource(Helpers.GetFullIconID(item.IconID));
             ItemName = item.Name;
-        }*/
+            Item = item;
+        }
 
     }
 }

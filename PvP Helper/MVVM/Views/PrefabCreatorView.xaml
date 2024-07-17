@@ -157,7 +157,7 @@
                                   SelectedIndex="{Binding SelectedInventoryIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             </StackPanel>
             <Border Margin="10" Background="{DynamicResource BackgroundBrush}" Grid.Row="1">
-                <ScrollViewer Style="{DynamicResource ScrollViewerStyleDark}" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Visible" ScrollViewer.CanContentScroll="True">
+                <ScrollViewer Style="{DynamicResource ScrollViewerStyleDark}" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Visible" ScrollViewer.CanContentScroll="False">
                     <ItemsControl ItemsSource="{Binding InventoryItems, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Background="{DynamicResource BackgroundBrush}"
                                   dd:DragDrop.IsDragSource="True"
                                   dd:DragDrop.IsDropTarget="True"
@@ -168,16 +168,18 @@
                                 <WrapPanel Orientation="Horizontal" Width="668"/>
                             </ItemsPanelTemplate>
                         </ItemsControl.ItemsPanel>
-                        <!--<ItemsControl.ItemTemplate>
+                        <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <local:InventoryItem ItemIconPath="{Binding ItemIconPath, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                                                      AshOfWarIcon="{Binding AshOfWarIcon, UpdateSourceTrigger=PropertyChanged}"
                                                      InfusionIconPath="{Binding InfusionIconPath, UpdateSourceTrigger=PropertyChanged}"
                                                      ItemName="{Binding ItemName, UpdateSourceTrigger=PropertyChanged}"
                                                      UpgradeLevel="{Binding UpgradeLevel, UpdateSourceTrigger=PropertyChanged}"
-                                                     Width="220" Height="210" Margin="6"/>
+                                                     RightClickCommand="{Binding RightClickCommand}"
+                                                     MiddleClickCommand="{Binding MiddleClickCommand}"
+                                                     Width="133" Height="133" Margin="0"/>
                             </DataTemplate>
-                        </ItemsControl.ItemTemplate>-->
+                        </ItemsControl.ItemTemplate>
                     </ItemsControl>
                 </ScrollViewer>
             </Border>

@@ -18,11 +18,21 @@
 
     <None Remove="Resources\Assembly\FreeCamInject.asm" />
 
+    <None Remove="Resources\Assembly\GetEquipParamGoodsEntry.asm" />
+
+    <None Remove="Resources\Assembly\ItemGibDisable\ItemGibDisable.asm" />
+
+    <None Remove="Resources\Assembly\ItemGibDisable\ItemGibDisableInject.asm" />
+
     <None Remove="Resources\Assembly\KickOutFunction.asm" />
 
     <None Remove="Resources\Assembly\OpenMenu.asm" />
 
     <None Remove="Resources\Assembly\OpenShopMenu.asm" />
+
+    <None Remove="Resources\Images\arrowleft.png" />
+
+    <None Remove="Resources\Images\arrowright.png" />
 
     <None Remove="Resources\Images\attached.svg" />
     <None Remove="Resources\Images\auto-fix.svg" />
@@ -40,6 +50,7 @@
     <None Remove="Resources\Images\help-circle.svg" />
     <None Remove="Resources\Images\hospital.svg" />
     <None Remove="Resources\Images\Items\Radagon_s Icon - MENU_Knowledge_18470.png" />
+    <None Remove="Resources\Images\kofi.png" />
     <None Remove="Resources\Images\link-box-outline.svg" />
     <None Remove="Resources\Images\link-box.svg" />
 
@@ -62,6 +73,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Resources\Images\arrowleft.png" />
+    <Resource Include="Resources\Images\arrowright.png" />
     <Resource Include="Resources\Images\attached.svg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
@@ -77,6 +90,9 @@
     <Content Include="Resources\Images\format-list-text.svg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Resources\Images\Kofi.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Resources\Images\not_attached.svg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
@@ -86,6 +102,9 @@
     <EmbeddedResource Include="Resources\Assembly\AddRunes.asm" />
     <EmbeddedResource Include="Resources\Assembly\FreeCamCode.asm" />
     <EmbeddedResource Include="Resources\Assembly\FreeCamInject.asm" />
+    <EmbeddedResource Include="Resources\Assembly\GetEquipParamGoodsEntry.asm" />
+    <EmbeddedResource Include="Resources\Assembly\ItemGibDisable\ItemGibDisable.asm" />
+    <EmbeddedResource Include="Resources\Assembly\ItemGibDisable\ItemGibDisableInject.asm" />
     <EmbeddedResource Include="Resources\Assembly\KickOutFunction.asm" />
     <EmbeddedResource Include="Resources\Assembly\OpenMenu.asm" />
     <EmbeddedResource Include="Resources\Assembly\OpenShopMenu.asm" />
@@ -3492,6 +3511,9 @@
 	
 	<ItemGroup>
 	  <ResourceFiles Remove="Resources\Assembly\AddRunes.asm" />
+	  <ResourceFiles Remove="Resources\Assembly\GetEquipParamGoodsEntry.asm" />
+	  <ResourceFiles Remove="Resources\Assembly\ItemGibDisable\ItemGibDisable.asm" />
+	  <ResourceFiles Remove="Resources\Assembly\ItemGibDisable\ItemGibDisableInject.asm" />
 	  <ResourceFiles Remove="Resources\Assembly\OpenMenu.asm" />
 	  <ResourceFiles Remove="Resources\Images\format-list-text.svg" />
 	  <ResourceFiles Remove="Resources\Version.txt" />

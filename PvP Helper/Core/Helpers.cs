@@ -1,5 +1,6 @@
 ﻿using Erd_Tools.Models;
 using Newtonsoft.Json.Linq;
+using PropertyHook;
 using PvPHelper.Console;
 using PvPHelper.Core.Extensions;
 using PvPHelper.MVVM.Dialogs;
@@ -7,10 +8,14 @@ using PvPHelper.MVVM.Models.Builds;
 using SoulsFormats;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -95,6 +100,73 @@ namespace PvPHelper.Core
                     return true;
             }
             return false;
+        }
+
+        public static IntPtr GetEquipGoodsEntryParamPtr(int id)
+        {
+            var hook = ExtensionsCore.GetMainHook();
+
+            PHPointer pointer = hook.CreateBasePointer(hook.Process.MainModule.BaseAddress + 0xD39410);
+            IntPtr entryPtr = hook.GetPrefferedIntPtr(16);
+            PHPointer ptr = hook.CreateBasePointer(entryPtr);
+
+            string asmStr = Helpers.GetEmbededResource("Resources.Assembly.GetEquipParamGoodsEntry.asm");
+            string formattedStr = string.Format(asmStr, entryPtr, id, pointer.Resolve());
+
+            hook.AsmExecute(formattedStr);
+
+            return ptr.ReadIntPtr(0x8);
+        }
+
+        public static long GetParamDataOffset(IntPtr ParamPtr, Param param)
+        {
+            return ParamPtr.ToInt64() - param.Pointer.Resolve().ToInt64();
+        }
+
+        public static bool GetIfModuleExists(Process process, string moduleName)
+        {
+            foreach(ProcessModule module in process.Modules)
+            {
+                if (module.ModuleName.Equals(moduleName, StringComparison.OrdinalIgnoreCase))
+                    return true;
+            }
+
+            return false;
+        }
+        public static bool SeamlessItemsInitialized = false;
+        public static void InitializeSeamlessItems()
+        {
+            var hook = ExtensionsCore.GetMainHook();
+
+            if (!hook.Setup)
+                return;
+
+
+            for(int i = 0; i < Enum.GetValues(typeof(SeamlessItems)).Length; i++)
+            {
+                var array = Enum.GetValues(typeof(SeamlessItems)).Cast<SeamlessItems>().ToArray();
+
+                IntPtr paramPtr = GetEquipGoodsEntryParamPtr((int)array[i]);
+                long dataOffset = GetParamDataOffset(paramPtr, hook.EquipParamGoods);
+
+                hook.EquipParamGoods.Rows.Add(new(hook.EquipParamGoods, array[i].ToString(), (int)array[i], dataOffset));
+            }
+            SeamlessItemsInitialized = true;
+        }
+
+        public enum SeamlessItems
+        {
+            HostingItem = 8380001,
+            JoiningItem = 8380002,
+            BreakInItem = 8380003,
+            LeavingItem = 8380004,
+            GameRuleChangeItem = 8380005,
+            RuneArcItem = 8380006,
+            RotItem_01 = 8380007,
+            RotItem_02 = 8380008,
+            RotItem_03 = 8380009,
+            RotItem_04 = 8380010,
+            RotItem_05 = 8380011,
         }
 
         public static ItemCategory GetCategoryByName(string name)
@@ -250,6 +322,9 @@ namespace PvPHelper.Core
         }
         public static ImageSource LoadImage(string searchStr, string path = "")
         {
+            if (AllImages.ContainsKey(searchStr))
+                return AllImages[searchStr];
+
             var iconsDirectory = string.IsNullOrEmpty(path) ? Path.Combine(Directory.GetCurrentDirectory(), "Icons") : Path.Combine(Directory.GetCurrentDirectory(), "Resources/Images");
 
             if (Directory.Exists(iconsDirectory))
@@ -261,11 +336,39 @@ namespace PvPHelper.Core
                     if (str.ToLower() == searchStr.ToLower())
                     {
                         var image = LoadImageFromPath(file);
+                        /*if (!AllImages.ContainsKey(str))
+                            AllImages.Add(str, image);*/
                         return image;
                     }
                 }
             }
             return null;
+        }
+        public static bool ImagesLoaded = false;
+        public static Dictionary<string, ImageSource> AllImages = new();
+        public static void LoadImages()
+        {
+            var bk = new BackgroundWorker();
+            bk.DoWork += (s, e) => 
+            {
+                var iconsDirectory = Path.Combine(Directory.GetCurrentDirectory(), "Icons");
+
+                if (Directory.Exists(iconsDirectory))
+                {
+                    var array = Directory.GetFiles(iconsDirectory);
+                    for (int i = 0; i < array.Length; i++)
+                    {
+                        var file = array[i];
+                        if (Path.GetExtension(file) == ".png")
+                        {
+                            AllImages.Add(Path.GetFileNameWithoutExtension(file), LoadImageFromPath(file));
+                        }
+                    }
+                    ImagesLoaded = true;
+                    Application.Current.Dispatcher.Invoke(() => CommandManager.Log("All Images have loaded."));
+                }
+            };
+            bk.RunWorkerAsync();
         }
 
         public static string GetImagePathBySearch(string searchStr, string path = "")
@@ -406,8 +509,7 @@ namespace PvPHelper.Core
         }
         public static string GetFullIconID(short id)
         {
-            string str = id.ToString().PadLeft(5, '0');
-            return str;
+            return id.ToString().PadLeft(5, '0');
         }
         public static ImageSource GetImageSource(string searchStr, bool exact = false)
         {
@@ -482,11 +584,15 @@ namespace PvPHelper.Core
         public static ImageSource LoadImageFromPath(string path)
         {
             BitmapImage img = new();
+            var stream = File.OpenRead(path);
             img.BeginInit();
-            img.UriSource = new(path, UriKind.RelativeOrAbsolute);
             img.CacheOption = BitmapCacheOption.OnLoad;
-            img.DecodePixelWidth = 200;
+            img.StreamSource = stream;
             img.EndInit();
+            img.Freeze();
+
+            stream.Close();
+            stream.Dispose();
 
             return img;
         }

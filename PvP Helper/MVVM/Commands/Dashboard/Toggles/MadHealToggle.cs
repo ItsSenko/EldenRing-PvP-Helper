@@ -57,83 +57,83 @@ namespace PvPHelper.MVVM.Commands.Dashboard.Toggles
 
             if (State && softCottonDefaultParams.Count == 0)
             {
-                softCottonDefaultParams.Add("refId1", softCotton.Param.Pointer.ReadInt32(dataOffset + refId1Offset.FieldOffset));
-                softCottonDefaultParams.Add("iconId", softCotton.Param.Pointer.ReadInt16(dataOffset + iconIdOffset.FieldOffset));
-                softCottonDefaultParams.Add("goodsUseAnim", softCotton.Param.Pointer.ReadByte(dataOffset + goodsUseAnimOffset.FieldOffset));
-                softCottonDefaultParams.Add("consumeMp", softCotton.Param.Pointer.ReadInt16(dataOffset + consumeMPOffset.FieldOffset));
-                softCottonDefaultParams.Add("refCategory", softCotton.Param.Pointer.ReadByte(dataOffset + refCategoryOffset.FieldOffset));
+                softCottonDefaultParams.Add("refId1", softCotton.Param.Pointer.ReadInt32((int)dataOffset + refId1Offset.FieldOffset));
+                softCottonDefaultParams.Add("iconId", softCotton.Param.Pointer.ReadInt16((int)dataOffset + iconIdOffset.FieldOffset));
+                softCottonDefaultParams.Add("goodsUseAnim", softCotton.Param.Pointer.ReadByte((int)dataOffset + goodsUseAnimOffset.FieldOffset));
+                softCottonDefaultParams.Add("consumeMp", softCotton.Param.Pointer.ReadInt16((int)dataOffset + consumeMPOffset.FieldOffset));
+                softCottonDefaultParams.Add("refCategory", softCotton.Param.Pointer.ReadByte((int)dataOffset + refCategoryOffset.FieldOffset));
             }
 
-            softCotton.Param.Pointer.WriteInt32(dataOffset + refId1Offset.FieldOffset, State ? larIds[0] : softCottonDefaultParams["refId1"]);
-            softCotton.Param.Pointer.WriteInt16(dataOffset + iconIdOffset.FieldOffset, (short)(State ? 6064 : softCottonDefaultParams["iconId"]));
-            softCotton.Param.Pointer.WriteByte(dataOffset + goodsUseAnimOffset.FieldOffset, (byte)(State ? 16 : softCottonDefaultParams["goodsUseAnim"]));
-            softCotton.Param.Pointer.WriteInt16(dataOffset + consumeMPOffset.FieldOffset, (short)(State ? 0 : softCottonDefaultParams["consumeMp"]));
-            softCotton.Param.Pointer.WriteByte(dataOffset + refCategoryOffset.FieldOffset, (byte)(State ? 1 : softCottonDefaultParams["refCategory"]));
+            softCotton.Param.Pointer.WriteInt32((int)dataOffset + refId1Offset.FieldOffset, State ? larIds[0] : softCottonDefaultParams["refId1"]);
+            softCotton.Param.Pointer.WriteInt16((int)dataOffset + iconIdOffset.FieldOffset, (short)(State ? 6064 : softCottonDefaultParams["iconId"]));
+            softCotton.Param.Pointer.WriteByte((int)dataOffset + goodsUseAnimOffset.FieldOffset, (byte)(State ? 16 : softCottonDefaultParams["goodsUseAnim"]));
+            softCotton.Param.Pointer.WriteInt16((int)dataOffset + consumeMPOffset.FieldOffset, (short)(State ? 0 : softCottonDefaultParams["consumeMp"]));
+            softCotton.Param.Pointer.WriteByte((int)dataOffset + refCategoryOffset.FieldOffset, (byte)(State ? 1 : softCottonDefaultParams["refCategory"]));
 
             if (State)
             {
                 foreach (var id in larIds)
                 {
                     var lar = bulletParam.Rows.FirstOrDefault(x => x.ID == id);
-                    lar.Param.Pointer.WriteInt32(lar.DataOffset + sfxBulletOffset.FieldOffset, 0);
-                    lar.Param.Pointer.WriteInt32(lar.DataOffset + sfxHitOffset.FieldOffset, 0);
-                    lar.Param.Pointer.WriteSingle(lar.DataOffset + lifeOffset.FieldOffset, .01f);
-                    lar.Param.Pointer.WriteSingle(lar.DataOffset + hitRadiusOffset.FieldOffset, 30);
+                    lar.Param.Pointer.WriteInt32((int)lar.DataOffset + sfxBulletOffset.FieldOffset, 0);
+                    lar.Param.Pointer.WriteInt32((int)lar.DataOffset + sfxHitOffset.FieldOffset, 0);
+                    lar.Param.Pointer.WriteSingle((int)lar.DataOffset + lifeOffset.FieldOffset, .01f);
+                    lar.Param.Pointer.WriteSingle((int)lar.DataOffset + hitRadiusOffset.FieldOffset, 30);
                 }
             }
             else
             {
-                lawOfReg1.Param.Pointer.WriteInt32(lawOfReg1.DataOffset + sfxBulletOffset.FieldOffset, 528161);
-                lawOfReg1.Param.Pointer.WriteInt32(lawOfReg1.DataOffset + sfxHitOffset.FieldOffset, -1);
-                lawOfReg1.Param.Pointer.WriteSingle(lawOfReg1.DataOffset + lifeOffset.FieldOffset, 0.1f);
-                lawOfReg1.Param.Pointer.WriteSingle(lawOfReg1.DataOffset + hitRadiusOffset.FieldOffset, 1);
+                lawOfReg1.Param.Pointer.WriteInt32((int)lawOfReg1.DataOffset + sfxBulletOffset.FieldOffset, 528161);
+                lawOfReg1.Param.Pointer.WriteInt32((int)lawOfReg1.DataOffset + sfxHitOffset.FieldOffset, -1);
+                lawOfReg1.Param.Pointer.WriteSingle((int)lawOfReg1.DataOffset + lifeOffset.FieldOffset, 0.1f);
+                lawOfReg1.Param.Pointer.WriteSingle((int)lawOfReg1.DataOffset + hitRadiusOffset.FieldOffset, 1);
 
-                lawOfReg2.Param.Pointer.WriteInt32(lawOfReg2.DataOffset + sfxBulletOffset.FieldOffset, -1);
-                lawOfReg2.Param.Pointer.WriteInt32(lawOfReg2.DataOffset + sfxHitOffset.FieldOffset, -1);
-                lawOfReg2.Param.Pointer.WriteSingle(lawOfReg2.DataOffset + lifeOffset.FieldOffset, 0.1f);
-                lawOfReg2.Param.Pointer.WriteSingle(lawOfReg2.DataOffset + hitRadiusOffset.FieldOffset, 1);
+                lawOfReg2.Param.Pointer.WriteInt32((int)lawOfReg2.DataOffset + sfxBulletOffset.FieldOffset, -1);
+                lawOfReg2.Param.Pointer.WriteInt32((int)lawOfReg2.DataOffset + sfxHitOffset.FieldOffset, -1);
+                lawOfReg2.Param.Pointer.WriteSingle((int)lawOfReg2.DataOffset + lifeOffset.FieldOffset, 0.1f);
+                lawOfReg2.Param.Pointer.WriteSingle((int)lawOfReg2.DataOffset + hitRadiusOffset.FieldOffset, 1);
 
-                lawOfReg3.Param.Pointer.WriteInt32(lawOfReg3.DataOffset + sfxBulletOffset.FieldOffset, -1);
-                lawOfReg3.Param.Pointer.WriteInt32(lawOfReg3.DataOffset + sfxHitOffset.FieldOffset, -1);
-                lawOfReg3.Param.Pointer.WriteSingle(lawOfReg3.DataOffset + lifeOffset.FieldOffset, 0.1f);
-                lawOfReg3.Param.Pointer.WriteSingle(lawOfReg3.DataOffset + hitRadiusOffset.FieldOffset, 1);
+                lawOfReg3.Param.Pointer.WriteInt32((int)lawOfReg3.DataOffset + sfxBulletOffset.FieldOffset, -1);
+                lawOfReg3.Param.Pointer.WriteInt32((int)lawOfReg3.DataOffset + sfxHitOffset.FieldOffset, -1);
+                lawOfReg3.Param.Pointer.WriteSingle((int)lawOfReg3.DataOffset + lifeOffset.FieldOffset, 0.1f);
+                lawOfReg3.Param.Pointer.WriteSingle((int)lawOfReg3.DataOffset + hitRadiusOffset.FieldOffset, 1);
 
-                lawOfReg4.Param.Pointer.WriteInt32(lawOfReg4.DataOffset + sfxBulletOffset.FieldOffset, -1);
-                lawOfReg4.Param.Pointer.WriteInt32(lawOfReg4.DataOffset + sfxHitOffset.FieldOffset, -1);
-                lawOfReg4.Param.Pointer.WriteSingle(lawOfReg4.DataOffset + lifeOffset.FieldOffset, 1.5f);
-                lawOfReg4.Param.Pointer.WriteSingle(lawOfReg4.DataOffset + hitRadiusOffset.FieldOffset, 15);
+                lawOfReg4.Param.Pointer.WriteInt32((int)lawOfReg4.DataOffset + sfxBulletOffset.FieldOffset, -1);
+                lawOfReg4.Param.Pointer.WriteInt32((int)lawOfReg4.DataOffset + sfxHitOffset.FieldOffset, -1);
+                lawOfReg4.Param.Pointer.WriteSingle((int)lawOfReg4.DataOffset + lifeOffset.FieldOffset, 1.5f);
+                lawOfReg4.Param.Pointer.WriteSingle((int)lawOfReg4.DataOffset + hitRadiusOffset.FieldOffset, 15);
 
-                lawOfReg5.Param.Pointer.WriteInt32(lawOfReg5.DataOffset + sfxBulletOffset.FieldOffset, -1);
-                lawOfReg5.Param.Pointer.WriteInt32(lawOfReg5.DataOffset + sfxHitOffset.FieldOffset, -1);
-                lawOfReg5.Param.Pointer.WriteSingle(lawOfReg5.DataOffset + lifeOffset.FieldOffset, 1.5f);
-                lawOfReg5.Param.Pointer.WriteSingle(lawOfReg5.DataOffset + hitRadiusOffset.FieldOffset, 15);
+                lawOfReg5.Param.Pointer.WriteInt32((int)lawOfReg5.DataOffset + sfxBulletOffset.FieldOffset, -1);
+                lawOfReg5.Param.Pointer.WriteInt32((int)lawOfReg5.DataOffset + sfxHitOffset.FieldOffset, -1);
+                lawOfReg5.Param.Pointer.WriteSingle((int)lawOfReg5.DataOffset + lifeOffset.FieldOffset, 1.5f);
+                lawOfReg5.Param.Pointer.WriteSingle((int)lawOfReg5.DataOffset + hitRadiusOffset.FieldOffset, 15);
 
-                lawOfReg6.Param.Pointer.WriteInt32(lawOfReg6.DataOffset + sfxBulletOffset.FieldOffset, -1);
-                lawOfReg6.Param.Pointer.WriteInt32(lawOfReg6.DataOffset + sfxHitOffset.FieldOffset, -1);
-                lawOfReg6.Param.Pointer.WriteSingle(lawOfReg6.DataOffset + lifeOffset.FieldOffset, 1.5f);
-                lawOfReg6.Param.Pointer.WriteSingle(lawOfReg6.DataOffset + hitRadiusOffset.FieldOffset, 15);
+                lawOfReg6.Param.Pointer.WriteInt32((int)lawOfReg6.DataOffset + sfxBulletOffset.FieldOffset, -1);
+                lawOfReg6.Param.Pointer.WriteInt32((int)lawOfReg6.DataOffset + sfxHitOffset.FieldOffset, -1);
+                lawOfReg6.Param.Pointer.WriteSingle((int)lawOfReg6.DataOffset + lifeOffset.FieldOffset, 1.5f);
+                lawOfReg6.Param.Pointer.WriteSingle((int)lawOfReg6.DataOffset + hitRadiusOffset.FieldOffset, 15);
 
-                lawOfReg7.Param.Pointer.WriteInt32(lawOfReg7.DataOffset + sfxBulletOffset.FieldOffset, -1);
-                lawOfReg7.Param.Pointer.WriteInt32(lawOfReg7.DataOffset + sfxHitOffset.FieldOffset, -1);
-                lawOfReg7.Param.Pointer.WriteSingle(lawOfReg7.DataOffset + lifeOffset.FieldOffset, 1.5f);
-                lawOfReg7.Param.Pointer.WriteSingle(lawOfReg7.DataOffset + hitRadiusOffset.FieldOffset, 15);
+                lawOfReg7.Param.Pointer.WriteInt32((int)lawOfReg7.DataOffset + sfxBulletOffset.FieldOffset, -1);
+                lawOfReg7.Param.Pointer.WriteInt32((int)lawOfReg7.DataOffset + sfxHitOffset.FieldOffset, -1);
+                lawOfReg7.Param.Pointer.WriteSingle((int)lawOfReg7.DataOffset + lifeOffset.FieldOffset, 1.5f);
+                lawOfReg7.Param.Pointer.WriteSingle((int)lawOfReg7.DataOffset + hitRadiusOffset.FieldOffset, 15);
             }
 
 
-            lawOfReg1.Param.Pointer.WriteInt32(lawOfReg1.DataOffset + spEffectIdforShooterOffset.FieldOffset, State ? 110 : 0);
-            lawOfReg1.Param.Pointer.WriteInt32(lawOfReg1.DataOffset + hitBulletIdOffset.FieldOffset, State ? larIds[1] : larIds[0]);
+            lawOfReg1.Param.Pointer.WriteInt32((int)lawOfReg1.DataOffset + spEffectIdforShooterOffset.FieldOffset, State ? 110 : 0);
+            lawOfReg1.Param.Pointer.WriteInt32((int)lawOfReg1.DataOffset + hitBulletIdOffset.FieldOffset, State ? larIds[1] : larIds[0]);
 
-            lawOfReg2.Param.Pointer.WriteInt32(lawOfReg2.DataOffset + hitBulletIdOffset.FieldOffset, State ? larIds[2] : larIds[1]);
+            lawOfReg2.Param.Pointer.WriteInt32((int)lawOfReg2.DataOffset + hitBulletIdOffset.FieldOffset, State ? larIds[2] : larIds[1]);
 
-            lawOfReg3.Param.Pointer.WriteInt32(lawOfReg3.DataOffset + hitBulletIdOffset.FieldOffset, State ? larIds[3] : larIds[2]);
+            lawOfReg3.Param.Pointer.WriteInt32((int)lawOfReg3.DataOffset + hitBulletIdOffset.FieldOffset, State ? larIds[3] : larIds[2]);
 
-            lawOfReg4.Param.Pointer.WriteInt32(lawOfReg4.DataOffset + hitBulletIdOffset.FieldOffset, State ? larIds[4] : larIds[3]);
+            lawOfReg4.Param.Pointer.WriteInt32((int)lawOfReg4.DataOffset + hitBulletIdOffset.FieldOffset, State ? larIds[4] : larIds[3]);
 
-            lawOfReg5.Param.Pointer.WriteInt32(lawOfReg5.DataOffset + hitBulletIdOffset.FieldOffset, State ? larIds[5] : larIds[4]);
+            lawOfReg5.Param.Pointer.WriteInt32((int)lawOfReg5.DataOffset + hitBulletIdOffset.FieldOffset, State ? larIds[5] : larIds[4]);
 
-            lawOfReg6.Param.Pointer.WriteInt32(lawOfReg6.DataOffset + hitBulletIdOffset.FieldOffset, State ? larIds[6] : larIds[5]);
+            lawOfReg6.Param.Pointer.WriteInt32((int)lawOfReg6.DataOffset + hitBulletIdOffset.FieldOffset, State ? larIds[6] : larIds[5]);
 
-            lawOfReg7.Param.Pointer.WriteInt32(lawOfReg7.DataOffset + spEffectId0Offset.FieldOffset, State ? 110 : 503041);
+            lawOfReg7.Param.Pointer.WriteInt32((int)lawOfReg7.DataOffset + spEffectId0Offset.FieldOffset, State ? 110 : 503041);
 
             CommandManager.Log($"Replaced {(State ? "Soft Cotten" : "Mad Heal")} with {(State ? "Mad Heal" : "Soft Cotten")}");
         }

@@ -435,7 +435,7 @@ namespace PvPHelper.MVVM.ViewModels
 
         private SearchAlgorithm<Item> weaponSearch;
         private SearchAlgorithm<Gem> gemSearch;
-        private SearchAlgorithm<Infusion> infusionSearch;
+        private SearchAlgorithm<NamedObject<Infusion>> infusionSearch;
         public ItemsViewModel(ErdHook hook)
         {
             _hook = hook;
@@ -477,13 +477,13 @@ namespace PvPHelper.MVVM.ViewModels
             CurrRunesToAdd = 0;
             CurrRunesToAddText = "0";
 
-            weaponSearch = new(new(), new AlphabeticalSort<Item>());
+            weaponSearch = new(new List<Item>(), new AlphabeticalSort<Item>());
             weaponSearch.OnItemsChanged += (items) => { WeaponsSelectedItem = null; WeaponsItemsSource = items; };
             weaponSearch.Items = null;
-            gemSearch = new(new(), new AlphabeticalSort<Gem>());
+            gemSearch = new(new List<Gem>(), new AlphabeticalSort<Gem>());
             gemSearch.OnItemsChanged += (items) => { AshesSelectedItem = null; AshesItemsSource = items; };
             gemSearch.Items = null;
-            infusionSearch = new(new(), new AlphabeticalSort<Infusion>());
+            infusionSearch = new(new List<NamedObject<Infusion>>(), new AlphabeticalSort<NamedObject<Infusion>>());
             infusionSearch.OnItemsChanged += (items) => { InfusionsSelectedItem = null; InfusionsItemsSource = items; };
             infusionSearch.Items = null;
         }
@@ -508,10 +508,10 @@ namespace PvPHelper.MVVM.ViewModels
                     if (CategorySelectedItem is ItemCategory)
                     {
                         ItemCategory cat = CategorySelectedItem as ItemCategory;
-                        List<SearchItem<Item>> gibOptions = new();
+                        List<Item> gibOptions = new();
                         foreach (Item item in cat.Items)
                         {
-                            gibOptions.Add(new(item, item.Name));
+                            gibOptions.Add(item);
                         }
                         weaponSearch.Items = gibOptions;
                     }
@@ -700,10 +700,10 @@ namespace PvPHelper.MVVM.ViewModels
 
 
             ItemCategoryOption option = CategorySelectedItem as ItemCategoryOption;
-            List<SearchItem<Item>> items = new();
+            List<Item> items = new();
 
             foreach (var item in option.category.Items)
-                items.Add(new(item, item.Name));
+                items.Add(item);
 
             weaponSearch.Items = items;
             WeaponsSearchText = string.Empty;
@@ -721,9 +721,9 @@ namespace PvPHelper.MVVM.ViewModels
             if (WeaponsSelectedItem == null)
                 return;
 
-            SearchItem<Item> item = WeaponsSelectedItem as SearchItem<Item>;
-            List<SearchItem<Gem>> gemItems = new();
-            if (item.Item is Weapon weapon)
+            Item item = WeaponsSelectedItem as Item;
+            List<Gem> gemItems = new();
+            if (item is Weapon weapon)
             {
                 if (weapon.Infusible)
                 {
@@ -731,8 +731,7 @@ namespace PvPHelper.MVVM.ViewModels
                     {
                         if (gem.WeaponTypes.Contains(weapon.Type))
                         {
-                            var newGem = new SearchItem<Gem>(gem, gem.Name.Contains("Ash of War: ") ? gem.Name.Substring(12) : gem.Name);
-                            gemItems.Add(newGem);
+                            gemItems.Add(gem);
                         }
                     }
                     gemSearch.Items = gemItems;
@@ -745,7 +744,7 @@ namespace PvPHelper.MVVM.ViewModels
                 UpgradeLevel = 0;
                 UpgradeLvlText = "0";
             }
-            MaxQuantity = IsOverrideChecked ? (item.Item is Weapon ? 10 : 999) : item.Item.MaxQuantity;
+            MaxQuantity = IsOverrideChecked ? (item is Weapon ? 10 : 999) : item.MaxQuantity;
         }
         private void OnInfusionChanged()
         {
@@ -761,9 +760,9 @@ namespace PvPHelper.MVVM.ViewModels
             if (AshesSelectedItem == null)
                   return;
 
-            SearchItem<Gem> option = AshesSelectedItem as SearchItem<Gem>;
-            List<SearchItem<Infusion>> infOptions = new();
-            foreach (var infusion in option.Item.Infusions)
+            Gem option = AshesSelectedItem as Gem;
+            List<NamedObject<Infusion>> infOptions = new();
+            foreach (var infusion in option.Infusions)
                 infOptions.Add(new(infusion, infusion.ToString()));
             infusionSearch.Items = infOptions;
         }
@@ -775,21 +774,21 @@ namespace PvPHelper.MVVM.ViewModels
             if (WeaponsSelectedItem == null)
                 return;
 
-            SearchItem<Item> option = (SearchItem<Item>)WeaponsSelectedItem;
-            if (option.Item is Weapon weapon)
+            Item option = (Item)WeaponsSelectedItem;
+            if (option is Weapon weapon)
             {
                 if (weapon.Infusible)
                 {
-                    SearchItem<Gem> gemOption = AshesSelectedItem as SearchItem<Gem>;
-                    SearchItem<Infusion> infusionOption = InfusionsSelectedItem as SearchItem<Infusion>;
+                    Gem gemOption = AshesSelectedItem as Gem;
+                    NamedObject<Infusion> infusionOption = (NamedObject<Infusion>)InfusionsSelectedItem;
 
-                    _hook.GetItem(new(weapon.ID, weapon.ItemCategory, Quantity, weapon.MaxQuantity, infusionOption != null ? (int)infusionOption.Item : (int)Infusion.Standard, UpgradeLevel > weapon.MaxUpgrade ? weapon.MaxUpgrade : UpgradeLevel, gemOption != null ? gemOption.Item.ID : -1, weapon.EventID));
+                    _hook.GetItem(new(weapon.ID, weapon.ItemCategory, Quantity, weapon.MaxQuantity, infusionOption != null ? (int)infusionOption.Value : (int)Infusion.Standard, UpgradeLevel > weapon.MaxUpgrade ? weapon.MaxUpgrade : UpgradeLevel, gemOption != null ? gemOption.ID : -1, weapon.EventID));
                 }
                 else
                     _hook.GetItem(new(weapon.ID, weapon.ItemCategory, Quantity, weapon.MaxQuantity, (int)Infusion.Standard, UpgradeLevel, -1, weapon.EventID));
             }
             else
-                _hook.GetItem(new(option.Item.ID, option.Item.ItemCategory, Quantity, option.Item.MaxQuantity, (int)Infusion.Standard, 0, -1, option.Item.EventID));
+                _hook.GetItem(new(option.ID, option.ItemCategory, Quantity, option.MaxQuantity, (int)Infusion.Standard, 0, -1, option.EventID));
         }
 
     }

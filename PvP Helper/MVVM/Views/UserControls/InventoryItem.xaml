@@ -11,35 +11,34 @@
     </UserControl.Resources>
 
     <Grid>
-        <Grid Width="120" Height="110" Cursor="Hand" Margin="6"
-              MouseEnter="Grid_MouseEnter" MouseLeave="Grid_MouseLeave">
-            <Border Background="{DynamicResource ItemGradientActive}" CornerRadius="10" Opacity="0" Name="borderActive">
+        <Grid   Cursor="Hand" Margin="6"
+              MouseEnter="Grid_MouseEnter" MouseLeave="Grid_MouseLeave"
+                MouseDown="Grid_MouseDown"
+                MouseRightButtonDown="Grid_MouseRightButtonDown"
+                >
+            <!--<Border Background="{DynamicResource ItemGradientActive}" CornerRadius="10" Opacity="0" Name="borderActive">
                 <Border.Effect>
                     <DropShadowEffect Direction="0" BlurRadius="10" ShadowDepth="0"/>
                 </Border.Effect>
+            </Border>-->
+
+            <Border CornerRadius="10" x:Name="Outline" Background="{DynamicResource LighterBrush}" BorderThickness="0">
+                <Border Background="{DynamicResource BackgroundBrush}" CornerRadius="10" Name="borderInActive" BorderThickness="1">
+
+                </Border>
             </Border>
-
-            <Border Background="{DynamicResource BackgroundBrush}" CornerRadius="10" Name="borderInActive">
-                <Border.Effect>
-                    <DropShadowEffect Direction="0" BlurRadius="10" ShadowDepth="0"/>
-                </Border.Effect>
-            </Border>
+            
 
 
 
-            <Image Name="WeaponIcon" Source="{Binding Path=ItemIconPath, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource nullImageConverter}}" Width="80" Height="80" Margin="10,20,5,5" Opacity="1"/>
-            <Image Source="{Binding Path=AshOfWarIcon, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource nullImageConverter}}" Margin="0,0,10,10" Width="35" Height="35" HorizontalAlignment="Right" VerticalAlignment="Bottom" x:Name="GemUI"/>
-            <Border CornerRadius="10 10 0 0" Height="60" VerticalAlignment="Top">
-                <Border.Effect>
-                    <DropShadowEffect ShadowDepth="0" Direction="0"/>
-                </Border.Effect>
-                <TextBlock Text="{Binding Path=ItemName, UpdateSourceTrigger=PropertyChanged}" TextWrapping="WrapWithOverflow" TextAlignment="Center"
+            <Image Name="WeaponIcon" Source="{Binding Path=ItemIconPath, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource nullImageConverter}}" Width="Auto" Margin="10,10,10,10" Height="Auto" Opacity="1"/>
+            <Image Source="{Binding Path=AshOfWarIcon, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource nullImageConverter}}" Margin="0,0,8,8" Width="35" Height="35" HorizontalAlignment="Right" VerticalAlignment="Bottom" x:Name="GemUI"/>
+            <TextBlock Text="{Binding Path=ItemName, UpdateSourceTrigger=PropertyChanged}" TextWrapping="WrapWithOverflow" TextAlignment="Center"
                        Foreground="{DynamicResource ForegroundBrush}" FontSize="12" Margin="5"/>
-            </Border>
 
             <Image Source="{Binding Path=InfusionIconPath, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource nullImageConverter}}"  Width="22" Height="22" Margin="10,0,0,10" HorizontalAlignment="Left" VerticalAlignment="Bottom" x:Name="InfusionUI"/>
 
-            <Label Content="{Binding UpgradeLevel, UpdateSourceTrigger=PropertyChanged}" FontSize="9" Foreground="{DynamicResource ForegroundBrush}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="26" Height="25" HorizontalAlignment="Left" Margin="9,38,0,38" x:Name="UpgradeUI"/>
+            <Label Content="{Binding Path=UpgradeLevel, UpdateSourceTrigger=PropertyChanged}" FontSize="12" Foreground="{DynamicResource ForegroundBrush}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="26" Height="25" HorizontalAlignment="Left" Margin="7,60,0,38" x:Name="UpgradeUI"/>
         </Grid>
     </Grid>
 </UserControl>

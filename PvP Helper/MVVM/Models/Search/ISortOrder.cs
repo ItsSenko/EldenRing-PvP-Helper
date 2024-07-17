@@ -10,6 +10,6 @@ namespace PvPHelper.MVVM.Models.Search
     {
         public string Name { get; }
 
-        public abstract List<SearchItem<T>> Sort(List<SearchItem<T>> items, object? sender = null);
+        public abstract List<T> Sort(IEnumerable<T> items, object? sender = null);
     }
 }

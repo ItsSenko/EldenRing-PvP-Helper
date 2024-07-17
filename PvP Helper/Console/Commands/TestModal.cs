@@ -21,6 +21,8 @@ using PvPHelper.MVVM.Models.Search.SortOrders;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using PvPHelper.MVVM.Models.Builds;
+using Keystone;
+using System.Text.RegularExpressions;
 
 namespace PvPHelper.Console.Commands
 {
@@ -44,68 +46,16 @@ namespace PvPHelper.Console.Commands
 
         protected override void OnTriggerCommand()
         {
-            CustomPointers.idleAnimation.WriteInt32(0x18, 63020);
+            Item item = ItemCategory.All.FirstOrDefault(x => x.Name == "Consumables").Items.FirstOrDefault(x => x.ID == 910);
+            hook.GetItem(new(item.ID, item.ItemCategory, 999, item.MaxQuantity, (int)Infusion.Standard, 0, -1, item.EventID));
         }
-
         
         protected override void OnTriggerCommandWithParameters(List<string> parameters)
         {
             if (!hook.Setup || !hook.Loaded)
                 throw new InvalidCommandException("Not hooked or loaded");
-            switch (parameters[0].ToLower())
-            {
-                case "init":
-                    {
-                        var cat = Helpers.GetCategoryByName(parameters[1]);
-                        if (cat == null)
-                            throw new InvalidCommandException("Category does not exist");
-
-                        List<SearchItem<Item>> searchItems = new();
-                        foreach(var item in cat.Items)
-                        {
-                            searchItems.Add(new(item, item.Name));
-                        }
-                        algorithm = new SearchAlgorithm<Item>(searchItems, new AlphabeticalSort<Item>());
-                        
-                        isInitialized = true;
-                        CommandManager.Log("Initialized");
-                        break;
-                    }
-                case "setorder":
-                    {
-                        if (!isInitialized)
-                            throw new InvalidCommandException("Not initialized");
-
-                        if (parameters[1] == "alpha")
-                            (algorithm as SearchAlgorithm<Item>).Order = new AlphabeticalSort<Item>();
-                        else if (parameters[1] == "close")
-                            (algorithm as SearchAlgorithm<Item>).Order = new ClosestMatchSort<Item>();
-
-                        CommandManager.Log("Changed Order");
-                        break;
-                    }
-                case "setsearch":
-                    {
-                        if (!isInitialized)
-                            throw new InvalidCommandException("Not initialized");
-
-                        (algorithm as SearchAlgorithm<Item>).SearchString = parameters[1];
-                        CommandManager.Log("Set Search String");
-                        break;
-                    }
-                case "show":
-                    {
-                        if (!isInitialized)
-                            throw new InvalidCommandException("Not initialized");
-
-                        CommandManager.Log("Shown Items: ");
-                        foreach(var item in (algorithm as SearchAlgorithm<Item>).ShownItems)
-                        {
-                            CommandManager.Log(item.Item.Name);
-                        }
-                        break;
-                    }
-            }
         }
+
+        
     }
 }

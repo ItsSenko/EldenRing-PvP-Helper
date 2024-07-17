@@ -12,7 +12,7 @@ namespace PvPHelper.MVVM.Models.Search
     }
     public class SearchAlgorithm<T> : ISearchAlgorithm
     {
-        public delegate void OnItemsChangedHandler(List<SearchItem<T>> items);
+        public delegate void OnItemsChangedHandler(IEnumerable<T> items);
         public event OnItemsChangedHandler OnItemsChanged;
         public event OnItemsChangedHandler OnBaseItemsChanged;
 
@@ -41,18 +41,18 @@ namespace PvPHelper.MVVM.Models.Search
             set { _order = value; OnSortOrderChanged?.Invoke(_order); }
         }
 
-        private List<SearchItem<T>> _items;
+        private IEnumerable<T> _items;
 
-        public List<SearchItem<T>> Items
+        public IEnumerable<T> Items
         {
             get { return _items; }
             set { _items = value; OnBaseItemsChanged?.Invoke(_items); }
         }
 
 
-        private List<SearchItem<T>> _shownItems;
+        private IEnumerable<T> _shownItems;
 
-        public List<SearchItem<T>> ShownItems
+        public IEnumerable<T> ShownItems
         {
             get { return _shownItems; }
             private set 
@@ -63,7 +63,7 @@ namespace PvPHelper.MVVM.Models.Search
             }
         }
 
-        public SearchAlgorithm(List<SearchItem<T>> baseItems, ISortOrder<T> sortOrder)
+        public SearchAlgorithm(IEnumerable<T> baseItems, ISortOrder<T> sortOrder)
         {
             Items = baseItems;
             ShownItems = baseItems;
@@ -76,7 +76,7 @@ namespace PvPHelper.MVVM.Models.Search
             OnBaseItemsChange(Items);
         }
 
-        private void OnBaseItemsChange(List<SearchItem<T>> items)
+        private void OnBaseItemsChange(IEnumerable<T> items)
         {
             OnSearchChange(SearchString);
         }
@@ -85,7 +85,7 @@ namespace PvPHelper.MVVM.Models.Search
         {
             if (Items == null)
             {
-                ShownItems = new();
+                ShownItems = new List<T>();
                 return;
             }
             if (searchStr == null)

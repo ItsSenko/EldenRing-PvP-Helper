@@ -1,4 +1,6 @@
-00 Tiny Great Pot
-10 Effigy of Malenia
-11 Separating Mist
-20 Judicator's Rulebook
+8380001 Tiny Great Pot
+8380002 Effigy of Malenia
+8380003 Challenger's Lynchpin
+8380004 Separating Mist
+8380005 Judicator's Rulebook
+8380006 Rune Decanter

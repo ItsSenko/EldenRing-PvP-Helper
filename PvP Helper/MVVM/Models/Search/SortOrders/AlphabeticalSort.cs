@@ -10,11 +10,16 @@ namespace PvPHelper.MVVM.Models.Search.SortOrders
     {
         public string Name { get => "Aplhabetical"; }
 
-        public List<SearchItem<T>> Sort(List<SearchItem<T>> items, object? sender = null)
+        public List<T> Sort(IEnumerable<T> items, object? sender = null)
         {
-            List<SearchItem<T>> result = items;
+            List<T> result = items.ToList();
             result.Sort((x, y) => x.ToString().CompareTo(y.ToString()));
             return result;
+        }
+
+        public override string ToString()
+        {
+            return Name;
         }
     }
 }

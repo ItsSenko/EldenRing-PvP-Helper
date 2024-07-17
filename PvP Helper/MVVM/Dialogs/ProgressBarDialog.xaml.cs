@@ -36,6 +36,12 @@ namespace PvPHelper.MVVM.Dialogs
             ShowDialog();
         }
 
+        public void StartTask(Task thread)
+        {
+            thread.Start();
+            ShowDialog();
+        }
+
         public void Complete()
         {
             this.Close();

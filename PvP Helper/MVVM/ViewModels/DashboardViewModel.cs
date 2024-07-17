@@ -18,6 +18,7 @@ using PropertyHook;
 using System.Threading.Tasks;
 using System.Threading;
 using PvPHelper.MVVM.Dialogs;
+using PvPHelper.MVVM.Commands.Misc;
 
 namespace PvPHelper.MVVM.ViewModels
 {
@@ -33,7 +34,7 @@ namespace PvPHelper.MVVM.ViewModels
         public ICommand MadHealToggle { get; set; }
 
         public ICommand InfConsumeablesToggle { get; set; }
-        public ICommand FastAnimsToggle { get; set; }
+        public ICommand BSI { get; set; }
 
         public ICommand NoDeathToggle { get; set; }
         public ICommand NoStamLossToggle { get; set; }
@@ -150,7 +151,7 @@ namespace PvPHelper.MVVM.ViewModels
             MadHealToggle = new MadHealToggle(hook);
 
             InfConsumeablesToggle = new InfiniteConsumeablesToggle(hook);
-            FastAnimsToggle = new FastAnimsToggle(hook);
+            BSI = new BetterSeamlessInvasionsToggle(hook);
 
             NoDeathToggle = new NoDeathToggle(hook);
             NoStamLossToggle = new NoStamLossToggle(hook);

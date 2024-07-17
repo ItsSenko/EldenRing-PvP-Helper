@@ -69,7 +69,7 @@
                                            CurrValue="{Binding CurrRunesToAdd, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                            Max="{Binding MaxRunes,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                            InputText="{Binding CurrRunesToAddText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                           Min="0"
+                                           Min="0" Height="40"
                                            VerticalAlignment="Bottom"/>
                         <Grid x:Name="Toggle" Grid.Column="1">
                             <Grid.RowDefinitions>
@@ -135,7 +135,7 @@
                             <local:NumberInput Grid.Row="1" 
                                                CurrValue="{Binding MassGibUpgLevel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                                InputText="{Binding MassGibUpgLvlString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                               HorizontalAlignment="Center" 
+                                               HorizontalAlignment="Center" Height="40"
                                                Min="0"
                                                Max="25"/>
                         </Grid>
@@ -212,7 +212,7 @@
                                         <RowDefinition/>
                                     </Grid.RowDefinitions>
                                     <Label Grid.Row="0" Content="Upgrade Level" Foreground="{DynamicResource ForegroundBrush}" FontWeight="DemiBold" FontSize="14" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Center"/>
-                                    <local:NumberInput Grid.Row="1" HorizontalAlignment="Center"
+                                    <local:NumberInput Grid.Row="1" HorizontalAlignment="Center" Height="40"
                                                        CurrValue="{Binding UpgradeLevel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                                        Max="{Binding MaxUpgradeLvl, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                                        InputText="{Binding UpgradeLvlText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
@@ -223,7 +223,7 @@
                                         <RowDefinition/>
                                     </Grid.RowDefinitions>
                                     <Label Grid.Row="0" Content="Amount" Foreground="{DynamicResource ForegroundBrush}" FontWeight="DemiBold" FontSize="14" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Center"/>
-                                    <local:NumberInput Grid.Row="1" HorizontalAlignment="Center"
+                                    <local:NumberInput Grid.Row="1" HorizontalAlignment="Center" Height="40"
                                                        CurrValue="{Binding Quantity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                                        Max="{Binding MaxQuantity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                                        InputText="{Binding QuantityText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>

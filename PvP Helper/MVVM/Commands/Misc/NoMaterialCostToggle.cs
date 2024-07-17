@@ -45,8 +45,8 @@ namespace PvPHelper.MVVM.Commands.Misc
 
             foreach (var row in MtrlParam.Rows)
             {
-                MtrlParam.Pointer.WriteInt32(row.DataOffset + materialIdOffset, (sbyte)-1);
-                MtrlParam.Pointer.WriteSByte(row.DataOffset + itemNumOffset, (sbyte)-1);
+                MtrlParam.Pointer.WriteInt32((int)row.DataOffset + materialIdOffset, (sbyte)-1);
+                MtrlParam.Pointer.WriteSByte((int)row.DataOffset + itemNumOffset, (sbyte)-1);
             }
         }
     }

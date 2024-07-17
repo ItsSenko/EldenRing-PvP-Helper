@@ -67,7 +67,7 @@ namespace PvPHelper.MVVM.Commands.Misc
             var offset = LockCamParam.Fields.FirstOrDefault(x => x.InternalName == "camFovY").FieldOffset;
             foreach (Row row in LockCamParam.Rows)
             {
-                LockCamParam.Pointer.WriteSingle(row.DataOffset + offset, newFov);
+                LockCamParam.Pointer.WriteSingle((int)row.DataOffset + offset, newFov);
             }
         }
     }

@@ -15,7 +15,7 @@ using System.Windows.Threading;
 using static Erd_Tools.Models.Param;
 using CommandBase = PvPHelper.Core.CommandBase;
 
-namespace PvPHelper.MVVM.Commands.Misc
+namespace PvPHelper.MVVM.Commands.Dashboard.Toggles
 {
     public class BetterSeamlessInvasionsToggle : CommandBase, IToggleable
     {
@@ -25,8 +25,6 @@ namespace PvPHelper.MVVM.Commands.Misc
         private ErdHook hook;
 
         private bool isNewSession = false;
-        private int hostIndex = 1;
-        private int prevHostIndex = 1;
         public static Player currPlayer;
 
         private DispatcherTimer timer;
@@ -69,7 +67,6 @@ namespace PvPHelper.MVVM.Commands.Misc
             NetPlayer4 = new(hook, Session, 0x40);
             NetPlayer5 = new(hook, Session, 0x50);
 
-            NetPlayerList.Add(localPlayer);
             NetPlayerList.Add(hostPlayer);
             NetPlayerList.Add(NetPlayer2);
             NetPlayerList.Add(NetPlayer3);
@@ -85,76 +82,92 @@ namespace PvPHelper.MVVM.Commands.Misc
                 return;
             }
 
-            
             if (!string.IsNullOrEmpty(localPlayer.Name))
             {
-                if (!string.IsNullOrEmpty(hostPlayer.Name))
+                if (!isNewSession && !string.IsNullOrEmpty(hostPlayer.Name))
                 {
-                    foreach (var player in NetPlayerList)
-                    {
+                    isNewSession = true;
 
+                    foreach(var player in NetPlayerList)
+                    {
+                        if (!string.IsNullOrEmpty(player.Name) && player.Health > 0)
+                        {
+                            inputData2.WriteByte(0x531, Helpers.SetBit(inputData2.ReadByte(0x531), 0, true)); //stop updating
+                            localPlayer.PhantomID = 60;
+                            RespawnPlayer(player);
+                            return;
+                        }
                     }
                 }
-                if ((isNewSession || prevHostIndex != hostIndex) && !string.IsNullOrEmpty(hostPlayer.Name))
-                {
-                    isNewSession = false;
-                    prevHostIndex = hostIndex;
-                    RespawnPlayer(hostPlayer);
-                }
+                
             }
             else
             {
-                isNewSession = true;
-                hostIndex = 1;
+                isNewSession = false;
             }
+
         }
+
 
         public override void Execute(object? parameter)
         {
-            if (!hook.Hooked || !hook.Loaded)
+            if (!hook.Hooked || !hook.Loaded || !Helpers.GetIfModuleExists(hook.Process, "ersc.dll"))
             {
                 State = false;
                 return;
             }
+
+            if (!Helpers.SeamlessItemsInitialized)
+                Helpers.InitializeSeamlessItems();
 
             if (State)
                 timer.Start();
             else
                 timer.Stop();
 
+            Row invasionItem = hook.EquipParamGoods.Rows.FirstOrDefault(x => x.ID == (int)Helpers.SeamlessItems.BreakInItem);
+            Row leaveItem = hook.EquipParamGoods.Rows.FirstOrDefault(x => x.ID == (int)Helpers.SeamlessItems.LeavingItem);
+            Row runeArc = hook.EquipParamGoods.Rows.FirstOrDefault(x => x.ID == 190);
+            if (invasionItem == null || leaveItem == null)
+                CommandManager.Log("Seamless Items Are Null.");
+            else
+            {
+                var fieldOffset = hook.EquipParamGoods.Fields.FirstOrDefault(x => x.InternalName == "goodsUseAnim");
+                invasionItem.Param.Pointer.WriteByte(invasionItem.DataOffset + fieldOffset.FieldOffset, State ? (byte)16 : (byte)66);
+                leaveItem.Param.Pointer.WriteByte(leaveItem.DataOffset + fieldOffset.FieldOffset, State ? (byte)16 : (byte)9);
+                runeArc.Param.Pointer.WriteByte(runeArc.DataOffset + fieldOffset.FieldOffset, State ? (byte)16 : (byte)65);
+            }
+
             isNewSession = _state;
         }
 
+        // Credit to Indura for the original script: https://github.com/lndura/SeamlessRespawnScript/blob/main/script 
         public static void RespawnPlayer(NetPlayer teleportingPlayer)
         {
-            PlayerData1.WriteByte(0x1D3, 1);
-            //CommandManager.Log("Gravity Disabled");
-            inputData2.WriteByte(0x531, Helpers.SetBit(inputData2.ReadByte(0x531), 0, true));
-            //CommandManager.Log("Froze Player");
-            Thread.Sleep(2000);
+            SetFlags(true); // stop everything
+            Thread.Sleep(7000); // Load in delay, prevents void out
 
-            int health = localPlayer.Health;
-            inputData.WriteByte(0x19B, Helpers.SetBit(inputData.ReadByte(0x19B), 0, true));
-            inputData.WriteByte(0x19B, Helpers.SetBit(inputData.ReadByte(0x19B), 1, true));
-            Thread.Sleep(3000);
+            inputData2.WriteByte(0x531, Helpers.SetBit(inputData2.ReadByte(0x531), 0, false)); //resume updating
 
-            inputData2.WriteByte(0x531, Helpers.SetBit(inputData2.ReadByte(0x531), 0, false));
-            //CommandManager.Log("Unfroze Player");
-            localPlayer.TeleportToPlayer(teleportingPlayer);
+            localPlayer.TeleportToPlayer(teleportingPlayer); //Teleport to specified player
+            animationData.WriteInt32(0x18, Settings.Default.SpawnAnimation); //spawn animation
+            currPlayer.Hp = currPlayer.HpMax; //Reset health incase damage was taken at some point
+
             CommandManager.Log($"Teleported to host: {teleportingPlayer.Name}");
-            inputData2.WriteByte(0x531, Helpers.SetBit(inputData2.ReadByte(0x530), 5, true));
-            //CommandManager.Log("Joystick Movement Disabled");
-            animationData.WriteInt32(0x18, 63021);
-            //CommandManager.Log("Set Spawn Animation");
-            currPlayer.Hp = health;
+
             Thread.Sleep(500);
 
-            PlayerData1.WriteByte(0x1D3, 0);
-            //CommandManager.Log("Gravity Enabled");
-            inputData.WriteByte(0x19B, Helpers.SetBit(inputData.ReadByte(0x19B), 1, false));
-            inputData.WriteByte(0x19B, Helpers.SetBit(inputData.ReadByte(0x19B), 0, false));
-            inputData2.WriteByte(0x531, Helpers.SetBit(inputData2.ReadByte(0x530), 5, false));
-            //CommandManager.Log("Joystick Movement Enabled");
+            SetFlags(false); //resume everything
+        }
+
+        private static void SetFlags(bool state)
+        {
+            int i = state? 1 : 0;
+            PlayerData1.WriteByte(0x1D3, (byte)i);
+            
+            inputData.WriteByte(0x19B, Helpers.SetBit(inputData.ReadByte(0x19B), 0, state));
+            inputData.WriteByte(0x19B, Helpers.SetBit(inputData.ReadByte(0x19B), 1, state));
+            inputData2.WriteByte(0x530, Helpers.SetBit(inputData2.ReadByte(0x530), 5, state));
         }
     }
 }

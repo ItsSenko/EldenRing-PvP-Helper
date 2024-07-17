@@ -1,9 +1,13 @@
 ﻿using Erd_Tools;
 using PvPHelper.Core;
+using PvPHelper.MVVM.Commands.Dashboard.Toggles;
 using PvPHelper.MVVM.Commands.Misc;
 using PvPHelper.MVVM.Models;
 using System;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.Windows;
+using System.Windows.Threading;
 
 namespace PvPHelper.MVVM.ViewModels
 {
@@ -18,7 +22,7 @@ namespace PvPHelper.MVVM.ViewModels
         public CustomFOVToggle CustomFOVToggle { get; set; }
         public CustomFPSToggle CustomFPSToggle { get; set; }
         public NoMaterialCostToggle NoMaterialCostToggle { get; set; }
-        public BetterSeamlessInvasionsToggle BSI { get; set; }
+        public FastAnimsToggle FastAnims { get; set; }
         public RelayCommand AllArenas { get; set; }
         public RelayCommand AllGestures { get; set; }
 
@@ -30,6 +34,39 @@ namespace PvPHelper.MVVM.ViewModels
             set {  _menuItemsSource = value; OnPropertyChanged(); }
         }
 
+        private ObservableCollection<SpawnAnim> _animItemsSource;
+
+        public ObservableCollection<SpawnAnim> AnimItemsSource
+        {
+            get { return _animItemsSource; }
+            set { _animItemsSource = value; OnPropertyChanged(); }
+        }
+
+        private object _selectedAnim;
+
+        public object SelectedAnim
+        {
+            get { return _selectedAnim; }
+            set 
+            {
+                _selectedAnim = value; OnPropertyChanged();
+                if (AnimsLoaded && value != null)
+                {
+                    Settings.Default.SpawnAnimation = (value as SpawnAnim).Id;
+                    Settings.Default.Save();
+                }
+            }
+        }
+
+        private int _selectedAnimIndex;
+
+        public int SelectedAnimIndex
+        {
+            get { return _selectedAnimIndex; }
+            set { _selectedAnimIndex = value; OnPropertyChanged(); }
+        }
+
+
         private object _selectedMenu;
 
         public object SelectedMenu
@@ -38,14 +75,13 @@ namespace PvPHelper.MVVM.ViewModels
             set { _selectedMenu = value; OnPropertyChanged(); OnMenuChanged(); }
         }
 
-        private int _selectedMenuIndex;
+        private Visibility _seamlessEnabled;
 
-        public int SelectedMenuIndex
+        public Visibility SeamlessEnabled
         {
-            get { return _selectedMenuIndex; }
-            set { _selectedMenuIndex = value; OnPropertyChanged(); }
+            get { return _seamlessEnabled; }
+            set { _seamlessEnabled = value; OnPropertyChanged(); }
         }
-
 
         #endregion
         private ErdHook hook;
@@ -53,10 +89,13 @@ namespace PvPHelper.MVVM.ViewModels
         private int[] GestureIDs = new int[] { 60800, 60801, 60802, 60803, 60804, 60805, 60806, 60807, 60808, 60809,
         60810,60811,60812,60813,60814,60815,60816,60817,60818,60819,60820,60821,60822,60823,60824,60826,60827,60828,
         60829,60830,60831,60832,60833,60834,60835,60836,60837,60839,60840,60841,60842,60843,60844,60845,60846,60847,60848,60849};
+
+        private bool AnimsLoaded = false;
         public MiscViewModel(ErdHook hook, VersionController versionController)
         {
             this.hook = hook;
-
+            hook.OnSetup += Hook_OnSetup;
+            SeamlessEnabled = Visibility.Hidden;
             ShowHitboxesToggle = new(hook);
             AutoUpdateToggle = new();
             CheckForUpdates = new(versionController);
@@ -83,7 +122,7 @@ namespace PvPHelper.MVVM.ViewModels
                     hook.SetEventFlag(id, true);
                 }
             });
-            BSI = new(hook);
+            FastAnims = new(hook);
 
             MenuItemsSource = new();
             MenuItemsSource.Add(new("Memorize Spells", 0x80f600));
@@ -102,9 +141,42 @@ namespace PvPHelper.MVVM.ViewModels
             MenuItemsSource.Add(new("Shop (All)", 0x80e770));
             MenuItemsSource.Add(new("Shop (Rememberance)", 0x810920));
             MenuItemsSource.Add(new("Shop (Dragon Communion)", 0x810a70, 101950, 101999));
-            //MenuItemsSource.Add(new("Shop (Champions Equipment)", 0x80e400));
+
+            AnimItemsSource = new();
+            foreach(SpawnAnimations anim in Enum.GetValues(typeof(SpawnAnimations)))
+            {
+                AnimItemsSource.Add(new(anim.ToString(), (int)anim));
+            }
+
+            SelectedAnimIndex = AnimItemsSource.IndexOf(AnimItemsSource.FirstOrDefault(x => x.Id == Settings.Default.SpawnAnimation));
+            AnimsLoaded = true;
+
+            DispatcherTimer timer = new();
+            timer.Interval = TimeSpan.FromMilliseconds(100);
+            timer.Tick += (s, e) => 
+            {
+                if (SelectedAnim == null)
+                    SelectedAnim = AnimItemsSource.FirstOrDefault(x => x.Id == Settings.Default.SpawnAnimation);
+            };
+            timer.Start();
         }
 
+        private void Hook_OnSetup(object? sender, PropertyHook.PHEventArgs e)
+        {
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                SeamlessEnabled = Helpers.GetIfModuleExists(hook.Process, "ersc.dll") ? Visibility.Visible : Visibility.Hidden;
+            });
+        }
+
+        public enum SpawnAnimations
+        {
+            YellowAura = 63021,
+            Spirit = 60501,
+            BluePortal = 60471,
+            RedPortal = 60473,
+            Fog = 60131,
+        }
         private void OnMenuChanged()
         {
             if (!hook.Hooked || !hook.Loaded)
@@ -127,6 +199,23 @@ namespace PvPHelper.MVVM.ViewModels
         private IntPtr GetAddress(int offset)
         {
             return hook.Process.MainModule.BaseAddress + offset;
+        }
+    }
+
+    public class SpawnAnim
+    {
+        string Name { get; set; }
+        public int Id { get; set; }
+
+        public SpawnAnim(string name, int id)
+        {
+            Name = name;
+            Id = id;
+        }
+
+        public override string ToString()
+        {
+            return Name;
         }
     }
 }

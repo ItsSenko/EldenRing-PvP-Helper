@@ -41,7 +41,7 @@ namespace PvPHelper.MVVM.ViewModels
         private ErdHook Hook { get; set; }
         private PHPointer Session { get; set; }
 
-        private static string KickOutFunctionAOB = "e8 ?? ?? ?? ?? 41 ff c6 48 81 c3 00 01 00 00 48 3b df 0f 85 39 ff ff ff";
+        
         public static PHPointer KickOutFunction { get; set; }
 
         private NetPlayer LocalPlayer { get; set; }
@@ -57,15 +57,14 @@ namespace PvPHelper.MVVM.ViewModels
         public LobbyManagerViewModel(ErdHook hook)
         {
             Hook = hook;
-
-            KickOutFunction = hook.RegisterRelativeAOB(KickOutFunctionAOB, 1, 5);
             Session = hook.CreateChildPointer(hook.WorldChrMan, new int[] { 0x10EF8 });
+
             LocalPlayer = new(hook, Session, 0x0 * 10);
-            Player1 = new(hook, Session, 0x10, KickOutFunction);
-            Player2 = new(hook, Session, 0x20, KickOutFunction);
-            Player3 = new(hook, Session, 0x30, KickOutFunction);
-            Player4 = new(hook, Session, 0x40, KickOutFunction);
-            Player5 = new(hook, Session, 0x50, KickOutFunction);
+            Player1 = new(hook, Session, 0x10);
+            Player2 = new(hook, Session, 0x20);
+            Player3 = new(hook, Session, 0x30);
+            Player4 = new(hook, Session, 0x40);
+            Player5 = new(hook, Session, 0x50);
 
             PlayerList = new();
             PlayerList.Add(LocalPlayer);

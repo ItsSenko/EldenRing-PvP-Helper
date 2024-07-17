@@ -85,7 +85,7 @@ namespace PvPHelper.Core
         public PHPointer AnimationData { get; set; }
         #endregion
 
-        public NetPlayer(ErdHook hook, PHPointer session, int offset, PHPointer KickOutFunction = null)
+        public NetPlayer(ErdHook hook, PHPointer session, int offset)
         {
             Hook = hook;
             NetPlayerData = hook.CreateChildPointer(session, offset);
@@ -94,9 +94,7 @@ namespace PvPHelper.Core
             LocalPositionData = hook.CreateChildPointer(NetPlayerData, new int[] { 0x190, 0x68 });
             SteamData = hook.CreateChildPointer(NetPlayerData, 0x6B8);
             SteamIDPtr = hook.CreateChildPointer(SteamData, 0x10);
-
-            if (KickOutFunction != null)
-                this.KickOutFunction = KickOutFunction;
+            this.KickOutFunction = Extensions.ExtensionsCore.KickOutFunction;
         }
 
         public void TeleportToPlayer(NetPlayer player)

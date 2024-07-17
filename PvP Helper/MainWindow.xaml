@@ -66,9 +66,9 @@
                 <local:TabButton Label="Items" 
                                  UriSource="Resources/Images/tab-plus.svg"
                                  BtnCommand="{Binding ItemsCommand}"/>
-                <!--<local:TabButton Label="Item Give" 
+                <local:TabButton Label="Item Give" 
                                  UriSource="Resources/Images/tab-plus.svg"
-                                 BtnCommand="{Binding ItemGiveCommand}"/>-->
+                                 BtnCommand="{Binding ItemGiveCommand}"/>
                 <local:TabButton Label="Prefab Creator" 
                                  UriSource="Resources/Images/auto-fix.svg"
                                  BtnCommand="{Binding PrefabCreatorCommand}"/>
@@ -89,11 +89,24 @@
                 <Grid.Background>
                     <SolidColorBrush Color="{DynamicResource Dark}"/>
                 </Grid.Background>
-                <Button Margin="10,18,10,31" Style="{DynamicResource SimpleButtonStyle}" Cursor="Hand"
-                        Command="{Binding Discord}">
-                    <Image Source="Resources/Images/Discord.png"
-                           Height="167" Width="184"/>
-                </Button>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <StackPanel.Resources>
+                        <Style TargetType="{x:Type Button}">
+                            <Setter Property="Margin" Value="10,5,0,5"/>
+                        </Style>
+                    </StackPanel.Resources>
+
+                    <Button Style="{DynamicResource SimpleButtonStyle}" Cursor="Hand"
+                        Command="{Binding Discord}" Width="100" Height="77">
+                        <Image Source="Resources/Images/Discord.png"
+                           Height="125" Width="125" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Button>
+                    <Button Style="{DynamicResource SimpleButtonStyle}" Cursor="Hand"
+                        Command="{Binding Kofi}" Width="100" Height="78">
+                        <Image Source="Resources/Images/Kofi.png"/>
+                    </Button>
+                </StackPanel>
+
 
                 <TextBlock Text="{Binding VersionText, UpdateSourceTrigger=PropertyChanged}" FontSize="30"
                            Foreground="{DynamicResource LighterTextBrush}" Margin="10,181,11,14"/>

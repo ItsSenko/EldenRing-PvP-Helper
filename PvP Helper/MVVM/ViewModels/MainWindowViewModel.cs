@@ -32,6 +32,7 @@ namespace PvPHelper.MVVM.ViewModels
         public RelayCommand LobbyManagerCommand { get; set; }
         public RelayCommand RegionManagerCommand { get; set; }
         public RelayCommand Discord { get; set; }
+        public RelayCommand Kofi { get; set; }
 
         private string _versionText;
         public string VersionText
@@ -117,12 +118,22 @@ namespace PvPHelper.MVVM.ViewModels
                 };
                 Process.Start(ps);
             });
+            Kofi = new((o) =>
+            {
+                var ps = new ProcessStartInfo("https://ko-fi.com/senko")
+                {
+                    UseShellExecute = true,
+                    Verb = "open"
+                };
+                Process.Start(ps);
+            });
             LocalPlayer = _hook.CreateChildPointer(_hook.WorldChrMan, new int[] { 0x1E508 });
 
             CustomPointers.Initialize(_hook);
             SetupViewModels();
             RegisterCommands();
             Blacklist.Initialize();
+            //Helpers.LoadImages();
 
             DashboardView.OnLoaded += () =>
             {
@@ -168,14 +179,20 @@ namespace PvPHelper.MVVM.ViewModels
 
         private void _hook_OnSetup(object? sender, PropertyHook.PHEventArgs e)
         {
-            Application.Current.Dispatcher.Invoke(() => { CommandManager.Log("Setup Hook for Elden Ring"); });
+            Application.Current.Dispatcher.Invoke(() => 
+            { 
+                CommandManager.Log("Setup Hook for Elden Ring");
+
+                if (Helpers.GetIfModuleExists(_hook.Process, "ersc.dll"))
+                    Helpers.InitializeSeamlessItems();
+            });
         }
 
         private void SetupViewModels()
         {
             _viewModels.Add(nameof(DashboardView), new DashboardViewModel(_hook, LocalPlayer));
             _viewModels.Add(nameof(ItemsView), new ItemsViewModel(_hook));
-            //_viewModels.Add(nameof(ItemGiveView), new ItemGiveViewModel(_hook));
+            _viewModels.Add(nameof(ItemGiveView), new ItemGiveViewModel(_hook));
             _viewModels.Add(nameof(PrefabCreatorView), new PrefabCreatorViewModel(_hook));
             _viewModels.Add(nameof(LobbyManagerView), new LobbyManagerViewModel(_hook));
             _viewModels.Add(nameof(MiscView), new MiscViewModel(_hook, _vController));
@@ -236,7 +253,7 @@ namespace PvPHelper.MVVM.ViewModels
             commandManager.RegisterCommand(new FreeCamCommand(_hook));
             commandManager.RegisterCommand(new MassGibConsoleCommand(_hook));
             commandManager.RegisterCommand(new UpdateBuildCommand(_hook));
-            commandManager.RegisterCommand(new BetterSeamlessInvasionsCommand(_hook));
+            //commandManager.RegisterCommand(new BetterSeamlessInvasionsCommand(_hook));
         }
     }
 }

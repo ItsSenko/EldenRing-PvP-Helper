@@ -56,7 +56,7 @@ namespace PvPHelper.Console.Commands
 
             foreach (Row row in LockCamParam.Rows)
             {
-                LockCamParam.Pointer.WriteSingle(row.DataOffset + offset, newfov);
+                LockCamParam.Pointer.WriteSingle((int)row.DataOffset + offset, newfov);
             }
         }
     }

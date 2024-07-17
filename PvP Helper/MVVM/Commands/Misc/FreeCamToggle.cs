@@ -18,11 +18,21 @@ namespace PvPHelper.MVVM.Commands.Misc
         private PHPointer Base;
         private PHPointer Camera;
 
+        private string[] patchAOBs = {
+        "E8 ?? ?? ?? ?? 84 C0 74 ?? 41 B0 01 BA ?? ?? ?? ?? 48 8B CE E8",
+        "E8 ?? ?? ?? ?? 84 C0 74 ?? 8B 83 ?? ?? ?? ?? FF C8",
+        "E8 ?? ?? ?? ?? 84 C0 0F 85 ?? ?? ?? ?? 38 03"};
+
+        private List<PHPointer> pointers = new();
+
         public FreeCamToggle(ErdHook hook)
         {
             Hook = hook;
 
             Camera = hook.CreateChildPointer(CustomPointers.FieldArea2, 0x20);
+
+            foreach(string aob in patchAOBs)
+                pointers.Add(hook.RegisterAbsoluteAOB(aob));
         }
         public override void Execute(object? parameter)
         {
@@ -32,11 +42,13 @@ namespace PvPHelper.MVVM.Commands.Misc
                 return;
             }
 
-            if (Base == null)
+            /*if (Base == null)
                 Base = Hook.CreateBasePointer(Hook.Process.MainModule.BaseAddress);
 
             Base.WriteByte(0x44ff72e, State ? (byte)1 : (byte)0);
-            Base.WriteBytes(0x229df5, State ? new byte[] { 0xB0, 0x01 } : new byte[] { 0x32, 0xC0 });
+            Base.WriteBytes(0x229df5, State ? new byte[] { 0xB0, 0x01 } : new byte[] { 0x32, 0xC0 });*/
+
+            SetCamera(State);
 
             if (!State)
                 Camera.WriteInt32(0xC8, 0);
@@ -46,6 +58,13 @@ namespace PvPHelper.MVVM.Commands.Misc
                 InformationDialog dialog = new("Use X+L3 or A+RightStick to use.");
                 dialog.ShowDialog();
             }
+        }
+
+        private void SetCamera(bool state)
+        {
+            byte[] bytes = { 0xB0, state ? (byte)1 : (byte)0, 0xC3 };
+            foreach(PHPointer pointer in pointers)
+                pointer.WriteBytes(0x9, bytes);
         }
     }
 }

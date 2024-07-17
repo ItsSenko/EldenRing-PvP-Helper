@@ -100,9 +100,9 @@
                 <local:LabeledCircleToggle Label="Infinite&#x0a;Consumables"
                                            Checked="{Binding InfConsumeablesToggle.State, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                            ToggleCommand="{Binding InfConsumeablesToggle}"/>
-                <local:LabeledCircleToggle Label="Fast Anims"
-                                           Checked="{Binding FastAnimsToggle.State, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                           ToggleCommand="{Binding FastAnimsToggle}"/>
+                <local:LabeledCircleToggle Label="Better Seamless&#x0a;Invasions"
+                                           Checked="{Binding BSI.State, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                           ToggleCommand="{Binding BSI}"/>
             </StackPanel>
             <StackPanel x:Name="Third" Grid.Column="3" Orientation="Vertical" VerticalAlignment="Center">
                 <StackPanel.Resources>

@@ -8,5 +8,8 @@
     <Setting Name="AllowUnsafe" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="SpawnAnimation" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">63021</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
