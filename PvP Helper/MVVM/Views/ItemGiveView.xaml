@@ -135,7 +135,7 @@
                                                 ItemName="{Binding ItemName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                                 Visibility="{Binding Visibility, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                                 ClickCommand="{Binding ClickCommand, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                                 
+                                                RightClickCommand="{Binding RightClickCommand, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                                                 Height="135" Width="135" Margin="0, 4"/>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
@@ -160,12 +160,12 @@
 
                 <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Bottom">
                     <TextBlock HorizontalAlignment="Center" Text="{Binding ItemName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Foreground="White" FontSize="40"/>
-                    <Separator Width="500"/>
+                    <Separator Width="500" Margin="0,5,0,0"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Bottom" Grid.Column="1">
                     <TextBlock HorizontalAlignment="Center" Text="ASH OF WAR" Foreground="White" FontSize="15" Margin="0, 0, 0, 5"/>
-                    <local:SearchableTextBox SearchText="{Binding AshSearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="30" Width="400"/>
+                    <local:SearchableTextBox SearchText="{Binding AshSearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="30" Width="400" Margin="0,0,0,5"/>
                 </StackPanel>
             </Grid>
 
@@ -183,7 +183,7 @@
 
                     <Image Source="{Binding IconSource, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="400" Height="400"/>
                     <Image Source="{Binding AshIconSource, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="100" Height="100" Margin="300,300,0,0"/>
-                    <Image Source="{Binding InfusionIconSource, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="100" Height="100" Margin="0,300,300,0"/>
+                    <Image Source="{Binding InfusionIconSource, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="50" Height="50" Margin="150,340,0,0"/>
                     
                     <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                         <StackPanel.Resources>
@@ -218,6 +218,8 @@
                                     <local:InventoryItem ItemIconPath="{Binding ItemIconPath, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                                         ItemName="{Binding ItemName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                                         Visibility="{Binding Visibility, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                         ClickCommand="{Binding ClickCommand, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                         ToolTipText="{Binding ToolTipText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                                         Height="95" Width="95" Margin="7"/>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
@@ -247,9 +249,11 @@
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
                                     <local:InventoryItem ItemIconPath="{Binding ItemIconPath, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                                    ItemName="{Binding ItemName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                                    Visibility="{Binding Visibility, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                                    Height="55" Width="55" Margin="0"/>
+                                                         ItemName="{Binding ItemName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                         Visibility="{Binding Visibility, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                         ClickCommand="{Binding ClickCommand, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                         ToolTipText="{Binding ToolTipText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                         Height="55" Width="55" Margin="0"/>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>

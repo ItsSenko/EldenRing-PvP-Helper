@@ -170,6 +170,18 @@ namespace PvPHelper.MVVM.Views.UserControls
 
 
 
+        public string ToolTipText
+        {
+            get { return (string)GetValue(ToolTipTextProperty); }
+            set { SetValue(ToolTipTextProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for ToolTipText.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty ToolTipTextProperty =
+            DependencyProperty.Register("ToolTipText", typeof(string), typeof(InventoryItem));
+
+
+
         private void Grid_MouseEnter(object sender, MouseEventArgs e)
         {
             var bc = new BrushConverter();
@@ -194,7 +206,7 @@ namespace PvPHelper.MVVM.Views.UserControls
 
         private void Grid_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
         {
-            //RightClickCommand?.Execute(null);
+            RightClickCommand?.Execute(null);
         }
     }
 }

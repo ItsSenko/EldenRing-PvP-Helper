@@ -14,7 +14,8 @@
         <Grid   Cursor="Hand" Margin="6"
               MouseEnter="Grid_MouseEnter" MouseLeave="Grid_MouseLeave"
                 MouseDown="Grid_MouseDown"
-                MouseRightButtonDown="Grid_MouseRightButtonDown"
+                MouseRightButtonDown="Grid_MouseRightButtonDown" ToolTip="{Binding Path=ToolTipText, UpdateSourceTrigger=PropertyChanged}"
+                ToolTipService.InitialShowDelay="200"
                 >
             <!--<Border Background="{DynamicResource ItemGradientActive}" CornerRadius="10" Opacity="0" Name="borderActive">
                 <Border.Effect>

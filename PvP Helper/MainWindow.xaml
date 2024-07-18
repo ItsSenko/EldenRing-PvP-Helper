@@ -64,12 +64,12 @@
                                  UriSource="Resources/Images/view-dashboard-variant.svg"
                                  BtnCommand="{Binding DashboardCommand}"/>
                 <local:TabButton Label="Items" 
-                                 UriSource="Resources/Images/tab-plus.svg"
-                                 BtnCommand="{Binding ItemsCommand}"/>
-                <local:TabButton Label="Item Give" 
-                                 UriSource="Resources/Images/tab-plus.svg"
+                                 UriSource="Resources/Images/bag.svg"
                                  BtnCommand="{Binding ItemGiveCommand}"/>
-                <local:TabButton Label="Prefab Creator" 
+                <local:TabButton Label="Mass Items" 
+                                 UriSource="Resources/Images/bags.svg"
+                                 BtnCommand="{Binding ItemsCommand}"/>
+                <local:TabButton Label="Build Maker" 
                                  UriSource="Resources/Images/auto-fix.svg"
                                  BtnCommand="{Binding PrefabCreatorCommand}"/>
                 <local:TabButton Label="Lobby Manager" 

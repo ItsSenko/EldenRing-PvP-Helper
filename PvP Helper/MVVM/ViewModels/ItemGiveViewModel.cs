@@ -21,6 +21,7 @@ using Erd_Tools.Models.Items;
 using PvPHelper.MVVM.Models.Database;
 using System;
 using PvPHelper.MVVM.Models.Database.ItemsBases;
+using System.Windows.Data;
 
 namespace PvPHelper.MVVM.ViewModels
 {
@@ -172,13 +173,18 @@ namespace PvPHelper.MVVM.ViewModels
         }
 
 
-
+        private readonly object ashCollectionLock = new object();
         private ObservableCollection<ItemGibModel> _ashItems;
 
         public ObservableCollection<ItemGibModel> AshItems
         {
             get { return _ashItems; }
-            set { _ashItems = value; OnPropertyChanged(); }
+            set 
+            { 
+                _ashItems = value;
+                //BindingOperations.EnableCollectionSynchronization(_ashItems, ashCollectionLock);
+                OnPropertyChanged(); 
+            }
         }
 
         private string _ashSearchText;
@@ -186,7 +192,13 @@ namespace PvPHelper.MVVM.ViewModels
         public string AshSearchText
         {
             get { return _ashSearchText; }
-            set { _ashSearchText = value; OnPropertyChanged(); }
+            set 
+            { 
+                _ashSearchText = value; 
+                OnPropertyChanged();
+                if (GemAlg != null)
+                    GemAlg.SearchString = value;
+            }
         }
 
         private string _itemName;
@@ -259,7 +271,7 @@ namespace PvPHelper.MVVM.ViewModels
         public int MaxUpgrade
         {
             get { return _maxUpgrade; }
-            set { _maxUpgrade = value; }
+            set { _maxUpgrade = value; OnPropertyChanged(); }
         }
 
 
@@ -284,6 +296,7 @@ namespace PvPHelper.MVVM.ViewModels
         public ICommand Cancel { get; set; }
 
         private SearchableDataBase<Item> dataBase;
+        private SearchAlgorithm<Gem> GemAlg;
         public ICommand RefreshBuilds { get; set; }
         private ErdHook hook;
 
@@ -298,6 +311,8 @@ namespace PvPHelper.MVVM.ViewModels
             WeaponClassItemsSource = new();
             ContentItemsSource = new();
 
+            GemAlg = new(new List<Gem>(), new ClosestMatchSort<Gem>());
+            GemAlg.OnItemsChanged += OnAshShownItemsChanged;
 
             SortOrderItemsSource.Add(new AlphabeticalSort<Item>());
             SortOrderItemsSource.Add(new ClosestMatchSort<Item>());
@@ -307,11 +322,6 @@ namespace PvPHelper.MVVM.ViewModels
             MainVisibility = Visibility.Visible;
             EditItemVisibility = Visibility.Hidden;
 
-
-            for (int i = 0; i < 13; i++)
-            {
-                InfusionItems.Add(new(Helpers.GetImageSource("fire"), null, null, ""));
-            }
             RefreshBuilds = new RelayCommand(o =>
             {
                 Load();
@@ -331,16 +341,18 @@ namespace PvPHelper.MVVM.ViewModels
 
             PageText = "0/0";
 
-            AddAmount = 0;
-            AmountText = "0";
+            AddAmount = 1;
+            AmountText = "1";
 
             AddItem = new RelayCommand((o) => TryAddItem());
             Cancel = new RelayCommand((o) => CancelItem());
 
             hook.OnSetup += Hook_OnSetup;
+            ashWorker.DoWork += AshWorkerDoWork;
+            ashWorker.RunWorkerCompleted += AshWorker_RunWorkerCompleted;
+
             
         }
-
         
 
         public void OnSortOrderChanged(ISortOrder<Item> sortOrder)
@@ -398,7 +410,7 @@ namespace PvPHelper.MVVM.ViewModels
             if (queue.Count > 0)
                 bk.RunWorkerAsync();
         }
-        private void OnClick(Item item)
+        private void OnClick(Item item, ItemGibModel model)
         {
             if (!hook.Hooked || !hook.Setup || item == null)
                 return;
@@ -411,7 +423,7 @@ namespace PvPHelper.MVVM.ViewModels
 
             hook.GetItem(new(item.ID, item.ItemCategory, amount, item.MaxQuantity, (int)Infusion.Standard, 0, -1, item.EventID));
         }
-        private void OnRightClick(Item item)
+        private void OnRightClick(Item item, ItemGibModel model)
         {
             if (!hook.Hooked || !hook.Setup || item == null)
                 return;
@@ -421,31 +433,73 @@ namespace PvPHelper.MVVM.ViewModels
 
             if (item is Weapon wpn)
             {
+                MaxUpgrade = wpn.MaxUpgrade;
                 CurrUpgradeValue = 0;
                 CurrUpgradeText = "0";
-                MaxUpgrade = wpn.MaxUpgrade;
 
                 EditAmountMax = 100;
                 EditAmount = 0;
                 EditAmountText = "0";
 
-                foreach(Gem gem in Gem.All)
+                ItemName = item.Name;
+
+                if (wpn.Infusible)
                 {
-                    if (gem.WeaponTypes.Contains(wpn.Type))
+                    List<Gem> gems = new();
+                    foreach (Gem gem in Gem.All)
                     {
-                        ItemGibModel model = new(Helpers.GetImageSource(Helpers.GetFullIconID(gem.IconID)), null, null, gem.Name);
-                        model.OnLeftClick += OnAshClicked;
-                        model.SetupFromItem(gem);
-                        AshItems.Add(model);
+                        if (gem.WeaponTypes.Contains(wpn.Type))
+                        {
+                            gems.Add(gem);
+                        }
                     }
+
+                    GemAlg.Items = gems;
                 }
 
                 FinalInfo = new(item.ID, item.ItemCategory, 0, item.MaxQuantity, 0, 0, -1, item.EventID);
 
                 IconSource = Helpers.GetImageSource(Helpers.GetFullIconID(item.IconID));
             }
+        }
+        BackgroundWorker ashWorker = new();
+        List<List<Gem>> ashQueue = new();
+        private void AshWorkerDoWork(object? sender, DoWorkEventArgs e)
+        {
+            foreach(ItemGibModel gemModel in AshItems)
+            {
+                Gem gem = ashQueue[0].ElementAtOrDefault(AshItems.IndexOf(gemModel));
+                gemModel.SetupFromItem(gem, false);
+            }
+            ashQueue.RemoveAt(0);
+        }
 
-            
+        private void AshWorker_RunWorkerCompleted(object? sender, RunWorkerCompletedEventArgs e)
+        {
+            if (ashQueue.Count > 0)
+                ashWorker.RunWorkerAsync();
+        }
+
+        IEnumerable<Gem> lastGemItems;
+        private void OnAshShownItemsChanged(IEnumerable<Gem> items)
+        {
+            if (items == lastGemItems)
+            {
+                lastGemItems = items;
+                return;
+            }
+
+            lastGemItems = items;
+
+            ashQueue.Add(items.ToList());
+
+            foreach (ItemGibModel model in AshItems)
+                model.SetupFromItem(null);
+
+            if (ashWorker.IsBusy)
+                return;
+
+            ashWorker.RunWorkerAsync();
         }
 
         private ItemSpawnInfo _finalInfo;
@@ -456,11 +510,11 @@ namespace PvPHelper.MVVM.ViewModels
             set { _finalInfo = value; }
         }
 
-        private void OnAshClicked(Item item)
+        private void OnAshClicked(Item item, ItemGibModel model)
         {
             if (item is Gem gem)
             {
-                FinalInfo = new(FinalInfo.ID, FinalInfo.Category, FinalInfo.Quantity, FinalInfo.MaxQuantity, FinalInfo.Infusion, FinalInfo.Upgrade, gem.SwordArtID, FinalInfo.EventID);
+                FinalInfo = new(FinalInfo.ID, FinalInfo.Category, FinalInfo.Quantity, FinalInfo.MaxQuantity, FinalInfo.Infusion, FinalInfo.Upgrade, gem.ID, FinalInfo.EventID);
 
                 AshIconSource = Helpers.GetImageSource(Helpers.GetFullIconID(gem.IconID));
 
@@ -468,20 +522,45 @@ namespace PvPHelper.MVVM.ViewModels
 
                 foreach(Infusion inf in gem.Infusions)
                 {
-                    ItemGibModel model = new(inf, Helpers.GetImageSource(inf.ToString()), inf.ToString());
-                    model.OnLeftClick += (item) =>
-                    {
-                        FinalInfo = new(FinalInfo.ID, FinalInfo.Category, FinalInfo.Quantity, FinalInfo.MaxQuantity, (int)model.Infusion, FinalInfo.Upgrade, FinalInfo.Gem, FinalInfo.EventID);
-                        InfusionIconSource = Helpers.GetImageSource(model.Infusion.ToString());
-                    };
-                    InfusionItems.Add(model);
+                    ItemGibModel newModel = new(inf, Helpers.GetImageSource(inf.ToString()), inf.ToString());
+                    newModel.OnLeftClick += OnInfusionClicked;
+                    InfusionItems.Add(newModel);
                 }
             }
         }
 
+        public void OnInfusionClicked(Item iten, ItemGibModel model)
+        {
+            FinalInfo = new(FinalInfo.ID, FinalInfo.Category, FinalInfo.Quantity, FinalInfo.MaxQuantity, (int)model.Infusion, FinalInfo.Upgrade, FinalInfo.Gem, FinalInfo.EventID);
+            InfusionIconSource = Helpers.GetImageSource(model.Infusion.ToString());
+        }
         public void TryAddItem()
         {
+            if (!hook.Hooked || !hook.Setup || FinalInfo == null)
+                return;
 
+            if (EditAmount > FinalInfo.MaxQuantity)
+            {
+                List<ItemSpawnInfo> Items = new();
+
+                int stacks = EditAmount / FinalInfo.MaxQuantity;
+                int extra = EditAmount % FinalInfo.MaxQuantity;
+
+                for (int i = 0; i < stacks; i++)
+                {
+                    Items.Add(new(FinalInfo.ID, FinalInfo.Category, FinalInfo.MaxQuantity, FinalInfo.MaxQuantity, (int)FinalInfo.Infusion, CurrUpgradeValue, FinalInfo.Gem, FinalInfo.EventID));
+                }
+                if (extra > 0)
+                {
+                    Items.Add(new(FinalInfo.ID, FinalInfo.Category, extra, FinalInfo.MaxQuantity, (int)FinalInfo.Infusion, CurrUpgradeValue, FinalInfo.Gem, FinalInfo.EventID));
+                }
+
+                hook.GetItem(Items, CancellationToken.None);
+                return;
+            }
+            FinalInfo = new(FinalInfo.ID, FinalInfo.Category, EditAmount, FinalInfo.MaxQuantity, (int)FinalInfo.Infusion, CurrUpgradeValue, FinalInfo.Gem, FinalInfo.EventID);
+
+            hook.GetItem(FinalInfo);
         }
 
         public void CancelItem()
@@ -494,6 +573,18 @@ namespace PvPHelper.MVVM.ViewModels
             EditAmountMax = 100;
             EditAmount = 0;
             EditAmountText = "0";
+
+            MainVisibility = Visibility.Visible;
+            EditItemVisibility = Visibility.Hidden;
+
+            InfusionItems.Clear();
+            foreach (ItemGibModel model in AshItems)
+                model.SetupFromItem(null);
+
+            AshIconSource = null;
+            InfusionIconSource = null;
+
+            ItemName = "";
         }
 
         private void Load()
@@ -581,6 +672,13 @@ namespace PvPHelper.MVVM.ViewModels
             SelectedWeaponClass = null;
             SelectedItemType = null;
             SelectedContent = null;
+
+            for (int i = 0; i < 67; i++)
+            {
+                AshItems.Add(new(null, null, null, ""));
+                AshItems[i].OnLeftClick += OnAshClicked;
+                AshItems[i].SetupFromItem(null);
+            }
             OnShownItemsChanged(vanilla);
         }
 

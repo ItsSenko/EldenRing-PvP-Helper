@@ -153,86 +153,28 @@
                         </UniformGrid>
                     </Grid>
                 </Border>
-                <local:SeparatorTextControl Text="Item Give" Grid.Row="4"/>
+                <local:SeparatorTextControl Text="Shadow of The Erdtree" Grid.Row="4"/>
                 <Border Name="Item_Gib" Grid.Row="5" Margin="10">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
-                        <StackPanel VerticalAlignment="Center" >
-                            <StackPanel.Resources>
-                                <Style TargetType="local:SearchableComboBox">
-                                    <Setter Property="Margin" Value="0 0 0 0"/>
-                                    <Setter Property="Height" Value="35"/>
-                                    <Setter Property="Width" Value="250"/>
-                                </Style>
-                                <Style TargetType="Label">
-                                    <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}"/>
-                                    <Setter Property="FontSize" Value="8"/>
-                                    <Setter Property="Margin" Value="50 0 0 0"/>
-                                </Style>
-                            </StackPanel.Resources>
-                            <local:SimpleDropDown 
-                                Height="30" 
-                                Width="200"
-                                ItemsSource="{Binding CategoryItemsSource, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                SelectedItem="{Binding CategorySelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                
-                                />
-                            <Label Content="WEAPON"/>
-                            <local:SearchableComboBox
-                                ItemsSource="{Binding WeaponsItemsSource, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                SelectedItem="{Binding WeaponsSelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                SearchText="{Binding WeaponsSearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                            <Label Content="ASH OF WAR"/>
-                            <local:SearchableComboBox
-                                ItemsSource="{Binding AshesItemsSource, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                SelectedItem="{Binding AshesSelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                SearchText="{Binding GemSearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                            <Label Content="INFUSION"/>
-                            <local:SearchableComboBox
-                                ItemsSource="{Binding InfusionsItemsSource, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                SelectedItem="{Binding InfusionsSelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                SearchText="{Binding InfusionsSearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                        </StackPanel>
-                        <Grid Grid.Column="1">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="2*"/>
-                                <RowDefinition Height="1*"/>
-                            </Grid.RowDefinitions>
-                            <Grid Grid.Row="0">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition/>
-                                </Grid.ColumnDefinitions>
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition/>
-                                        <RowDefinition/>
-                                    </Grid.RowDefinitions>
-                                    <Label Grid.Row="0" Content="Upgrade Level" Foreground="{DynamicResource ForegroundBrush}" FontWeight="DemiBold" FontSize="14" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Center"/>
-                                    <local:NumberInput Grid.Row="1" HorizontalAlignment="Center" Height="40"
-                                                       CurrValue="{Binding UpgradeLevel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                                       Max="{Binding MaxUpgradeLvl, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                                       InputText="{Binding UpgradeLvlText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                                </Grid>
-                                <Grid Grid.Column="1">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition/>
-                                        <RowDefinition/>
-                                    </Grid.RowDefinitions>
-                                    <Label Grid.Row="0" Content="Amount" Foreground="{DynamicResource ForegroundBrush}" FontWeight="DemiBold" FontSize="14" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Center"/>
-                                    <local:NumberInput Grid.Row="1" HorizontalAlignment="Center" Height="40"
-                                                       CurrValue="{Binding Quantity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                                       Max="{Binding MaxQuantity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                                       InputText="{Binding QuantityText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                                </Grid>
-                            </Grid>
-                            <Button Grid.Row="1" Height="40" Style="{StaticResource PrimaryButton}" Content="Add" Command="{Binding Gib}" Cursor="Hand" Margin="204,21,23,20"/>
-                            <local:LabeledCircleToggle Margin="10,162,137,0" Label="Override" Grid.RowSpan="2" Checked="{Binding IsOverrideChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                        </Grid>
-                    </Grid>
+                    <UniformGrid Columns="5" Rows="4">
+                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Upgrades" Command="{Binding AllDLCUpgrades}" Cursor="Hand"/>
+                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Maps/Graces" Command="{Binding AllDLCMapsGraces}" Cursor="Hand"/>
+                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Cookbooks" Command="{Binding AllDLCCookbooks}" Cursor="Hand"/>
+                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Tools" Command="{Binding AllDLCTools}" Cursor="Hand"/>
+                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Merchant Items" Command="{Binding AllDLCMerchantItems}" Cursor="Hand"/>
+                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Crafting Mats" Command="{Binding AllDLCCraftingMaterials}" Cursor="Hand"/>
+                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Crystal Tears" Command="{Binding AllDLCCrystalTears}" Cursor="Hand"/>
+                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Ashes" Command="{Binding AllDLCAshes}" Cursor="Hand"/>
+                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Consumables" Command="{Binding AllDLCConsumables}" Cursor="Hand"/>
+                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Spells" Command="{Binding AllDLCSpells}" Cursor="Hand"/>
+                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Ammo" Command="{Binding AllDLCAmmo}" Cursor="Hand"/>
+                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Limited Items" Command="{Binding AllDLCLimitedItems}" Cursor="Hand"/>
+                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Melee Weapons" Command="{Binding AllDLCMeleeWeapons}" Cursor="Hand"/>
+                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Shields" Command="{Binding AllDLCShields}" Cursor="Hand"/>
+                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Spell Tools" Command="{Binding AllDLCSpellTools}" Cursor="Hand"/>
+                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Ranged Weapons" Command="{Binding AllDLCRangedWeapons}" Cursor="Hand"/>
+                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Armor" Command="{Binding AllDLCArmor}" Cursor="Hand"/>
+                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Talismans" Command="{Binding AllDLCTalismans}" Cursor="Hand"/>
+                    </UniformGrid>
                 </Border>
             </Grid>
         </Grid>

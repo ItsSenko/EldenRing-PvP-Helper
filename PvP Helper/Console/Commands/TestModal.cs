@@ -46,8 +46,30 @@ namespace PvPHelper.Console.Commands
 
         protected override void OnTriggerCommand()
         {
-            Item item = ItemCategory.All.FirstOrDefault(x => x.Name == "Consumables").Items.FirstOrDefault(x => x.ID == 910);
-            hook.GetItem(new(item.ID, item.ItemCategory, 999, item.MaxQuantity, (int)Infusion.Standard, 0, -1, item.EventID));
+            int biggestGemAmount = 0;
+            string biggestItemName = string.Empty;
+            foreach(ItemCategory cat in ItemCategory.All)
+            {
+                foreach(Item item in cat.Items)
+                {
+                    if (item is Weapon weapon)
+                    {
+                        if (weapon.Infusible)
+                        {
+                            int gemCount = Gem.All.Where(x => x.WeaponTypes.Contains(weapon.Type)).Count();
+                            if (gemCount > biggestGemAmount)
+                            {
+                                biggestGemAmount = gemCount;
+                                biggestItemName = weapon.Name;
+                            }
+                        }
+                    }
+                }
+            }
+
+            CommandManager.Log("Item with the biggest amount of gems.");
+            CommandManager.Log($"Name: {biggestItemName}");
+            CommandManager.Log($"Amount: {biggestGemAmount}");
         }
         
         protected override void OnTriggerCommandWithParameters(List<string> parameters)

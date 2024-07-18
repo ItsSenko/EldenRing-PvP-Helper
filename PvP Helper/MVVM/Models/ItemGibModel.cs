@@ -21,7 +21,7 @@ namespace PvPHelper.MVVM.Models
 {
     public class ItemGibModel : ViewModelBase
     {
-        public delegate void OnClickHandler(Item item);
+        public delegate void OnClickHandler(Item item, ItemGibModel model);
         public event OnClickHandler OnLeftClick;
         public event OnClickHandler OnRightClick;
 
@@ -65,6 +65,15 @@ namespace PvPHelper.MVVM.Models
             set { _itemName = value; OnPropertyChanged(); }
         }
 
+        private string _toolTipText;
+
+        public string ToolTipText
+        {
+            get { return _toolTipText; }
+            set { _toolTipText = value; OnPropertyChanged(); }
+        }
+
+
         public string UpgradeLevel { get; set; }
 
         public Item Item { get; set; }
@@ -81,18 +90,21 @@ namespace PvPHelper.MVVM.Models
             ItemName = itemName;
             UpgradeLevel = upgradeLevel;
 
-            ClickCommand = new RelayCommand((o) => OnLeftClick?.Invoke(Item));
-            RightClickCommand = new RelayCommand((o) => OnRightClick?.Invoke(Item));
+            ClickCommand = new RelayCommand((o) => OnLeftClick?.Invoke(Item, this));
+            RightClickCommand = new RelayCommand((o) => OnRightClick?.Invoke(Item, this));
         }
 
         public ItemGibModel(Infusion infusion, ImageSource Icon, string Name)
         {
             Infusion = infusion;
             ItemIconPath = Icon;
-            ItemName = Name;
+            ToolTipText = Name;
+
+            ClickCommand = new RelayCommand((o) => OnLeftClick?.Invoke(Item, this));
+            RightClickCommand = new RelayCommand((o) => OnRightClick?.Invoke(Item, this));
         }
 
-        public void SetupFromItem(Item item)
+        public void SetupFromItem(Item item, bool containName = true)
         {
             if (item == null)
             {
@@ -101,9 +113,9 @@ namespace PvPHelper.MVVM.Models
             }
             Visibility = Visibility.Visible;
             ItemIconPath = Helpers.GetImageSource(Helpers.GetFullIconID(item.IconID));
-            ItemName = item.Name;
+            ItemName = containName ? item.Name : string.Empty;
+            ToolTipText = item.Name;
             Item = item;
         }
-
     }
 }

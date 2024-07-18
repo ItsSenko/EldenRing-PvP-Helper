@@ -36,6 +36,8 @@
 
     <None Remove="Resources\Images\attached.svg" />
     <None Remove="Resources\Images\auto-fix.svg" />
+    <None Remove="Resources\Images\Bag.svg" />
+    <None Remove="Resources\Images\Bags.svg" />
     <None Remove="Resources\Images\Discord.png" />
     <None Remove="Resources\Images\earth.svg" />
     <None Remove="Resources\Images\file-document-alert.svg" />
@@ -79,6 +81,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Content Include="Resources\Images\auto-fix.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Bag.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Bags.svg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\earth.svg">
