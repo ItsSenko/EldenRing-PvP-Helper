@@ -48,7 +48,7 @@ namespace PvPHelper.MVVM.ViewModels
                 _searchText = value; 
                 OnPropertyChanged();
 
-                if (dataBase.searchAlg.Items.Count() > 0)
+                if (dataBase != null && dataBase.searchAlg.Items.Count() > 0)
                     dataBase.searchAlg.SearchString = SearchText;
             }
         }
@@ -438,8 +438,8 @@ namespace PvPHelper.MVVM.ViewModels
                 CurrUpgradeText = "0";
 
                 EditAmountMax = 100;
-                EditAmount = 0;
-                EditAmountText = "0";
+                EditAmount = 1;
+                EditAmountText = "1";
 
                 ItemName = item.Name;
 
@@ -456,6 +456,22 @@ namespace PvPHelper.MVVM.ViewModels
 
                     GemAlg.Items = gems;
                 }
+
+                FinalInfo = new(item.ID, item.ItemCategory, 0, item.MaxQuantity, 0, 0, -1, item.EventID);
+
+                IconSource = Helpers.GetImageSource(Helpers.GetFullIconID(item.IconID));
+            }
+            else
+            {
+                MaxUpgrade = 0;
+                CurrUpgradeValue = 0;
+                CurrUpgradeText = "0";
+
+                EditAmountMax = 999;
+                EditAmount = 1;
+                EditAmountText = "1";
+
+                ItemName = item.Name;
 
                 FinalInfo = new(item.ID, item.ItemCategory, 0, item.MaxQuantity, 0, 0, -1, item.EventID);
 
@@ -600,9 +616,12 @@ namespace PvPHelper.MVVM.ViewModels
 
             foreach (var cat in ItemCategory.All)
             {
+                if (!hook.CSDlc.DlcAvailable(Erd_Tools.Models.System.Dlc.DlcName.ShadowOfTheErdtree) && cat.Name.StartsWith("DLC"))
+                    continue;
+
                 allContent.AddRange(cat.Items);
 
-                if (cat.Name.StartsWith("DLC"))
+                if (cat.Name.StartsWith("DLC") && hook.CSDlc.DlcAvailable(Erd_Tools.Models.System.Dlc.DlcName.ShadowOfTheErdtree))
                 {
                     dlc.AddRange(cat.Items);
                     vanillaDLC.AddRange(cat.Items);
@@ -610,7 +629,9 @@ namespace PvPHelper.MVVM.ViewModels
                 else if (cat.Name != "Seamless Coop")
                 {
                     vanilla.AddRange(cat.Items);
-                    vanillaDLC.AddRange(cat.Items);
+
+                    if (hook.CSDlc.DlcAvailable(Erd_Tools.Models.System.Dlc.DlcName.ShadowOfTheErdtree))
+                        vanillaDLC.AddRange(cat.Items);
                 }
                 else if (Helpers.GetIfModuleExists(hook.Process, "ersc.dll"))
                 {
@@ -621,8 +642,10 @@ namespace PvPHelper.MVVM.ViewModels
             dataBase.OnShownItemsChanged += OnShownItemsChanged;
 
             ContentItemsSource.Add(new(vanilla, "Vanilla"));
-            ContentItemsSource.Add(new(dlc, "Shadow Of the Erdtree"));
-            ContentItemsSource.Add(new(vanillaDLC, "Vanilla + SoTE"));
+            if (hook.CSDlc.DlcAvailable(Erd_Tools.Models.System.Dlc.DlcName.ShadowOfTheErdtree))
+                ContentItemsSource.Add(new(dlc, "Shadow Of the Erdtree"));
+            if (hook.CSDlc.DlcAvailable(Erd_Tools.Models.System.Dlc.DlcName.ShadowOfTheErdtree))
+                ContentItemsSource.Add(new(vanillaDLC, "Vanilla + SoTE"));
             if (Helpers.GetIfModuleExists(hook.Process, "ersc.dll"))
                 ContentItemsSource.Add(new(seamlessCoop, "Seamless co-op"));
             ContentItemsSource.Add(new(allContent, "All"));

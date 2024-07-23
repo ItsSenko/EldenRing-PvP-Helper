@@ -11,5 +11,14 @@
     <Setting Name="SpawnAnimation" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">63021</Value>
     </Setting>
+    <Setting Name="DebugLogs" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="InvasionPhantomID" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">60</Value>
+    </Setting>
+    <Setting Name="CustomInvasionSpawn" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

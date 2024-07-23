@@ -72,9 +72,9 @@
                 <local:TabButton Label="Build Maker" 
                                  UriSource="Resources/Images/auto-fix.svg"
                                  BtnCommand="{Binding PrefabCreatorCommand}"/>
-                <local:TabButton Label="Lobby Manager" 
+                <!--<local:TabButton Label="Lobby Manager" 
                                  UriSource="Resources/Images/format-list-text.svg"
-                                 BtnCommand="{Binding LobbyManagerCommand}"/>
+                                 BtnCommand="{Binding LobbyManagerCommand}"/>-->
                 <!--<local:TabButton Label="Region Manager" 
                                  UriSource="Resources/Images/earth.svg"
                                  BtnCommand="{Binding RegionManagerCommand}"/>-->
@@ -133,7 +133,7 @@
                         <SolidColorBrush Color="{DynamicResource Foreground}"/>
                     </TextBlock.Foreground>
                 </TextBlock>
-                <TextBlock Foreground="{DynamicResource LighterTextBrush}" Grid.Row="1" TextWrapping="Wrap" Text="by Senkopur" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="36" FontFamily="Bahnschrift SemiLight">
+                <TextBlock Foreground="{DynamicResource LighterTextBrush}" Grid.Row="1" TextWrapping="Wrap" Text="by Senko" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="36" FontFamily="Bahnschrift SemiLight">
 
                 </TextBlock>
 

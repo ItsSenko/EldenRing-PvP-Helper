@@ -1,6 +1,8 @@
 ﻿using Erd_Tools;
 using Erd_Tools.Models;
+using Erd_Tools.Models.Game;
 using Erd_Tools.Models.Items;
+using PvPHelper.Core;
 using PvPHelper.Core.Extensions;
 using PvPHelper.MVVM.Models;
 using PvPHelper.MVVM.ViewModels;
@@ -58,6 +60,39 @@ namespace PvPHelper.Console.Commands
         {
             if (!hook.Setup || !hook.Loaded)
                 throw new InvalidCommandException("Not attached or loaded.");
+
+            if (parameters[0].ToLower() == "gestures")
+            {
+                if (!Settings.Default.AllowUnsafe)
+                    throw new InvalidCommandException("Allow Unsafe Options not enabled.");
+                foreach (Gesture gesture in hook.GestureGameData.GetGestures())
+                {
+                    if (gesture.Name is "Fetal Position" or "The Carian Oath")
+                    {
+                        continue;
+                    }
+                    if (gesture.Dlc != Erd_Tools.Models.System.Dlc.DlcName.ShadowOfTheErdtree || gesture.Dlc != Erd_Tools.Models.System.Dlc.DlcName.ShadowOfTheErdtreePreOrderGesture)
+                    {
+                        hook.GestureGameData.SetGesture(gesture.Id, true);
+                    }
+                }
+                CommandManager.Log("Given all Gestures");
+                return;
+            }
+            else if (parameters[0].ToLower() == "dlcgestures")
+            {
+                if (!Settings.Default.AllowUnsafe)
+                    throw new InvalidCommandException("Allow Unsafe Options not enabled.");
+                foreach (Gesture gesture in hook.GestureGameData.GetGestures())
+                {
+                    if (gesture.Dlc != Erd_Tools.Models.System.Dlc.DlcName.None || gesture.Dlc != Erd_Tools.Models.System.Dlc.DlcName.PreOrderGesture)
+                    {
+                        hook.GestureGameData.SetGesture(gesture.Id, true);
+                    }
+                }
+                CommandManager.Log("Given all DLC Gestures");
+                return;
+            }
 
             if (parameters.Count != 3)
                 throw new InvalidCommandException("Missing parameters.");

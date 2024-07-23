@@ -1,4 +1,5 @@
 ﻿using Erd_Tools;
+using PropertyHook;
 using PvPHelper.Core;
 using PvPHelper.MVVM.Commands.Dashboard.Toggles;
 using PvPHelper.MVVM.Commands.Misc;
@@ -23,8 +24,12 @@ namespace PvPHelper.MVVM.ViewModels
         public CustomFPSToggle CustomFPSToggle { get; set; }
         public NoMaterialCostToggle NoMaterialCostToggle { get; set; }
         public FastAnimsToggle FastAnims { get; set; }
+        public DebugLogsToggle DebugLogsToggle { get; set; }
         public RelayCommand AllArenas { get; set; }
         public RelayCommand AllGestures { get; set; }
+        public RelayCommand FogWalkAnim { get; set; }
+        public NoGravityToggle NoGravityToggle { get; set; }
+        public CustomInvasionSpawn CustomInvasionSpawn { get; set; }
 
         private ObservableCollection<MenuItem> _menuItemsSource;
 
@@ -91,10 +96,17 @@ namespace PvPHelper.MVVM.ViewModels
         60829,60830,60831,60832,60833,60834,60835,60836,60837,60839,60840,60841,60842,60843,60844,60845,60846,60847,60848,60849};
 
         private bool AnimsLoaded = false;
+
+        private PHPointer Session;
+        private NetPlayer localPlayer;
         public MiscViewModel(ErdHook hook, VersionController versionController)
         {
             this.hook = hook;
             hook.OnSetup += Hook_OnSetup;
+
+            Session = hook.CreateChildPointer(hook.WorldChrMan, new int[] { 0x10EF8 });
+            localPlayer = new(hook, Session, 0x0 * 10);
+
             SeamlessEnabled = Visibility.Hidden;
             ShowHitboxesToggle = new(hook);
             AutoUpdateToggle = new();
@@ -123,6 +135,18 @@ namespace PvPHelper.MVVM.ViewModels
                 }
             });
             FastAnims = new(hook);
+            DebugLogsToggle = new();
+            NoGravityToggle = new(hook);
+
+            FogWalkAnim = new((o) =>
+            {
+                if (!hook.Hooked || !hook.Loaded)
+                    return;
+
+                localPlayer.AnimationData.WriteInt32(0x18, 60060);
+            });
+
+            CustomInvasionSpawn = new();
 
             MenuItemsSource = new();
             MenuItemsSource.Add(new("Memorize Spells", 0x80f600));

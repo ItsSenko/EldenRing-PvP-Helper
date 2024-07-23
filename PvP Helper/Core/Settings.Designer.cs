@@ -58,5 +58,41 @@ namespace PvPHelper.Core {
                 this["SpawnAnimation"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool DebugLogs {
+            get {
+                return ((bool)(this["DebugLogs"]));
+            }
+            set {
+                this["DebugLogs"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("60")]
+        public int InvasionPhantomID {
+            get {
+                return ((int)(this["InvasionPhantomID"]));
+            }
+            set {
+                this["InvasionPhantomID"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool CustomInvasionSpawn {
+            get {
+                return ((bool)(this["CustomInvasionSpawn"]));
+            }
+            set {
+                this["CustomInvasionSpawn"] = value;
+            }
+        }
     }
 }

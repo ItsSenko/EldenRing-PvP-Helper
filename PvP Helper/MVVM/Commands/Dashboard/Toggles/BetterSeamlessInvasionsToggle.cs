@@ -92,9 +92,14 @@ namespace PvPHelper.MVVM.Commands.Dashboard.Toggles
                     {
                         if (!string.IsNullOrEmpty(player.Name) && player.Health > 0)
                         {
-                            inputData2.WriteByte(0x531, Helpers.SetBit(inputData2.ReadByte(0x531), 0, true)); //stop updating
-                            localPlayer.PhantomID = 60;
-                            RespawnPlayer(player);
+                            //inputData2.WriteByte(0x531, Helpers.SetBit(inputData2.ReadByte(0x531), 0, true)); //stop updating
+                            localPlayer.PhantomID = Settings.Default.InvasionPhantomID;
+                            
+                            if (Settings.Default.CustomInvasionSpawn)
+                            {
+                                Thread.Sleep(1000);
+                                animationData.WriteInt32(0x18, Settings.Default.SpawnAnimation);
+                            }
                             return;
                         }
                     }
@@ -145,7 +150,7 @@ namespace PvPHelper.MVVM.Commands.Dashboard.Toggles
         public static void RespawnPlayer(NetPlayer teleportingPlayer)
         {
             SetFlags(true); // stop everything
-            Thread.Sleep(7000); // Load in delay, prevents void out
+            Thread.Sleep(5000); // Load in delay, prevents void out
 
             inputData2.WriteByte(0x531, Helpers.SetBit(inputData2.ReadByte(0x531), 0, false)); //resume updating
 
@@ -155,7 +160,7 @@ namespace PvPHelper.MVVM.Commands.Dashboard.Toggles
 
             CommandManager.Log($"Teleported to host: {teleportingPlayer.Name}");
 
-            Thread.Sleep(500);
+            Thread.Sleep(2000);
 
             SetFlags(false); //resume everything
         }

@@ -153,27 +153,27 @@
                         </UniformGrid>
                     </Grid>
                 </Border>
-                <local:SeparatorTextControl Text="Shadow of The Erdtree" Grid.Row="4"/>
-                <Border Name="Item_Gib" Grid.Row="5" Margin="10">
+                <local:SeparatorTextControl Text="Shadow of The Erdtree" Grid.Row="4" Visibility="{Binding DLCVisibility, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <Border Name="Item_Gib" Grid.Row="5" Margin="10" Visibility="{Binding DLCVisibility, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                     <UniformGrid Columns="5" Rows="4">
-                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Upgrades" Command="{Binding AllDLCUpgrades}" Cursor="Hand"/>
-                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Maps/Graces" Command="{Binding AllDLCMapsGraces}" Cursor="Hand"/>
-                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Cookbooks" Command="{Binding AllDLCCookbooks}" Cursor="Hand"/>
-                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Tools" Command="{Binding AllDLCTools}" Cursor="Hand"/>
-                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Merchant Items" Command="{Binding AllDLCMerchantItems}" Cursor="Hand"/>
-                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Crafting Mats" Command="{Binding AllDLCCraftingMaterials}" Cursor="Hand"/>
-                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Crystal Tears" Command="{Binding AllDLCCrystalTears}" Cursor="Hand"/>
-                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Ashes" Command="{Binding AllDLCAshes}" Cursor="Hand"/>
-                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Consumables" Command="{Binding AllDLCConsumables}" Cursor="Hand"/>
-                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Spells" Command="{Binding AllDLCSpells}" Cursor="Hand"/>
-                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Ammo" Command="{Binding AllDLCAmmo}" Cursor="Hand"/>
-                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Limited Items" Command="{Binding AllDLCLimitedItems}" Cursor="Hand"/>
-                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Melee Weapons" Command="{Binding AllDLCMeleeWeapons}" Cursor="Hand"/>
-                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Shields" Command="{Binding AllDLCShields}" Cursor="Hand"/>
-                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Spell Tools" Command="{Binding AllDLCSpellTools}" Cursor="Hand"/>
-                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Ranged Weapons" Command="{Binding AllDLCRangedWeapons}" Cursor="Hand"/>
-                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Armor" Command="{Binding AllDLCArmor}" Cursor="Hand"/>
-                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Talismans" Command="{Binding AllDLCTalismans}" Cursor="Hand"/>
+                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Upgrades" Command="{Binding AllDLCUpgrades}" Cursor="Hand" TextBlock.TextAlignment="Center"/>
+                        <Button Style="{DynamicResource PrimaryButton}"  Content="All&#x0a;Maps/Graces" Command="{Binding AllDLCMapsGraces}" Cursor="Hand" TextBlock.TextAlignment="Center"/>
+                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Cookbooks" Command="{Binding AllDLCCookbooks}" Cursor="Hand" TextBlock.TextAlignment="Center"/>
+                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Tools" Command="{Binding AllDLCTools}" Cursor="Hand" TextBlock.TextAlignment="Center"/>
+                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Merchant&#x0a;Items" Command="{Binding AllDLCMerchantItems}" Cursor="Hand" TextBlock.TextAlignment="Center"/>
+                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Crafting&#x0a;Mats" Command="{Binding AllDLCCraftingMaterials}" Cursor="Hand" TextBlock.TextAlignment="Center"/>
+                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Crystal&#x0a;Tears" Command="{Binding AllDLCCrystalTears}" Cursor="Hand" TextBlock.TextAlignment="Center"/>
+                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Ashes" Command="{Binding AllDLCAshes}" Cursor="Hand" TextBlock.TextAlignment="Center"/>
+                        <Button Style="{DynamicResource PrimaryButton}"  Content="All&#x0a;Consumables" Command="{Binding AllDLCConsumables}" Cursor="Hand" TextBlock.TextAlignment="Center"/>
+                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Spells" Command="{Binding AllDLCSpells}" Cursor="Hand" TextBlock.TextAlignment="Center"/>
+                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Ammo" Command="{Binding AllDLCAmmo}" Cursor="Hand" TextBlock.TextAlignment="Center"/>
+                        <!--<Button Style="{DynamicResource PrimaryButton}"  Content="All Limited Items" Command="{Binding AllDLCLimitedItems}" Cursor="Hand"/>-->
+                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Melee&#x0a;Weapons" Command="{Binding AllDLCMeleeWeapons}" Cursor="Hand" TextBlock.TextAlignment="Center"/>
+                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Shields" Command="{Binding AllDLCShield}" Cursor="Hand"/>
+                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Spell&#x0a;Tools" Command="{Binding AllDLCSpellTools}" Cursor="Hand" TextBlock.TextAlignment="Center"/>
+                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Ranged&#x0a;Weapons" Command="{Binding AllDLCRangedWeapons}" Cursor="Hand" TextBlock.TextAlignment="Center"/>
+                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Armor" Command="{Binding AllDLCArmor}" Cursor="Hand" TextBlock.TextAlignment="Center"/>
+                        <Button Style="{DynamicResource PrimaryButton}"  Content="All Talismans" Command="{Binding AllDLCTalismans}" Cursor="Hand" TextBlock.TextAlignment="Center"/>
                     </UniformGrid>
                 </Border>
             </Grid>

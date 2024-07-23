@@ -3,6 +3,7 @@ using Erd_Tools.Models;
 using Erd_Tools.Models.Items;
 using PvPHelper.MVVM.Models;
 using PvPHelper.MVVM.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -17,19 +18,16 @@ namespace PvPHelper.MVVM.Commands.Items
         private ItemCategory _category;
         private ErdHook _hook;
         private bool single;
-        private int newMax;
-        private ItemsViewModel viewModel;
+        private int Amount { get; set; }
 
-        public MassGib(ErdHook hook, ItemCategory category, ItemsViewModel viewModel, string[] excludedItems = null, bool single = false, int newMax = 0)
+        public MassGib(ErdHook hook, ItemCategory category, int amount, string[] excludedItems = null, bool single = false)
         {
             _hook = hook;
             _category = category;
             if (excludedItems != null)
                 exclude = excludedItems;
             this.single = single;
-
-            this.viewModel = viewModel;
-            this.newMax = newMax < 1 ? 1 : newMax;
+            Amount = amount;
             
         }
         public override void Execute(object? parameter)
@@ -44,7 +42,31 @@ namespace PvPHelper.MVVM.Commands.Items
                 {
                     if (exclude != null && exclude.Any(x => x == item.Name))
                         continue;
-                    ItemSpawnInfo info = new(item.ID, item.ItemCategory, viewModel.IsOverrideChecked ? newMax : item.MaxQuantity, viewModel.IsOverrideChecked ? newMax : item.MaxQuantity, (int)Infusion.Standard, 0, -1, item.EventID);
+
+                    if (!single)
+                    {
+                        if (Amount > item.MaxQuantity)
+                        {
+                            int stacks = (int)MathF.Floor(Amount / item.MaxQuantity);
+                            int remainder = Amount % item.MaxQuantity;
+
+                            for (int i = 0; i < stacks; i++)
+                            {
+                                ItemSpawnInfo info2 = new(item.ID, item.ItemCategory, item.MaxQuantity, item.MaxQuantity, (int)Infusion.Standard, 0, -1, item.EventID);
+                                items.Add(info2);
+                            }
+
+                            if (remainder > 0)
+                            {
+                                ItemSpawnInfo info2 = new(item.ID, item.ItemCategory, remainder, item.MaxQuantity, (int)Infusion.Standard, 0, -1, item.EventID);
+                                items.Add(info2);
+                            }
+
+                            continue;
+                        }
+                    }
+
+                    ItemSpawnInfo info = new(item.ID, item.ItemCategory, Amount, item.MaxQuantity, (int)Infusion.Standard, 0, -1, item.EventID);
                     if (single)
                         _hook.GetItem(info);
                     else

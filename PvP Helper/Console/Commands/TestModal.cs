@@ -46,7 +46,15 @@ namespace PvPHelper.Console.Commands
 
         protected override void OnTriggerCommand()
         {
-            int biggestGemAmount = 0;
+            foreach(InventoryEntry entry in hook.GetInventory())
+            {
+                CommandManager.Log($"Name: {entry.Name}");
+                CommandManager.Log($"ID: {entry.ItemID}");
+                CommandManager.Log($"RawID: {entry.RawItemId}");
+                CommandManager.Log($"DisplayID: {entry.DisplayID}");
+            }
+
+            /*int biggestGemAmount = 0;
             string biggestItemName = string.Empty;
             foreach(ItemCategory cat in ItemCategory.All)
             {
@@ -69,7 +77,7 @@ namespace PvPHelper.Console.Commands
 
             CommandManager.Log("Item with the biggest amount of gems.");
             CommandManager.Log($"Name: {biggestItemName}");
-            CommandManager.Log($"Amount: {biggestGemAmount}");
+            CommandManager.Log($"Amount: {biggestGemAmount}");*/
         }
         
         protected override void OnTriggerCommandWithParameters(List<string> parameters)

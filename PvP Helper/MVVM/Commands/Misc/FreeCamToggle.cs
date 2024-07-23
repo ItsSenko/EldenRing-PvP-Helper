@@ -31,8 +31,9 @@ namespace PvPHelper.MVVM.Commands.Misc
 
             Camera = hook.CreateChildPointer(CustomPointers.FieldArea2, 0x20);
 
-            foreach(string aob in patchAOBs)
-                pointers.Add(hook.RegisterAbsoluteAOB(aob));
+            pointers.Add(hook.RegisterRelativeAOB(patchAOBs[0], 1, 5));
+            pointers.Add(hook.RegisterRelativeAOB(patchAOBs[1], 11, 10));
+            pointers.Add(hook.RegisterRelativeAOB(patchAOBs[2], 11, 10));
         }
         public override void Execute(object? parameter)
         {
@@ -63,8 +64,10 @@ namespace PvPHelper.MVVM.Commands.Misc
         private void SetCamera(bool state)
         {
             byte[] bytes = { 0xB0, state ? (byte)1 : (byte)0, 0xC3 };
-            foreach(PHPointer pointer in pointers)
-                pointer.WriteBytes(0x9, bytes);
+            foreach (PHPointer pointer in pointers)
+            {
+                pointer.WriteBytes(0x0, bytes);
+            }
         }
     }
 }

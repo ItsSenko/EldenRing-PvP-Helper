@@ -70,7 +70,7 @@ namespace PvPHelper.MVVM.ViewModels
         public PHPointer LocalPlayer;
         public MainWindowViewModel()
         {
-            var proc = Process.GetProcesses().FirstOrDefault(x => (x.MainWindowTitle is "ELDEN RING™" or "ELDEN RING") || x.ProcessName is "eldenring");
+            /*var proc = Process.GetProcesses().FirstOrDefault(x => (x.MainWindowTitle is "ELDEN RING™" or "ELDEN RING") || x.ProcessName is "eldenring");
             if (proc == null)
             {
                 List<DropDownObject<object>> list = new();
@@ -89,8 +89,8 @@ namespace PvPHelper.MVVM.ViewModels
                     }
                 };
                 dialog.ShowDialog();
-            }
-            _hook = new(500, 1000, new(x => proc == null ? ((x.MainWindowTitle is "ELDEN RING™" or "ELDEN RING") || x.ProcessName is "eldenring") : x.Id == proc.Id));
+            }*/
+            _hook = new(500, 1000, new(x => (x.MainWindowTitle is "ELDEN RING™" or "ELDEN RING") || x.ProcessName is "eldenring"));
             
             ExtensionsCore.Initialize();
             commandManager = new();
@@ -254,6 +254,7 @@ namespace PvPHelper.MVVM.ViewModels
             commandManager.RegisterCommand(new MassGibConsoleCommand(_hook));
             commandManager.RegisterCommand(new UpdateBuildCommand(_hook));
             //commandManager.RegisterCommand(new BetterSeamlessInvasionsCommand(_hook));
+            commandManager.RegisterCommand(new SettingsCommand());
         }
     }
 }

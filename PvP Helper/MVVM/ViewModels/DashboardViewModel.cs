@@ -175,10 +175,34 @@ namespace PvPHelper.MVVM.ViewModels
             {
                 if (!hook.Hooked)
                 {
+                    hook.Start();
                     CommandManager.Log("Attempting to attach to Elden Ring.");
                     CommandManager.Log("Might take a moment..");
 
-                    hook.Start();
+
+                    DispatcherTimer timer = new();
+                    timer.Interval = TimeSpan.FromSeconds(1);
+                    timer.Tick += (s, e) =>
+                    {
+                        if (!Settings.Default.DebugLogs)
+                            return;
+                        try
+                        {
+                            if (hook.Hooked)
+                            {
+                                timer.Stop();
+                                return;
+                            }
+
+                            CommandManager.Log($"Proccess ID: {(hook.Process != null ? hook.Process?.Id : "it was null")}");
+                            CommandManager.Log($"WorldChrMan: {(hook.WorldChrMan != null ? hook.WorldChrMan?.Resolve().ToInt64().ToString("X2") : "it was null")}");
+                            CommandManager.Log($"ItemGib: {(hook.ItemGive != null ? hook.ItemGive?.Resolve().ToInt64().ToString("X2") : "it was null")}");
+                            CommandManager.Log($"GameDataMan: {(hook.GameDataMan != null ? hook.GameDataMan?.Resolve().ToInt64().ToString("X2") : "it was null")}");
+                            CommandManager.Log($"SoloParamRepository: {(hook.SoloParamRepository != null ? hook.SoloParamRepository?.Resolve().ToInt64().ToString("X2") : "it was null")}");
+                        }
+                        catch { }
+                    };
+                    timer.Start();
                 }
             });
 

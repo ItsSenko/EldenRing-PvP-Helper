@@ -99,7 +99,6 @@ namespace PvPHelper.MVVM.ViewModels
         #endregion
         public ICommand RefreshStats { get; set; }
         public ICommand AddRunes { get; set; }
-        public ICommand Gib { get; set; }
         #region CustomGibs
         public ICommand AllFlaskUpgrades { get; set; }
         public ICommand AllTalismanPouches { get; set; }
@@ -119,6 +118,26 @@ namespace PvPHelper.MVVM.ViewModels
         public ICommand AllSpells { get; set; }
         public ICommand AllAmmo { get; set; }
         public ICommand AllUpgradeMaterials { get; set; }
+        #endregion
+        #region DLC MassGibg
+        public ICommand AllDLCUpgrades { get; set; }
+        public ICommand AllDLCMapsGraces { get; set; }
+        public ICommand AllDLCCookbooks { get; set; }
+        public ICommand AllDLCTools { get; set; }
+        public ICommand AllDLCMerchantItems { get; set; }
+        public ICommand AllDLCCraftingMaterials { get; set; }
+        public ICommand AllDLCCrystalTears { get; set; }
+        public ICommand AllDLCAshes { get; set; }
+        public ICommand AllDLCConsumables { get; set; }
+        public ICommand AllDLCSpells { get; set; }
+        public ICommand AllDLCAmmo { get; set; }
+        public ICommand AllDLCLimitedItems { get; set; }
+        public ICommand AllDLCMeleeWeapons { get; set; }
+        public ICommand AllDLCShield { get; set; }
+        public ICommand AllDLCSpellTools { get; set; }
+        public ICommand AllDLCRangedWeapons { get; set; }
+        public ICommand AllDLCArmor { get; set; }
+        public ICommand AllDLCTalismans { get; set; }
         #endregion
         #region SecondGroup ItemGibs
         public ICommand AllMeleeWeapons { get; set; }
@@ -208,217 +227,13 @@ namespace PvPHelper.MVVM.ViewModels
             }
         }
         #endregion
+        #region Other
+        private Visibility _dlcVisibility;
 
-        #region ItemGib Section
-        private string _weaponSearchString;
-
-        public string WeaponsSearchText
+        public Visibility DLCVisibility
         {
-            get { return _weaponSearchString; }
-            set { _weaponSearchString = value; 
-                if (weaponSearch != null)
-                    weaponSearch.SearchString = _weaponSearchString;
-            }
-        }
-
-        private string _gemSearchText;
-
-        public string GemSearchText
-        {
-            get { return _gemSearchText; }
-            set { _gemSearchText = value;
-                if (gemSearch != null)
-                    gemSearch.SearchString = _gemSearchText;
-            }
-        }
-
-        private string _infusionSearchText;
-
-        public string InfusionsSearchText
-        {
-            get { return _infusionSearchText; }
-            set { _infusionSearchText = value; 
-                if (infusionSearch != null)
-                    infusionSearch.SearchString = _infusionSearchText;
-            }
-        }
-
-        private IEnumerable<object> _categoryItemsSource;
-
-        public IEnumerable<object> CategoryItemsSource
-        {
-            get { return _categoryItemsSource; }
-            set { _categoryItemsSource = value; OnPropertyChanged(); }
-        }
-
-        private IEnumerable<object> _weaponsItemsSource;
-
-        public IEnumerable<object> WeaponsItemsSource
-        {
-            get { return _weaponsItemsSource; }
-            set 
-            { 
-                _weaponsItemsSource = value;
-                OnPropertyChanged(); 
-            }
-        }
-        private IEnumerable<object> _infusionsItemsSource;
-
-        public IEnumerable<object> InfusionsItemsSource
-        {
-            get { return _infusionsItemsSource; }
-            set
-            {
-                _infusionsItemsSource = value;
-                OnPropertyChanged();
-            }
-        }
-        private IEnumerable<object> _ashesItemsSource;
-
-        public IEnumerable<object> AshesItemsSource
-        {
-            get { return _ashesItemsSource; }
-            set 
-            { 
-                _ashesItemsSource = value; 
-                OnPropertyChanged();
-            }
-        }
-        private object _categorySelectedItem;
-
-        public object CategorySelectedItem
-        {
-            get { return _categorySelectedItem; }
-            set
-            {
-                _categorySelectedItem = value;
-                OnPropertyChanged();
-                OnCategoryChanged();
-            }
-        }
-
-        private object _weaponsSelectedItem;
-
-        public object WeaponsSelectedItem
-        {
-            get { return _weaponsSelectedItem; }
-            set
-            {
-                _weaponsSelectedItem = value;
-                if (value == null && !string.IsNullOrEmpty(WeaponsSearchText) && weaponSearch != null && weaponSearch.ShownItems != null)
-                {
-                    _weaponsSelectedItem = weaponSearch.ShownItems.FirstOrDefault(x => x.ToString() == WeaponsSearchText);
-                }
-                OnPropertyChanged();
-                OnItemChanged();
-            }
-        }
-        private object _infusionsSelectedItem;
-
-        public object InfusionsSelectedItem
-        {
-            get { return _infusionsSelectedItem; }
-            set
-            {
-                _infusionsSelectedItem = value;
-                if (value == null && !string.IsNullOrEmpty(InfusionsSearchText) && infusionSearch != null && infusionSearch.ShownItems != null)
-                {
-                    _infusionsSelectedItem = infusionSearch.ShownItems.FirstOrDefault(x => x.ToString() == InfusionsSearchText);
-                }
-                OnPropertyChanged();
-                OnInfusionChanged();
-            }
-        }
-        private object _ashesSelectedItem;
-
-        public object AshesSelectedItem
-        {
-            get { return _ashesSelectedItem; }
-            set
-            {
-                _ashesSelectedItem = value;
-                if (value == null && !string.IsNullOrEmpty(GemSearchText) && gemSearch != null && gemSearch.ShownItems != null)
-                {
-                    _ashesSelectedItem = gemSearch.ShownItems.FirstOrDefault(x => x.ToString() == GemSearchText);
-                }
-                OnPropertyChanged();
-                OnAshChanged();
-            }
-        }
-
-        private int _upgradeLvl;
-
-        public int UpgradeLevel
-        {
-            get { return _upgradeLvl; }
-            set { _upgradeLvl = value; OnPropertyChanged(); }
-        }
-        private int _maxUpgradeLvl;
-
-        public int MaxUpgradeLvl
-        {
-            get { return _maxUpgradeLvl; }
-            set 
-            { 
-                _maxUpgradeLvl = value; 
-                OnPropertyChanged();
-                if (UpgradeLevel > MaxUpgradeLvl)
-                {
-                    UpgradeLevel = MaxUpgradeLvl;
-                    UpgradeLvlText = MaxUpgradeLvl.ToString();
-                }
-            }
-        }
-
-        private int _quantity;
-
-        public int Quantity
-        {
-            get { return _quantity; }
-            set 
-            { 
-                _quantity = value; 
-                OnPropertyChanged();
-            }
-        }
-        private int _maxQuantity;
-
-        public int MaxQuantity
-        {
-            get { return _maxQuantity; }
-            set 
-            { 
-                _maxQuantity = value; 
-                OnPropertyChanged();
-                if (Quantity > MaxQuantity)
-                {
-                    Quantity = MaxQuantity;
-                    QuantityText = MaxQuantity.ToString();
-                }
-            }
-        }
-        private string _upgradeLvlText;
-
-        public string UpgradeLvlText
-        {
-            get { return _upgradeLvlText; }
-            set { _upgradeLvlText = value; OnPropertyChanged(); }
-        }
-        private string _quantityText;
-
-        public string QuantityText
-        {
-            get { return _quantityText; }
-            set { _quantityText = value; OnPropertyChanged(); }
-        }
-
-
-        private bool _isOverrideChecked;
-
-        public bool IsOverrideChecked
-        {
-            get { return _isOverrideChecked; }
-            set { _isOverrideChecked = value; OnPropertyChanged(); }
+            get { return _dlcVisibility; }
+            set { _dlcVisibility = value; OnPropertyChanged(); }
         }
 
         #endregion
@@ -433,9 +248,14 @@ namespace PvPHelper.MVVM.ViewModels
 
         private List<ItemCategoryOption> allItemCategorys = new();
 
-        private SearchAlgorithm<Item> weaponSearch;
-        private SearchAlgorithm<Gem> gemSearch;
-        private SearchAlgorithm<NamedObject<Infusion>> infusionSearch;
+        private int[] dlcMapIds = { 62080, 62081, 62082, 62083, 62084, 82002 };
+
+        private int[] baseCookbookFlags = { 60120,67610,67600,67650,67640,67630,67130,68230,67000,67110,67010,67800,67830,67020,67050,67880,67430,67030,67220,67060,67080,67870,
+                                            67900,67290,67100,67270,67070,67230,67120,67890,67090,67910,67200,67210,67280,67260,67310,67300,67250,68000,68010,68030,68020,68200,68220,68210,67840,67850,67860,67920,67410,67450,
+                                            67480,67400,67420,67460,67470,67440,68400,68410};
+
+        private int[] dlcCookbookFlags = { 68590,68730,68690,68600,68610,68720,68630,68680,68640,68650,68660,68620,68700,68710,68750,68670,68880,68740,68780,68760,68950,68840,68520,68530,
+                                           68540,68550,68560,68510,68830,68810,68570,68920,68580,68770,68900,68800,68820,68890,68930,68940,68850,68910,68860,68870,68790};
         public ItemsViewModel(ErdHook hook)
         {
             _hook = hook;
@@ -444,6 +264,8 @@ namespace PvPHelper.MVVM.ViewModels
             _hook.OnSetup += _hook_OnSetup;
             _hook.OnUnhooked += _hook_OnUnhooked;
             SetupCommands();
+
+            DLCVisibility = Visibility.Hidden;
 
             var assembly = Assembly.GetExecutingAssembly();
             var resourceName = "PvPHelper.Resources.MapEventFlagIds.txt";
@@ -463,29 +285,11 @@ namespace PvPHelper.MVVM.ViewModels
             {
                 allItemCategorys.Add(new(category.Name, category));
             }
-            CategoryItemsSource = allItemCategorys;
-            CategorySelectedItem = null;
-
-            Quantity = 0;
-            QuantityText = "0";
-
-            UpgradeLevel = 0;
-            UpgradeLvlText = "0";
 
             MassGibUpgLevel = 0;
             MassGibUpgLvlString = "0";
             CurrRunesToAdd = 0;
             CurrRunesToAddText = "0";
-
-            weaponSearch = new(new List<Item>(), new AlphabeticalSort<Item>());
-            weaponSearch.OnItemsChanged += (items) => { WeaponsSelectedItem = null; WeaponsItemsSource = items; };
-            weaponSearch.Items = null;
-            gemSearch = new(new List<Gem>(), new AlphabeticalSort<Gem>());
-            gemSearch.OnItemsChanged += (items) => { AshesSelectedItem = null; AshesItemsSource = items; };
-            gemSearch.Items = null;
-            infusionSearch = new(new List<NamedObject<Infusion>>(), new AlphabeticalSort<NamedObject<Infusion>>());
-            infusionSearch.OnItemsChanged += (items) => { InfusionsSelectedItem = null; InfusionsItemsSource = items; };
-            infusionSearch.Items = null;
         }
 
         private void RunesTimer_Tick(object? sender, EventArgs e)
@@ -503,19 +307,9 @@ namespace PvPHelper.MVVM.ViewModels
             { 
                 SetStats(); 
                 runesTimer.Start();
-                if (CategorySelectedItem != null)
-                {
-                    if (CategorySelectedItem is ItemCategory)
-                    {
-                        ItemCategory cat = CategorySelectedItem as ItemCategory;
-                        List<Item> gibOptions = new();
-                        foreach (Item item in cat.Items)
-                        {
-                            gibOptions.Add(item);
-                        }
-                        weaponSearch.Items = gibOptions;
-                    }
-                }
+
+                if (_hook.CSDlc.DlcAvailable(Erd_Tools.Models.System.Dlc.DlcName.ShadowOfTheErdtree))
+                    DLCVisibility = Visibility.Visible;
             });
         }
         private void _hook_OnUnhooked(object? sender, PropertyHook.PHEventArgs e)
@@ -555,13 +349,16 @@ namespace PvPHelper.MVVM.ViewModels
                     _hook.SetEventFlag(flag, true);
                 }
 
-                foreach (Continent continent in Continent.All)
+                foreach (Continent continent in _hook.GetContinents())
                 {
-                    foreach (Hub hub in continent.Hubs)
+                    if (continent.Dlc == Erd_Tools.Models.System.Dlc.DlcName.None)
                     {
-                        foreach (Grace grace in hub.Graces)
+                        foreach (Hub hub in continent.Hubs)
                         {
-                            _hook.SetEventFlag(grace.EventFlagID, true);
+                            foreach (Grace grace in hub.Graces)
+                            {
+                                _hook.SetEventFlag(grace.EventFlagID, true);
+                            }
                         }
                     }
                 }
@@ -569,30 +366,94 @@ namespace PvPHelper.MVVM.ViewModels
             AllLimitedItems = new RelayCommand((o) => { LimitedItems(); });
             AllWhetblades = new RelayCommand((o) => { Whetblades(); });
 
-            AllCookbooks = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Cookbooks"), this);
-            AllTools = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Tools"), this);
-            AllMerchantItems = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Merchant Items"), this);
-            AllCraftingMaterials = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Crafting Materials"), this, new string[] { "Cracked Pot", "Ritual Pot", "Celestial Dew" }, newMax: 999);
-            AllCrystalTears = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Crystal Tears"), this);
-            AllAshes = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Gems"), this, single: true);
-            AllConsumables = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Consumables"), this,
+            AllCookbooks = new RelayCommand((o) =>
+            {
+                var massGib = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Cookbooks"), 1);
+                massGib.Execute(null);
+
+                foreach(int flag in baseCookbookFlags)
+                    _hook.SetEventFlag(flag, true);
+            }); 
+            AllTools = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Tools"), 1);
+            AllMerchantItems = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Merchant Items"), 1);
+            AllCraftingMaterials = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Crafting Materials"), 999, new string[] { "Cracked Pot", "Ritual Pot", "Celestial Dew" });
+            AllCrystalTears = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Crystal Tears"), 1);
+            AllAshes = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Gems"), 1, single: true);
+            AllConsumables = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Consumables"), 999,
             new string[] { "Cracked Pot", "Ritual Pot", "Perfume Bottle",
             "Remembrance of the Regal Ancestor","Remembrance of the Naturalborn","Remembrance of the Lichdragon",
             "Remembrance of the Fire Giant", "Remembrance of the Grafted", "Remembrance of the Full Moon Queen",
             "Remembrance of the Blasphemous","Remembrance of the Starscourge","Remembrance of the Omen King",
             "Remembrance of the Blood Lord", "Remembrance of the Rot Goddess", "Remembrance of the Black Blade",
             "Remembrance of Hoarah Loux", "Remembrance of the Dragonlord", "Elden Remembrance", "Shabriri Grape",
-            "Baldachin's Blessing", "Radiant Baldachin's Blessing"}, single: true, 999);
-            AllSpells = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Magic"), this);
-            AllAmmo = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Ammo"), this, single: true, newMax: 999);
-            AllUpgradeMaterials = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Upgrade Materials"), this, new string[] { "Golden Seed", "Sacred Tear", "Memory Stone", "Talisman Pouch" }, single: true);
+            "Baldachin's Blessing", "Radiant Baldachin's Blessing"}, single: true);
+            AllSpells = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Magic"), 1);
+            AllAmmo = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Ammo"), 999, single: true);
+            AllUpgradeMaterials = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Upgrade Materials"), 999, new string[] { "Golden Seed", "Sacred Tear", "Memory Stone", "Talisman Pouch" }, single: true);
 
             AllMeleeWeapons = new MassWeaponGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Melee Weapons"));
             AllRangedWeapons = new MassWeaponGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Ranged Weapons"));
             AllShields = new MassWeaponGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Shields"));
-            AllArmor = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Armor"), this);
+            AllArmor = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Armor"), 1);
             AllSpellTools = new MassWeaponGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Spell Tools"));
-            AllTalismans = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Talismans"), this, single: true);
+            AllTalismans = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Talismans"), 1, single: true);
+
+            AllDLCUpgrades = new RelayCommand((o) =>
+            {
+                ItemCategory cat = ItemCategory.All.FirstOrDefault(x => x.Name == "DLC Upgrade Materials");
+
+                var scadu = cat.Items[0];
+                var ash = cat.Items[1];
+                _hook.GetItem(new(scadu.ID, scadu.ItemCategory, 50, scadu.MaxQuantity, (int)Infusion.Standard, 0));
+                _hook.GetItem(new(ash.ID, ash.ItemCategory, 25, ash.MaxQuantity, (int)Infusion.Standard, 0));
+            });
+            AllDLCMapsGraces = new RelayCommand((o) =>
+            {
+                if (!_hook.Hooked || !_hook.Loaded)
+                    return;
+
+                foreach (int flag in dlcMapIds)
+                {
+                    _hook.SetEventFlag(flag, true);
+                }
+
+                foreach (Continent continent in _hook.GetContinents())
+                {
+                    if (continent.Dlc != Erd_Tools.Models.System.Dlc.DlcName.None)
+                    {
+                        foreach (Hub hub in continent.Hubs)
+                        {
+                            foreach (Grace grace in hub.Graces)
+                            {
+                                _hook.SetEventFlag(grace.EventFlagID, true);
+                            }
+                        }
+                    }
+                }
+            });
+            AllDLCCookbooks = new RelayCommand((o) => 
+            {
+                var massGib = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "DLC Cookbooks"), 1);
+                massGib.Execute(null);
+
+                foreach (int flag in dlcCookbookFlags)
+                    _hook.SetEventFlag(flag, true);
+            }); 
+            AllDLCTools = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "DLC Tools"), 1);
+            AllDLCMerchantItems = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "DLC Merchant Items"), 1);
+            AllDLCCraftingMaterials = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "DLC Crafting Materials"), 999);
+            AllDLCCrystalTears = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "DLC Crystal Tears"), 1);
+            AllDLCAshes = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "DLC Gems"), 1);
+            AllDLCConsumables = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "DLC Consumables"), 999);
+            AllDLCSpells = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "DLC Magic"), 1);
+            AllDLCAmmo = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "DLC Ammo"), 999);
+            //AllDLCLimitedItems = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "DLC Key Items"), 1);
+            AllDLCMeleeWeapons = new MassWeaponGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "DLC Melee Weapons"));
+            AllDLCShield = new MassWeaponGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "DLC Shields"));
+            AllDLCSpellTools = new MassWeaponGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "DLC Spell Tools"));
+            AllDLCRangedWeapons = new MassWeaponGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "DLC Ranged Weapons"));
+            AllDLCArmor = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "DLC Armor"), 1);
+            AllDLCTalismans = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "DLC Talismans"), 1);
 
             AddRunes = new RelayCommand((o) =>
             {
@@ -601,7 +462,6 @@ namespace PvPHelper.MVVM.ViewModels
 
                 _player.AddRunes(CurrRunesToAdd);
             });
-            Gib = new RelayCommand((o) => { GibItem(); });
         }
         public void SetStats()
         {
@@ -684,111 +544,6 @@ namespace PvPHelper.MVVM.ViewModels
             }
             foreach (int whetblade in whetbladeFlags)
                 _hook.SetEventFlag(whetblade, true);
-        }
-
-        private void OnCategoryChanged()
-        {
-            if (!_hook.Loaded || !_hook.Hooked)
-                return;
-
-            weaponSearch.Items = null;
-            gemSearch.Items = null;
-            infusionSearch.Items = null;
-
-            if (CategorySelectedItem == null)
-                return;
-
-
-            ItemCategoryOption option = CategorySelectedItem as ItemCategoryOption;
-            List<Item> items = new();
-
-            foreach (var item in option.category.Items)
-                items.Add(item);
-
-            weaponSearch.Items = items;
-            WeaponsSearchText = string.Empty;
-            
-        }
-        private string[] allowedCatsForUpgrade = new string[] { "Melee Weapons", "Ranged Weapons", "Spell Tools", "Shields", "DLC Melee Weapons", "DLC Ranged Weapons", "DLC Spell Tools", "DLC Shields" };
-        private void OnItemChanged()
-        {
-           if (!_hook.Loaded || !_hook.Hooked)
-                return;
-
-            gemSearch.Items = null;
-            infusionSearch.Items = null;
-
-            if (WeaponsSelectedItem == null)
-                return;
-
-            Item item = WeaponsSelectedItem as Item;
-            List<Gem> gemItems = new();
-            if (item is Weapon weapon)
-            {
-                if (weapon.Infusible)
-                {
-                    foreach (Gem gem in Gem.All)
-                    {
-                        if (gem.WeaponTypes.Contains(weapon.Type))
-                        {
-                            gemItems.Add(gem);
-                        }
-                    }
-                    gemSearch.Items = gemItems;
-                }
-                MaxUpgradeLvl = weapon.MaxUpgrade;
-            }
-            else
-            {
-                MaxUpgradeLvl = 0;
-                UpgradeLevel = 0;
-                UpgradeLvlText = "0";
-            }
-            MaxQuantity = IsOverrideChecked ? (item is Weapon ? 10 : 999) : item.MaxQuantity;
-        }
-        private void OnInfusionChanged()
-        {
-            if (!_hook.Loaded || !_hook.Hooked)
-                return;
-        }
-        private void OnAshChanged()
-        {
-            if (!_hook.Loaded || !_hook.Hooked)
-                return;
-
-            infusionSearch.Items = null;
-            if (AshesSelectedItem == null)
-                  return;
-
-            Gem option = AshesSelectedItem as Gem;
-            List<NamedObject<Infusion>> infOptions = new();
-            foreach (var infusion in option.Infusions)
-                infOptions.Add(new(infusion, infusion.ToString()));
-            infusionSearch.Items = infOptions;
-        }
-        private void GibItem()
-        {
-            if (!_hook.Loaded || !_hook.Hooked)
-                return;
-
-            if (WeaponsSelectedItem == null)
-                return;
-
-            Item option = (Item)WeaponsSelectedItem;
-            if (option is Weapon weapon)
-            {
-                if (weapon.Infusible)
-                {
-                    Gem gemOption = AshesSelectedItem as Gem;
-                    NamedObject<Infusion> infusionOption = (NamedObject<Infusion>)InfusionsSelectedItem;
-
-                    _hook.GetItem(new(weapon.ID, weapon.ItemCategory, Quantity, weapon.MaxQuantity, infusionOption != null ? (int)infusionOption.Value : (int)Infusion.Standard, UpgradeLevel > weapon.MaxUpgrade ? weapon.MaxUpgrade : UpgradeLevel, gemOption != null ? gemOption.ID : -1, weapon.EventID));
-                }
-                else
-                    _hook.GetItem(new(weapon.ID, weapon.ItemCategory, Quantity, weapon.MaxQuantity, (int)Infusion.Standard, UpgradeLevel, -1, weapon.EventID));
-            }
-            else
-                _hook.GetItem(new(option.ID, option.ItemCategory, Quantity, option.MaxQuantity, (int)Infusion.Standard, 0, -1, option.EventID));
         }
 
     }

@@ -199,7 +199,7 @@ namespace PvPHelper.MVVM.Views.UserControls
             switch (e.ChangedButton)
             {
                 case MouseButton.Left: { ClickCommand?.Execute(null); break; }
-                case MouseButton.Right: { RightClickCommand?.Execute(null); break; }
+                //case MouseButton.Right: { RightClickCommand?.Execute(null); break; }
                 case MouseButton.Middle: { MiddleClickCommand?.Execute(null); break; }
             }
         }

@@ -49,7 +49,19 @@ namespace PvPHelper.Console
         {
             foreach(var command in _commands)
             {
-                if (input.StartsWith(command.CommandString))
+                string commandString = string.Empty;
+                try
+                {
+                    if (!input.Contains(' '))
+                        commandString = input;
+                    else
+                        commandString = input.Substring(0, input.IndexOf(' '));
+                }
+                catch
+                {
+                    continue;
+                }
+                if (commandString == command.CommandString)
                 {
                     string paramString = input.Substring(command.CommandString.Length);
                     

@@ -34,6 +34,9 @@
                 <userControls:LabeledCircleToggle Label="Allow Unsafe Options"
                                                   Checked="{Binding UnsafeToggle.State, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                                   ToggleCommand="{Binding UnsafeToggle}"/>
+                <userControls:LabeledCircleToggle Label="Debug Logs"
+                                                  Checked="{Binding DebugLogsToggle.State, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                  ToggleCommand="{Binding DebugLogsToggle}"/>
 
             </StackPanel>
         </Border>
@@ -52,9 +55,9 @@
                                             Checked="{Binding ShowHitboxesToggle.State, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                             ToggleCommand="{Binding ShowHitboxesToggle}"/>
 
-                        <userControls:LabeledCircleToggle Label="Free Cam"
+                        <!--<userControls:LabeledCircleToggle Label="Free Cam"
                                             Checked="{Binding FreeCamToggle.State, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                            ToggleCommand="{Binding FreeCamToggle}"/>
+                                            ToggleCommand="{Binding FreeCamToggle}"/>-->
 
                         <userControls:LabeledCircleToggle Label="Custom FPS"
                                             Checked="{Binding CustomFPSToggle.State, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
@@ -63,18 +66,34 @@
                         <userControls:LabeledCircleToggle Label="Custom FOV"
                                             Checked="{Binding CustomFOVToggle.State, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                             ToggleCommand="{Binding CustomFOVToggle}"/>
-                    </StackPanel>
-
-                    <StackPanel Orientation="Vertical" Margin="10,0,0,0">
                         <userControls:LabeledCircleToggle Label="No Material Cost"
                                             Checked="{Binding NoMaterialCostToggle.State, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                             ToggleCommand="{Binding NoMaterialCostToggle}"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical" Margin="10,0,0,0">
+                        <!--<userControls:LabeledCircleToggle Label="No Material Cost"
+                                            Checked="{Binding NoMaterialCostToggle.State, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                            ToggleCommand="{Binding NoMaterialCostToggle}"/>-->
+                        <userControls:LabeledCircleToggle Label="No Gravity"
+                                            Checked="{Binding NoGravityToggle.State, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                            ToggleCommand="{Binding NoGravityToggle}"/>
                         <userControls:LabeledCircleToggle Label="Fast Seamless Co-op Items"
                                             Checked="{Binding FastAnims.State, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                             ToggleCommand="{Binding FastAnims}" Visibility="{Binding SeamlessEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                        <Button Style="{DynamicResource PrimaryButton}"
+                        <userControls:LabeledCircleToggle Label="Custom Invasion Spawn"
+                                            Checked="{Binding CustomInvasionSpawn.State, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                            ToggleCommand="{Binding CustomInvasionSpawn}" Visibility="{Binding SeamlessEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        
+                        <StackPanel Orientation="Horizontal">
+                            <Button Style="{DynamicResource PrimaryButton}"
                         Content="Unlock All Colosseums"
-                        Command="{Binding AllArenas}" Cursor="Hand" Height="53"/>
+                        Command="{Binding AllArenas}" Cursor="Hand" Height="53" Width="200" HorizontalAlignment="Left"/>
+                            <Button Style="{DynamicResource PrimaryButton}"
+                        Content="Fog Walk"
+                        Command="{Binding FogWalkAnim}" Cursor="Hand" Height="53" Width="200" HorizontalAlignment="Left"/>
+                        </StackPanel>
+                        
 
                     </StackPanel>
                 </StackPanel>
@@ -125,6 +144,8 @@
             <TextBlock Grid.Row="2" Text="Senko and CatShark"
                    FontSize="30" Foreground="{DynamicResource HighlightBrush}"
                    HorizontalAlignment="Center" Margin="0,110,0,10"/>
+
+            
         </Grid>
     </Grid>
 </UserControl>
