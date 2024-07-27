@@ -52,5 +52,11 @@
         "Details": "Coding help and providing scripts",
         "Color": "#FFFFFF",
         "Link": "https://github.com/lndura"
+    },
+    {
+        "Title": "Test Credit",
+        "Details": "Just a test",
+        "Color": "#FFFFFF",
+        "Link": ""
     }
 ]
