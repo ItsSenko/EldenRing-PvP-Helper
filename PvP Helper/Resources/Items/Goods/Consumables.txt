@@ -55,7 +55,6 @@
 1210 Exalted Flesh
 1220 Deathsbane Jerky
 1235 Raw Meat Dumpling
-1240 Shabriri Grape
 1290 Starlight Shards
 1310 Immunizing White Cured Meat
 1320 Invigorating White Cured Meat
@@ -98,8 +97,6 @@
 2050 Grace Mimic
 2100 Soft Cotton
 2120 Soap
-2130 Celestial Dew
-2190 Miquella's Needle
 2900 Golden Rune [1]
 2901 Golden Rune [2]
 2902 Golden Rune [3]
@@ -159,4 +156,3 @@
 9501 Ritual Pot
 9510 Perfume Bottle
 10000 Glass Shard
-10080 Great Rune of the Unborn

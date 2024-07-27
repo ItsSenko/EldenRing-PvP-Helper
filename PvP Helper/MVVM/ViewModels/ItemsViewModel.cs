@@ -368,35 +368,28 @@ namespace PvPHelper.MVVM.ViewModels
 
             AllCookbooks = new RelayCommand((o) =>
             {
-                var massGib = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Cookbooks"), 1);
+                var massGib = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Cookbooks"), false);
                 massGib.Execute(null);
 
                 foreach(int flag in baseCookbookFlags)
                     _hook.SetEventFlag(flag, true);
             }); 
-            AllTools = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Tools"), 1);
-            AllMerchantItems = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Merchant Items"), 1);
-            AllCraftingMaterials = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Crafting Materials"), 999, new string[] { "Cracked Pot", "Ritual Pot", "Celestial Dew" });
-            AllCrystalTears = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Crystal Tears"), 1);
-            AllAshes = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Gems"), 1, single: true);
-            AllConsumables = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Consumables"), 999,
-            new string[] { "Cracked Pot", "Ritual Pot", "Perfume Bottle",
-            "Remembrance of the Regal Ancestor","Remembrance of the Naturalborn","Remembrance of the Lichdragon",
-            "Remembrance of the Fire Giant", "Remembrance of the Grafted", "Remembrance of the Full Moon Queen",
-            "Remembrance of the Blasphemous","Remembrance of the Starscourge","Remembrance of the Omen King",
-            "Remembrance of the Blood Lord", "Remembrance of the Rot Goddess", "Remembrance of the Black Blade",
-            "Remembrance of Hoarah Loux", "Remembrance of the Dragonlord", "Elden Remembrance", "Shabriri Grape",
-            "Baldachin's Blessing", "Radiant Baldachin's Blessing"}, single: true);
-            AllSpells = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Magic"), 1);
-            AllAmmo = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Ammo"), 999, single: true);
-            AllUpgradeMaterials = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Upgrade Materials"), 999, new string[] { "Golden Seed", "Sacred Tear", "Memory Stone", "Talisman Pouch" }, single: true);
+            AllTools = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Tools"), false);
+            AllMerchantItems = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Merchant Items"), false);
+            AllCraftingMaterials = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Crafting Materials"));
+            AllCrystalTears = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Crystal Tears"), false);
+            AllAshes = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Gems"), false);
+            AllConsumables = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Consumables"));
+            AllSpells = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Magic"), false);
+            AllAmmo = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Ammo"));
+            AllUpgradeMaterials = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Upgrade Materials"));
 
-            AllMeleeWeapons = new MassWeaponGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Melee Weapons"));
-            AllRangedWeapons = new MassWeaponGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Ranged Weapons"));
-            AllShields = new MassWeaponGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Shields"));
-            AllArmor = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Armor"), 1);
-            AllSpellTools = new MassWeaponGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Spell Tools"));
-            AllTalismans = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Talismans"), 1, single: true);
+            AllMeleeWeapons = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Melee Weapons"), false, MassUpgradeLevel, true);
+            AllRangedWeapons = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Ranged Weapons"), false, MassUpgradeLevel, true);
+            AllShields = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Shields"), false, MassUpgradeLevel, true);
+            AllArmor = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Armor"), false);
+            AllSpellTools = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Spell Tools"), false, MassUpgradeLevel, true);
+            AllTalismans = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Talismans"));
 
             AllDLCUpgrades = new RelayCommand((o) =>
             {
@@ -433,27 +426,27 @@ namespace PvPHelper.MVVM.ViewModels
             });
             AllDLCCookbooks = new RelayCommand((o) => 
             {
-                var massGib = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "DLC Cookbooks"), 1);
+                var massGib = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "DLC Cookbooks"), false);
                 massGib.Execute(null);
 
                 foreach (int flag in dlcCookbookFlags)
                     _hook.SetEventFlag(flag, true);
             }); 
-            AllDLCTools = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "DLC Tools"), 1);
-            AllDLCMerchantItems = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "DLC Merchant Items"), 1);
-            AllDLCCraftingMaterials = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "DLC Crafting Materials"), 999);
-            AllDLCCrystalTears = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "DLC Crystal Tears"), 1);
-            AllDLCAshes = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "DLC Gems"), 1);
-            AllDLCConsumables = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "DLC Consumables"), 999);
-            AllDLCSpells = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "DLC Magic"), 1);
-            AllDLCAmmo = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "DLC Ammo"), 999);
+            AllDLCTools = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "DLC Tools"), false);
+            AllDLCMerchantItems = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "DLC Merchant Items"), false);
+            AllDLCCraftingMaterials = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "DLC Crafting Materials"));
+            AllDLCCrystalTears = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "DLC Crystal Tears"), false);
+            AllDLCAshes = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "DLC Gems"), false);
+            AllDLCConsumables = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "DLC Consumables"));
+            AllDLCSpells = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "DLC Magic"), false);
+            AllDLCAmmo = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "DLC Ammo"));
             //AllDLCLimitedItems = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "DLC Key Items"), 1);
-            AllDLCMeleeWeapons = new MassWeaponGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "DLC Melee Weapons"));
-            AllDLCShield = new MassWeaponGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "DLC Shields"));
-            AllDLCSpellTools = new MassWeaponGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "DLC Spell Tools"));
-            AllDLCRangedWeapons = new MassWeaponGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "DLC Ranged Weapons"));
-            AllDLCArmor = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "DLC Armor"), 1);
-            AllDLCTalismans = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "DLC Talismans"), 1);
+            AllDLCMeleeWeapons = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "DLC Melee Weapons"), false, MassUpgradeLevel, true);
+            AllDLCShield = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "DLC Shields"), false, MassUpgradeLevel, true);
+            AllDLCSpellTools = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "DLC Spell Tools"), false, MassUpgradeLevel, true);
+            AllDLCRangedWeapons = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "DLC Ranged Weapons"), false, MassUpgradeLevel, true);
+            AllDLCArmor = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "DLC Armor"), false);
+            AllDLCTalismans = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "DLC Talismans"), false);
 
             AddRunes = new RelayCommand((o) =>
             {

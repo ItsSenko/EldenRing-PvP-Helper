@@ -699,5 +699,60 @@ namespace PvPHelper.Core
             }
             return ID;
         }
+
+        public static readonly Dictionary<int, int> SmithyToSomber = new Dictionary<int, int>
+        {
+            { 0, 0 },
+            { 1, 0 },
+            { 2, 1 },
+            { 3, 1 },
+            { 4, 1 },
+            { 5, 2 },
+            { 6, 2 },
+            { 7, 3 },
+            { 8, 3 },
+            { 9, 3 },
+            { 10, 4 },
+            { 11, 4 },
+            { 12, 5 },
+            { 13, 5 },
+            { 14, 5 },
+            { 15, 6 },
+            { 16, 6 },
+            { 17, 7 },
+            { 18, 7 },
+            { 19, 7 },
+            { 20, 8 },
+            { 21, 8 },
+            { 22, 9 },
+            { 23, 9 },
+            { 24, 9 },
+            { 25, 10 }
+        };
+
+        public static readonly Dictionary<int, int> SomberToSmithy = new Dictionary<int, int>
+        {
+            { 0, 0 },
+            { 1, 4 },
+            { 2, 6 },
+            { 3, 9 },
+            { 4, 11 },
+            { 5, 13 },
+            { 6, 16 },
+            { 7, 19 },
+            { 8, 21 },
+            { 9, 24 },
+            { 10, 25 }
+        };
+
+        public static int GetSomberLevel(int level)
+        {
+            return SmithyToSomber[level];
+        }
+
+        public static int GetSmithLevel(int level)
+        {
+            return SomberToSmithy[level];
+        }
     }
 }

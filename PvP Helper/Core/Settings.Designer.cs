@@ -94,5 +94,17 @@ namespace PvPHelper.Core {
                 this["CustomInvasionSpawn"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool ItemGibSingle {
+            get {
+                return ((bool)(this["ItemGibSingle"]));
+            }
+            set {
+                this["ItemGibSingle"] = value;
+            }
+        }
     }
 }

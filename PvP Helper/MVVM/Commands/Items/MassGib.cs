@@ -1,34 +1,34 @@
 ﻿using Erd_Tools;
 using Erd_Tools.Models;
 using Erd_Tools.Models.Items;
+using PvPHelper.Core;
 using PvPHelper.MVVM.Models;
 using PvPHelper.MVVM.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
+using PvPHelper.Core.Extensions;
 using static Erd_Tools.Models.Weapon;
 using CommandBase = PvPHelper.Core.CommandBase;
+using System.Threading;
 
 namespace PvPHelper.MVVM.Commands.Items
 {
     internal class MassGib : CommandBase
     {
-        private string[] exclude = new string[] { };
         private ItemCategory _category;
         private ErdHook _hook;
-        private bool single;
-        private int Amount { get; set; }
+        private bool IsMax { get; set; }
+        private bool IsWeapon { get; set; }
+        private int UpgradeLevel { get; set; }
 
-        public MassGib(ErdHook hook, ItemCategory category, int amount, string[] excludedItems = null, bool single = false)
+        public MassGib(ErdHook hook, ItemCategory category, bool max = true, int upgradeLevel = 0, bool isWeapon = false)
         {
             _hook = hook;
             _category = category;
-            if (excludedItems != null)
-                exclude = excludedItems;
-            this.single = single;
-            Amount = amount;
-            
+            IsMax = max;
+            UpgradeLevel = upgradeLevel;
+            IsWeapon = isWeapon;
         }
         public override void Execute(object? parameter)
         {
@@ -36,46 +36,143 @@ namespace PvPHelper.MVVM.Commands.Items
                 return;
 
             List<ItemSpawnInfo> items = new();
+
             foreach (Item item in _category.Items)
             {
                 if (!Blacklist.blacklistedItems.Any(x => x.ItemID == item.ID && x.CatName == _category.Name))
                 {
-                    if (exclude != null && exclude.Any(x => x == item.Name))
-                        continue;
-
-                    if (!single)
+                    int totalMax = GetMaxStorageAmount(item);
+                    int totalHas = totalMax - item.GetQuantity();
+                    int amount = IsMax ? (totalHas < 0 ? 0 : totalHas) : 1;
+                    
+                    if (item is Weapon weapon)
                     {
-                        if (Amount > item.MaxQuantity)
+                        if (IsWeapon)
                         {
-                            int stacks = (int)MathF.Floor(Amount / item.MaxQuantity);
-                            int remainder = Amount % item.MaxQuantity;
+                            bool isSomber = weapon.MaxUpgrade == 10;
+                            int level = isSomber ? Helpers.GetSomberLevel(UpgradeLevel) : UpgradeLevel;
 
-                            for (int i = 0; i < stacks; i++)
-                            {
-                                ItemSpawnInfo info2 = new(item.ID, item.ItemCategory, item.MaxQuantity, item.MaxQuantity, (int)Infusion.Standard, 0, -1, item.EventID);
-                                items.Add(info2);
-                            }
-
-                            if (remainder > 0)
-                            {
-                                ItemSpawnInfo info2 = new(item.ID, item.ItemCategory, remainder, item.MaxQuantity, (int)Infusion.Standard, 0, -1, item.EventID);
-                                items.Add(info2);
-                            }
-
+                            GiveItem(item);
                             continue;
                         }
-                    }
 
-                    ItemSpawnInfo info = new(item.ID, item.ItemCategory, Amount, item.MaxQuantity, (int)Infusion.Standard, 0, -1, item.EventID);
-                    if (single)
-                        _hook.GetItem(info);
-                    else
-                        items.Add(info);
+                        if (amount > 0)
+                            GiveItem(item, amount);
+                        continue;
+                    }
+                    if (amount > 0)
+                        GiveItem(item, amount);
                 }
             }
 
-            if (!single)
+            if (queue.Count > 0)
+                _hook.GetItem(queue, CancellationToken.None);
+            queue.Clear();
+        }
+
+        List<ItemSpawnInfo> queue = new();
+        private void GiveItem(Item item, int amount = 1)
+        {
+            if (IsWeapon)
+            {
+                if (item is Weapon weapon)
+                {
+                    bool isSomber = weapon.MaxUpgrade == 10;
+                    int level = isSomber ? Helpers.GetSomberLevel(UpgradeLevel) : UpgradeLevel;
+
+                    ItemSpawnInfo info = new(item.ID, item.ItemCategory, 1, item.MaxQuantity, (int)Infusion.Standard, level);
+
+                    if (Settings.Default.ItemGibSingle)
+                        _hook.GetItem(info);
+                    else
+                        queue.Add(info);
+                }
+                return;
+            }
+
+            int stacks = (int)MathF.Floor(amount / item.MaxQuantity);
+            int remainder = amount % item.MaxQuantity;
+
+            List<ItemSpawnInfo> items = new();
+
+            for (int i = 0; i < stacks; i++)
+                items.Add(new(item.ID, item.ItemCategory, item.MaxQuantity, item.MaxQuantity, (int)Infusion.Standard, 0));
+
+            if (remainder > 0)
+                items.Add(new(item.ID, item.ItemCategory, remainder, item.MaxQuantity, (int)Infusion.Standard, 0));
+
+            if (items.Count == 1)
+            {
+                if (Settings.Default.ItemGibSingle)
+                    _hook.GetItem(items[0]);
+                else
+                    queue.AddRange(items);
+                return;
+            }
+
+            if (items.Count <= 0)
+                return;
+            if (Settings.Default.ItemGibSingle)
                 _hook.GetItem(items, CancellationToken.None);
+            else
+                queue.AddRange(items);
+        }
+
+        public int GetMaxStorageAmount(Item item)
+        {
+            if (item is Weapon weapon)
+            {
+                if (weapon.Type is WeaponType.Arrow or WeaponType.Bolt or WeaponType.GreatArrow or WeaponType.Greatbolt)
+                    return item.MaxQuantity + 600;
+                return 1;
+            }
+
+            
+            var maxRepositoryNumOffset = _hook.EquipParamGoods.Fields.FirstOrDefault(x => x.InternalName == "maxRepositoryNum").FieldOffset;
+            var potGroupIdOffset = _hook.EquipParamGoods.Fields.FirstOrDefault(x => x.InternalName == "potGroupId").FieldOffset;
+
+            var row = _hook.EquipParamGoods.Rows.FirstOrDefault(x => x.ID == item.ID);
+
+            if (row == null)
+                return item.MaxQuantity;
+
+            int maxInStorage = row.Param.Pointer.ReadInt16((int)row.DataOffset + maxRepositoryNumOffset);
+            int potGroupId = row.Param.Pointer.ReadInt16((int)row.DataOffset + potGroupIdOffset);
+
+            if (potGroupId < 255)
+                return maxInStorage;
+
+            return maxInStorage + item.MaxQuantity;
+        }
+
+        public bool HasItem(Item item)
+        {
+            List<InventoryEntry>? storageEntries = (List<InventoryEntry>)_hook.GetStorage();
+            List<InventoryEntry>? inventoryEntries = (List<InventoryEntry>)_hook.GetInventory();
+
+            var invEntry = inventoryEntries.FirstOrDefault(x => (x.Name == item.Name) || (x.ItemID == item.ID));
+            var storEntry = storageEntries.FirstOrDefault(x => (x.Name == item.Name) || (x.ItemID == item.ID));
+
+            return invEntry != null || storEntry != null;
+        }
+
+        public Param GetParam(Item.Category category)
+        {
+            switch (category)
+            {
+                case Item.Category.Weapons:
+                    {
+                        return _hook.EquipParamWeapon;
+                    }
+                case Item.Category.Goods:
+                    {
+                        return _hook.EquipParamGoods;
+                    }
+                default:
+                    {
+                        return null;
+                    }
+            }
         }
     }
 }
