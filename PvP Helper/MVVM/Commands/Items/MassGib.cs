@@ -20,15 +20,16 @@ namespace PvPHelper.MVVM.Commands.Items
         private ErdHook _hook;
         private bool IsMax { get; set; }
         private bool IsWeapon { get; set; }
-        private int UpgradeLevel { get; set; }
+        private ItemsViewModel ViewModel { get; set; }
+        private int UpgradeLevel => ViewModel.MassGibUpgLevel;
 
-        public MassGib(ErdHook hook, ItemCategory category, bool max = true, int upgradeLevel = 0, bool isWeapon = false)
+        public MassGib(ErdHook hook, ItemCategory category, ItemsViewModel viewModel, bool max = true, bool isWeapon = false)
         {
             _hook = hook;
             _category = category;
             IsMax = max;
-            UpgradeLevel = upgradeLevel;
             IsWeapon = isWeapon;
+            ViewModel = viewModel;
         }
         public override void Execute(object? parameter)
         {

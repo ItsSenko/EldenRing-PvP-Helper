@@ -37,7 +37,7 @@
                           HorizontalScrollBarVisibility="Hidden" 
                           VerticalScrollBarVisibility="Hidden" 
                           ScrollViewer.CanContentScroll="False">
-                <ItemsControl Grid.Row="1">
+                <ItemsControl Grid.Row="1" ItemsSource="{Binding Credits, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, IsAsync=True}">
 
                     <ItemsControl.Resources>
                         <Style TargetType="{x:Type local:Credit}">
@@ -62,6 +62,51 @@
                                           Link="{Binding Link}"
                                           OnClick="{Binding OnClick}"
                                           CursorType="{Binding CursorType}"/>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+
+        </Grid>
+
+        <Grid Grid.Column="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="75"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="Supporters" 
+                       FontSize="35" 
+                       Foreground="White"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"/>
+
+            <ScrollViewer Grid.Row="1" 
+                          Style="{DynamicResource ScrollViewerStyleDark}" 
+                          HorizontalScrollBarVisibility="Hidden" 
+                          VerticalScrollBarVisibility="Hidden" 
+                          ScrollViewer.CanContentScroll="False">
+                <ItemsControl Grid.Row="1" ItemsSource="{Binding Supporters, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, IsAsync=True}">
+
+                    <ItemsControl.Resources>
+                        <Style TargetType="{x:Type local:Supporter}">
+                            <Setter Property="Margin" Value="16,16,0,0"/>
+                        </Style>
+                    </ItemsControl.Resources>
+
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel Orientation="Horizontal" 
+                                       HorizontalAlignment="Left"
+                                       VerticalAlignment="Top"
+                                       Width="520">
+                            </WrapPanel>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <local:Supporter Title="{Binding Title}"
+                                             TitleBrush="{Binding TitleBrush}"/>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
