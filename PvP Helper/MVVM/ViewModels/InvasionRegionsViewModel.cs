@@ -125,8 +125,8 @@ namespace PvPHelper.MVVM.ViewModels
         {
             Hook = hook;
 
-            ArrayStartPtr = hook.CreateChildPointer(hook.GameDataMan, new int[] { 0x8, 0x918 });
-            ArrayEndPtr = hook.CreateChildPointer(hook.GameDataMan, new int[] { 0x8, 0x920 });
+            ArrayStartPtr = hook.CreateChildPointer(hook.GameDataMan, new int[] { 0x8, 0x938 });
+            ArrayEndPtr = hook.CreateChildPointer(hook.GameDataMan, new int[] { 0x8, 0x940 });
             Array = hook.CreateChildPointer(hook.GameDataMan, 0x8);
 
             RegionManager = new RegionManager();
@@ -437,9 +437,9 @@ namespace PvPHelper.MVVM.ViewModels
             }
 
             ArrayStartPtr.WriteBytes(0x0, bytes.ToArray()); //Write Bytes
-            Array.WriteInt64(0x920, ArrayStartPtr.Resolve().ToInt64() + bytes.Length);
+            Array.WriteInt64(0x940, ArrayStartPtr.Resolve().ToInt64() + bytes.Length);
             CustomPointers.CSMenuMan.WriteByte(0x13C, 0); //Reenable Save
-            Hook.GameMan.WriteByte(0xB42, 1); //Trigger Save Request
+            Hook.GameMan.WriteByte(0xB72, 1); //Trigger Save Request
         }
 
         private void ReadRegions()

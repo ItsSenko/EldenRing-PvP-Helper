@@ -196,7 +196,7 @@ namespace PvPHelper.MVVM.ViewModels
             _viewModels.Add(nameof(PrefabCreatorView), new PrefabCreatorViewModel(_hook));
             _viewModels.Add(nameof(LobbyManagerView), new LobbyManagerViewModel(_hook));
             _viewModels.Add(nameof(MiscView), new MiscViewModel(_hook, _vController));
-            //_viewModels.Add(nameof(InvasionRegionsView), new InvasionRegionsViewModel(_hook));
+            _viewModels.Add(nameof(InvasionRegionsView), new InvasionRegionsViewModel(_hook));
 
             DashboardCommand = new(o => 
             {
