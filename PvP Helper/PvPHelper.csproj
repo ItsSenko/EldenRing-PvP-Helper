@@ -244,6 +244,9 @@
 		  <Generator>SettingsSingleFileGenerator</Generator>
 		  <LastGenOutput>Settings.Designer.cs</LastGenOutput>
 		</None>
+		<None Update="Resources\DLCPlayRegions.json">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
 		<None Update="Resources\Images\Infusions\blood.jpg">
 		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
 		</None>
@@ -3512,7 +3515,7 @@
 		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
 		</None>
 		<None Update="Resources\Version.txt">
-		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
 	</ItemGroup>
 	
@@ -3527,6 +3530,7 @@
 	  <ResourceFiles Remove="Resources\Assembly\ItemGibDisable\ItemGibDisable.asm" />
 	  <ResourceFiles Remove="Resources\Assembly\ItemGibDisable\ItemGibDisableInject.asm" />
 	  <ResourceFiles Remove="Resources\Assembly\OpenMenu.asm" />
+	  <ResourceFiles Remove="Resources\DLCPlayRegions.json" />
 	  <ResourceFiles Remove="Resources\Images\format-list-text.svg" />
 	  <ResourceFiles Remove="Resources\Version.txt" />
 	</ItemGroup>

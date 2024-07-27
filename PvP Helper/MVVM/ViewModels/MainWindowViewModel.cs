@@ -33,6 +33,7 @@ namespace PvPHelper.MVVM.ViewModels
         public RelayCommand RegionManagerCommand { get; set; }
         public RelayCommand Discord { get; set; }
         public RelayCommand Kofi { get; set; }
+        public RelayCommand CreditsCommand { get; set; }
 
         private string _versionText;
         public string VersionText
@@ -50,6 +51,16 @@ namespace PvPHelper.MVVM.ViewModels
                 _currentView = value;
                 OnPropertyChanged();
             }
+        }
+
+        #endregion
+        #region Bindings
+        private Visibility _unsafeVisibility;
+
+        public Visibility UnsafeVisibility
+        {
+            get { return _unsafeVisibility; }
+            set { _unsafeVisibility = value; OnPropertyChanged(); }
         }
 
         #endregion
@@ -91,7 +102,13 @@ namespace PvPHelper.MVVM.ViewModels
                 dialog.ShowDialog();
             }*/
             _hook = new(500, 1000, new(x => (x.MainWindowTitle is "ELDEN RING™" or "ELDEN RING") || x.ProcessName is "eldenring"));
-            
+
+            UnsafeVisibility = Settings.Default.AllowUnsafe ? Visibility.Visible : Visibility.Hidden;
+            Settings.Default.SettingsSaving += (s, e) =>
+            {
+                UnsafeVisibility = Settings.Default.AllowUnsafe ? Visibility.Visible : Visibility.Hidden;
+            };
+
             ExtensionsCore.Initialize();
             commandManager = new();
             _vController = new(Directory.GetCurrentDirectory());
@@ -194,9 +211,10 @@ namespace PvPHelper.MVVM.ViewModels
             _viewModels.Add(nameof(ItemsView), new ItemsViewModel(_hook));
             _viewModels.Add(nameof(ItemGiveView), new ItemGiveViewModel(_hook));
             _viewModels.Add(nameof(PrefabCreatorView), new PrefabCreatorViewModel(_hook));
-            _viewModels.Add(nameof(LobbyManagerView), new LobbyManagerViewModel(_hook));
+            //_viewModels.Add(nameof(LobbyManagerView), new LobbyManagerViewModel(_hook));
             _viewModels.Add(nameof(MiscView), new MiscViewModel(_hook, _vController));
             _viewModels.Add(nameof(InvasionRegionsView), new InvasionRegionsViewModel(_hook));
+            _viewModels.Add(nameof(CreditsView), new CreditViewModel());
 
             DashboardCommand = new(o => 
             {
@@ -230,6 +248,10 @@ namespace PvPHelper.MVVM.ViewModels
             MiscCommand = new(o => 
             {
                 CurrentView = _viewModels[nameof(MiscView)];
+            });
+            CreditsCommand = new(o =>
+            {
+                CurrentView = _viewModels[nameof(CreditsView)];
             });
 
             CurrentView = _viewModels[nameof(DashboardView)];

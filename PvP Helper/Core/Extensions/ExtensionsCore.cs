@@ -75,7 +75,7 @@ namespace PvPHelper.Core.Extensions
             InventoryEntry invEntry = invEntries.FirstOrDefault(x => x.RawItemId == (int)item.ItemCategory + item.ID);
             InventoryEntry storEntry = storEntries.FirstOrDefault(x => x.RawItemId == (int)item.ItemCategory + item.ID);
 
-            if (storEntry == null)
+            if (storEntry == null && invEntry == null)
             {
                 int rawItemID = item.ID + (int)item.ItemCategory;
 
@@ -100,6 +100,11 @@ namespace PvPHelper.Core.Extensions
                 quantity += storEntry.Quantity;
 
             return quantity;
+        }
+
+        public static bool IsSomber(this Weapon weapon)
+        {
+            return weapon.MaxUpgrade == 10;
         }
     }
 }

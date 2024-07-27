@@ -29,6 +29,11 @@ namespace PvPHelper.MVVM.Commands.Misc
                 };
                 dialog.ShowDialog();
             }
+            else
+            {
+                Settings.Default.AllowUnsafe = State;
+                Settings.Default.Save();
+            }
         }
     }
 }

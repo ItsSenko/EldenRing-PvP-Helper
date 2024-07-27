@@ -19,6 +19,7 @@ using System.Windows.Threading;
 using System.IO;
 using System.Diagnostics;
 using System.Windows;
+using Erd_Tools.Models.System.Dlc;
 
 namespace PvPHelper.MVVM.ViewModels
 {
@@ -124,30 +125,19 @@ namespace PvPHelper.MVVM.ViewModels
         public InvasionRegionsViewModel(ErdHook hook)
         {
             Hook = hook;
+            Hook.OnSetup += Hook_OnSetup;
 
             ArrayStartPtr = hook.CreateChildPointer(hook.GameDataMan, new int[] { 0x8, 0x938 });
             ArrayEndPtr = hook.CreateChildPointer(hook.GameDataMan, new int[] { 0x8, 0x940 });
             Array = hook.CreateChildPointer(hook.GameDataMan, 0x8);
 
-            RegionManager = new RegionManager();
-            RegionManager.Regions = RegionManager.GetRegions();
+            
+            
 
-            foreach (PlayRegion region in RegionManager.Regions)
-            {
-                RegionToggle toggle = new();
-                toggle.PlayRegion = region;
-                toggle.Label.Text = region.Name;
-
-                if (!_regions.ContainsKey(region.Map))
-                    _regions.Add(region.Map, new());
-
-                _regions[region.Map].Add(toggle);
-            }
-
-            BaseRegions = _regions;
+            
 
             RegionsItemsSource = new();
-            ContinentItemsSource = _regions.Keys.ToList();
+            
 
             SetupCommands();
 
@@ -156,7 +146,31 @@ namespace PvPHelper.MVVM.ViewModels
             isLoadedTimer.Tick += IsLoadedTimer_Tick;
             isLoadedTimer.Start();
 
-            PresetsItemsSource = RegionManager.GetSavedRegions();
+            
+        }
+
+        private void Hook_OnSetup(object? sender, PHEventArgs e)
+        {
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                RegionManager = new RegionManager();
+                RegionManager.Regions = RegionManager.GetRegions(Hook.CSDlc.DlcAvailable(DlcName.ShadowOfTheErdtree));
+                foreach (PlayRegion region in RegionManager.Regions)
+                {
+                    RegionToggle toggle = new();
+                    toggle.PlayRegion = region;
+                    toggle.Label.Text = region.Name;
+
+                    if (!_regions.ContainsKey(region.Map))
+                        _regions.Add(region.Map, new());
+
+                    _regions[region.Map].Add(toggle);
+                }
+
+                BaseRegions = _regions;
+                ContinentItemsSource = _regions.Keys.ToList();
+                PresetsItemsSource = RegionManager.GetSavedRegions();
+            });
         }
 
         private void SetupCommands()
@@ -293,6 +307,9 @@ namespace PvPHelper.MVVM.ViewModels
 
             RefreshPresetsCommand = new(o => 
             {
+                if (!Hook.Hooked || !Hook.Setup)
+                    return;
+
                 IsRefreshing = true;
                 PresetsItemsSource = RegionManager.GetSavedRegions();
                 SelectedPreset = null;
@@ -352,12 +369,6 @@ namespace PvPHelper.MVVM.ViewModels
                     HasLoaded = false;
                 }
                 return;
-            }
-
-            if (!HasLoaded)
-            {
-                ReadRegions();
-                HasLoaded = true;
             }
         }
 
@@ -427,7 +438,7 @@ namespace PvPHelper.MVVM.ViewModels
                 finalStr = finalStr + $"\n {str}";
             }
 
-            MessageBox.Show(finalStr);
+            //MessageBox.Show(finalStr);
             Span<byte> bytes = MemoryMarshal.Cast<int, byte>(savedRegionIds.ToArray().AsSpan());
 
             if (bytes.Length >= 1024)

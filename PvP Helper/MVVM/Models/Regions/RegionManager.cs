@@ -14,17 +14,25 @@ namespace PvPHelper.MVVM.Models.Regions
     {
         public List<PlayRegion> Regions { get; set; }
         private string RegionsPath { get; set; }
+        private string DLCRegionsPath { get; set; }
         public RegionManager()
         {
             Regions = new List<PlayRegion>();
             RegionsPath = Path.Combine(Directory.GetCurrentDirectory(), "Resources/PlayRegions.json");
+            DLCRegionsPath = Path.Combine(Directory.GetCurrentDirectory(), "Resources/DLCPlayRegions.json");
         }
 
-        public List<PlayRegion> GetRegions()
+        public List<PlayRegion> GetRegions(bool includeDLC = false)
         {
             if (Regions.Count != 0)
                 return Regions;
-            Regions = JsonConvert.DeserializeObject<List<PlayRegion>>(File.ReadAllText(RegionsPath));
+            List<PlayRegion> regions = new();
+            regions.AddRange(JsonConvert.DeserializeObject<List<PlayRegion>>(File.ReadAllText(RegionsPath)));
+
+            if (includeDLC)
+                regions.AddRange(JsonConvert.DeserializeObject<List<PlayRegion>>(File.ReadAllText(DLCRegionsPath)));
+
+            Regions = regions;
             return Regions;
         }
 

@@ -20,7 +20,7 @@ namespace PvPHelper.Console.Commands
             RequiresParamsString = new string[] { "settingName", "value" };
         }
 
-        private string[] settingNames = { "AutoUpdate", "AllowUnsafe", "SpawnAnimation", "DebugLogs", "InvasionPhantomID" };
+        private string[] settingNames = { "AutoUpdate", "AllowUnsafe", "SpawnAnimation", "DebugLogs", "InvasionPhantomID", "ItemGibSingle" };
 
         protected override void OnTriggerCommandWithParameters(List<string> parameters)
         {
@@ -100,6 +100,16 @@ namespace PvPHelper.Console.Commands
                         }
                         else
                             throw new InvalidCastException($"Unable to parse '{value}' to int.");
+                        break;
+                    }
+                case "itemgibsingle":
+                    {
+                        bool state = value.ToLower() is "true" or "1" ? true : false;
+
+                        Settings.Default.ItemGibSingle = state;
+                        Settings.Default.Save();
+
+                        CommandManager.Log($"Saved ItemGibSingle state to: {state}");
                         break;
                     }
             }

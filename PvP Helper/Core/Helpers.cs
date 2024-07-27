@@ -102,6 +102,12 @@ namespace PvPHelper.Core
             return false;
         }
 
+        public static Brush GetColor(string color)
+        {
+            var bc = new BrushConverter();
+            return (Brush)bc.ConvertFrom(color);
+        }
+
         public static IntPtr GetEquipGoodsEntryParamPtr(int id)
         {
             var hook = ExtensionsCore.GetMainHook();

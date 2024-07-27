@@ -19,9 +19,9 @@
                                     CornerRadius="20"
                                     Opacity="0"
                                 >
-                            <Border.Effect>
+                            <!--<Border.Effect>
                                 <DropShadowEffect BlurRadius="20" ShadowDepth="0"/>
-                            </Border.Effect>
+                            </Border.Effect>-->
                             <Border.Background>
                                 <SolidColorBrush Color="{DynamicResource Highlight}"/>
                             </Border.Background>
@@ -32,9 +32,9 @@
                                     Height="40"
                                     BorderThickness="2"
                                     CornerRadius="20">
-                            <Border.Effect>
+                            <!--<Border.Effect>
                                 <DropShadowEffect BlurRadius="20" ShadowDepth="0"/>
-                            </Border.Effect>
+                            </Border.Effect>-->
                             <Border.Background>
                                 <SolidColorBrush Color="{DynamicResource Lighter}"/>
                             </Border.Background>

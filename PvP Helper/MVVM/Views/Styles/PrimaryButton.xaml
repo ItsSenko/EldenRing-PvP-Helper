@@ -17,9 +17,9 @@
                                 BorderThickness="{TemplateBinding BorderThickness}"
                                 CornerRadius="7"
                             >
-                        <Border.Effect>
+                        <!--<Border.Effect>
                             <DropShadowEffect BlurRadius="20" ShadowDepth="0" Opacity="0.3"/>
-                        </Border.Effect>
+                        </Border.Effect>-->
                         <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </Border>
                     <ControlTemplate.Triggers>

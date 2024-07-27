@@ -57,7 +57,7 @@
                 <StackPanel.Resources>
                     <Style TargetType="{x:Type local:TabButton}">
                         <Setter Property="Margin" Value="10,5,0,5"/>
-                        <Setter Property="Height" Value="80"/>
+                        <Setter Property="Height" Value="75"/>
                     </Style>
                 </StackPanel.Resources>
                 <local:TabButton Label="Dashboard" 
@@ -75,12 +75,14 @@
                 <!--<local:TabButton Label="Lobby Manager" 
                                  UriSource="Resources/Images/format-list-text.svg"
                                  BtnCommand="{Binding LobbyManagerCommand}"/>-->
-                <local:TabButton Label="Region Manager" 
-                                 UriSource="Resources/Images/earth.svg"
-                                 BtnCommand="{Binding RegionManagerCommand}"/>
+                
                 <local:TabButton Label="Misc" 
                                  UriSource="Resources/Images/misc-dots.svg"
                                  BtnCommand="{Binding MiscCommand}"/>
+                <local:TabButton Label="Region Manager" 
+                                 UriSource="Resources/Images/earth.svg"
+                                 BtnCommand="{Binding RegionManagerCommand}"
+                                 Visibility="{Binding UnsafeVisibility, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
 
             </StackPanel>
@@ -107,9 +109,13 @@
                     </Button>
                 </StackPanel>
 
+                <StackPanel  VerticalAlignment="Bottom" Margin="5,0,0,0" Orientation="Horizontal" Height="50">
+                    <TextBlock Text="{Binding VersionText, UpdateSourceTrigger=PropertyChanged}" FontSize="27"
+                           Foreground="{DynamicResource LighterTextBrush}" VerticalAlignment="Bottom" Margin="0,0,0,10"/>
 
-                <TextBlock Text="{Binding VersionText, UpdateSourceTrigger=PropertyChanged}" FontSize="30"
-                           Foreground="{DynamicResource LighterTextBrush}" Margin="10,181,11,14"/>
+                    <Button Style="{DynamicResource PrimaryButton}" Content="Credits" Width="95" Command="{Binding CreditsCommand}"/>
+                </StackPanel>
+                
             </Grid>
             <!--<Image x:Name="AppIcon" Source="/Resources/Images/shunter.png" Stretch="Uniform"  VerticalAlignment="Center" HorizontalAlignment="Center" Height="96" Width="99"/>-->
 

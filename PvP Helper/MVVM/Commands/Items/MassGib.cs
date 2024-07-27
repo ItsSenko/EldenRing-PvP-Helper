@@ -40,26 +40,19 @@ namespace PvPHelper.MVVM.Commands.Items
             foreach (Item item in _category.Items)
             {
                 if (!Blacklist.blacklistedItems.Any(x => x.ItemID == item.ID && x.CatName == _category.Name))
-                {
+                {   
+                    if (item is Weapon weapon && IsWeapon)
+                    {
+                        int level = weapon.IsSomber() ? Helpers.GetSomberLevel(UpgradeLevel) : UpgradeLevel;
+
+                        GiveItem(item);
+                        continue;
+                    }
+
                     int totalMax = GetMaxStorageAmount(item);
                     int totalHas = totalMax - item.GetQuantity();
                     int amount = IsMax ? (totalHas < 0 ? 0 : totalHas) : 1;
-                    
-                    if (item is Weapon weapon)
-                    {
-                        if (IsWeapon)
-                        {
-                            bool isSomber = weapon.MaxUpgrade == 10;
-                            int level = isSomber ? Helpers.GetSomberLevel(UpgradeLevel) : UpgradeLevel;
 
-                            GiveItem(item);
-                            continue;
-                        }
-
-                        if (amount > 0)
-                            GiveItem(item, amount);
-                        continue;
-                    }
                     if (amount > 0)
                         GiveItem(item, amount);
                 }

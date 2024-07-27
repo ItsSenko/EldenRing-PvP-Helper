@@ -126,7 +126,7 @@
                                 <Setter Property="Margin" Value="0,0,0,0"/>
                             </Style>
                         </StackPanel.Resources>
-                        <Button Content="Create New" Width="80" Height="40" Style="{StaticResource PrimaryButton}"
+                        <Button Content="Create&#x0a;New" Width="80" Height="40" Style="{StaticResource PrimaryButton}" TextBlock.TextAlignment="Center"
                                 Command="{Binding CreateNew}" Cursor="Hand"/>
                         <Button Content="Save" Width="80" Height="40" Style="{StaticResource PrimaryButton}" Command="{Binding Save}" Cursor="Hand"/>
                         <Button Content="Load" Width="80" Height="40" Style="{StaticResource PrimaryButton}" Command="{Binding Load}" Cursor="Hand"/>
