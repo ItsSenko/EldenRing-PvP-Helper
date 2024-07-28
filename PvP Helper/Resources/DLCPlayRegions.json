@@ -1,0 +1,855 @@
+﻿[
+  {
+    "Map": "Realm of Shadow",
+    "Name": "Belurat: Theatre of the Divine Beast",
+    "PlayRegionID": 2000000,
+    "BonfireFlags": [
+      72000
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": true,
+    "IsActive": false
+  },
+  {
+    "Map": "Realm of Shadow",
+    "Name": "Belurat: Belurat, Tower Settlement",
+    "PlayRegionID": 2000001,
+    "BonfireFlags": [
+      72001,
+      72002
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Realm of Shadow",
+    "Name": "Belurat: Stagefront",
+    "PlayRegionID": 2000002,
+    "BonfireFlags": [
+      72003
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Realm of Shadow",
+    "Name": "Enir-Ilim: Gate of Divinity",
+    "PlayRegionID": 2001000,
+    "BonfireFlags": [
+      72010
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": true,
+    "IsActive": false
+  },
+  {
+    "Map": "Realm of Shadow",
+    "Name": "Enir-Ilim: Outer Wall",
+    "PlayRegionID": 2001001,
+    "BonfireFlags": [
+      72012,
+      72013
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Realm of Shadow",
+    "Name": "Enir-Ilim: Spiral Rise",
+    "PlayRegionID": 2001004,
+    "BonfireFlags": [
+      72014
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Realm of Shadow",
+    "Name": "Enir-Ilim: Cleansing Chamber Anteroom",
+    "PlayRegionID": 2001005,
+    "BonfireFlags": [
+      72015
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Realm of Shadow",
+    "Name": "Enir-Ilim: Divine Gate Front Staircase",
+    "PlayRegionID": 2001007,
+    "BonfireFlags": [
+      72016
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Realm of Shadow",
+    "Name": "Shadow Keep: Main Gate",
+    "PlayRegionID": 6900000,
+    "BonfireFlags": [
+      72102
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Realm of Shadow",
+    "Name": "Shadow Keep: Main Gate Plaza",
+    "PlayRegionID": 6900010,
+    "BonfireFlags": [
+      72101
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": true,
+    "IsActive": false
+  },
+  {
+    "Map": "Realm of Shadow",
+    "Name": "Shadow Keep: Church District Entrance",
+    "PlayRegionID": 2100011,
+    "BonfireFlags": [
+      72106
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Realm of Shadow",
+    "Name": "Shadow Keep: Sunken Chapel",
+    "PlayRegionID": 2100014,
+    "BonfireFlags": [
+      72107
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Realm of Shadow",
+    "Name": "Shadow Keep: Tree-Worship Sanctum",
+    "PlayRegionID": 2100015,
+    "BonfireFlags": [
+      72108,
+      72109
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Realm of Shadow",
+    "Name": "Storehouse: Messmer's Dark Chamber",
+    "PlayRegionID": 2101000,
+    "BonfireFlags": [
+      72110
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": true,
+    "IsActive": false
+  },
+  {
+    "Map": "Realm of Shadow",
+    "Name": "Storehouse: First Floor",
+    "PlayRegionID": 2101001,
+    "BonfireFlags": [
+      72111
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Realm of Shadow",
+    "Name": "Storehouse: Fourth Floor",
+    "PlayRegionID": 2101003,
+    "BonfireFlags": [
+      72112
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Realm of Shadow",
+    "Name": "Storehouse: Seventh Floor",
+    "PlayRegionID": 2101004,
+    "BonfireFlags": [
+      72113
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Realm of Shadow",
+    "Name": "Storehouse: Dark Chamber Entrance",
+    "PlayRegionID": 2101006,
+    "BonfireFlags": [
+      72114
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Realm of Shadow",
+    "Name": "Storehouse: Back Section",
+    "PlayRegionID": 2101011,
+    "BonfireFlags": [
+      72116
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Realm of Shadow",
+    "Name": "Storehouse: Loft",
+    "PlayRegionID": 2101012,
+    "BonfireFlags": [
+      72117
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Realm of Shadow",
+    "Name": "Storehouse: West Rampart",
+    "PlayRegionID": 2102001,
+    "BonfireFlags": [
+      72120
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Realm of Shadow",
+    "Name": "Stone Coffin Fissure: Garden of Deep Purple",
+    "PlayRegionID": 2200000,
+    "BonfireFlags": [
+      72200
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": true,
+    "IsActive": false
+  },
+  {
+    "Map": "Realm of Shadow",
+    "Name": "Stone Coffin Fissure: Stone Coffin Fissure",
+    "PlayRegionID": 2200001,
+    "BonfireFlags": [
+      72201
+    ],
+    "IsOpenWorld": true,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Realm of Shadow",
+    "Name": "Stone Coffin Fissure: Fissure Cross",
+    "PlayRegionID": 2200002,
+    "BonfireFlags": [
+      72202
+    ],
+    "IsOpenWorld": true,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Realm of Shadow",
+    "Name": "Stone Coffin Fissure: Fissure Waypoint & Depths",
+    "PlayRegionID": 2200004,
+    "BonfireFlags": [
+      72203,
+      72204
+    ],
+    "IsOpenWorld": true,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Realm of Shadow",
+    "Name": "Midra's Manse: Discussion Chamber",
+    "PlayRegionID": 6860010,
+    "BonfireFlags": [
+      72800
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": true,
+    "IsActive": false
+  },
+  {
+    "Map": "Realm of Shadow",
+    "Name": "Midra's Manse: Manse Hall",
+    "PlayRegionID": 6860001,
+    "BonfireFlags": [
+      72801
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Realm of Shadow",
+    "Name": "Midra's Manse: Midra's Library",
+    "PlayRegionID": 6860004,
+    "BonfireFlags": [
+      72802,
+      72803
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Realm of Shadow",
+    "Name": "Gravesite Plain: Fog Rift Catacombs",
+    "PlayRegionID": 4000001,
+    "BonfireFlags": [
+      74000
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": true,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Realm of Shadow",
+    "Name": "Gravesite Plain: Ruined Forge Lava Intake",
+    "PlayRegionID": 4200090,
+    "BonfireFlags": [
+      74200
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": true,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Realm of Shadow",
+    "Name": "Gravesite Plain: Rivermouth Cave",
+    "PlayRegionID": 4300001,
+    "BonfireFlags": [
+      74300
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": true,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Realm of Shadow",
+    "Name": "Gravesite Plain: Dragon's Pit",
+    "PlayRegionID": 4200090,
+    "BonfireFlags": [
+      74301
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": true,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Realm of Shadow",
+    "Name": "Gravesite Plain: Dragon's Pit Terminus",
+    "PlayRegionID": 4301090,
+    "BonfireFlags": [
+      74351
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Realm of Shadow",
+    "Name": "Gravesite Plain: Gravesite Plain",
+    "PlayRegionID": 6800000,
+    "BonfireFlags": [
+      76800,
+      76801,
+      76802,
+      76803,
+      76804,
+      76805
+    ],
+    "IsOpenWorld": true,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Realm of Shadow",
+    "Name": "Gravesite Plain: Ellac River Cave",
+    "PlayRegionID": 6810001,
+    "BonfireFlags": [
+      76812
+    ],
+    "IsOpenWorld": true,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Realm of Shadow",
+    "Name": "Gravesite Plain: Pillar Path",
+    "PlayRegionID": 6810000,
+    "BonfireFlags": [
+      76810,
+      76811,
+      76813
+    ],
+    "IsOpenWorld": true,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Realm of Shadow",
+    "Name": "Gravesite Plain: Belurat Gaol",
+    "PlayRegionID": 4100001,
+    "BonfireFlags": [
+      74100
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": true,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Realm of Shadow",
+    "Name": "Gravesite Plain: Ellac River Downstream",
+    "PlayRegionID": 6810090,
+    "BonfireFlags": [
+      76830
+    ],
+    "IsOpenWorld": true,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Realm of Shadow",
+    "Name": "Charo's Hidden Grave: Charo's Hidden Grave",
+    "PlayRegionID": 6840000,
+    "BonfireFlags": [
+      76841
+    ],
+    "IsOpenWorld": true,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Realm of Shadow",
+    "Name": "Charo's Hidden Grave: Lamenter's Gaol",
+    "PlayRegionID": 4102001,
+    "BonfireFlags": [
+      74102
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": true,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Realm of Shadow",
+    "Name": "Castle Ensis: Castle Ensis",
+    "PlayRegionID": 6820000,
+    "BonfireFlags": [
+      76821,
+      76822
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Realm of Shadow",
+    "Name": "Castle Ensis: Ensis Moongazing Grounds",
+    "PlayRegionID": 6820010,
+    "BonfireFlags": [
+      76823
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": true,
+    "IsActive": false
+  },
+  {
+    "Map": "Realm of Shadow",
+    "Name": "Cerulean Coast: Cerulean Coast",
+    "PlayRegionID": 6830000,
+    "BonfireFlags": [
+      76831,
+      76832,
+      76834,
+      76835
+    ],
+    "IsOpenWorld": true,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Realm of Shadow",
+    "Name": "Cerulean Coast: The Fissure",
+    "PlayRegionID": 6830002,
+    "BonfireFlags": [
+      76833
+    ],
+    "IsOpenWorld": true,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Realm of Shadow",
+    "Name": "Abyssal Woods: Abyssal Woods",
+    "PlayRegionID": 6860000,
+    "BonfireFlags": [
+      76860,
+      76861,
+      76863,
+      76864
+    ],
+    "IsOpenWorld": true,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Realm of Shadow",
+    "Name": "Abyssal Woods: Forsaken Graveyard",
+    "PlayRegionID": 4002000,
+    "BonfireFlags": [
+      76862
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": true,
+    "IsActive": false
+  },
+  {
+    "Map": "Realm of Shadow",
+    "Name": "Foot of the Jagged Peak",
+    "PlayRegionID": 6841000,
+    "BonfireFlags": [
+      76840
+    ],
+    "IsOpenWorld": true,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Realm of Shadow",
+    "Name": "Jagged Peak: Mountainside",
+    "PlayRegionID": 6850000,
+    "BonfireFlags": [
+      76850,
+      76851
+    ],
+    "IsOpenWorld": true,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Realm of Shadow",
+    "Name": "Jagged Peak: Summit",
+    "PlayRegionID": 6850001,
+    "BonfireFlags": [
+      76852
+    ],
+    "IsOpenWorld": true,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Realm of Shadow",
+    "Name": "Jagged Peak: Rest of the Dread Dragon",
+    "PlayRegionID": 6850010,
+    "BonfireFlags": [
+      76853
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": true,
+    "IsActive": false
+  },
+  {
+    "Map": "Realm of Shadow",
+    "Name": "Ancient Ruins of Rauh: West",
+    "PlayRegionID": 6941000,
+    "BonfireFlags": [
+      76942,
+      76943,
+      76944
+    ],
+    "IsOpenWorld": true,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Realm of Shadow",
+    "Name": "Ancient Ruins of Rauh: Church of the Bud",
+    "PlayRegionID": 6941010,
+    "BonfireFlags": [
+      76945
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": true,
+    "IsActive": false
+  },
+  {
+    "Map": "Realm of Shadow",
+    "Name": "Ancient Ruins of Rauh: East",
+    "PlayRegionID": 6940000,
+    "BonfireFlags": [
+      76940,
+      76941
+    ],
+    "IsOpenWorld": true,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Realm of Shadow",
+    "Name": "Rauh Base: Ancient Ruins",
+    "PlayRegionID": 6901000,
+    "BonfireFlags": [
+      76912,
+      76913,
+      76914
+    ],
+    "IsOpenWorld": true,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Realm of Shadow",
+    "Name": "Rauh Base: Scorpion River Catacombs",
+    "PlayRegionID": 4001001,
+    "BonfireFlags": [
+      74001
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": true,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Realm of Shadow",
+    "Name": "Rauh Base: Taylew's Ruined Forge",
+    "PlayRegionID": 4203090,
+    "BonfireFlags": [
+      74203
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": true,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Realm of Shadow",
+    "Name": "Scadu Altus: Finger Birthing Grounds",
+    "PlayRegionID": 2500000,
+    "BonfireFlags": [
+      72500
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": true,
+    "IsActive": false
+  },
+  {
+    "Map": "Realm of Shadow",
+    "Name": "Scadu Altus: Scadu Altus",
+    "PlayRegionID": 6900000,
+    "BonfireFlags": [
+      76900,
+      76902,
+      76907,
+      76908,
+      76909,
+      76910,
+      76911
+    ],
+    "IsOpenWorld": true,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Realm of Shadow",
+    "Name": "Scadu Altus: Bonny Village",
+    "PlayRegionID": 6902000,
+    "BonfireFlags": [
+      76903,
+      76904,
+      76905,
+      76906
+    ],
+    "IsOpenWorld": true,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Realm of Shadow",
+    "Name": "Scadu Altus: Castle Watering Hole",
+    "PlayRegionID": 6903090,
+    "BonfireFlags": [
+      76916,
+      76917
+    ],
+    "IsOpenWorld": true,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Realm of Shadow",
+    "Name": "Scadu Altus: Recluses' River Downstream",
+    "PlayRegionID": 6903000,
+    "BonfireFlags": [
+      76918
+    ],
+    "IsOpenWorld": true,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Realm of Shadow",
+    "Name": "Scadu Altus: Darklight Catacombs",
+    "PlayRegionID": 4002001,
+    "BonfireFlags": [
+      74002
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": true,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Realm of Shadow",
+    "Name": "Scadu Altus: Bonny Gaol",
+    "PlayRegionID": 4101001,
+    "BonfireFlags": [
+      74101
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": true,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Realm of Shadow",
+    "Name": "Scadu Altus: Ruined Forge of Starfall Past",
+    "PlayRegionID": 4202090,
+    "BonfireFlags": [
+      74202
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": true,
+    "IsBoss": false,
+    "IsActive": false
+  },
+  {
+    "Map": "Realm of Shadow",
+    "Name": "Scaduview: Scadutree Base",
+    "PlayRegionID": 2100010,
+    "BonfireFlags": [
+      76960
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": true,
+    "IsActive": false
+  },
+  {
+    "Map": "Realm of Shadow",
+    "Name": "Scaduview: Scaduview",
+    "PlayRegionID": 2101010,
+    "BonfireFlags": [
+      76930
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": true,
+    "IsActive": false
+  },
+  {
+    "Map": "Realm of Shadow",
+    "Name": "Scaduview: Shadow Keep, Back Gate",
+    "PlayRegionID": 2101013,
+    "BonfireFlags": [
+      76931
+    ],
+    "IsOpenWorld": false,
+    "IsDungeon": false,
+    "IsBoss": true,
+    "IsActive": false
+  },
+  {
+    "Map": "Realm of Shadow",
+    "Name": "Scaduview: Hinterland",
+    "PlayRegionID": 6930000,
+    "BonfireFlags": [
+      76935,
+      76936,
+      76937
+    ],
+    "IsOpenWorld": true,
+    "IsDungeon": false,
+    "IsBoss": false,
+    "IsActive": false
+  }
+]

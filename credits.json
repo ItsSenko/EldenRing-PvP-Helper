@@ -1,0 +1,56 @@
+[
+    {
+        "Title": "Senko",
+        "Details": "Main Developer",
+        "Color": "#A953FF",
+        "Link": "https://linktr.ee/senkopur"
+    },
+    {
+        "Title": "CatShark",
+        "Details": "Developer/UI Designer",
+        "Color": "#A953FF",
+        "Link": "https://linktr.ee/catsharku"
+    },
+    {
+        "Title": "Nordgaren",
+        "Details": "Erd-Tools creator and coding help",
+        "Color": "#FFFFFF",
+        "Link": "https://github.com/Nordgaren/Erd-Tools"
+    },
+    {
+        "Title": "The Grand Arhcives",
+        "Details": "Pointers and helpful scripts in their table",
+        "Color": "#FFFFFF",
+        "Link": "https://github.com/The-Grand-Archives/Elden-Ring-CT-TGA"
+    },
+    {
+        "Title": "Amirah",
+        "Details": "Coding help and providing game assets",
+        "Color": "#FFFFFF",
+        "Link": "https://www.youtube.com/@Amir0"
+    },
+    {
+        "Title": "WaZues",
+        "Details": "Testing help",
+        "Color": "#FFFFFF",
+        "Link": "https://www.youtube.com/@WaZeusPvP"
+    },
+    {
+        "Title": "Frosty",
+        "Details": "Testing help",
+        "Color": "#FFFFFF",
+        "Link": "https://www.twitch.tv/frostycomes"
+    },
+    {
+        "Title": "Steelovsky",
+        "Details": "Testing help and video coverage",
+        "Color": "#FFFFFF",
+        "Link": "https://www.youtube.com/@Steelovsky"
+    },
+    {
+        "Title": "Indura",
+        "Details": "Coding help and providing scripts",
+        "Color": "#FFFFFF",
+        "Link": "https://github.com/lndura"
+    }
+]

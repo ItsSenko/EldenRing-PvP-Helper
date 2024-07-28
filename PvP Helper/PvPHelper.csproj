@@ -1,0 +1,3565 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+	  <IncludeAllContentForSelfExtract>true</IncludeAllContentForSelfExtract>
+	  <StartupObject>PvPHelper.Program</StartupObject>
+  </PropertyGroup>
+  <ItemGroup>
+
+    <None Remove="MVVM\Views\UserControls\grave_scythe.png" />
+
+    <None Remove="Resources\Assembly\AddRunes.asm" />
+
+    <None Remove="Resources\Assembly\FreeCamCode.asm" />
+
+    <None Remove="Resources\Assembly\FreeCamInject.asm" />
+
+    <None Remove="Resources\Assembly\GetEquipParamGoodsEntry.asm" />
+
+    <None Remove="Resources\Assembly\GetQuantity.asm" />
+
+    <None Remove="Resources\Assembly\ItemGibDisable\ItemGibDisable.asm" />
+
+    <None Remove="Resources\Assembly\ItemGibDisable\ItemGibDisableInject.asm" />
+
+    <None Remove="Resources\Assembly\KickOutFunction.asm" />
+
+    <None Remove="Resources\Assembly\OpenMenu.asm" />
+
+    <None Remove="Resources\Assembly\OpenShopMenu.asm" />
+
+    <None Remove="Resources\Images\arrowleft.png" />
+
+    <None Remove="Resources\Images\arrowright.png" />
+
+    <None Remove="Resources\Images\attached.svg" />
+    <None Remove="Resources\Images\auto-fix.svg" />
+    <None Remove="Resources\Images\Bag.svg" />
+    <None Remove="Resources\Images\Bags.svg" />
+    <None Remove="Resources\Images\Discord.png" />
+    <None Remove="Resources\Images\earth.svg" />
+    <None Remove="Resources\Images\file-document-alert.svg" />
+    <None Remove="Resources\Images\format-list-text.svg" />
+    <None Remove="Resources\Images\grave_scythe.png" />
+    <None Remove="Resources\Images\hospital.svg" />
+
+    <None Remove="Resources\Blacklist.json" />
+    <None Remove="Resources\ConsumableIDS.txt" />
+    <None Remove="Resources\Images\auto-fix.svg" />
+    <None Remove="Resources\Images\file-document-alert.svg" />
+    <None Remove="Resources\Images\help-circle.svg" />
+    <None Remove="Resources\Images\hospital.svg" />
+    <None Remove="Resources\Images\Items\Radagon_s Icon - MENU_Knowledge_18470.png" />
+    <None Remove="Resources\Images\kofi.png" />
+    <None Remove="Resources\Images\link-box-outline.svg" />
+    <None Remove="Resources\Images\link-box.svg" />
+
+    <None Remove="Resources\Images\magnify.svg" />
+    <None Remove="Resources\Images\minus-circle-outline.svg" />
+    <None Remove="Resources\Images\minus-circle.svg" />
+    <None Remove="Resources\Images\misc-dots.svg" />
+    <None Remove="Resources\Images\not_attached.svg" />
+    <None Remove="Resources\Images\plus-circle-outline.svg" />
+    <None Remove="Resources\Images\plus-circle.svg" />
+    <None Remove="Resources\Images\refresh.svg" />
+    <None Remove="Resources\Images\serpent-hunter_greatspear_weapon_elden_ring_wiki_guide_200px.png" />
+    <None Remove="Resources\Images\shunter.ico" />
+    <None Remove="Resources\Images\shunter.png" />
+    <None Remove="Resources\Images\tab-plus.svg" />
+    <None Remove="Resources\Images\tab-search.svg" />
+    <None Remove="Resources\Images\view-dashboard-variant.svg" />
+    <None Remove="Resources\Images\water.svg" />
+    <None Remove="Resources\MapEventFlagIds.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\Images\arrowleft.png" />
+    <Resource Include="Resources\Images\arrowright.png" />
+    <Resource Include="Resources\Images\attached.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Content Include="Resources\Images\auto-fix.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Bag.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Bags.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\earth.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\file-document-alert.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\format-list-text.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="Resources\Images\Kofi.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\not_attached.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\Discord.png" />
+    <Resource Include="Resources\Images\shunter.ico" />
+    <Resource Include="Resources\Images\shunter.png" />
+    <EmbeddedResource Include="Resources\Assembly\AddRunes.asm" />
+    <EmbeddedResource Include="Resources\Assembly\FreeCamCode.asm" />
+    <EmbeddedResource Include="Resources\Assembly\FreeCamInject.asm" />
+    <EmbeddedResource Include="Resources\Assembly\GetEquipParamGoodsEntry.asm" />
+    <EmbeddedResource Include="Resources\Assembly\GetQuantity.asm" />
+    <EmbeddedResource Include="Resources\Assembly\ItemGibDisable\ItemGibDisable.asm" />
+    <EmbeddedResource Include="Resources\Assembly\ItemGibDisable\ItemGibDisableInject.asm" />
+    <EmbeddedResource Include="Resources\Assembly\KickOutFunction.asm" />
+    <EmbeddedResource Include="Resources\Assembly\OpenMenu.asm" />
+    <EmbeddedResource Include="Resources\Assembly\OpenShopMenu.asm" />
+
+    <Resource Include="Resources\Images\grave_scythe.png" />
+    
+    <Content Include="Resources\Images\help-circle.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+
+    <Content Include="Resources\Images\hospital.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\magnify.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\minus-circle-outline.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\minus-circle.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\misc-dots.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\plus-circle-outline.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\plus-circle.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\refresh.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\tab-plus.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\tab-search.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\view-dashboard-variant.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\water.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Blacklist.json" />
+    <EmbeddedResource Include="Resources\ConsumableIDS.txt" />
+    <EmbeddedResource Include="Resources\MapEventFlagIds.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.1" />
+    <PackageReference Include="Extended.Wpf.Toolkit" Version="4.5.0" />
+    <PackageReference Include="gong-wpf-dragdrop" Version="3.2.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="PixiEditor.ColorPicker" Version="3.3.1" />
+    <PackageReference Include="SharpVectors" Version="1.8.1" />
+    <PackageReference Include="VirtualizingWrapPanel" Version="2.0.6" />
+  </ItemGroup>
+
+  <ItemGroup>
+
+    <Compile Update="Core\Settings.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+
+    <Compile Update="MVVM\Views\PrefabCreatorView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="MVVM\Views\ItemsView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="MVVM\Dialogs\DropDownDialog.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+    </Page>
+    <Page Update="MVVM\Views\PrefabCreatorView.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="MVVM\Views\ItemsView.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="MVVM\Views\UserControls\LabeledCircleToggle - Copy.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+    </Page>
+    <Page Update="MVVM\Views\UserControls\SearchableTextBox.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+    </Page>
+
+  </ItemGroup>
+
+	<ItemGroup>
+		<Content Update="keystone.dll">
+			<CopyToPublishDirectory>Never</CopyToPublishDirectory>
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+		</Content>
+	</ItemGroup>
+	
+	<ItemGroup>
+		<None Update="Builds\Simple_Arcane_Build.json">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Builds\Simple_Strength_Build.json">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="C:\Users\Nord\.nuget\packages\keystoneengine.csharp\0.9.1.1\build\x64\keystone.dll">
+			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Update="C:\Users\Nord\.nuget\packages\keystoneengine.csharp\0.9.1.1\build\x86\keystone.dll">
+			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Core\Settings.settings">
+		  <Generator>SettingsSingleFileGenerator</Generator>
+		  <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+		</None>
+		<None Update="Resources\DLCPlayRegions.json">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Infusions\blood.jpg">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Infusions\cold.jpg">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Infusions\fire.jpg">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Infusions\flameart.jpg">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Infusions\heavy.jpg">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Infusions\keen.jpg">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Infusions\lightning.jpg">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Infusions\magic.jpg">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Infusions\occult.jpg">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Infusions\poison.jpg">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Infusions\quality.jpg">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Infusions\sacred.jpg">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Infusions\standard.jpg">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Academy Glintstone Staff - MENU_Knowledge_11212.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Alabaster Lord_s Sword - MENU_Knowledge_10087.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Alberich_s Bracers - MENU_Knowledge_13092.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Alberich_s Pointed Hat %28Altered%29 - MENU_Knowledge_13100.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Alberich_s Pointed Hat - MENU_Knowledge_13090.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Alberich_s Robe %28Altered%29 - MENU_Knowledge_13101.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Alberich_s Robe - MENU_Knowledge_13091.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Alberich_s Trousers - MENU_Knowledge_13093.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Albinauric Bow - MENU_Knowledge_11041.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Albinauric Mask - MENU_Knowledge_14800.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Albinauric Shield - MENU_Knowledge_12044.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Albinauric Staff - MENU_Knowledge_11210.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\All-Knowing Armor %28Altered%29 - MENU_Knowledge_13871.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\All-Knowing Armor - MENU_Knowledge_13861.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\All-Knowing Gauntlets - MENU_Knowledge_13862.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\All-Knowing Greaves - MENU_Knowledge_13863.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\All-Knowing Helm - MENU_Knowledge_13860.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Ancestral Spirit_s Horn - MENU_Knowledge_18880.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Antspur Rapier - MENU_Knowledge_10164.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Ant_s Skull Plate - MENU_Knowledge_12100.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Arbalest - MENU_Knowledge_11125.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Aristocrat Boots - MENU_Knowledge_13543.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Aristocrat Coat - MENU_Knowledge_13561.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Aristocrat Garb %28Altered%29 - MENU_Knowledge_13551.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Aristocrat Garb - MENU_Knowledge_13541.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Aristocrat Hat - MENU_Knowledge_13560.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Aristocrat Headband - MENU_Knowledge_13540.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Arrow_s Reach Talisman - MENU_Knowledge_18330.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Arrow_s Sting Talisman - MENU_Knowledge_18340.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Arsenal Charm +1 - MENU_Knowledge_18031.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Arsenal Charm - MENU_Knowledge_18030.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Ash-of-War Scarab - MENU_Knowledge_15280.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Assassin_s Cerulean Dagger - MENU_Knowledge_18670.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Assassin_s Crimson Dagger - MENU_Knowledge_18660.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Astrologer Gloves - MENU_Knowledge_13952.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Astrologer Hood - MENU_Knowledge_13950.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Astrologer Robe %28Altered%29 - MENU_Knowledge_13961.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Astrologer Robe - MENU_Knowledge_13951.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Astrologer Trousers - MENU_Knowledge_13953.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Astrologer_s Staff - MENU_Knowledge_11206.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Axe of Godfrey - MENU_Knowledge_10885.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Axe of Godrick - MENU_Knowledge_10564.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Axe Talisman - MENU_Knowledge_18370.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Azur_s Glintstone Crown - MENU_Knowledge_13850.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Azur_s Glintstone Robe - MENU_Knowledge_13851.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Azur_s Glintstone Staff - MENU_Knowledge_11214.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Azur_s Manchettes - MENU_Knowledge_13852.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Bandit Boots - MENU_Knowledge_14533.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Bandit Garb - MENU_Knowledge_14541.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Bandit Manchettes - MENU_Knowledge_14532.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Bandit Mask - MENU_Knowledge_14980.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Bandit_s Curved Sword - MENU_Knowledge_10244.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Banished Knight Armor %28Altered%29 - MENU_Knowledge_13231.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Banished Knight Armor - MENU_Knowledge_13221.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Banished Knight Gauntlets - MENU_Knowledge_13222.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Banished Knight Greaves - MENU_Knowledge_13223.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Banished Knight Helm %28Altered%29 - MENU_Knowledge_13230.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Banished Knight Helm - MENU_Knowledge_13220.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Banished Knight_s Greatsword - MENU_Knowledge_10088.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Banished Knight_s Halberd - MENU_Knowledge_10683.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Banished Knight_s Shield - MENU_Knowledge_12043.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Bastard Sword - MENU_Knowledge_10080.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Bastard_s Stars - MENU_Knowledge_10483.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Battle Axe - MENU_Knowledge_10520.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Battle Hammer - MENU_Knowledge_10442.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Battlemage Legwraps - MENU_Knowledge_14683.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Battlemage Manchettes - MENU_Knowledge_14682.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Battlemage Robe - MENU_Knowledge_14681.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Beast Champion Armor %28Altered%29 - MENU_Knowledge_14111.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Beast Champion Armor - MENU_Knowledge_14101.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Beast Champion Gauntlets - MENU_Knowledge_14102.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Beast Champion Greaves - MENU_Knowledge_14103.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Beast Champion Helm - MENU_Knowledge_14100.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Beast Crest Heater Shield - MENU_Knowledge_12064.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Beast-Repellent Torch - MENU_Knowledge_10927.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Beastclaw Greathammer - MENU_Knowledge_10447.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Beastman_s Cleaver - MENU_Knowledge_10286.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Beastman_s Curved Sword - MENU_Knowledge_10241.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Beastman_s Jar Shield - MENU_Knowledge_12006.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Black Bow - MENU_Knowledge_11047.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Black Dumpling - MENU_Knowledge_15440.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Black Hood - MENU_Knowledge_14970.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Black Knife - MENU_Knowledge_10001.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Black Knife Armor %28Altered%29 - MENU_Knowledge_13201.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Black Knife Armor - MENU_Knowledge_13191.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Black Knife Gauntlets - MENU_Knowledge_13192.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Black Knife Greaves - MENU_Knowledge_13193.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Black Knife Hood - MENU_Knowledge_13190.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Black Leather Shield - MENU_Knowledge_12070.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Black Wolf Mask - MENU_Knowledge_13170.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Blackflame Monk Armor - MENU_Knowledge_13511.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Blackflame Monk Gauntlets - MENU_Knowledge_13512.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Blackflame Monk Greaves - MENU_Knowledge_13513.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Blackflame Monk Hood - MENU_Knowledge_13510.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Blackguard_s Iron Mask - MENU_Knowledge_14450.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Blade of Calling - MENU_Knowledge_10016.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Blaidd_s Armor %28Altered%29 - MENU_Knowledge_13181.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Blaidd_s Armor - MENU_Knowledge_13171.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Blaidd_s Gauntlets - MENU_Knowledge_13172.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Blaidd_s Greaves - MENU_Knowledge_13173.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Blasphemous Blade - MENU_Knowledge_10094.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Blessed Dew Talisman - MENU_Knowledge_18630.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Bloodhound Claws - MENU_Knowledge_10842.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Bloodhound Knight Armor %28Altered%29 - MENU_Knowledge_14221.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Bloodhound Knight Armor - MENU_Knowledge_14211.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Bloodhound Knight Gauntlets - MENU_Knowledge_14212.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Bloodhound Knight Greaves - MENU_Knowledge_14213.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Bloodhound Knight Helm - MENU_Knowledge_14210.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Bloodhound_s Fang - MENU_Knowledge_10282.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Bloodsoaked Manchettes - MENU_Knowledge_14613.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Bloodsoaked Mask - MENU_Knowledge_14620.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Bloodsoaked Tabard - MENU_Knowledge_15251.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Bloodstained Dagger - MENU_Knowledge_10014.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Bloody Helice - MENU_Knowledge_10200.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Blue Cloth Cowl - MENU_Knowledge_14030.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Blue Cloth Vest - MENU_Knowledge_14031.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Blue Crest Heater Shield - MENU_Knowledge_12066.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Blue Dancer Charm - MENU_Knowledge_18350.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Blue Festive Garb - MENU_Knowledge_14251.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Blue Festive Hood - MENU_Knowledge_14250.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Blue Silver Bracelets - MENU_Knowledge_13302.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Blue Silver Mail Armor %28Altered%29 - MENU_Knowledge_13311.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Blue Silver Mail Armor - MENU_Knowledge_13301.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Blue Silver Mail Hood - MENU_Knowledge_13300.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Blue Silver Mail Skirt - MENU_Knowledge_13303.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Blue-Feathered BranchSword - MENU_Knowledge_18570.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Blue-Gold Kite Shield - MENU_Knowledge_12050.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Blue-White Wooden Shield - MENU_Knowledge_12010.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Bolt of Gransax - MENU_Knowledge_10609.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Boltdrake Talisman +1 - MENU_Knowledge_18521.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Boltdrake Talisman +2 - MENU_Knowledge_18522.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Boltdrake Talisman - MENU_Knowledge_18520.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Brass Shield - MENU_Knowledge_12051.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Briar Armor %28Altered%29 - MENU_Knowledge_13251.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Briar Armor - MENU_Knowledge_13241.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Briar Gauntlets - MENU_Knowledge_13242.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Briar Greatshield - MENU_Knowledge_12084.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Briar Greaves - MENU_Knowledge_13243.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Briar Helm - MENU_Knowledge_13240.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Brick Hammer - MENU_Knowledge_10451.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Broadsword - MENU_Knowledge_10042.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Buckler - MENU_Knowledge_12000.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Bull-Goat Armor - MENU_Knowledge_13131.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Bull-Goat Gauntlets - MENU_Knowledge_13132.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Bull-Goat Greaves - MENU_Knowledge_13133.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Bull-Goat Helm - MENU_Knowledge_13130.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Bull-Goat_s Talisman - MENU_Knowledge_18220.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Butchering Knife - MENU_Knowledge_10572.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Caestus - MENU_Knowledge_10800.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Candletree Wooden Shield - MENU_Knowledge_12061.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Cane Sword - MENU_Knowledge_10060.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Carian Filigreed Crest - MENU_Knowledge_18700.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Carian Glintblade Staff - MENU_Knowledge_11208.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Carian Glintstone Staff - MENU_Knowledge_11211.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Carian Knight Armor %28Altered%29 - MENU_Knowledge_14651.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Carian Knight Armor - MENU_Knowledge_14641.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Carian Knight Gauntlets - MENU_Knowledge_14642.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Carian Knight Greaves - MENU_Knowledge_14643.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Carian Knight Helm - MENU_Knowledge_14640.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Carian Knight_s Shield - MENU_Knowledge_12055.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Carian Knight_s Sword - MENU_Knowledge_10057.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Carian Regal Scepter - MENU_Knowledge_11204.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Celebrant_s Cleaver - MENU_Knowledge_10526.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Celebrant_s Rib-Rake - MENU_Knowledge_10606.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Celebrant_s Sickle - MENU_Knowledge_10006.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Celebrant_s Skull - MENU_Knowledge_10445.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Cerulean Amber Medallion +1 - MENU_Knowledge_18011.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Cerulean Amber Medallion +2 - MENU_Knowledge_18012.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Cerulean Amber Medallion - MENU_Knowledge_18010.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Cerulean Seed Talisman - MENU_Knowledge_18620.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Cerulean Tear Scarab - MENU_Knowledge_15320.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Chain Armor - MENU_Knowledge_14891.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Chain Armor - MENU_Knowledge_14896.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Chain Coif - MENU_Knowledge_14890.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Chain Coif - MENU_Knowledge_14895.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Chain Gauntlets - MENU_Knowledge_14892.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Chain Gauntlets - MENU_Knowledge_14897.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Chain Leggings - MENU_Knowledge_14893.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Chain-Draped Tabard - MENU_Knowledge_15211.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Chainlink Flail - MENU_Knowledge_10484.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Champion Bracers - MENU_Knowledge_14122.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Champion Gaiters - MENU_Knowledge_14123.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Champion Headband - MENU_Knowledge_14120.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Champion Pauldron - MENU_Knowledge_14121.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Cinquedea - MENU_Knowledge_10011.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Cipher Pita - MENU_Knowledge_10812.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Clarifying Horn Charm +1 - MENU_Knowledge_18191.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Clarifying Horn Charm - MENU_Knowledge_18190.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Claw Talisman - MENU_Knowledge_18800.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Clawmark Seal - MENU_Knowledge_11244.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Clayman_s Harpoon - MENU_Knowledge_10603.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Claymore - MENU_Knowledge_10098.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Cleanrot Armor %28Altered%29 - MENU_Knowledge_13491.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Cleanrot Armor - MENU_Knowledge_13481.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Cleanrot Gauntlets - MENU_Knowledge_13482.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Cleanrot Greaves - MENU_Knowledge_13483.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Cleanrot Helm %28Altered%29 - MENU_Knowledge_13490.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Cleanrot Helm - MENU_Knowledge_13480.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Cleanrot Knight_s Sword - MENU_Knowledge_10161.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Cleanrot Spear - MENU_Knowledge_10604.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Clinging Bone - MENU_Knowledge_10810.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Cloth Garb - MENU_Knowledge_13161.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Cloth Trousers - MENU_Knowledge_13163.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Club - MENU_Knowledge_10401.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Coded Sword - MENU_Knowledge_10051.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Coil Shield - MENU_Knowledge_12020.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Commander_s Standard - MENU_Knowledge_10684.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Commoner_s Garb %28Altered%29 - MENU_Knowledge_14271%281%29.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Commoner_s Garb %28Altered%29 - MENU_Knowledge_14271.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Commoner_s Garb - MENU_Knowledge_14261.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Commoner_s Headband %28Altered%29 - MENU_Knowledge_14270%281%29.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Commoner_s Headband %28Altered%29 - MENU_Knowledge_14270.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Commoner_s Headband - MENU_Knowledge_14260.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Commoner_s Shoes - MENU_Knowledge_14263.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Commoner_s Simple Garb %28Altered%29 - MENU_Knowledge_14291%281%29.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Commoner_s Simple Garb %28Altered%29 - MENU_Knowledge_14291.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Commoner_s Simple Garb - MENU_Knowledge_14281.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Companion Jar - MENU_Knowledge_18830.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Composite Bow - MENU_Knowledge_11005.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Concealing Veil - MENU_Knowledge_18690.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Confessor Armor %28Altered%29 - MENU_Knowledge_14431.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Confessor Armor - MENU_Knowledge_14421.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Confessor Boots - MENU_Knowledge_14423.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Confessor Gloves - MENU_Knowledge_14422.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Confessor Hood %28Altered%29 - MENU_Knowledge_14430%281%29.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Confessor Hood %28Altered%29 - MENU_Knowledge_14430.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Confessor Hood - MENU_Knowledge_14420.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Consort_s Mask - MENU_Knowledge_14590.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Consort_s Robe - MENU_Knowledge_14591.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Consort_s Trousers - MENU_Knowledge_14593.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Copy of Beastman_s Cleaver - MENU_Knowledge_10286.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Copy of Copy of Copy of Gold Bracelets - MENU_Knowledge_14782.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Copy of Copy of Gold Bracelets - MENU_Knowledge_14782.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Copy of Copy of Radagon_s Scarseal - MENU_Knowledge_18050.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Copy of Gold Bracelets - MENU_Knowledge_14782%281%29.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Copy of Gold Bracelets - MENU_Knowledge_14782.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Copy of Golden Order Greatsword - MENU_Knowledge_10097.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Copy of Radagon_s Scarseal - MENU_Knowledge_18050.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Copy of Tree-and-Beast Surcoat - MENU_Knowledge_15011.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Corhyn_s Robe - MENU_Knowledge_13921.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Cranial Vessel Candlestand - MENU_Knowledge_10449.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Crepus_s Black-Key Crossbow - MENU_Knowledge_11128.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Crepus_s Vial - MENU_Knowledge_18680.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Crescent Moon Axe - MENU_Knowledge_10563.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Crimson Amber Medallion +1 - MENU_Knowledge_18001.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Crimson Amber Medallion +2 - MENU_Knowledge_18002.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Crimson Amber Medallion - MENU_Knowledge_18000.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Crimson Hood - MENU_Knowledge_14130.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Crimson Seed Talisman - MENU_Knowledge_18610.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Crimson Tear Scarab - MENU_Knowledge_15310.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Cross-Naginata - MENU_Knowledge_10611.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Crossed Tree Towershield - MENU_Knowledge_12098.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Crucible Axe Armor %28Altered%29 - MENU_Knowledge_13821.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Crucible Axe Armor - MENU_Knowledge_13801.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Crucible Axe Helm - MENU_Knowledge_13800.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Crucible Feather Talisman - MENU_Knowledge_18560.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Crucible Gauntlets - MENU_Knowledge_13802.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Crucible Greaves - MENU_Knowledge_13803.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Crucible Hornshield - MENU_Knowledge_12082.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Crucible Knot Talisman - MENU_Knowledge_18600.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Crucible Scale Talisman - MENU_Knowledge_18550.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Crucible Tree Armor %28Altered%29 - MENU_Knowledge_13831.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Crucible Tree Armor - MENU_Knowledge_13811.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Crucible Tree Helm - MENU_Knowledge_13810.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Crystal Knife - MENU_Knowledge_10005.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Crystal Spear - MENU_Knowledge_10602.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Crystal Staff - MENU_Knowledge_11201.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Crystal Sword - MENU_Knowledge_10054.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Cuckoo Greatshield - MENU_Knowledge_12103.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Cuckoo Knight Armor %28Altered%29 - MENU_Knowledge_15121.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Cuckoo Knight Armor - MENU_Knowledge_15111.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Cuckoo Knight Gauntlets - MENU_Knowledge_15112.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Cuckoo Knight Greaves - MENU_Knowledge_15113.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Cuckoo Knight Helm - MENU_Knowledge_15110.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Cuckoo Surcoat - MENU_Knowledge_15021.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Curved Club - MENU_Knowledge_10402.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Curved Great Club - MENU_Knowledge_10444.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Curved Sword Talisman - MENU_Knowledge_18820.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Daedicar_s Woe - MENU_Knowledge_18740.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Dagger - MENU_Knowledge_10000.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Dagger Talisman - MENU_Knowledge_18320.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Dark Moon Greatsword - MENU_Knowledge_10089.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Death Ritual Spear - MENU_Knowledge_10612.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Deathbed Dress - MENU_Knowledge_15331.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Deathbed Smalls - MENU_Knowledge_15333.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Death_s Poker - MENU_Knowledge_10100.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Demi-Human Queen_s Staff - MENU_Knowledge_11203.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Depraved Perfumer Gloves - MENU_Knowledge_13742.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Depraved Perfumer Headscarf - MENU_Knowledge_13740.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Depraved Perfumer Robe %28Altered%29 - MENU_Knowledge_13751.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Depraved Perfumer Robe - MENU_Knowledge_13741.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Depraved Perfumer Trousers - MENU_Knowledge_13743.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Devourer_s Scepter - MENU_Knowledge_10452.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Diallos_s Mask - MENU_Knowledge_14000.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Digger_s Staff - MENU_Knowledge_11205.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Dirty Chainmail - MENU_Knowledge_14801.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Dismounter - MENU_Knowledge_10281.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Distinguished Greatshield - MENU_Knowledge_12081.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Dragon Communion Seal - MENU_Knowledge_11248.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Dragon Greatclaw - MENU_Knowledge_10886.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Dragon Halberd - MENU_Knowledge_10694.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Dragon King_s Cragblade - MENU_Knowledge_10204.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Dragon Towershield - MENU_Knowledge_12080.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Dragonclaw Shield - MENU_Knowledge_12083.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Dragoncrest Greatshield Talisman - MENU_Knowledge_18493.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Dragoncrest Shield Talisman +1 - MENU_Knowledge_18491.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Dragoncrest Shield Talisman +2 - MENU_Knowledge_18492.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Dragoncrest Shield Talisman - MENU_Knowledge_18490.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Dragonscale Blade - MENU_Knowledge_10327.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Drake Knight Armor %28Altered%29 - MENU_Knowledge_13031%281%29.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Drake Knight Armor %28Altered%29 - MENU_Knowledge_13031.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Drake Knight Armor - MENU_Knowledge_13021.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Drake Knight Gauntlets - MENU_Knowledge_13022.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Drake Knight Greaves - MENU_Knowledge_13023.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Drake Knight Helm %28Altered%29 - MENU_Knowledge_13030%281%29.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Drake Knight Helm %28Altered%29 - MENU_Knowledge_13030.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Drake Knight Helm - MENU_Knowledge_13020.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Duelist Greataxe - MENU_Knowledge_10884.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Duelist Greaves - MENU_Knowledge_13433.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Duelist Helm - MENU_Knowledge_13430.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Eccentric_s Armor - MENU_Knowledge_14551.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Eccentric_s Breeches - MENU_Knowledge_14553.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Eccentric_s Hood %28Altered%29 - MENU_Knowledge_14560%281%29.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Eccentric_s Hood %28Altered%29 - MENU_Knowledge_14560.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Eccentric_s Hood - MENU_Knowledge_14550.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Eccentric_s Manchettes - MENU_Knowledge_14552.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Eclipse Crest Greatshield - MENU_Knowledge_12102.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Eclipse Crest Heater Shield - MENU_Knowledge_12067.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Eclipse Shotel - MENU_Knowledge_10250.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Elden Lord Armor %28Altered%29 - MENU_Knowledge_13661.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Elden Lord Armor - MENU_Knowledge_13651.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Elden Lord Bracers - MENU_Knowledge_13652.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Elden Lord Crown - MENU_Knowledge_13650.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Elden Lord Greaves - MENU_Knowledge_13653.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Eleonora_s Poleblade - MENU_Knowledge_10364.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Envoy Crown - MENU_Knowledge_14300.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Envoy_s Greathorn - MENU_Knowledge_10883.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Envoy_s Horn - MENU_Knowledge_10409.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Envoy_s Long Horn - MENU_Knowledge_10448.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Erdsteel Dagger - MENU_Knowledge_10015.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Erdtree Bow - MENU_Knowledge_11043.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Erdtree Greatbow - MENU_Knowledge_11083.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Erdtree Greatshield - MENU_Knowledge_12086.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Erdtree Seal - MENU_Knowledge_11246.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Erdtree Surcoat - MENU_Knowledge_15031.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Erdtree_s Favor +1 - MENU_Knowledge_18041.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Erdtree_s Favor +2 - MENU_Knowledge_18042.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Erdtree_s Favor - MENU_Knowledge_18040.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Errant Sorcerer Boots - MENU_Knowledge_14663.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Errant Sorcerer Manchettes - MENU_Knowledge_14662.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Errant Sorcerer Robe %28Altered%29 - MENU_Knowledge_14671.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Errant Sorcerer Robe - MENU_Knowledge_14661.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Estoc - MENU_Knowledge_10160.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Executioner_s Greataxe - MENU_Knowledge_10568.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Exile Armor - MENU_Knowledge_13211.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Exile Gauntlets - MENU_Knowledge_13212.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Exile Greaves - MENU_Knowledge_13213.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Exile Hood - MENU_Knowledge_13210.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Eye Surcoat - MENU_Knowledge_14901.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Faithful_s Canvas Talisman - MENU_Knowledge_18440.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Falchion - MENU_Knowledge_10240.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Fallingstar Beast Jaw - MENU_Knowledge_10888.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Family Heads - MENU_Knowledge_10482.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Fell Omen Cloak - MENU_Knowledge_14791.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Festive Garb %28Altered%29 - MENU_Knowledge_14241.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Festive Garb - MENU_Knowledge_14231.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Festive Hood %28Altered%29 - MENU_Knowledge_14240%281%29.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Festive Hood %28Altered%29 - MENU_Knowledge_14240.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Festive Hood - MENU_Knowledge_14230.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Fia_s Hood - MENU_Knowledge_15340.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Fia_s Robe %28Altered%29 - MENU_Knowledge_15351%281%29.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Fia_s Robe %28Altered%29 - MENU_Knowledge_15351.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Fia_s Robe - MENU_Knowledge_15341.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Finger Maiden Fillet - MENU_Knowledge_14480.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Finger Maiden Robe %28Altered%29 - MENU_Knowledge_14491.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Finger Maiden Robe - MENU_Knowledge_14481.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Finger Maiden Shoes - MENU_Knowledge_14482.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Finger Seal - MENU_Knowledge_11240.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Fingerprint Armor %28Altered%29 - MENU_Knowledge_14581%281%29.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Fingerprint Armor %28Altered%29 - MENU_Knowledge_14581.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Fingerprint Armor - MENU_Knowledge_14571.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Fingerprint Gauntlets - MENU_Knowledge_14572.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Fingerprint Greaves - MENU_Knowledge_14573.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Fingerprint Helm - MENU_Knowledge_14570.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Fingerprint Stone Shield - MENU_Knowledge_12091.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Fire Monk Armor - MENU_Knowledge_13501.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Fire Monk Gauntlets - MENU_Knowledge_13502.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Fire Monk Greaves - MENU_Knowledge_13503.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Fire Monk Hood - MENU_Knowledge_13500.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Fire Prelate Armor %28Altered%29 - MENU_Knowledge_13531.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Fire Prelate Armor - MENU_Knowledge_13521.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Fire Prelate Gauntlets - MENU_Knowledge_13522.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Fire Prelate Greaves - MENU_Knowledge_13523.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Fire Prelate Helm - MENU_Knowledge_13520.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Fire Scorpion Charm - MENU_Knowledge_18250.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Flail - MENU_Knowledge_10481.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Flamberge - MENU_Knowledge_10085.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Flame Crest Wooden Shield - MENU_Knowledge_12062.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Flamedrake Talisman +1 - MENU_Knowledge_18511.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Flamedrake Talisman +2 - MENU_Knowledge_18512.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Flamedrake Talisman - MENU_Knowledge_18510.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Flock_s Canvas Talisman - MENU_Knowledge_18450.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Flowing Curved Sword - MENU_Knowledge_10246.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Foot Soldier Cap - MENU_Knowledge_15210.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Foot Soldier Gauntlets - MENU_Knowledge_15212.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Foot Soldier Greaves - MENU_Knowledge_15213.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Foot Soldier Helm - MENU_Knowledge_15240.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Foot Soldier Helmet - MENU_Knowledge_15220.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Foot Soldier Tabard - MENU_Knowledge_15221.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Forked Greatsword - MENU_Knowledge_10081.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Forked Hatchet - MENU_Knowledge_10521.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Frenzied Flame Seal - MENU_Knowledge_11249.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Frozen Needle - MENU_Knowledge_10165.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Full Moon Crossbow - MENU_Knowledge_11124.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Fur Leggings - MENU_Knowledge_13423.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Fur Raiment - MENU_Knowledge_13421.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Furled Finger_s Trick Mirror - MENU_Knowledge_18760.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Gargoyle_s Black Axe - MENU_Knowledge_10573.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Gargoyle_s Black Blades - MENU_Knowledge_10368.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Gargoyle_s Black Halberd - MENU_Knowledge_10696.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Gargoyle_s Blackblade - MENU_Knowledge_10101.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Gargoyle_s Great Axe - MENU_Knowledge_10574.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Gargoyle_s Greatsword - MENU_Knowledge_10099.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Gargoyle_s Halberd - MENU_Knowledge_10695.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Gargoyle_s Twinblade - MENU_Knowledge_10367.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Gelmir Glintstone Staff - MENU_Knowledge_11202.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Gelmir Knight Armor %28Altered%29 - MENU_Knowledge_15081.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Gelmir Knight Armor - MENU_Knowledge_15071.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Gelmir Knight Gauntlets - MENU_Knowledge_15072.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Gelmir Knight Greaves - MENU_Knowledge_15073.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Gelmir Knight Helm - MENU_Knowledge_15070.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Ghiza_s Wheel - MENU_Knowledge_10890.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Ghostflame Torch - MENU_Knowledge_10926.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Giant-Crusher - MENU_Knowledge_10891.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Giant_s Red Braid - MENU_Knowledge_10766.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Giant_s Seal - MENU_Knowledge_11242.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Gilded Foot Soldier Cap - MENU_Knowledge_15230.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Gilded Greatshield - MENU_Knowledge_12105.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Gilded Iron Shield - MENU_Knowledge_12013.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Glaive - MENU_Knowledge_10689.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Glintstone Kris - MENU_Knowledge_10007.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Glintstone Scarab - MENU_Knowledge_15300.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Glintstone Staff - MENU_Knowledge_11200.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Godfrey Icon - MENU_Knowledge_18860.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Godrick Knight Armor %28Altered%29 - MENU_Knowledge_15101.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Godrick Knight Armor - MENU_Knowledge_15091.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Godrick Knight Gauntlets - MENU_Knowledge_15092.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Godrick Knight Greaves - MENU_Knowledge_15093.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Godrick Knight Helm - MENU_Knowledge_15090.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Godrick Soldier Gauntlets - MENU_Knowledge_15012.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Godrick Soldier Greaves - MENU_Knowledge_15013.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Godrick Soldier Helm - MENU_Knowledge_15010.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Godskin Apostle Bracelets - MENU_Knowledge_13722.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Godskin Apostle Hood - MENU_Knowledge_13720.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Godskin Apostle Robe - MENU_Knowledge_13721.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Godskin Apostle Trousers - MENU_Knowledge_13723.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Godskin Noble Bracelets - MENU_Knowledge_13732.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Godskin Noble Hood - MENU_Knowledge_13730.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Godskin Noble Robe - MENU_Knowledge_13731.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Godskin Noble Trousers - MENU_Knowledge_13733.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Godskin Peeler - MENU_Knowledge_10361.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Godskin Stitcher - MENU_Knowledge_10201.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Godskin Swaddling Cloth - MENU_Knowledge_18650.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Godslayer_s Greatsword - MENU_Knowledge_10127.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Godslayer_s Seal - MENU_Knowledge_11241.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Gold Bracelets - MENU_Knowledge_14782.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Gold Scarab - MENU_Knowledge_18120.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Gold Waistwrap - MENU_Knowledge_14783.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Golden Beast Crest Shield - MENU_Knowledge_12087.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Golden Epitaph - MENU_Knowledge_10047.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Golden Greatshield - MENU_Knowledge_12104.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Golden Halberd - MENU_Knowledge_10688.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Golden Order Greatsword - MENU_Knowledge_10097.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Golden Order Seal - MENU_Knowledge_11247.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Goldmask_s Rags - MENU_Knowledge_14781.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Golem Greatbow - MENU_Knowledge_11081.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Golem_s Halberd - MENU_Knowledge_10892.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Grafted Blade Greatsword - MENU_Knowledge_10130.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Grafted Dragon - MENU_Knowledge_10806.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Grave Scythe - MENU_Knowledge_10721.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Gravekeeper Cloak %28Altered%29 - MENU_Knowledge_13441%281%29.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Gravekeeper Cloak %28Altered%29 - MENU_Knowledge_13441.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Gravekeeper Cloak - MENU_Knowledge_13431.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Gravel Stone Seal - MENU_Knowledge_11243.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Graven-Mass Talisman - MENU_Knowledge_18411.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Graven-School Talisman - MENU_Knowledge_18410.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Great Club - MENU_Knowledge_10882.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Great Horned Headband - MENU_Knowledge_13420.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Great Knife - MENU_Knowledge_10009.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Great Mace - MENU_Knowledge_10443.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Great Omenkiller Cleaver - MENU_Knowledge_10562.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Great Stars - MENU_Knowledge_10450.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Great Turtle Shell - MENU_Knowledge_12052.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Great Épée - MENU_Knowledge_10202.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Great-Jar_s Arsenal - MENU_Knowledge_18032.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Greataxe - MENU_Knowledge_10560.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Greatbow - MENU_Knowledge_11084.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Greathelm - MENU_Knowledge_14900.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Greathood - MENU_Knowledge_15000.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Greathorn Hammer - MENU_Knowledge_10441.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Greatshield Talisman - MENU_Knowledge_18590.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Greatsword - MENU_Knowledge_10120.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Green Turtle Talisman - MENU_Knowledge_18160.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Grossmesser - MENU_Knowledge_10255.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Guardian Bracers - MENU_Knowledge_13462.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Guardian Garb %28Full Bloom%29 - MENU_Knowledge_13461.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Guardian Garb - MENU_Knowledge_13471.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Guardian Greaves - MENU_Knowledge_13463.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Guardian Mask - MENU_Knowledge_13460.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Guardian_s Swordspear - MENU_Knowledge_10691.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Guilty Hood - MENU_Knowledge_13160.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Haima Glintstone Crown - MENU_Knowledge_14680.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Halberd - MENU_Knowledge_10680.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Haligdrake Talisman +1 - MENU_Knowledge_18531.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Haligdrake Talisman +2 - MENU_Knowledge_18532.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Haligdrake Talisman - MENU_Knowledge_18530.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Haligtree Crest Greatshield - MENU_Knowledge_12106.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Haligtree Crest Surcoat - MENU_Knowledge_15061.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Haligtree Gauntlets - MENU_Knowledge_15062.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Haligtree Greaves - MENU_Knowledge_15063.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Haligtree Helm - MENU_Knowledge_15060.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Haligtree Knight Armor %28Altered%29 - MENU_Knowledge_15201.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Haligtree Knight Armor - MENU_Knowledge_15191.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Haligtree Knight Gauntlets - MENU_Knowledge_15192.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Haligtree Knight Greaves - MENU_Knowledge_15193.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Haligtree Knight Helm - MENU_Knowledge_15190.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Halo Scythe - MENU_Knowledge_10722.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Hammer - MENU_Knowledge_10407.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Hammer Talisman - MENU_Knowledge_18300.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Hand Axe - MENU_Knowledge_10522.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Hand Ballista - MENU_Knowledge_11160.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Hand of Malenia - MENU_Knowledge_10322.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Harp Bow - MENU_Knowledge_11003.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Hawk Crest Wooden Shield - MENU_Knowledge_12063.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Heater Shield - MENU_Knowledge_12069.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Heavy Crossbow - MENU_Knowledge_11122.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Helphen_s Steeple - MENU_Knowledge_10093.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Hierodas Glintstone Crown - MENU_Knowledge_14660.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\High Page Clothes %28Altered%29 - MENU_Knowledge_15401.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\High Page Clothes - MENU_Knowledge_15391.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\High Page Hood - MENU_Knowledge_15390.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Highland Axe - MENU_Knowledge_10529.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Highwayman Cloth Armor - MENU_Knowledge_15381.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Highwayman Gauntlets - MENU_Knowledge_15382.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Highwayman Hood - MENU_Knowledge_15380.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Hookclaws - MENU_Knowledge_10840.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Horn Bow - MENU_Knowledge_11042.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Horse Crest Wooden Shield - MENU_Knowledge_12060.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Hoslow_s Armor %28Altered%29 - MENU_Knowledge_14001.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Hoslow_s Armor - MENU_Knowledge_13991.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Hoslow_s Gauntlets - MENU_Knowledge_13992.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Hoslow_s Greaves - MENU_Knowledge_13993.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Hoslow_s Helm - MENU_Knowledge_13990.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Hoslow_s Petal Whip - MENU_Knowledge_10765.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Host_s Trick Mirror - MENU_Knowledge_18770.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Ice Crest Shield - MENU_Knowledge_12014.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Icerind Hatchet - MENU_Knowledge_10527.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Icon Shield - MENU_Knowledge_12092.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Iji_s Mirrorhelm - MENU_Knowledge_14960.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Immunizing Horn Charm +1 - MENU_Knowledge_18181.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Immunizing Horn Charm - MENU_Knowledge_18180.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Imp Head %28Cat%29 - MENU_Knowledge_14820.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Imp Head %28Corpse%29 - MENU_Knowledge_14850.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Imp Head %28Elder%29 - MENU_Knowledge_14870.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Imp Head %28Fanged%29 - MENU_Knowledge_14830.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Imp Head %28Long-Tongued%29 - MENU_Knowledge_14840.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Imp Head %28Wolf%29 - MENU_Knowledge_14860.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Incantation Scarab - MENU_Knowledge_15290.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Inquisitor_s Girandole - MENU_Knowledge_10613.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Inseparable Sword - MENU_Knowledge_10049.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Inverted Hawk Heater Shield - MENU_Knowledge_12068.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Inverted Hawk Towershield - MENU_Knowledge_12099.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Iron Ball - MENU_Knowledge_10807.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Iron Cleaver - MENU_Knowledge_10524.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Iron Gauntlets - MENU_Knowledge_13002.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Iron Greatsword - MENU_Knowledge_10082.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Iron Helmet - MENU_Knowledge_13000.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Iron Kasa - MENU_Knowledge_13140.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Iron Roundshield - MENU_Knowledge_12012.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Iron Spear - MENU_Knowledge_10615.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Ivory Sickle - MENU_Knowledge_10013.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Ivory-Draped Tabard - MENU_Knowledge_15261.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Jar - MENU_Knowledge_14930.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Jar Cannon - MENU_Knowledge_11161.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Jawbone Axe - MENU_Knowledge_10523.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Jellyfish Shield - MENU_Knowledge_12090.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Juvenile Scholar Cap - MENU_Knowledge_14770.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Juvenile Scholar Robe - MENU_Knowledge_14771.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Kaiden Armor - MENU_Knowledge_13011.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Kaiden Gauntlets - MENU_Knowledge_13012.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Kaiden Helm - MENU_Knowledge_13010.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Kaiden Trousers - MENU_Knowledge_13013.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Karolos Glintstone Crown - MENU_Knowledge_14340.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Katar - MENU_Knowledge_10809.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Kindred of Rot_s Exultation - MENU_Knowledge_18400.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Kite Shield - MENU_Knowledge_12040.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Knight Armor - MENU_Knowledge_14991.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Knight Gauntlets - MENU_Knowledge_14992.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Knight Greaves - MENU_Knowledge_14993.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Knight Helm - MENU_Knowledge_14990.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Knight_s Greatsword - MENU_Knowledge_10084.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Lance - MENU_Knowledge_10646.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Lance Talisman - MENU_Knowledge_18380.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Land of Reeds Armor %28Altered%29 - MENU_Knowledge_14401.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Land of Reeds Armor - MENU_Knowledge_14391.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Land of Reeds Gauntlets - MENU_Knowledge_14392.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Land of Reeds Greaves - MENU_Knowledge_14393.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Land of Reeds Helm - MENU_Knowledge_14390.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Large Club - MENU_Knowledge_10440.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Large Leather Shield - MENU_Knowledge_12059.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Lazuli Glintstone Crown - MENU_Knowledge_14330.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Lazuli Glintstone Sword - MENU_Knowledge_10064.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Lazuli Robe - MENU_Knowledge_15451.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Leather Armor - MENU_Knowledge_14971.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Leather Armor - MENU_Knowledge_14976.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Leather Boots - MENU_Knowledge_14973.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Leather Gloves - MENU_Knowledge_14972.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Leather Trousers - MENU_Knowledge_13003.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Leather-Draped Tabard - MENU_Knowledge_15231.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Leyndell Knight Armor %28Altered%29 - MENU_Knowledge_15141.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Leyndell Knight Armor - MENU_Knowledge_15131.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Leyndell Knight Gauntlets - MENU_Knowledge_15132.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Leyndell Knight Greaves - MENU_Knowledge_15133.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Leyndell Knight Helm - MENU_Knowledge_15130.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Leyndell Soldier Gauntlets - MENU_Knowledge_15032.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Leyndell Soldier Greaves - MENU_Knowledge_15033.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Leyndell Soldier Helm - MENU_Knowledge_15030.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Light Crossbow - MENU_Knowledge_11121.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Lightning Scorpion Charm - MENU_Knowledge_18240.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Lion Greatbow - MENU_Knowledge_11080.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Lionel_s Armor %28Altered%29 - MENU_Knowledge_13981.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Lionel_s Armor - MENU_Knowledge_13971.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Lionel_s Gauntlets - MENU_Knowledge_13972.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Lionel_s Greaves - MENU_Knowledge_13973.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Lionel_s Helm - MENU_Knowledge_13970.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Longbow - MENU_Knowledge_11040.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Longhaft Axe - MENU_Knowledge_10565.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Longsword - MENU_Knowledge_10040.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Longtail Cat Talisman - MENU_Knowledge_18720.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Lord of Blood_s Exultation - MENU_Knowledge_18390.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Lord of Blood_s Robe %28Altered%29 - MENU_Knowledge_14711.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Lord of Blood_s Robe - MENU_Knowledge_13681.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Lordsworn_s Greatsword - MENU_Knowledge_10083.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Lordsworn_s Shield - MENU_Knowledge_12108.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Lordsworn_s Straight Sword - MENU_Knowledge_10044.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Loretta_s War Sickle - MENU_Knowledge_10690.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Lusat_s Glintstone Crown - MENU_Knowledge_13840.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Lusat_s Glintstone Staff - MENU_Knowledge_11215.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Lusat_s Manchettes - MENU_Knowledge_13842.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Lusat_s Robe - MENU_Knowledge_13841.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Mace - MENU_Knowledge_10400.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Magic Scorpion Charm - MENU_Knowledge_18230.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Magma Blade - MENU_Knowledge_10245.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Magma Whip Candlestick - MENU_Knowledge_10763.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Magma Wyrm_s Scalesword - MENU_Knowledge_10283.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Malenia_s Armor %28Altered%29 - MENU_Knowledge_14181.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Malenia_s Armor - MENU_Knowledge_14171.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Malenia_s Gauntlet - MENU_Knowledge_14172.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Malenia_s Greaves - MENU_Knowledge_14173.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Malenia_s Winged Helm - MENU_Knowledge_14170.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Malformed Dragon Armor - MENU_Knowledge_13341.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Malformed Dragon Gauntlets - MENU_Knowledge_13342.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Malformed Dragon Greaves - MENU_Knowledge_13343.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Malformed Dragon Helm - MENU_Knowledge_13340.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Maliketh_s Armor %28Altered%29 - MENU_Knowledge_14161.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Maliketh_s Armor - MENU_Knowledge_14151.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Maliketh_s Black Blade - MENU_Knowledge_10122.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Maliketh_s Gauntlets - MENU_Knowledge_14152.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Maliketh_s Greaves - MENU_Knowledge_14153.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Maliketh_s Helm - MENU_Knowledge_14150.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Man-Serpent_s Shield - MENU_Knowledge_12002.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Manor Towershield - MENU_Knowledge_12097.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Mantis Blade - MENU_Knowledge_10252.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Marais Executioner_s Sword - MENU_Knowledge_10095.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Marais Mask - MENU_Knowledge_14600.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Marais Robe - MENU_Knowledge_14601.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Marika_s Hammer - MENU_Knowledge_10414.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Marika_s Scarseal - MENU_Knowledge_18060.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Marika_s Soreseal - MENU_Knowledge_18061.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Marionette Soldier Armor - MENU_Knowledge_14351.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Marionette Soldier Birdhelm - MENU_Knowledge_14360.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Marionette Soldier Helm - MENU_Knowledge_14350.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Marred Leather Shield - MENU_Knowledge_12041.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Marred Wooden Shield - MENU_Knowledge_12042.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Mask of Confidence - MENU_Knowledge_14510.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Mausoleum Gauntlets - MENU_Knowledge_15052.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Mausoleum Greaves - MENU_Knowledge_15053.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Mausoleum Knight Armor %28Altered%29 - MENU_Knowledge_15181.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Mausoleum Knight Armor - MENU_Knowledge_15171.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Mausoleum Knight Gauntlets - MENU_Knowledge_15172.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Mausoleum Knight Greaves - MENU_Knowledge_15173.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Mausoleum Surcoat - MENU_Knowledge_15051.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Meteoric Ore Blade - MENU_Knowledge_10323.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Meteorite Staff - MENU_Knowledge_11216.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Millicent_s Prosthesis - MENU_Knowledge_18890.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Miquellan Knight_s Sword - MENU_Knowledge_10059.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Misbegotten Shortbow - MENU_Knowledge_11001.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Miséricorde - MENU_Knowledge_10003.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Mohgwyn_s Sacred Spear - MENU_Knowledge_10641.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Monk_s Flameblade - MENU_Knowledge_10285.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Monk_s Flamemace - MENU_Knowledge_10408.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Moon of Nokstella - MENU_Knowledge_18150.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Moonveil - MENU_Knowledge_10326.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Morgott_s Cursed Sword - MENU_Knowledge_10288.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Morning Star - MENU_Knowledge_10404.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Mottled Necklace +1 - MENU_Knowledge_18211.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Mottled Necklace - MENU_Knowledge_18210.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Mushroom Arms - MENU_Knowledge_14942.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Mushroom Body - MENU_Knowledge_14941.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Mushroom Crown - MENU_Knowledge_15430.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Mushroom Head - MENU_Knowledge_14940.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Mushroom Legs - MENU_Knowledge_14943.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Nagakiba - MENU_Knowledge_10321.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Navy Hood - MENU_Knowledge_14140.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Night Maiden Armor - MENU_Knowledge_15461.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Night Maiden Twin Crown - MENU_Knowledge_15460.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Nightrider Flail - MENU_Knowledge_10480.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Nightrider Glaive - MENU_Knowledge_10685.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Night_s Cavalry Armor %28Altered%29 - MENU_Knowledge_13291.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Night_s Cavalry Armor - MENU_Knowledge_13281.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Night_s Cavalry Gauntlets - MENU_Knowledge_13282.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Night_s Cavalry Greaves - MENU_Knowledge_13283.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Night_s Cavalry Helm %28Altered%29 - MENU_Knowledge_13290.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Night_s Cavalry Helm - MENU_Knowledge_13280.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Noble_s Estoc - MENU_Knowledge_10166.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Noble_s Gloves - MENU_Knowledge_14132.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Noble_s Slender Sword - MENU_Knowledge_10062.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Noble_s Traveling Garb - MENU_Knowledge_14131.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Noble_s Trousers - MENU_Knowledge_14133.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Nomadic Merchant_s Chapeau - MENU_Knowledge_13320.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Nomadic Merchant_s Finery %28Altered%29 - MENU_Knowledge_13331.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Nomadic Merchant_s Finery - MENU_Knowledge_13321.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Nomadic Merchant_s Trousers - MENU_Knowledge_13323.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Nox Flowing Hammer - MENU_Knowledge_10411.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Nox Flowing Sword - MENU_Knowledge_10048.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Nox Mirrorhelm - MENU_Knowledge_14950.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Nox Monk Armor %28Altered%29 - MENU_Knowledge_13401.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Nox Monk Armor - MENU_Knowledge_13391.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Nox Monk Bracelets - MENU_Knowledge_13392.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Nox Monk Greaves - MENU_Knowledge_13393.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Nox Monk Hood %28Altered%29 - MENU_Knowledge_13400.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Nox Monk Hood - MENU_Knowledge_13390.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Nox Swordstress Armor %28Altered%29 - MENU_Knowledge_15471.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Nox Swordstress Armor - MENU_Knowledge_13411.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Nox Swordstress Crown %28Altered%29 - MENU_Knowledge_15470.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Nox Swordstress Crown - MENU_Knowledge_13410.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Octopus Head - MENU_Knowledge_14920.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Official_s Attire - MENU_Knowledge_14603.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Okina Mask - MENU_Knowledge_14410.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Old Aristocrat Cowl - MENU_Knowledge_13570.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Old Aristocrat Gown - MENU_Knowledge_13571.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Old Aristocrat Shoes - MENU_Knowledge_13573.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Old Lord_s Talisman - MENU_Knowledge_18460.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Old Sorcerer_s Legwraps - MENU_Knowledge_13843.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Olivinus Glintstone Crown - MENU_Knowledge_14320.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Omen Armor - MENU_Knowledge_14631.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Omen Cleaver - MENU_Knowledge_10284.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Omen Gauntlets - MENU_Knowledge_14632.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Omen Greaves - MENU_Knowledge_14633.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Omen Helm - MENU_Knowledge_14630.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Omenkiller Boots - MENU_Knowledge_15273.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Omenkiller Long Gloves - MENU_Knowledge_15272.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Omenkiller Robe - MENU_Knowledge_15271.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Omensmirk Mask - MENU_Knowledge_15270.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\One-Eyed Shield - MENU_Knowledge_12093.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Onyx Lord_s Greatsword - MENU_Knowledge_10280.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Ordovis_s Greatsword - MENU_Knowledge_10086.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Ornamental Straight Sword - MENU_Knowledge_10046.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Page Garb %28Altered%29 - MENU_Knowledge_13271.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Page Garb - MENU_Knowledge_13261.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Page Hood - MENU_Knowledge_13260.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Page Trousers - MENU_Knowledge_13263.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Parrying Dagger - MENU_Knowledge_10002.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Partisan - MENU_Knowledge_10605.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Pearldrake Talisman +1 - MENU_Knowledge_18541.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Pearldrake Talisman +2 - MENU_Knowledge_18542.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Pearldrake Talisman - MENU_Knowledge_18540.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Perfumer Gloves - MENU_Knowledge_13062.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Perfumer Hood - MENU_Knowledge_13060.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Perfumer Robe %28Altered%29 - MENU_Knowledge_13065.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Perfumer Robe - MENU_Knowledge_13061.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Perfumer Sarong - MENU_Knowledge_13063.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Perfumer_s Shield - MENU_Knowledge_12001.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Perfumer_s Talisman - MENU_Knowledge_18840.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Perfumer_s Traveling Garb %28Altered%29 - MENU_Knowledge_13081.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Perfumer_s Traveling Garb - MENU_Knowledge_13071.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Pest_s Glaive - MENU_Knowledge_10681.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Pickaxe - MENU_Knowledge_10446.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Pike - MENU_Knowledge_10607.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Pillory Shield - MENU_Knowledge_12004.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Preceptor_s Big Hat - MENU_Knowledge_14500.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Preceptor_s Gloves - MENU_Knowledge_14502.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Preceptor_s Long Gown %28Altered%29 - MENU_Knowledge_14511.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Preceptor_s Long Gown - MENU_Knowledge_14501.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Preceptor_s Trousers - MENU_Knowledge_14503.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Prelate_s Inferno Crozier - MENU_Knowledge_10880.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Primal Glintstone Blade - MENU_Knowledge_18480.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Prince of Death_s Cyst - MENU_Knowledge_18201.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Prince of Death_s Pustule - MENU_Knowledge_03220.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Prince of Death_s Pustule - MENU_Knowledge_18200.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Prince of Death_s Staff - MENU_Knowledge_11209.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Prisoner Clothing - MENU_Knowledge_14441.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Prisoner Iron Mask - MENU_Knowledge_14440.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Prisoner Trousers - MENU_Knowledge_14443.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Prophet Blindfold - MENU_Knowledge_13920.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Prophet Robe %28Altered%29 - MENU_Knowledge_13931.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Prophet Robe - MENU_Knowledge_13941.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Prophet Trousers - MENU_Knowledge_13923.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Prosthesis-Wearer Heirloom - MENU_Knowledge_18080.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Pulley Bow - MENU_Knowledge_11046.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Pulley Crossbow - MENU_Knowledge_11123.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Pumpkin Helm - MENU_Knowledge_13620.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Queen_s Bracelets - MENU_Knowledge_13712.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Queen_s Crescent Crown - MENU_Knowledge_13710.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Queen_s Leggings - MENU_Knowledge_13713.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Queen_s Robe - MENU_Knowledge_13711.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Radagon_s Scarseal - MENU_Knowledge_18050.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Radagon_s Soreseal - MENU_Knowledge_18051.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Radahn Soldier Gauntlets - MENU_Knowledge_15042.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Radahn Soldier Greaves - MENU_Knowledge_15043.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Radahn Soldier Helm - MENU_Knowledge_15040.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Radahn_s Gauntlets - MENU_Knowledge_13672.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Radahn_s Greaves - MENU_Knowledge_13673.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Radahn_s Lion Armor %28Altered%29 - MENU_Knowledge_14701.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Radahn_s Lion Armor - MENU_Knowledge_13671.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Radahn_s Redmane Helm - MENU_Knowledge_13670.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Radiant Gold Mask - MENU_Knowledge_14780.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Raging Wolf Armor %28Altered%29 - MENU_Knowledge_14381.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Raging Wolf Armor - MENU_Knowledge_14371.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Raging Wolf Gauntlets - MENU_Knowledge_14372.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Raging Wolf Greaves - MENU_Knowledge_14373.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Raging Wolf Helm - MENU_Knowledge_14370.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Rapier - MENU_Knowledge_10162.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Raptor Talons - MENU_Knowledge_10843.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Raptor_s Black Feathers - MENU_Knowledge_14531.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Raya Lucarian Gauntlets - MENU_Knowledge_15022.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Raya Lucarian Greaves - MENU_Knowledge_15023.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Raya Lucarian Helm - MENU_Knowledge_15020.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Raya Lucarian Robe - MENU_Knowledge_14311.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Red Branch Shortbow - MENU_Knowledge_11002.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Red Crest Heater Shield - MENU_Knowledge_12065.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Red Thorn Roundshield - MENU_Knowledge_12007.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Red-Feathered BranchSword - MENU_Knowledge_18270.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Redmane Greatshield - MENU_Knowledge_12101.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Redmane Knight Armor %28Altered%29 - MENU_Knowledge_15161.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Redmane Knight Armor - MENU_Knowledge_15151.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Redmane Knight Gauntlets - MENU_Knowledge_15152.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Redmane Knight Greaves - MENU_Knowledge_15153.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Redmane Knight Helm - MENU_Knowledge_15150.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Redmane Surcoat - MENU_Knowledge_15041.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Reduvia - MENU_Knowledge_10004.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Regalia of Eochaid - MENU_Knowledge_10061.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Rickety Shield - MENU_Knowledge_12003.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Rift Shield - MENU_Knowledge_12011.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Ringed Finger - MENU_Knowledge_10412.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Ripple Blade - MENU_Knowledge_10525.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Ripple Crescent Halberd - MENU_Knowledge_10686.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Ritual Shield Talisman - MENU_Knowledge_18580.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Ritual Sword Talisman - MENU_Knowledge_18280.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Rivers of Blood - MENU_Knowledge_10324.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Riveted Wooden Shield - MENU_Knowledge_12009.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Roar Medallion - MENU_Knowledge_18810.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Rogier_s Rapier  - MENU_Knowledge_10163.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Ronin_s Armor %28Altered%29 - MENU_Knowledge_13151.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Ronin_s Armor - MENU_Knowledge_13141.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Ronin_s Gauntlets - MENU_Knowledge_13142.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Ronin_s Greaves - MENU_Knowledge_13143.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Rosus_ Axe - MENU_Knowledge_10531.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Rotten Battle Hammer - MENU_Knowledge_10453.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Rotten Crystal Spear - MENU_Knowledge_10616.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Rotten Crystal Staff - MENU_Knowledge_11218.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Rotten Crystal Sword - MENU_Knowledge_10065.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Rotten Duelist Greaves - MENU_Knowledge_15413.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Rotten Duelist Helm - MENU_Knowledge_15410.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Rotten Gravekeeper Cloak %28Altered%29 - MENU_Knowledge_15421.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Rotten Gravekeeper Cloak - MENU_Knowledge_15411.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Rotten Greataxe - MENU_Knowledge_10895.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Rotten Staff - MENU_Knowledge_10894.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Rotten Winged Sword Insignia - MENU_Knowledge_18311.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Round Shield - MENU_Knowledge_12047.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Royal Greatsword - MENU_Knowledge_10126.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Royal Knight Armor %28Altered%29 - MENU_Knowledge_13381.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Royal Knight Armor - MENU_Knowledge_13371.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Royal Knight Gauntlets - MENU_Knowledge_13372.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Royal Knight Greaves - MENU_Knowledge_13373.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Royal Knight Helm - MENU_Knowledge_13370.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Royal Remains Armor - MENU_Knowledge_14061.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Royal Remains Gauntlets - MENU_Knowledge_14062.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Royal Remains Greaves - MENU_Knowledge_14063.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Royal Remains Helm - MENU_Knowledge_14060.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Ruins Greatsword - MENU_Knowledge_10128.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Ruler_s Mask - MENU_Knowledge_14610.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Ruler_s Robe - MENU_Knowledge_14611.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Rusted Anchor - MENU_Knowledge_10566.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Sacred Crown Helm - MENU_Knowledge_15260.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Sacred Relic Sword - MENU_Knowledge_10090.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Sacred Scorpion Charm - MENU_Knowledge_18260.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Sacrificial Axe - MENU_Knowledge_10530.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Sacrificial Twig - MENU_Knowledge_18750.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Sage Hood - MENU_Knowledge_13610.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Sage Robe - MENU_Knowledge_13611.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Sage Trousers - MENU_Knowledge_13613.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Sanguine Noble Hood - MENU_Knowledge_13450.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Sanguine Noble Robe - MENU_Knowledge_13451.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Sanguine Noble Waistcloth - MENU_Knowledge_13453.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Scale Armor - MENU_Knowledge_13001.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Scaled Armor %28Altered%29 - MENU_Knowledge_13051.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Scaled Armor - MENU_Knowledge_13041.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Scaled Gauntlets - MENU_Knowledge_13042.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Scaled Greaves - MENU_Knowledge_13043.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Scaled Helm - MENU_Knowledge_13040.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Scarlet Tabard - MENU_Knowledge_15241.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Scavenger_s Curved Sword - MENU_Knowledge_10249.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Scepter of the All-Knowing - MENU_Knowledge_10410.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Scimitar - MENU_Knowledge_10254.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Scorpion Kite Shield - MENU_Knowledge_12048.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Scorpion_s Stinger - MENU_Knowledge_10008.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Scripture Wooden Shield - MENU_Knowledge_12008.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Scythe - MENU_Knowledge_10720.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Sentry_s Torch - MENU_Knowledge_10928.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Serpent Bow - MENU_Knowledge_11044.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Serpent-God_s Curved Sword - MENU_Knowledge_10251.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Serpent-Hunter - MENU_Knowledge_10643.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Serpentbone Blade - MENU_Knowledge_10328.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Shabriri_s Woe - MENU_Knowledge_18730.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Shaman Furs - MENU_Knowledge_13426.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Shaman Leggings - MENU_Knowledge_13428.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Shamshir - MENU_Knowledge_10243.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Shard of Alexander - MENU_Knowledge_18871.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Shield of the Guilty - MENU_Knowledge_12053.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Shining Horned Headband - MENU_Knowledge_13425.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Short Spear - MENU_Knowledge_10600.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Short Sword - MENU_Knowledge_10041.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Shortbow - MENU_Knowledge_11000.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Shotel - MENU_Knowledge_10242.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Siluria_s Tree - MENU_Knowledge_10642.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Silver Mirrorshield - MENU_Knowledge_12046.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Silver Scarab - MENU_Knowledge_18110.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Silver Tear Mask - MENU_Knowledge_14880.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Skeletal Mask - MENU_Knowledge_14530.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Smoldering Shield - MENU_Knowledge_12015.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Snow Witch Hat - MENU_Knowledge_14740.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Snow Witch Robe %28Altered%29 - MENU_Knowledge_14751.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Snow Witch Robe - MENU_Knowledge_14741.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Snow Witch Skirt - MENU_Knowledge_14743.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Soldier_s Crossbow - MENU_Knowledge_11120.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Sorcerer Leggings - MENU_Knowledge_14313.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Sorcerer Manchettes - MENU_Knowledge_14312.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Spear - MENU_Knowledge_10601.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Spear Talisman - MENU_Knowledge_18290.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Spellblade_s Gloves - MENU_Knowledge_13112.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Spellblade_s Pointed Hat - MENU_Knowledge_13110.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Spellblade_s Traveling Attire %28Altered%29 - MENU_Knowledge_13121.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Spellblade_s Traveling Attire - MENU_Knowledge_13111.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Spellblade_s Trousers - MENU_Knowledge_13113.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Spelldrake Talisman +1 - MENU_Knowledge_18501.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Spelldrake Talisman +2 - MENU_Knowledge_18502.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Spelldrake Talisman - MENU_Knowledge_18500.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Spiked Caestus - MENU_Knowledge_10801.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Spiked Club - MENU_Knowledge_10406.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Spiked Palisade Shield - MENU_Knowledge_12095.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Spiked Spear - MENU_Knowledge_10614.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Spiralhorn Shield - MENU_Knowledge_12019.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\St. Trina_s Torch - MENU_Knowledge_10924.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Staff of Loss - MENU_Knowledge_11219.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Staff of the Avatar - MENU_Knowledge_10887.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Staff of the Guilty - MENU_Knowledge_11217.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Stalwart Horn Charm +1 - MENU_Knowledge_18171.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Stalwart Horn Charm - MENU_Knowledge_18170.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Star Fist - MENU_Knowledge_10808.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Stargazer Heirloom - MENU_Knowledge_18090.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Starscourge Greatsword - MENU_Knowledge_10125.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Starscourge Heirloom - MENU_Knowledge_18070.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Steel-Wire Torch - MENU_Knowledge_10922.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Stone Club - MENU_Knowledge_10413.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Stormhawk Axe - MENU_Knowledge_10533.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Sun Realm Shield - MENU_Knowledge_12045.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Sword of Milos - MENU_Knowledge_10096.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Sword of Night and Flame - MENU_Knowledge_10053.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Sword of St. Trina - MENU_Knowledge_10058.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Taker_s Cameo - MENU_Knowledge_18640.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Thorned Whip - MENU_Knowledge_10762.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Torch - MENU_Knowledge_10920.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Torchpole - MENU_Knowledge_10608.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Traveler_s Boots - MENU_Knowledge_14763.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Traveler_s Clothes - MENU_Knowledge_14761.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Traveler_s Gloves - MENU_Knowledge_13072.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Traveler_s Hat - MENU_Knowledge_13070.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Traveler_s Manchettes - MENU_Knowledge_14762.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Traveler_s Slops - MENU_Knowledge_13073.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Traveling Maiden Boots - MENU_Knowledge_14463.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Traveling Maiden Gloves - MENU_Knowledge_14462.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Traveling Maiden Hood - MENU_Knowledge_14460.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Traveling Maiden Robe %28Altered%29 - MENU_Knowledge_14471.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Traveling Maiden Robe - MENU_Knowledge_14461.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Tree Sentinel Armor %28Altered%29 - MENU_Knowledge_13361.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Tree Sentinel Armor - MENU_Knowledge_13351.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Tree Sentinel Gauntlets - MENU_Knowledge_13352.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Tree Sentinel Greaves - MENU_Knowledge_13353.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Tree Sentinel Helm - MENU_Knowledge_13350.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Tree Surcoat - MENU_Knowledge_14911.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Tree-and-Beast Surcoat - MENU_Knowledge_15011.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Treespear - MENU_Knowledge_10647.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Troll Knight_s Sword - MENU_Knowledge_10132.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Troll_s Golden Sword - MENU_Knowledge_10123.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Troll_s Hammer - MENU_Knowledge_10893.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Twinbird Kite Shield - MENU_Knowledge_12049.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Twinblade - MENU_Knowledge_10360.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Twinblade Talisman - MENU_Knowledge_18360.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Twinned Armor %28Altered%29 - MENU_Knowledge_13891.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Twinned Armor - MENU_Knowledge_13881.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Twinned Gauntlets - MENU_Knowledge_13882.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Twinned Greaves - MENU_Knowledge_13883.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Twinned Helm - MENU_Knowledge_13880.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Twinned Knight Swords - MENU_Knowledge_10362.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Twinsage Glintstone Crown - MENU_Knowledge_14310.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Two Fingers Heirloom - MENU_Knowledge_18100.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Uchigatana - MENU_Knowledge_10320.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Upper-Class Robe - MENU_Knowledge_14621.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Urumi - MENU_Knowledge_10767.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Vagabond Knight Armor %28Altered%29 - MENU_Knowledge_14021.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Vagabond Knight Armor - MENU_Knowledge_14011.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Vagabond Knight Gauntlets - MENU_Knowledge_14012.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Vagabond Knight Greaves - MENU_Knowledge_14013.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Vagabond Knight Helm - MENU_Knowledge_14010.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Varré_s Bouquet - MENU_Knowledge_10405.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Venomous Fang - MENU_Knowledge_10841.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Veteran_s Armor %28Altered%29 - MENU_Knowledge_14201.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Veteran_s Armor - MENU_Knowledge_14191.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Veteran_s Gauntlets - MENU_Knowledge_14192.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Veteran_s Greaves - MENU_Knowledge_14193.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Veteran_s Helm - MENU_Knowledge_14190.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Veteran_s Prosthesis - MENU_Knowledge_10811.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Viridian Amber Medallion +1 - MENU_Knowledge_18021.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Viridian Amber Medallion +2 - MENU_Knowledge_18022.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Viridian Amber Medallion - MENU_Knowledge_18020.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Visage Shield - MENU_Knowledge_12094.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Vulgar Militia Armor - MENU_Knowledge_13601.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Vulgar Militia Gauntlets - MENU_Knowledge_13602.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Vulgar Militia Greaves - MENU_Knowledge_13603.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Vulgar Militia Helm - MENU_Knowledge_13600.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Vulgar Militia Saw - MENU_Knowledge_10687.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Vulgar Militia Shotel - MENU_Knowledge_10693.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Vyke_s War Spear - MENU_Knowledge_10645.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Wakizashi - MENU_Knowledge_10010.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\War Surgeon Gloves - MENU_Knowledge_14042.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\War Surgeon Gown %28Altered%29 - MENU_Knowledge_14051.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\War Surgeon Gown - MENU_Knowledge_14041.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\War Surgeon Trousers - MENU_Knowledge_14043.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Warhawk_s Talon - MENU_Knowledge_10063.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Warped Axe - MENU_Knowledge_10561.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Warpick - MENU_Knowledge_10403.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Warrior Gauntlets - MENU_Knowledge_14032.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Warrior Greaves - MENU_Knowledge_14033.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Warrior Jar Shard - MENU_Knowledge_18870.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Watchdog_s Greatsword - MENU_Knowledge_10121.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Watchdog_s Staff - MENU_Knowledge_10881.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Weathered Straight Sword - MENU_Knowledge_10045.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Whip - MENU_Knowledge_10760.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\White Mask - MENU_Knowledge_14040.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\White Reed Armor - MENU_Knowledge_14411.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\White Reed Gauntlets - MENU_Knowledge_14412.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\White Reed Greaves - MENU_Knowledge_14413.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Wing of Astel - MENU_Knowledge_10247.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Winged Greathorn - MENU_Knowledge_10571.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Winged Scythe - MENU_Knowledge_10726.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Winged Sword Insignia - MENU_Knowledge_18310.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Witch_s Glintstone Crown - MENU_Knowledge_14720.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Wooden Greatshield - MENU_Knowledge_12107.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Zamor Armor - MENU_Knowledge_14811.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Zamor Bracelets - MENU_Knowledge_14812.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Zamor Curved Sword - MENU_Knowledge_10289.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Zamor Legwraps - MENU_Knowledge_14813.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Zamor Mask - MENU_Knowledge_14810.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\Items\Zweihander - MENU_Knowledge_10124.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Images\null.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Resources\Version.txt">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+	
+	<ItemGroup>
+		<ResourceFiles Include="$(SolutionDir)\Resources\**\*.*" />
+	</ItemGroup>
+	
+	<ItemGroup>
+	  <ResourceFiles Remove="Resources\Assembly\AddRunes.asm" />
+	  <ResourceFiles Remove="Resources\Assembly\GetEquipParamGoodsEntry.asm" />
+	  <ResourceFiles Remove="Resources\Assembly\GetQuantity.asm" />
+	  <ResourceFiles Remove="Resources\Assembly\ItemGibDisable\ItemGibDisable.asm" />
+	  <ResourceFiles Remove="Resources\Assembly\ItemGibDisable\ItemGibDisableInject.asm" />
+	  <ResourceFiles Remove="Resources\Assembly\OpenMenu.asm" />
+	  <ResourceFiles Remove="Resources\DLCPlayRegions.json" />
+	  <ResourceFiles Remove="Resources\Images\format-list-text.svg" />
+	  <ResourceFiles Remove="Resources\Version.txt" />
+	</ItemGroup>
+	
+	<ItemGroup>
+	  <ProjectReference Include="..\Erd-Tools\src\Erd-Tools\Erd-Tools.csproj" />
+	  <ProjectReference Include="..\Erd-Tools\src\PropertyHook\PropertyHook\PropertyHook.csproj" />
+	  <ProjectReference Include="..\Erd-Tools\src\SoulsFormats\SoulsFormats\SoulsFormats.csproj" />
+	</ItemGroup>
+	
+	<ItemGroup>
+	  <Folder Include="Resources\Items\DLC\" />
+	</ItemGroup>
+	
+	<Target Name="CopyResources" Condition="'$(Configuration)'!='Publish'" AfterTargets="Build">
+		<Message Text="Copy resource files" Importance="High" />
+		<Message Text="Files: @(ResourceFiles)" Importance="High" />
+		<Message Text="directory: $(OutDir)" Importance="High" />
+		<Copy SourceFiles="@(ResourceFiles)" DestinationFolder="$(OutDir)Resources\%(RecursiveDir)" SkipUnchangedFiles="true" />
+	</Target>
+
+	<!-- Copy all resources to the published output -->
+	<Target Name="CopyResourcesPublish" Condition="'$(Configuration)'=='Publish' OR '$(Configuration)'=='Release'" AfterTargets="Publish">
+		<Message Text="Copy resource files" Importance="High" />
+		<Message Text="Files: @(ResourceFiles)" Importance="High" />
+		<Message Text="Directory: $(PublishDir)" Importance="High" />
+		<Copy SourceFiles="@(ResourceFiles)" DestinationFolder="$(PublishDir)Resources\%(RecursiveDir)" SkipUnchangedFiles="true" />
+		<!-- <Message Text="Moving Readme: $(PublishDir)" Importance="High" />
+      <Message Text="Solution Dir: $(SolutionDir)" Importance="High" />
+    <Copy SourceFiles="$(SolutionDir)README.md" DestinationFiles="$(PublishDir)README.txt" />-->
+	</Target>
+</Project>

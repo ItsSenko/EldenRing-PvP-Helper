@@ -1,0 +1,635 @@
+{
+  "Name": "Simple Arcane Build",
+  "Description": "Simple arcane build for duels.",
+  "Author": "Senko",
+  "Inventories": [
+    {
+      "Name": "Weapons",
+      "Items": [
+        {
+          "Infusion": 700,
+          "InfusionIconID": "Sacred",
+          "SwordArtID": 30700,
+          "GemIconID": 8365,
+          "UpgradeLevel": 25,
+          "Name": "Twinbird Kite Shield",
+          "ID": 31090000,
+          "IconID": 12049,
+          "Category": "Weapons"
+        },
+        {
+          "Infusion": 700,
+          "InfusionIconID": "Sacred",
+          "SwordArtID": 30700,
+          "GemIconID": 8365,
+          "UpgradeLevel": 25,
+          "Name": "Twinbird Kite Shield",
+          "ID": 31090000,
+          "IconID": 12049,
+          "Category": "Weapons"
+        },
+        {
+          "Infusion": 700,
+          "InfusionIconID": "Sacred",
+          "SwordArtID": 30700,
+          "GemIconID": 8365,
+          "UpgradeLevel": 25,
+          "Name": "Twinbird Kite Shield",
+          "ID": 31090000,
+          "IconID": 12049,
+          "Category": "Weapons"
+        },
+        {
+          "Infusion": 700,
+          "InfusionIconID": "Sacred",
+          "SwordArtID": 30700,
+          "GemIconID": 8365,
+          "UpgradeLevel": 25,
+          "Name": "Twinbird Kite Shield",
+          "ID": 31090000,
+          "IconID": 12049,
+          "Category": "Weapons"
+        },
+        {
+          "Infusion": 700,
+          "InfusionIconID": "Sacred",
+          "SwordArtID": 30700,
+          "GemIconID": 8365,
+          "UpgradeLevel": 25,
+          "Name": "Twinbird Kite Shield",
+          "ID": 31090000,
+          "IconID": 12049,
+          "Category": "Weapons"
+        },
+        {
+          "Infusion": 0,
+          "InfusionIconID": "Standard",
+          "SwordArtID": -1,
+          "GemIconID": 0,
+          "UpgradeLevel": 10,
+          "Name": "Rivers of Blood",
+          "ID": 9040000,
+          "IconID": 10324,
+          "Category": "Weapons"
+        },
+        {
+          "Infusion": 0,
+          "InfusionIconID": "Standard",
+          "SwordArtID": -1,
+          "GemIconID": 0,
+          "UpgradeLevel": 10,
+          "Name": "Rivers of Blood",
+          "ID": 9040000,
+          "IconID": 10324,
+          "Category": "Weapons"
+        },
+        {
+          "Infusion": 0,
+          "InfusionIconID": "Standard",
+          "SwordArtID": -1,
+          "GemIconID": 0,
+          "UpgradeLevel": 10,
+          "Name": "Dragon Communion Seal",
+          "ID": 34080000,
+          "IconID": 11248,
+          "Category": "Weapons"
+        },
+        {
+          "Infusion": 1100,
+          "InfusionIconID": "Blood",
+          "SwordArtID": 70000,
+          "GemIconID": 8460,
+          "UpgradeLevel": 25,
+          "Name": "Spiked Caestus",
+          "ID": 21010000,
+          "IconID": 10801,
+          "Category": "Weapons"
+        },
+        {
+          "Infusion": 0,
+          "InfusionIconID": "Standard",
+          "SwordArtID": 50200,
+          "GemIconID": 8401,
+          "UpgradeLevel": 25,
+          "Name": "Spiked Caestus",
+          "ID": 21010000,
+          "IconID": 10801,
+          "Category": "Weapons"
+        },
+        {
+          "Infusion": 0,
+          "InfusionIconID": "Standard",
+          "SwordArtID": -1,
+          "GemIconID": 0,
+          "UpgradeLevel": 10,
+          "Name": "Mohgwyn's Sacred Spear",
+          "ID": 17010000,
+          "IconID": 10641,
+          "Category": "Weapons"
+        },
+        {
+          "Infusion": 0,
+          "InfusionIconID": "Standard",
+          "SwordArtID": -1,
+          "GemIconID": 0,
+          "UpgradeLevel": 10,
+          "Name": "Mohgwyn's Sacred Spear",
+          "ID": 17010000,
+          "IconID": 10641,
+          "Category": "Weapons"
+        },
+        {
+          "Infusion": 1000,
+          "InfusionIconID": "Poison",
+          "SwordArtID": 22800,
+          "GemIconID": 8354,
+          "UpgradeLevel": 25,
+          "Name": "Godskin Stitcher",
+          "ID": 6010000,
+          "IconID": 10201,
+          "Category": "Weapons"
+        },
+        {
+          "Infusion": 1100,
+          "InfusionIconID": "Blood",
+          "SwordArtID": 70000,
+          "GemIconID": 8460,
+          "UpgradeLevel": 25,
+          "Name": "Great Knife",
+          "ID": 1090000,
+          "IconID": 10009,
+          "Category": "Weapons"
+        },
+        {
+          "Infusion": 0,
+          "InfusionIconID": "Standard",
+          "SwordArtID": -1,
+          "GemIconID": 0,
+          "UpgradeLevel": 10,
+          "Name": "Ripple Crescent Halberd",
+          "ID": 18060000,
+          "IconID": 10686,
+          "Category": "Weapons"
+        },
+        {
+          "Infusion": 0,
+          "InfusionIconID": "Standard",
+          "SwordArtID": -1,
+          "GemIconID": 0,
+          "UpgradeLevel": 10,
+          "Name": "Reduvia",
+          "ID": 1040000,
+          "IconID": 10004,
+          "Category": "Weapons"
+        },
+        {
+          "Infusion": 0,
+          "InfusionIconID": "Standard",
+          "SwordArtID": -1,
+          "GemIconID": 0,
+          "UpgradeLevel": 10,
+          "Name": "Reduvia",
+          "ID": 1040000,
+          "IconID": 10004,
+          "Category": "Weapons"
+        },
+        {
+          "Infusion": 0,
+          "InfusionIconID": "Standard",
+          "SwordArtID": -1,
+          "GemIconID": 0,
+          "UpgradeLevel": 10,
+          "Name": "Reduvia",
+          "ID": 1040000,
+          "IconID": 10004,
+          "Category": "Weapons"
+        },
+        {
+          "Infusion": 0,
+          "InfusionIconID": "Standard",
+          "SwordArtID": -1,
+          "GemIconID": 0,
+          "UpgradeLevel": 10,
+          "Name": "Reduvia",
+          "ID": 1040000,
+          "IconID": 10004,
+          "Category": "Weapons"
+        },
+        {
+          "Infusion": 0,
+          "InfusionIconID": "Standard",
+          "SwordArtID": -1,
+          "GemIconID": 0,
+          "UpgradeLevel": 10,
+          "Name": "Reduvia",
+          "ID": 1040000,
+          "IconID": 10004,
+          "Category": "Weapons"
+        },
+        {
+          "Infusion": 1200,
+          "InfusionIconID": "Occult",
+          "SwordArtID": 80100,
+          "GemIconID": 8481,
+          "UpgradeLevel": 25,
+          "Name": "Miséricorde",
+          "ID": 1030000,
+          "IconID": 10003,
+          "Category": "Weapons"
+        },
+        {
+          "Infusion": 1200,
+          "InfusionIconID": "Occult",
+          "SwordArtID": 80100,
+          "GemIconID": 8481,
+          "UpgradeLevel": 25,
+          "Name": "Miséricorde",
+          "ID": 1030000,
+          "IconID": 10003,
+          "Category": "Weapons"
+        },
+        {
+          "Infusion": 1200,
+          "InfusionIconID": "Occult",
+          "SwordArtID": 80100,
+          "GemIconID": 8481,
+          "UpgradeLevel": 25,
+          "Name": "Miséricorde",
+          "ID": 1030000,
+          "IconID": 10003,
+          "Category": "Weapons"
+        },
+        {
+          "Infusion": 1200,
+          "InfusionIconID": "Occult",
+          "SwordArtID": 80100,
+          "GemIconID": 8481,
+          "UpgradeLevel": 25,
+          "Name": "Miséricorde",
+          "ID": 1030000,
+          "IconID": 10003,
+          "Category": "Weapons"
+        },
+        {
+          "Infusion": 1200,
+          "InfusionIconID": "Occult",
+          "SwordArtID": 80100,
+          "GemIconID": 8481,
+          "UpgradeLevel": 25,
+          "Name": "Miséricorde",
+          "ID": 1030000,
+          "IconID": 10003,
+          "Category": "Weapons"
+        },
+        {
+          "Infusion": 1100,
+          "InfusionIconID": "Blood",
+          "SwordArtID": 80100,
+          "GemIconID": 8481,
+          "UpgradeLevel": 25,
+          "Name": "Cleanrot Knight's Sword",
+          "ID": 5010000,
+          "IconID": 10161,
+          "Category": "Weapons"
+        },
+        {
+          "Infusion": 1000,
+          "InfusionIconID": "Poison",
+          "SwordArtID": 80100,
+          "GemIconID": 8481,
+          "UpgradeLevel": 25,
+          "Name": "Cleanrot Knight's Sword",
+          "ID": 5010000,
+          "IconID": 10161,
+          "Category": "Weapons"
+        },
+        {
+          "Infusion": 1100,
+          "InfusionIconID": "Blood",
+          "SwordArtID": 80100,
+          "GemIconID": 8481,
+          "UpgradeLevel": 25,
+          "Name": "Cleanrot Knight's Sword",
+          "ID": 5010000,
+          "IconID": 10161,
+          "Category": "Weapons"
+        },
+        {
+          "Infusion": 1000,
+          "InfusionIconID": "Poison",
+          "SwordArtID": 80100,
+          "GemIconID": 8481,
+          "UpgradeLevel": 25,
+          "Name": "Cleanrot Knight's Sword",
+          "ID": 5010000,
+          "IconID": 10161,
+          "Category": "Weapons"
+        },
+        {
+          "Infusion": 1100,
+          "InfusionIconID": "Blood",
+          "SwordArtID": 80100,
+          "GemIconID": 8481,
+          "UpgradeLevel": 25,
+          "Name": "Cleanrot Knight's Sword",
+          "ID": 5010000,
+          "IconID": 10161,
+          "Category": "Weapons"
+        },
+        {
+          "Infusion": 1000,
+          "InfusionIconID": "Poison",
+          "SwordArtID": 22800,
+          "GemIconID": 8354,
+          "UpgradeLevel": 25,
+          "Name": "Scythe",
+          "ID": 19000000,
+          "IconID": 10720,
+          "Category": "Weapons"
+        },
+        {
+          "Infusion": 1200,
+          "InfusionIconID": "Occult",
+          "SwordArtID": 50200,
+          "GemIconID": 8401,
+          "UpgradeLevel": 25,
+          "Name": "Scythe",
+          "ID": 19000000,
+          "IconID": 10720,
+          "Category": "Weapons"
+        },
+        {
+          "Infusion": 700,
+          "InfusionIconID": "Sacred",
+          "SwordArtID": 70200,
+          "GemIconID": 8462,
+          "UpgradeLevel": 25,
+          "Name": "Iron Roundshield",
+          "ID": 30120000,
+          "IconID": 12012,
+          "Category": "Weapons"
+        },
+        {
+          "Infusion": 1000,
+          "InfusionIconID": "Poison",
+          "SwordArtID": 22800,
+          "GemIconID": 8354,
+          "UpgradeLevel": 25,
+          "Name": "Wakizashi",
+          "ID": 1100000,
+          "IconID": 10010,
+          "Category": "Weapons"
+        },
+        {
+          "Infusion": 1200,
+          "InfusionIconID": "Occult",
+          "SwordArtID": 80000,
+          "GemIconID": 8480,
+          "UpgradeLevel": 25,
+          "Name": "Wakizashi",
+          "ID": 1100000,
+          "IconID": 10010,
+          "Category": "Weapons"
+        }
+      ]
+    },
+    {
+      "Name": "Talismans",
+      "Items": [
+        {
+          "Name": "Green Turtle Talisman",
+          "ID": 1150,
+          "IconID": 18160,
+          "Category": "Accessory"
+        },
+        {
+          "Name": "Crimson Amber Medallion +2",
+          "ID": 1002,
+          "IconID": 18002,
+          "Category": "Accessory"
+        },
+        {
+          "Name": "Blessed Dew Talisman",
+          "ID": 5020,
+          "IconID": 18630,
+          "Category": "Accessory"
+        },
+        {
+          "Name": "Ritual Shield Talisman",
+          "ID": 4090,
+          "IconID": 18580,
+          "Category": "Accessory"
+        },
+        {
+          "Name": "Ritual Sword Talisman",
+          "ID": 2050,
+          "IconID": 18280,
+          "Category": "Accessory"
+        },
+        {
+          "Name": "Bull-Goat's Talisman",
+          "ID": 1210,
+          "IconID": 18220,
+          "Category": "Accessory"
+        },
+        {
+          "Name": "Blue-Feathered Branchsword",
+          "ID": 4080,
+          "IconID": 18570,
+          "Category": "Accessory"
+        },
+        {
+          "Name": "Red-Feathered Branchsword",
+          "ID": 2040,
+          "IconID": 18270,
+          "Category": "Accessory"
+        },
+        {
+          "Name": "Great-Jar's Arsenal",
+          "ID": 1032,
+          "IconID": 18032,
+          "Category": "Accessory"
+        },
+        {
+          "Name": "Rotten Winged Sword Insignia",
+          "ID": 2081,
+          "IconID": 18311,
+          "Category": "Accessory"
+        },
+        {
+          "Name": "Spear Talisman",
+          "ID": 2060,
+          "IconID": 18290,
+          "Category": "Accessory"
+        },
+        {
+          "Name": "Hammer Talisman",
+          "ID": 2070,
+          "IconID": 18300,
+          "Category": "Accessory"
+        },
+        {
+          "Name": "Dagger Talisman",
+          "ID": 2090,
+          "IconID": 18320,
+          "Category": "Accessory"
+        },
+        {
+          "Name": "Greatshield Talisman",
+          "ID": 4100,
+          "IconID": 18590,
+          "Category": "Accessory"
+        },
+        {
+          "Name": "Claw Talisman",
+          "ID": 2180,
+          "IconID": 18800,
+          "Category": "Accessory"
+        },
+        {
+          "Name": "Shard of Alexander",
+          "ID": 1231,
+          "IconID": 18871,
+          "Category": "Accessory"
+        },
+        {
+          "Name": "Spelldrake Talisman +2",
+          "ID": 4012,
+          "IconID": 18502,
+          "Category": "Accessory"
+        },
+        {
+          "Name": "Flamedrake Talisman +2",
+          "ID": 4022,
+          "IconID": 18512,
+          "Category": "Accessory"
+        },
+        {
+          "Name": "Boltdrake Talisman +2",
+          "ID": 4032,
+          "IconID": 18522,
+          "Category": "Accessory"
+        },
+        {
+          "Name": "Arrow's Sting Talisman",
+          "ID": 2150,
+          "IconID": 18340,
+          "Category": "Accessory"
+        },
+        {
+          "Name": "Immunizing Horn Charm +1",
+          "ID": 1171,
+          "IconID": 18181,
+          "Category": "Accessory"
+        },
+        {
+          "Name": "Stalwart Horn Charm +1",
+          "ID": 1161,
+          "IconID": 18171,
+          "Category": "Accessory"
+        },
+        {
+          "Name": "Clarifying Horn Charm +1",
+          "ID": 1181,
+          "IconID": 18191,
+          "Category": "Accessory"
+        },
+        {
+          "Name": "Mottled Necklace +1",
+          "ID": 1201,
+          "IconID": 18211,
+          "Category": "Accessory"
+        },
+        {
+          "Name": "Prince of Death's Cyst",
+          "ID": 1191,
+          "IconID": 18201,
+          "Category": "Accessory"
+        },
+        {
+          "Name": "Crimson Seed Talisman",
+          "ID": 5000,
+          "IconID": 18610,
+          "Category": "Accessory"
+        },
+        {
+          "Name": "Crimson Seed Talisman",
+          "ID": 5000,
+          "IconID": 18610,
+          "Category": "Accessory"
+        },
+        {
+          "Name": "Crimson Seed Talisman",
+          "ID": 5000,
+          "IconID": 18610,
+          "Category": "Accessory"
+        },
+        {
+          "Name": "Crimson Seed Talisman",
+          "ID": 5000,
+          "IconID": 18610,
+          "Category": "Accessory"
+        },
+        {
+          "Name": "Crimson Seed Talisman",
+          "ID": 5000,
+          "IconID": 18610,
+          "Category": "Accessory"
+        }
+      ]
+    },
+    {
+      "Name": "Armors",
+      "Items": [
+        {
+          "Name": "Bandit Mask",
+          "ID": 1401000,
+          "IconID": 14980,
+          "Category": "Protector"
+        },
+        {
+          "Name": "Royal Remains Helm",
+          "ID": 690000,
+          "IconID": 14060,
+          "Category": "Protector"
+        },
+        {
+          "Name": "Royal Remains Armor",
+          "ID": 690100,
+          "IconID": 14061,
+          "Category": "Protector"
+        },
+        {
+          "Name": "Royal Remains Gauntlets",
+          "ID": 690200,
+          "IconID": 14062,
+          "Category": "Protector"
+        },
+        {
+          "Name": "Royal Remains Greaves",
+          "ID": 690300,
+          "IconID": 14063,
+          "Category": "Protector"
+        },
+        {
+          "Name": "Banished Knight Armor",
+          "ID": 200100,
+          "IconID": 13221,
+          "Category": "Protector"
+        },
+        {
+          "Name": "Fire Prelate Gauntlets",
+          "ID": 360200,
+          "IconID": 13522,
+          "Category": "Protector"
+        },
+        {
+          "Name": "Bull-Goat Greaves",
+          "ID": 140300,
+          "IconID": 13133,
+          "Category": "Protector"
+        }
+      ]
+    }
+  ]
+}

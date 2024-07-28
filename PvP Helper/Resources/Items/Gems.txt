@@ -1,0 +1,92 @@
+﻿-1 None
+10000 Lion's Claw
+10100 Impaling Thrust
+10200 Piercing Fang
+10300 Spinning Slash
+10500 Charge Forth
+10600 Stamp (Upward Cut)
+10700 Stamp (Sweep)
+10800 Blood Tax
+10900 Repeating Thrust
+11000 Wild Strikes
+11100 Spinning Strikes
+11200 Double Slash
+11300 Prelate's Charge
+11400 Unsheathe
+11500 Square Off
+11600 Giant Hunt
+11800 Loretta's Slash
+11900 Poison Moth Flight
+12000 Spinning Weapon
+12200 Storm Assault
+12300 Stormcaller
+12400 Sword Dance
+20000 Glintblade Phalanx
+20100 Sacred Blade
+20200 Ice Spear
+20300 Glintstone Pebble
+20400 Bloody Slash
+20500 Lifesteal Fist
+20700 Eruption
+20800 Prayerful Strike
+20900 Gravitas
+21000 Storm Blade
+21200 Earthshaker
+21300 Golden Land
+21400 Flaming Strike
+21600 Thunderbolt
+21700 Lightning Slash
+21800 Carian Grandeur
+21900 Carian Greatsword
+22000 Vacuum Slice
+22100 Black Flame Tornado
+22200 Sacred Ring of Light
+22400 Blood Blade
+22500 Phantom Slash
+22600 Spectral Lance
+22700 Chilling Mist
+22800 Poisonous Mist
+30000 Shield Bash
+30100 Barricade Shield
+30200 Parry
+30500 Carian Retaliation
+30600 Storm Wall
+30700 Golden Parry
+30800 Shield Crash
+30900 No Skill
+31000 Thops's Barrier
+40000 Through and Through
+40100 Barrage
+40200 Mighty Shot
+40400 Enchanted Shot
+40500 Sky Shot
+40600 Rain of Arrows
+50100 Hoarfrost Stomp
+50200 Storm Stomp
+50300 Kick
+50400 Lightning Ram
+50500 Flame of the Redmanes
+50600 Ground Slam
+50700 Golden Slam
+50800 Waves of Darkness
+50900 Hoarah Loux's Earthshaker
+60000 Determination
+60100 Royal Knight's Resolve
+60200 Assassin's Gambit
+60300 Golden Vow
+60400 Sacred Order
+60500 Shared Order
+60600 Seppuku
+60700 Cragblade
+65000 Barbaric Roar
+65100 War Cry
+65200 Beast's Roar
+65300 Troll's Roar
+65400 Braggart's Roar
+70000 Endure
+70100 Vow of the Indomitable
+70200 Holy Ground
+80000 Quickstep
+80100 Bloodhound's Step
+80200 Raptor of the Mists
+85000 White Shadow's Lure

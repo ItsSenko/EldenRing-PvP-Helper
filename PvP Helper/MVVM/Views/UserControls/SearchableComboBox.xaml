@@ -1,0 +1,52 @@
+﻿<UserControl x:Class="PvPHelper.MVVM.Views.UserControls.SearchableComboBox"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PvPHelper.MVVM.Views.UserControls"
+             xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
+             mc:Ignorable="d" 
+             x:Name="SearchableComboBoxRoot"
+             d:DesignHeight="40" d:DesignWidth="200">
+    <Border>
+        <Grid>
+            <local:ComboBoxSimple 
+                        ItemContainerStyle="{DynamicResource ComboBoxItemStyle}" 
+                        Style="{DynamicResource ComboBoxStyle}"
+                        x:Name="comboBox" 
+                          IsEditable="True"
+                          IsTextSearchEnabled="False"
+                          Height="Auto"
+                          Foreground="#757575"
+                          Background= "#1e1e1e"
+                          Text="{Binding SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ElementName=SearchableComboBoxRoot}"
+                          SelectedIndex="{Binding SelectedIndex, UpdateSourceTrigger=PropertyChanged, ElementName=SearchableComboBoxRoot}"
+                          SelectedItem="{Binding SelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ElementName=SearchableComboBoxRoot}"
+                          ItemsSource="{Binding ItemsSource, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ElementName=SearchableComboBoxRoot}"
+                          TextBoxBase.TextChanged="comboBox_TextChanged"
+                          ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                          VerticalContentAlignment="Center"
+                          SelectionChanged="comboBox_SelectionChanged"
+                          KeyDown="comboBox_KeyUp">
+
+                    <ComboBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <VirtualizingStackPanel />
+                        </ItemsPanelTemplate>
+                    </ComboBox.ItemsPanel>
+            </local:ComboBoxSimple>
+            <TextBlock IsHitTestVisible="False" Text="{Binding Placeholder, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ElementName=SearchableComboBoxRoot}"
+                   VerticalAlignment="Center"
+                   Padding="40,0,0,0"
+                   Foreground="#404040"/>
+            <svgc:SvgIcon UriSource="Resources/Images/magnify.svg"
+                          Fill="#404040"
+                          VerticalAlignment="Center"
+                          HorizontalAlignment="Left"
+                          Margin="10,0,0,0"
+                          Height="15"/>
+
+            <!--</StackPanel>-->
+        </Grid>
+    </Border>
+</UserControl>

@@ -1,0 +1,25 @@
+200000 Dryleaf Whirlwind
+200100 Aspects of the Crucible: Wings
+400000 Spinning Gravity Thrust
+401000 Palm Blast
+402000 Piercing Throw
+403000 Scattershot Throw
+404000 Wall of Sparks
+405000 Rolling Sparks
+406000 Raging Beast
+407000 Savage Claws
+409000 Blind Spot
+410000 Swift Slash
+411000 Overhead Stance
+412000 Wing Stance
+413000 Blinkbolt
+414000 Flame Skewer
+415000 Savage Lion's Claw
+416000 Divine Beast Frost Stomp
+417000 Flame Spear
+418000 Carian Sovereignty
+419000 Shriek of Sorrow
+422000 Ghostflame Call
+505000 The Poison Flower Blooms Twice
+548000 Igon's Drake Hunt
+800000 Shield Strike

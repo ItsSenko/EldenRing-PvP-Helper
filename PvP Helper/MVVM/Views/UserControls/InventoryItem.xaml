@@ -1,0 +1,45 @@
+﻿<UserControl x:Class="PvPHelper.MVVM.Views.UserControls.InventoryItem"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PvPHelper.MVVM.Views.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="150" d:DesignWidth="150">
+    <UserControl.Resources>
+        <local:NullImageConverter x:Key="nullImageConverter"/>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid   Cursor="Hand" Margin="6"
+              MouseEnter="Grid_MouseEnter" MouseLeave="Grid_MouseLeave"
+                MouseDown="Grid_MouseDown"
+                MouseRightButtonDown="Grid_MouseRightButtonDown" ToolTip="{Binding Path=ToolTipText, UpdateSourceTrigger=PropertyChanged}"
+                ToolTipService.InitialShowDelay="200"
+                >
+            <!--<Border Background="{DynamicResource ItemGradientActive}" CornerRadius="10" Opacity="0" Name="borderActive">
+                <Border.Effect>
+                    <DropShadowEffect Direction="0" BlurRadius="10" ShadowDepth="0"/>
+                </Border.Effect>
+            </Border>-->
+
+            <Border CornerRadius="10" x:Name="Outline" Background="{DynamicResource LighterBrush}" BorderThickness="0">
+                <Border Background="{DynamicResource BackgroundBrush}" CornerRadius="10" Name="borderInActive" BorderThickness="1">
+
+                </Border>
+            </Border>
+            
+
+
+
+            <Image Name="WeaponIcon" Source="{Binding Path=ItemIconPath, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource nullImageConverter}}" Width="Auto" Margin="10,10,10,10" Height="Auto" Opacity="1"/>
+            <Image Source="{Binding Path=AshOfWarIcon, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource nullImageConverter}}" Margin="0,0,8,8" Width="35" Height="35" HorizontalAlignment="Right" VerticalAlignment="Bottom" x:Name="GemUI"/>
+            <TextBlock Text="{Binding Path=ItemName, UpdateSourceTrigger=PropertyChanged}" TextWrapping="WrapWithOverflow" TextAlignment="Center"
+                       Foreground="{DynamicResource ForegroundBrush}" FontSize="12" Margin="5"/>
+
+            <Image Source="{Binding Path=InfusionIconPath, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource nullImageConverter}}"  Width="22" Height="22" Margin="10,0,0,10" HorizontalAlignment="Left" VerticalAlignment="Bottom" x:Name="InfusionUI"/>
+
+            <Label Content="{Binding Path=UpgradeLevel, UpdateSourceTrigger=PropertyChanged}" FontSize="12" Foreground="{DynamicResource ForegroundBrush}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="26" Height="25" HorizontalAlignment="Left" Margin="7,60,0,38" x:Name="UpgradeUI"/>
+        </Grid>
+    </Grid>
+</UserControl>

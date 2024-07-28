@@ -10,66 +10,19 @@ This is a tool to give a better experience in pvp in [seamless co-op](https://ww
 * [.Net Framework 4.6.1]( https://www.microsoft.com/en-us/download/details.aspx?id=48130)
 * [Visual C++ Redistributable Packages for Visual Studio 2013](https://www.microsoft.com/en-gb/download/details.aspx?id=40784)
 
-  
-![MainMenu](https://i.imgur.com/0JQEQYV.png)
-![BuildCreation](https://i.imgur.com/vHvECEp.png) ![Prefab Creator](https://i.imgur.com/zaYUSl9.png)
-![RedBadGirl](https://i.imgur.com/KscBzaS.png) ![BlueBadGirl](https://i.imgur.com/v4fDnZ2.png)
+![Dashboard](https://imgur.com/TLvx1Mq.png)
+
+## How to compile
+First, clone the repository using this command. `git clone -b dlc --recurse-submodules -j8 https://github.com/ItsSenko/EldenRing-PvP-Helper` After doing so, it should be as simple as building the program in visual studio. Any questions about compiling you may have, I can answer in the [Discord.](https://discord.com/invite/VmyGAS24Gf)
 
 ## Questions or Concerns?
 Join the [Discord!](https://discord.com/invite/VmyGAS24Gf)
 
-# Features
-### Dashboard
-- Infinite HP
-- Refill HP
-- Infinite Mana
-- Refill Mana
-- Auto Revive
-- Mad Heal
-- Infinite Consumables
-- Fast Anims (Only effects seamless co-op)
-- No Death
-- No Stamina Loss
-- Console
-- [Console Commands](https://github.com/ItsSenko/EldenRing-PvP-Helper/wiki/Console-Commands)
-- Set Phantom ID
-- Change Phantom Color
-- Update Phantom ID (Keeps the phantom id set during loading screens)
-### Items
-- Stats Box
-- Refresh Stats
-- Rune Gib
-- MassItemGib
-- MassWeaponGib
-- ItemGib
-### [Prefab Creator](https://github.com/ItsSenko/EldenRing-PvP-Helper/wiki/The-Prefab-Creator)
-- ItemGib (Prefab Creator Specific)
-- Create New (Clears current inventory)
-- Save (Saves and makes a prefab of current inventory)
-- Load (Loads current inventory in game)
-- Prefab Selction Dropdown
-- Refresh Prefabs
-- Inventory Type Dropdown
-### Misc
-- Check for updates
-- Auto Update
-- Allow Unsafe Options (Allows the user to use some things that are either unconfirmed or confirmed not safe for online)
-- Show Hitboxes
-
-## Thank You
-- [Nordgaren](https://github.com/Nordgaren) for the library [Erd-Tools](https://github.com/Nordgaren/Erd-Tools). This helped a lot with development. As well as their controbutions with programming help and helping me understand more about modding Elden Ring!
-- [The Grand Archives](https://github.com/The-Grand-Archives/Elden-Ring-CT-TGA) for the pointers and other addresses!
-- [CatShark](https://github.com/CatSharkShin) for the UI Design, and other work!
-- [Amir](https://www.youtube.com/@Amir0) for providing ingame icons!
-- [WaZues](https://www.youtube.com/@WaZeusPvP) and [Frosty](https://www.twitch.tv/frostycomes) for testing help!
-
-## Upcoming Features
-### Build Creation
-- Upgrading Costs no Materials
-- Invasion Region Changer
-- Graces Tab
-
-### Settings
-- (possibly) Free Cam
-
-
+## Credits
+- [Senko](https://linktr.ee/senkopur) Main Developer
+- [CatShark](https://linktr.ee/catsharku) Developer/UI Designer
+- [Nordgaren](https://github.com/Nordgaren) Creator of [Erd-Tools](https://github.com/Nordgaren/Erd-Tools). This helped a lot with development. As well as their controbutions with programming help and helping me understand more about modding Elden Ring!
+- [The Grand Archives](https://github.com/The-Grand-Archives/Elden-Ring-CT-TGA) Pointers and helpful scripts in their table!
+- [Amirah](https://www.youtube.com/@Amir0) Coding help and providing assets!
+- [Indura](https://github.com/lndura) Coding help and providing scripts.
+- [WaZues](https://www.youtube.com/@WaZeusPvP), [Frosty](https://www.twitch.tv/frostycomes), and [Steelovsky](https://www.youtube.com/@Steelovsky) for testing help!
