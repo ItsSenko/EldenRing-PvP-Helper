@@ -13,7 +13,7 @@ This is a tool to give a better experience in pvp in [seamless co-op](https://ww
 ![Dashboard](https://imgur.com/TLvx1Mq.png)
 
 ## How to compile
-First, clone the repository using this command. `git clone -b dlc --recurse-submodules -j8 https://github.com/ItsSenko/EldenRing-PvP-Helper` After doing so, it should be as simple as building the program in visual studio. Any questions about compiling you may have, I can answer in the [Discord.](https://discord.com/invite/VmyGAS24Gf)
+First, clone the repository using this command. `git clone -b main --recurse-submodules -j8 https://github.com/ItsSenko/EldenRing-PvP-Helper` After doing so, it should be as simple as building the program in visual studio. Any questions about compiling you may have, I can answer in the [Discord.](https://discord.com/invite/VmyGAS24Gf)
 
 ## Questions or Concerns?
 Join the [Discord!](https://discord.com/invite/VmyGAS24Gf)
