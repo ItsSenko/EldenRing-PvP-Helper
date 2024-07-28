@@ -18,6 +18,7 @@ using System.ComponentModel;
 using System.Windows;
 using System.Threading;
 using Erd_Tools.Models.Items;
+using PvPHelper.Core.Extensions;
 
 namespace PvPHelper.MVVM.ViewModels
 {
@@ -263,9 +264,6 @@ namespace PvPHelper.MVVM.ViewModels
         #endregion
         private ErdHook Hook;
 
-        Dictionary<int, int> SmithyToSomber = new();
-        Dictionary<int, int> SomberToSmithy = new();
-
         private SearchAlgorithm<Item> weaponSearch;
         private SearchAlgorithm<Gem> gemSearch;
         private SearchAlgorithm<NamedObject<Infusion>> infusionSearch;
@@ -359,45 +357,6 @@ namespace PvPHelper.MVVM.ViewModels
             CategoryItemsSource = categorys;
 
             BuildItemsSource = BuildSaver.getBuilds();
-
-            SmithyToSomber.Add(0, 0);
-            SmithyToSomber.Add(1, 0);
-            SmithyToSomber.Add(2, 1);
-            SmithyToSomber.Add(3, 1);
-            SmithyToSomber.Add(4, 1);
-            SmithyToSomber.Add(5, 2);
-            SmithyToSomber.Add(6, 2);
-            SmithyToSomber.Add(7, 3);
-            SmithyToSomber.Add(8, 3);
-            SmithyToSomber.Add(9, 3);
-            SmithyToSomber.Add(10, 4);
-            SmithyToSomber.Add(11, 4);
-            SmithyToSomber.Add(12, 5);
-            SmithyToSomber.Add(13, 5);
-            SmithyToSomber.Add(14, 5);
-            SmithyToSomber.Add(15, 6);
-            SmithyToSomber.Add(16, 6);
-            SmithyToSomber.Add(17, 7);
-            SmithyToSomber.Add(18, 7);
-            SmithyToSomber.Add(19, 7);
-            SmithyToSomber.Add(20, 8);
-            SmithyToSomber.Add(21, 8);
-            SmithyToSomber.Add(22, 9);
-            SmithyToSomber.Add(23, 9);
-            SmithyToSomber.Add(24, 9);
-            SmithyToSomber.Add(25, 10);
-
-            SomberToSmithy.Add(0, 0);
-            SomberToSmithy.Add(1, 4);
-            SomberToSmithy.Add(2, 6);
-            SomberToSmithy.Add(3, 9);
-            SomberToSmithy.Add(4, 11);
-            SomberToSmithy.Add(5, 13);
-            SomberToSmithy.Add(6, 16);
-            SomberToSmithy.Add(7, 19);
-            SomberToSmithy.Add(8, 21);
-            SomberToSmithy.Add(9, 24);
-            SomberToSmithy.Add(10, 25);
 
             weaponSearch = new(new List<Item>(), new AlphabeticalSort<Item>());
             weaponSearch.OnItemsChanged += (items) => { WeaponsSelectedItem = null; WeaponsItemsSource = items; };
@@ -638,7 +597,7 @@ namespace PvPHelper.MVVM.ViewModels
             WeaponsSearchText = string.Empty;
         }
 
-        private bool lastWasInfusible = true;
+        private bool lastWasInfusible = false;
         private void OnItemSelectedChanged()
         {
             if (!Hook.Loaded || !Hook.Hooked)
@@ -654,7 +613,7 @@ namespace PvPHelper.MVVM.ViewModels
             if (item is Weapon weapon)
             {
                 MaxUpgradeLevel = weapon.MaxUpgrade;
-                if (weapon.Infusible)
+                if (weapon.GemAttachType == GemMountType.Any)
                 {
                     List<Gem> gemOptions = new();
                     foreach (Gem gem in Gem.All)
@@ -664,22 +623,21 @@ namespace PvPHelper.MVVM.ViewModels
                             gemOptions.Add(gem);
                         }
                     }
-                    MaxUpgradeLevel = weapon.MaxUpgrade;
                     gemSearch.Items = gemOptions;
-                    if (weapon.MaxUpgrade > 10 && !lastWasInfusible)
-                        UpgradeLevel = SomberToSmithy[UpgradeLevel]; lastWasInfusible = true;
+                }
 
-                    UpgradeLevelString = UpgradeLevel.ToString();
-                    
-                }
-                else
+                if (lastWasInfusible && weapon.IsSomber())
                 {
-                    MaxUpgradeLevel = weapon.MaxUpgrade;
-                    if (weapon.MaxUpgrade < 11 && lastWasInfusible)
-                        UpgradeLevel = SmithyToSomber[UpgradeLevel];
-                    UpgradeLevelString = UpgradeLevel.ToString();
-                    lastWasInfusible = false;
+                    UpgradeLevel = Helpers.GetSomberLevel(UpgradeLevel);
                 }
+                else if (!lastWasInfusible && !weapon.IsSomber())
+                {
+                    UpgradeLevel = Helpers.GetSmithLevel(UpgradeLevel);
+                }
+
+                lastWasInfusible = !weapon.IsSomber();
+
+                UpgradeLevelString = UpgradeLevel.ToString();
             }
         }
 

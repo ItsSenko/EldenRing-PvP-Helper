@@ -389,7 +389,7 @@ namespace PvPHelper.MVVM.ViewModels
             AllShields = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Shields"), this, false, true);
             AllArmor = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Armor"), this, false);
             AllSpellTools = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Spell Tools"), this, false, true);
-            AllTalismans = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Talismans"), this);
+            AllTalismans = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Talismans"), this, false);
 
             AllDLCUpgrades = new RelayCommand((o) =>
             {

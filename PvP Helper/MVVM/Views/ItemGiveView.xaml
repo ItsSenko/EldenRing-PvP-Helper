@@ -234,7 +234,7 @@
 
                         <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
                             <TextBlock HorizontalAlignment="Center" Text="Upgrade Level" Foreground="White" FontSize="15" Margin="0, 0, 0, 5"/>
-                            <local:NumberInput CurrValue="{Binding CurrUpgradeValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" InputText="{Binding CurrUpgradeText}" Min="0" Max="{Binding MaxUpgrade}" Height="40"/>
+                            <local:NumberInput CurrValue="{Binding CurrUpgradeValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" InputText="{Binding CurrUpgradeText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Min="0" Max="{Binding MaxUpgrade, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="40"/>
                         </StackPanel>
 
                         

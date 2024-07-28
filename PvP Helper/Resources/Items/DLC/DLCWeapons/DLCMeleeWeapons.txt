@@ -40,6 +40,7 @@
 15510000 Bonny Butchering Knife
 16500000 Smithscript Spear
 16520000 Swift Spear
+16540000 Bloodfiend's Fork
 17500000 Spear of the Impaler
 17510000 Messmer Soldier's Spear
 17520000 Barbed Staff-Spear

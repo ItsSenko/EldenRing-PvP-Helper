@@ -22,6 +22,7 @@ using PvPHelper.MVVM.Models.Database;
 using System;
 using PvPHelper.MVVM.Models.Database.ItemsBases;
 using System.Windows.Data;
+using PvPHelper.Core.Extensions;
 
 namespace PvPHelper.MVVM.ViewModels
 {
@@ -423,6 +424,7 @@ namespace PvPHelper.MVVM.ViewModels
 
             hook.GetItem(new(item.ID, item.ItemCategory, amount, item.MaxQuantity, (int)Infusion.Standard, 0, -1, item.EventID));
         }
+        private bool lastWasSomber = false;
         private void OnRightClick(Item item, ItemGibModel model)
         {
             if (!hook.Hooked || !hook.Setup || item == null)
@@ -434,8 +436,18 @@ namespace PvPHelper.MVVM.ViewModels
             if (item is Weapon wpn)
             {
                 MaxUpgrade = wpn.MaxUpgrade;
-                CurrUpgradeValue = 0;
-                CurrUpgradeText = "0";
+                if (lastWasSomber && !wpn.IsSomber())
+                {
+                    CurrUpgradeValue = Helpers.GetSmithLevel(CurrUpgradeValue);
+                    CurrUpgradeText = CurrUpgradeValue.ToString();
+                }
+                else if (!lastWasSomber && wpn.IsSomber())
+                {
+                    CurrUpgradeValue = Helpers.GetSomberLevel(CurrUpgradeValue);
+                    CurrUpgradeText = CurrUpgradeValue.ToString();
+                }
+
+                lastWasSomber = wpn.IsSomber();
 
                 EditAmountMax = 100;
                 EditAmount = 1;
@@ -443,7 +455,7 @@ namespace PvPHelper.MVVM.ViewModels
 
                 ItemName = item.Name;
 
-                if (wpn.Infusible)
+                if (wpn.GemAttachType == GemMountType.Any)
                 {
                     List<Gem> gems = new();
                     foreach (Gem gem in Gem.All)
@@ -582,9 +594,6 @@ namespace PvPHelper.MVVM.ViewModels
         public void CancelItem()
         {
             FinalInfo = null;
-            CurrUpgradeValue = 0;
-            CurrUpgradeText = "0";
-            MaxUpgrade = 0;
 
             EditAmountMax = 100;
             EditAmount = 0;

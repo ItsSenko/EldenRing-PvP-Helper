@@ -92,9 +92,10 @@ namespace PvPHelper.MVVM.Commands.Dashboard.Toggles
                     {
                         if (!string.IsNullOrEmpty(player.Name) && player.Health > 0)
                         {
-                            //inputData2.WriteByte(0x531, Helpers.SetBit(inputData2.ReadByte(0x531), 0, true)); //stop updating
                             localPlayer.PhantomID = Settings.Default.InvasionPhantomID;
-                            
+
+                            SetInvasionState(false);
+
                             if (Settings.Default.CustomInvasionSpawn)
                             {
                                 Thread.Sleep(1000);
@@ -109,10 +110,10 @@ namespace PvPHelper.MVVM.Commands.Dashboard.Toggles
             else
             {
                 isNewSession = false;
+                SetInvasionState(true);
             }
 
         }
-
 
         public override void Execute(object? parameter)
         {
@@ -130,20 +131,31 @@ namespace PvPHelper.MVVM.Commands.Dashboard.Toggles
             else
                 timer.Stop();
 
-            Row invasionItem = hook.EquipParamGoods.Rows.FirstOrDefault(x => x.ID == (int)Helpers.SeamlessItems.BreakInItem);
             Row leaveItem = hook.EquipParamGoods.Rows.FirstOrDefault(x => x.ID == (int)Helpers.SeamlessItems.LeavingItem);
-            Row runeArc = hook.EquipParamGoods.Rows.FirstOrDefault(x => x.ID == 190);
-            if (invasionItem == null || leaveItem == null)
+            if (leaveItem == null)
                 CommandManager.Log("Seamless Items Are Null.");
             else
             {
+                SetInvasionState(true);
                 var fieldOffset = hook.EquipParamGoods.Fields.FirstOrDefault(x => x.InternalName == "goodsUseAnim");
-                invasionItem.Param.Pointer.WriteByte(invasionItem.DataOffset + fieldOffset.FieldOffset, State ? (byte)16 : (byte)66);
                 leaveItem.Param.Pointer.WriteByte(leaveItem.DataOffset + fieldOffset.FieldOffset, State ? (byte)16 : (byte)9);
-                runeArc.Param.Pointer.WriteByte(runeArc.DataOffset + fieldOffset.FieldOffset, State ? (byte)16 : (byte)65);
             }
 
             isNewSession = _state;
+        }
+
+        private void SetInvasionState(bool state)
+        {
+            Row invasionItem = hook.EquipParamGoods.Rows.FirstOrDefault(x => x.ID == (int)Helpers.SeamlessItems.BreakInItem);
+            Row runeArc = hook.EquipParamGoods.Rows.FirstOrDefault(x => x.ID == 190);
+
+            if (invasionItem == null)
+                return;
+
+            var fieldOffset = hook.EquipParamGoods.Fields.FirstOrDefault(x => x.InternalName == "goodsUseAnim");
+
+            invasionItem.Param.Pointer.WriteByte(invasionItem.DataOffset + fieldOffset.FieldOffset, state ? (byte)16 : (byte)66);
+            runeArc.Param.Pointer.WriteByte(runeArc.DataOffset + fieldOffset.FieldOffset, state ? (byte)16 : (byte)65);
         }
 
         // Credit to Indura for the original script: https://github.com/lndura/SeamlessRespawnScript/blob/main/script 

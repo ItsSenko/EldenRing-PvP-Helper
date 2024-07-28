@@ -67,6 +67,9 @@ namespace PvPHelper.Core.Extensions
             if (!hook.Hooked || !hook.Setup)
                 return 0;
 
+            if (item.ItemCategory == Item.Category.Protector || item.ItemCategory == Item.Category.Accessory)
+                return 0;
+
             List<InventoryEntry> invEntries = (List<InventoryEntry>)hook.GetInventory();
             List<InventoryEntry> storEntries = (List<InventoryEntry>)hook.GetStorage();
 
@@ -75,7 +78,7 @@ namespace PvPHelper.Core.Extensions
             InventoryEntry invEntry = invEntries.FirstOrDefault(x => x.RawItemId == (int)item.ItemCategory + item.ID);
             InventoryEntry storEntry = storEntries.FirstOrDefault(x => x.RawItemId == (int)item.ItemCategory + item.ID);
 
-            if (storEntry == null && invEntry == null)
+            /*if (storEntry == null && invEntry == null)
             {
                 int rawItemID = item.ID + (int)item.ItemCategory;
 
@@ -91,7 +94,7 @@ namespace PvPHelper.Core.Extensions
                 hook.AsmExecute(format);
 
                 return Kernel32.ReadInt32(hook.Handle, returnPtr);
-            }
+            }*/
 
             if (invEntry != null)
                 quantity += invEntry.Quantity;
