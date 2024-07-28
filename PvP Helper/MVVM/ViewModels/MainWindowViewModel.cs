@@ -101,7 +101,9 @@ namespace PvPHelper.MVVM.ViewModels
                 };
                 dialog.ShowDialog();
             }*/
-            _hook = new(500, 1000, new(x => (x.MainWindowTitle is "ELDEN RING™" or "ELDEN RING") || x.ProcessName is "eldenring"));
+            _hook = new(5000, 1000, 
+                p => p.MainWindowTitle is "ELDEN RING™" 
+                     || (p.MainWindowTitle is "ELDEN RING" && p.ProcessName == "eldenring"));
 
             UnsafeVisibility = Settings.Default.AllowUnsafe ? Visibility.Visible : Visibility.Hidden;
             Settings.Default.SettingsSaving += (s, e) =>

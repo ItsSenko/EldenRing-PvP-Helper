@@ -188,7 +188,7 @@ namespace PvPHelper.MVVM.ViewModels
                             return;
                         try
                         {
-                            if (hook.Hooked)
+                            if (hook.Setup)
                             {
                                 timer.Stop();
                                 return;
