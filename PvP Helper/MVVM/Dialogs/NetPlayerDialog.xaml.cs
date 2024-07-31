@@ -158,7 +158,7 @@ namespace PvPHelper.MVVM.Dialogs
 
             XBtn.Click += (s, e) => { this.Close(); };
             ChangeClrBtn.Click += (s, e) => { ChangeColor(); };
-            TpToBtn.Click += (s, e) => { BetterSeamlessInvasionsToggle.RespawnPlayer(Player); };
+            TpToBtn.Click += (s, e) => { LocalPlayer.TeleportToPlayer(Player); };
             KickBtn.Click += (s, e) => { Player.Kick(); };
 
             if (CustomPointers.SessionMan.ReadInt32(0xC) != 3)

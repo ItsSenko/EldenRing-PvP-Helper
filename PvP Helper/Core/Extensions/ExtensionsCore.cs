@@ -105,6 +105,15 @@ namespace PvPHelper.Core.Extensions
             return quantity;
         }
 
+        public static string BytesToString(this byte[] bytes)
+        {
+            string str = string.Empty;
+            foreach (byte b in bytes)
+                str = str + b.ToString("X") + ", ";
+
+            return str;
+        }
+
         public static bool IsSomber(this Weapon weapon)
         {
             return weapon.MaxUpgrade == 10;

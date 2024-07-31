@@ -22,6 +22,8 @@
 
     <None Remove="Resources\Assembly\GetQuantity.asm" />
 
+    <None Remove="Resources\Assembly\ItemGibDisable.asm" />
+
     <None Remove="Resources\Assembly\ItemGibDisable\ItemGibDisable.asm" />
 
     <None Remove="Resources\Assembly\ItemGibDisable\ItemGibDisableInject.asm" />
@@ -114,6 +116,7 @@
     <EmbeddedResource Include="Resources\Assembly\FreeCamInject.asm" />
     <EmbeddedResource Include="Resources\Assembly\GetEquipParamGoodsEntry.asm" />
     <EmbeddedResource Include="Resources\Assembly\GetQuantity.asm" />
+    <EmbeddedResource Include="Resources\Assembly\ItemGibDisable.asm" />
     <EmbeddedResource Include="Resources\Assembly\ItemGibDisable\ItemGibDisable.asm" />
     <EmbeddedResource Include="Resources\Assembly\ItemGibDisable\ItemGibDisableInject.asm" />
     <EmbeddedResource Include="Resources\Assembly\KickOutFunction.asm" />
@@ -3527,6 +3530,7 @@
 	  <ResourceFiles Remove="Resources\Assembly\AddRunes.asm" />
 	  <ResourceFiles Remove="Resources\Assembly\GetEquipParamGoodsEntry.asm" />
 	  <ResourceFiles Remove="Resources\Assembly\GetQuantity.asm" />
+	  <ResourceFiles Remove="Resources\Assembly\ItemGibDisable.asm" />
 	  <ResourceFiles Remove="Resources\Assembly\ItemGibDisable\ItemGibDisable.asm" />
 	  <ResourceFiles Remove="Resources\Assembly\ItemGibDisable\ItemGibDisableInject.asm" />
 	  <ResourceFiles Remove="Resources\Assembly\OpenMenu.asm" />

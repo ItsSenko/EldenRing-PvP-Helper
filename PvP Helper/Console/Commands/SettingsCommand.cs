@@ -44,7 +44,7 @@ namespace PvPHelper.Console.Commands
 
 
             string value = parameters[1];
-            switch (value.ToLower())
+            switch (parameters[0].ToLower())
             {
                 case "autoupdate":
                     {

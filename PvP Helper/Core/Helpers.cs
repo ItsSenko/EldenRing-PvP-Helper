@@ -1,4 +1,5 @@
 ﻿using Erd_Tools.Models;
+using Keystone;
 using Newtonsoft.Json.Linq;
 using PropertyHook;
 using PvPHelper.Console;
@@ -107,12 +108,12 @@ namespace PvPHelper.Core
             var bc = new BrushConverter();
             return (Brush)bc.ConvertFrom(color);
         }
-
+        private const string GetEquipParamGoodsFuncAOB = "40 57 48 83 ec 40 48 c7 44 24 20 fe ff ff ff 48 89 5c 24 50 48 89 6c 24 58 48 89 74 24 60 8b fa";
         public static IntPtr GetEquipGoodsEntryParamPtr(int id)
         {
             var hook = ExtensionsCore.GetMainHook();
 
-            PHPointer pointer = hook.CreateBasePointer(hook.Process.MainModule.BaseAddress + 0xD39410);
+            PHPointer pointer = hook.CreateBasePointer(hook.Process.MainModule.BaseAddress + 0xD39900);
             IntPtr entryPtr = hook.GetPrefferedIntPtr(16);
             PHPointer ptr = hook.CreateBasePointer(entryPtr);
 
@@ -122,6 +123,16 @@ namespace PvPHelper.Core
             hook.AsmExecute(formattedStr);
 
             return ptr.ReadIntPtr(0x8);
+        }
+        private static Engine Engine = new(Architecture.X86, Mode.X64);
+        public static byte[] GetAssembledBytes(string asm)
+        {
+            EncodedData? bytes = Engine.Assemble(asm, (ulong)ExtensionsCore.GetMainHook().Process.MainModule.BaseAddress);
+            KeystoneError error = Engine.GetLastKeystoneError();
+            if (error != KeystoneError.KS_ERR_OK)
+                throw new("Something went wrong during assembly. Code could not be assembled.");
+
+            return bytes.Buffer;
         }
 
         public static long GetParamDataOffset(IntPtr ParamPtr, Param param)

@@ -12,6 +12,7 @@ namespace PvPHelper.Core
         private static string dHitboxAOB = "0F 29 74 24 40 0F 1F";
         private static string SessionManAOB = "4C 8B 05 ?? ?? ?? ?? 48 8B D9 33 C9 0F 29 74 24 ?? 0F 29 7C 24 ?? B2 01";
         private static string GlobalGameDataManAOB = "48 8B 05 ?? ?? ?? ?? 48 85 C0 74 05 48 8B 40 58 C3 C3";
+        private const string GetEquipParamGoodsFuncAOB = "40 57 48 83 ec 40 48 c7 44 24 20 fe ff ff ff 48 89 5c 24 50 48 89 6c 24 58 48 89 74 24 60 8b fa";
 
         public static PHPointer ChrDbgFlags;
         public static PHPointer ChrFlags;
@@ -26,6 +27,7 @@ namespace PvPHelper.Core
         public static PHPointer SessionMan;
         public static PHPointer GlobalGameDataMan;
         public static PHPointer CSMenuMan;
+        public static PHPointer GetEquipParamGoodsFunc;
         public static void Initialize(ErdHook hook)
         {
             ChrDbgFlags = hook.RegisterRelativeAOB(ChrDbgFlagsAOB, 2, 7);
@@ -43,6 +45,7 @@ namespace PvPHelper.Core
             GlobalGameDataMan = hook.RegisterRelativeAOB(GlobalGameDataManAOB, 3, 7);
 
             CSMenuMan = hook.RegisterRelativeAOB("48 8B 05 ?? ?? ?? ?? 33 DB 48 89 74 24", 3, 7, 0);
+            GetEquipParamGoodsFunc = hook.RegisterAbsoluteAOB(GetEquipParamGoodsFuncAOB);
         }
     }
 }

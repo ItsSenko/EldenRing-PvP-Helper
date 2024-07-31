@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 using System.Windows.Threading;
 using static Erd_Tools.Models.Param;
 using CommandBase = PvPHelper.Core.CommandBase;
+using PvPHelper.Core.Extensions;
 
 namespace PvPHelper.MVVM.Commands.Dashboard.Toggles
 {
@@ -46,6 +47,15 @@ namespace PvPHelper.MVVM.Commands.Dashboard.Toggles
 
         private List<NetPlayer> NetPlayerList = new();
 
+        private const string ItemGibCallAOB = "8B 02 83 F8 0A";
+
+        private PHPointer ItemGibCall;
+        private IntPtr newmem;
+
+        private byte[] originalBytes;
+        private byte[] newBytes;
+        private byte[] backupBytes = { 0x40, 0x55, 0x56, 0x57, 0x41, 0x54 };
+
         public BetterSeamlessInvasionsToggle(ErdHook hook)
         {
             this.hook = hook;
@@ -72,6 +82,8 @@ namespace PvPHelper.MVVM.Commands.Dashboard.Toggles
             NetPlayerList.Add(NetPlayer3);
             NetPlayerList.Add(NetPlayer4);
             NetPlayerList.Add(NetPlayer5);
+
+            ItemGibCall = hook.RegisterAbsoluteAOB(ItemGibCallAOB);
         }
 
         private void Timer_Tick(object? sender, EventArgs e)
@@ -131,15 +143,22 @@ namespace PvPHelper.MVVM.Commands.Dashboard.Toggles
             else
                 timer.Stop();
 
+            if (!setup)
+                Setup();
+
             Row leaveItem = hook.EquipParamGoods.Rows.FirstOrDefault(x => x.ID == (int)Helpers.SeamlessItems.LeavingItem);
             if (leaveItem == null)
                 CommandManager.Log("Seamless Items Are Null.");
             else
             {
-                SetInvasionState(true);
+                SetInvasionState(State);
                 var fieldOffset = hook.EquipParamGoods.Fields.FirstOrDefault(x => x.InternalName == "goodsUseAnim");
                 leaveItem.Param.Pointer.WriteByte(leaveItem.DataOffset + fieldOffset.FieldOffset, State ? (byte)16 : (byte)9);
             }
+
+            byte[] bytes = State ? newBytes : originalBytes;
+
+            Kernel32.WriteBytes(hook.Handle, ItemGibCall.Resolve() - 0x52, bytes);
 
             isNewSession = _state;
         }
@@ -159,7 +178,7 @@ namespace PvPHelper.MVVM.Commands.Dashboard.Toggles
         }
 
         // Credit to Indura for the original script: https://github.com/lndura/SeamlessRespawnScript/blob/main/script 
-        public static void RespawnPlayer(NetPlayer teleportingPlayer)
+        /*public static void RespawnPlayer(NetPlayer teleportingPlayer)
         {
             SetFlags(true); // stop everything
             Thread.Sleep(5000); // Load in delay, prevents void out
@@ -185,6 +204,46 @@ namespace PvPHelper.MVVM.Commands.Dashboard.Toggles
             inputData.WriteByte(0x19B, Helpers.SetBit(inputData.ReadByte(0x19B), 0, state));
             inputData.WriteByte(0x19B, Helpers.SetBit(inputData.ReadByte(0x19B), 1, state));
             inputData2.WriteByte(0x530, Helpers.SetBit(inputData2.ReadByte(0x530), 5, state));
+        }*/
+
+        private bool setup = false;
+        private void Setup()
+        {
+            if (setup)
+                return;
+
+            string asm = Helpers.GetEmbededResource("Resources.Assembly.ItemGibDisable.asm");
+            string newMemAsm = "ret";
+
+            newBytes = Helpers.GetAssembledBytes(newMemAsm);
+            newmem = hook.GetPrefferedIntPtr(newBytes.Length);
+
+            string formatted = string.Format(asm, newmem);
+            byte[] asmBytes = Helpers.GetAssembledBytes(formatted);
+
+            originalBytes = Kernel32.ReadBytes(hook.Handle, ItemGibCall.Resolve() - 0x52, (uint)asmBytes.Length);
+
+            if (newBytes == originalBytes)
+            {
+                originalBytes = backupBytes;
+            }
+
+            Kernel32.WriteBytes(hook.Handle, newmem, newBytes);
+
+            if (Settings.Default.DebugLogs)
+            {
+                CommandManager.Log(newmem.ToString("X"));
+                CommandManager.Log(newBytes.BytesToString());
+
+                CommandManager.Log("asm");
+                CommandManager.Log(formatted);
+                CommandManager.Log(asmBytes.BytesToString());
+
+                CommandManager.Log((ItemGibCall.Resolve() - 0x52).ToString("X"));
+                CommandManager.Log(originalBytes.BytesToString());
+            }
+
+            setup = true;
         }
     }
 }
