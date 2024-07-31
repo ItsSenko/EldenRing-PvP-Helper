@@ -116,7 +116,7 @@ namespace PvPHelper.MVVM.Commands.Items
         {
             if (item is Weapon weapon)
             {
-                if (weapon.Type is WeaponType.Arrow or WeaponType.Bolt or WeaponType.GreatArrow or WeaponType.Greatbolt)
+                if ((int)weapon.Type is 81 or 83 or 85 or 86)
                     return item.MaxQuantity + 600;
                 return 1;
             }

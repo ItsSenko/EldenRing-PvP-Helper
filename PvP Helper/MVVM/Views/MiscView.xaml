@@ -55,10 +55,6 @@
                                             Checked="{Binding ShowHitboxesToggle.State, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                             ToggleCommand="{Binding ShowHitboxesToggle}"/>
 
-                        <!--<userControls:LabeledCircleToggle Label="Free Cam"
-                                            Checked="{Binding FreeCamToggle.State, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                            ToggleCommand="{Binding FreeCamToggle}"/>-->
-
                         <userControls:LabeledCircleToggle Label="Custom FPS"
                                             Checked="{Binding CustomFPSToggle.State, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                             ToggleCommand="{Binding CustomFPSToggle}"/>
@@ -84,17 +80,21 @@
                         <userControls:LabeledCircleToggle Label="Custom Invasion Spawn"
                                             Checked="{Binding CustomInvasionSpawn.State, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                             ToggleCommand="{Binding CustomInvasionSpawn}" Visibility="{Binding SeamlessEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        <userControls:LabeledCircleToggle Label="Free Cam"
+                                            Checked="{Binding FreeCamToggle.State, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                            ToggleCommand="{Binding FreeCamToggle}"/>
                         
-                        <StackPanel Orientation="Horizontal">
-                            <Button Style="{DynamicResource PrimaryButton}"
-                        Content="Unlock All Colosseums"
-                        Command="{Binding AllArenas}" Cursor="Hand" Height="53" Width="200" HorizontalAlignment="Left"/>
-                            <Button Style="{DynamicResource PrimaryButton}"
-                        Content="Fog Walk"
-                        Command="{Binding FogWalkAnim}" Cursor="Hand" Height="53" Width="200" HorizontalAlignment="Left"/>
-                        </StackPanel>
                         
 
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Margin="50,180,0,0">
+                        <Button Style="{DynamicResource PrimaryButton}"
+                        Content="Unlock All&#x0a;Colosseums"
+                        Command="{Binding AllArenas}" Cursor="Hand" Height="53" Width="150" HorizontalAlignment="Left"/>
+                        <Button Style="{DynamicResource PrimaryButton}"
+                        Content="Fog Walk"
+                        Command="{Binding FogWalkAnim}" Cursor="Hand" Height="53" Width="150" HorizontalAlignment="Left"/>
                     </StackPanel>
                 </StackPanel>
 

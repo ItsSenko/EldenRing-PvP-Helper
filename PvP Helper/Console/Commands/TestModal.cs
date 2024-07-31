@@ -46,8 +46,8 @@ namespace PvPHelper.Console.Commands
 
         protected override void OnTriggerCommand()
         {
-            CommandManager.Log(CustomPointers.GetEquipParamGoodsFunc.Resolve().ToString("X"));
-            CommandManager.Log(Helpers.GetEquipGoodsEntryParamPtr(910).ToString("X"));
+            CommandManager.Log(CustomPointers.FieldArea.Resolve().ToString("X"));
+            CommandManager.Log(CustomPointers.FieldArea2.Resolve().ToString("X"));
         }
         protected override void OnTriggerCommandWithParameters(List<string> parameters)
         {
