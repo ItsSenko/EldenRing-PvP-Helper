@@ -23,6 +23,7 @@ using System;
 using PvPHelper.MVVM.Models.Database.ItemsBases;
 using System.Windows.Data;
 using PvPHelper.Core.Extensions;
+using Erd_Tools.Models.System.Dlc;
 
 namespace PvPHelper.MVVM.ViewModels
 {
@@ -625,12 +626,12 @@ namespace PvPHelper.MVVM.ViewModels
 
             foreach (var cat in ItemCategory.All)
             {
-                if (!hook.CSDlc.DlcAvailable(Erd_Tools.Models.System.Dlc.DlcName.ShadowOfTheErdtree) && cat.Name.StartsWith("DLC"))
+                if (!hook.CSDlc.DlcAvailable(DlcName.ShadowOfTheErdtree) && cat.Name.StartsWith("DLC"))
                     continue;
 
                 allContent.AddRange(cat.Items);
 
-                if (cat.Name.StartsWith("DLC") && hook.CSDlc.DlcAvailable(Erd_Tools.Models.System.Dlc.DlcName.ShadowOfTheErdtree))
+                if (cat.Name.StartsWith("DLC") && hook.CSDlc.DlcAvailable(DlcName.ShadowOfTheErdtree))
                 {
                     dlc.AddRange(cat.Items);
                     vanillaDLC.AddRange(cat.Items);
@@ -639,7 +640,7 @@ namespace PvPHelper.MVVM.ViewModels
                 {
                     vanilla.AddRange(cat.Items);
 
-                    if (hook.CSDlc.DlcAvailable(Erd_Tools.Models.System.Dlc.DlcName.ShadowOfTheErdtree))
+                    if (hook.CSDlc.DlcAvailable(DlcName.ShadowOfTheErdtree))
                         vanillaDLC.AddRange(cat.Items);
                 }
                 else if (Helpers.GetIfModuleExists(hook.Process, "ersc.dll"))
@@ -651,10 +652,13 @@ namespace PvPHelper.MVVM.ViewModels
             dataBase.OnShownItemsChanged += OnShownItemsChanged;
 
             ContentItemsSource.Add(new(vanilla, "Vanilla"));
-            if (hook.CSDlc.DlcAvailable(Erd_Tools.Models.System.Dlc.DlcName.ShadowOfTheErdtree))
+
+            if (hook.CSDlc.DlcAvailable(DlcName.ShadowOfTheErdtree))
                 ContentItemsSource.Add(new(dlc, "Shadow Of the Erdtree"));
-            if (hook.CSDlc.DlcAvailable(Erd_Tools.Models.System.Dlc.DlcName.ShadowOfTheErdtree))
+
+            if (hook.CSDlc.DlcAvailable(DlcName.ShadowOfTheErdtree))
                 ContentItemsSource.Add(new(vanillaDLC, "Vanilla + SoTE"));
+
             if (Helpers.GetIfModuleExists(hook.Process, "ersc.dll"))
                 ContentItemsSource.Add(new(seamlessCoop, "Seamless co-op"));
             ContentItemsSource.Add(new(allContent, "All"));

@@ -108,7 +108,6 @@ namespace PvPHelper.Core
             var bc = new BrushConverter();
             return (Brush)bc.ConvertFrom(color);
         }
-        private const string GetEquipParamGoodsFuncAOB = "40 57 48 83 ec 40 48 c7 44 24 20 fe ff ff ff 48 89 5c 24 50 48 89 6c 24 58 48 89 74 24 60 8b fa";
         public static IntPtr GetEquipGoodsEntryParamPtr(int id)
         {
             var hook = ExtensionsCore.GetMainHook();

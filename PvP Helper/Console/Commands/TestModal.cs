@@ -43,16 +43,40 @@ namespace PvPHelper.Console.Commands
             this.viewModel = viewModel;
             
         }
-
+        private bool state = false;
         protected override void OnTriggerCommand()
         {
-            CommandManager.Log(CustomPointers.FieldArea.Resolve().ToString("X"));
-            CommandManager.Log(CustomPointers.FieldArea2.Resolve().ToString("X"));
+            /*state = !state;
+            var idOffset = hook.EquipParamWeapon.Fields.FirstOrDefault(x => x.InternalName == "spEffectBehaviorId1").FieldOffset;
+            var weaponTypeOffset = hook.EquipParamWeapon.Fields.FirstOrDefault(x => x.InternalName == "wepType").FieldOffset;
+            foreach (var row in hook.EquipParamWeapon.Rows)
+            {
+                if ((WeaponType)row.Param.Pointer.ReadInt16((int)row.DataOffset + weaponTypeOffset) == WeaponType.Dagger)
+                {
+                    int id = row.Param.Pointer.ReadInt32((int)row.DataOffset + idOffset);
+                    row.Param.Pointer.WriteInt32((int)row.DataOffset + idOffset, state ? 70 : -1);
+                }
+            }
+            CommandManager.Log(state.ToString());*/
         }
         protected override void OnTriggerCommandWithParameters(List<string> parameters)
         {
             if (!hook.Setup || !hook.Loaded)
                 throw new InvalidCommandException("Not hooked or loaded");
+        }
+
+        public IntPtr GetEquipGoodsEntryParamPtr(int id)
+        {
+            PHPointer pointer = CustomPointers.GetEquipParamGoodsFunc;
+            IntPtr entryPtr = hook.GetPrefferedIntPtr(16);
+            PHPointer ptr = hook.CreateBasePointer(entryPtr);
+
+            string asmStr = Helpers.GetEmbededResource("Resources.Assembly.GetEquipParamGoodsEntry.asm");
+            string formattedStr = string.Format(asmStr, entryPtr, id, pointer.Resolve());
+
+            hook.AsmExecute(formattedStr);
+
+            return ptr.ReadIntPtr(0x8);
         }
     }
 }

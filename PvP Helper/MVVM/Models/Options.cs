@@ -13,47 +13,9 @@ namespace PvPHelper.MVVM.Models
             this.category = category;
         }
     }
-    class ItemGibOption : BaseOption
+    public class MenuItem
     {
-        public string CatName { get; set; }
-        public Item item { get; set; }
-        public ItemGibOption(string name, string catName, Item item)
-        {
-            this.Name = name;
-            this.item = item;
-            CatName = catName;
-        }
-    }
-    class InfusionOption : BaseOption
-    {
-        public Infusion infusion { get; set; }
-        public InfusionOption(string name, Infusion item)
-        {
-            this.Name = name;
-            this.infusion = item;
-        }
-    }
-    class GemOption : BaseOption
-    {
-        public Gem gem { get; set; }
-        public GemOption(string name, Gem item)
-        {
-            this.Name = name;
-            this.gem = item;
-        }
-    }
-    /*public class InventoryStateOption : BaseOption
-    {
-        public PrefabCreatorViewModel.InventoryState State { get; set; }
-        public InventoryStateOption(PrefabCreatorViewModel.InventoryState state)
-        {
-            Name = state.ToString();
-            State = state;
-        }
-    }*/
-
-    public class MenuItem : BaseOption
-    {
+        public string Name { get; set; }
         public int Offset { get; set; }
         public int startId { get; set; }
         public int endId { get; set; }
@@ -63,6 +25,11 @@ namespace PvPHelper.MVVM.Models
             this.Name = name;
             this.startId = startId;
             this.endId = endId;
+        }
+
+        public override string ToString()
+        {
+            return Name;
         }
     }
 }

@@ -156,7 +156,7 @@ namespace PvPHelper.MVVM.Commands.Dashboard.Toggles
                 leaveItem.Param.Pointer.WriteByte(leaveItem.DataOffset + fieldOffset.FieldOffset, State ? (byte)16 : (byte)9);
             }
 
-            byte[] bytes = State ? newBytes : originalBytes;
+            byte[] bytes = State ? newBytes : backupBytes;
 
             Kernel32.WriteBytes(hook.Handle, ItemGibCall.Resolve() - 0x52, bytes);
 
