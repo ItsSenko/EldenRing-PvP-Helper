@@ -74,15 +74,16 @@
                         <userControls:LabeledCircleToggle Label="No Gravity"
                                             Checked="{Binding NoGravityToggle.State, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                             ToggleCommand="{Binding NoGravityToggle}"/>
+                        <userControls:LabeledCircleToggle Label="Free Cam"
+                                            Checked="{Binding FreeCamToggle.State, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                            ToggleCommand="{Binding FreeCamToggle}"/>
                         <userControls:LabeledCircleToggle Label="Fast Seamless Co-op Items"
                                             Checked="{Binding FastAnims.State, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                             ToggleCommand="{Binding FastAnims}" Visibility="{Binding SeamlessEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                         <userControls:LabeledCircleToggle Label="Custom Invasion Spawn"
                                             Checked="{Binding CustomInvasionSpawn.State, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                             ToggleCommand="{Binding CustomInvasionSpawn}" Visibility="{Binding SeamlessEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                        <userControls:LabeledCircleToggle Label="Free Cam"
-                                            Checked="{Binding FreeCamToggle.State, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                            ToggleCommand="{Binding FreeCamToggle}"/>
+                        
                         
                         
 

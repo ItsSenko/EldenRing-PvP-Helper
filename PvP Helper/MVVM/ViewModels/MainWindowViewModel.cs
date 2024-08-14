@@ -175,11 +175,11 @@ namespace PvPHelper.MVVM.ViewModels
                 return;
 
             CommandManager.Log("Welcome to the PvP Helper for Elden Ring!");
-            CommandManager.Log("Created by Senkopur and Catshark");
+            CommandManager.Log("Created by Senko and Catshark");
             if (_vController.UpdateAvailable)
             {
                 CommandManager.Log("There is an Update Available!");
-                CommandManager.Log($"You version is {_vController.CurrentLocalVersion}");
+                CommandManager.Log($"Your version is {_vController.CurrentLocalVersion}");
                 CommandManager.Log($"New version is {_vController.CurrentVersion}");
                 CommandManager.Log($"Do /update if you would like to update!");
             }
