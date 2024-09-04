@@ -1,5 +1,6 @@
 ﻿using Erd_Tools;
 using Erd_Tools.Models;
+using Erd_Tools.Models.Game;
 using PropertyHook;
 using PvPHelper.MVVM.ViewModels;
 using System;
@@ -70,8 +71,10 @@ namespace PvPHelper.Core.Extensions
             if (item.ItemCategory == Item.Category.Protector || item.ItemCategory == Item.Category.Accessory)
                 return 0;
 
-            List<InventoryEntry> invEntries = (List<InventoryEntry>)hook.GetInventory();
-            List<InventoryEntry> storEntries = (List<InventoryEntry>)hook.GetStorage();
+            List<InventoryEntry> invEntries = (List<InventoryEntry>)hook.PlayerGameData.Inventory.GetNormalInventory();
+            invEntries.AddRange(hook.PlayerGameData.Inventory.GetKeyInventory());
+            List<InventoryEntry> storEntries = (List<InventoryEntry>)hook.PlayerGameData.Storage.GetNormalInventory();
+            storEntries.AddRange(hook.PlayerGameData.Storage.GetKeyInventory());
 
             int quantity = 0;
 

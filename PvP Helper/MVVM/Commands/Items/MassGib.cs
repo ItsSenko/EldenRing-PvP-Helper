@@ -44,8 +44,6 @@ namespace PvPHelper.MVVM.Commands.Items
                 {   
                     if (item is Weapon weapon && IsWeapon)
                     {
-                        int level = weapon.IsSomber() ? Helpers.GetSomberLevel(UpgradeLevel) : UpgradeLevel;
-
                         GiveItem(item);
                         continue;
                     }
@@ -71,8 +69,7 @@ namespace PvPHelper.MVVM.Commands.Items
             {
                 if (item is Weapon weapon)
                 {
-                    bool isSomber = weapon.MaxUpgrade == 10;
-                    int level = isSomber ? Helpers.GetSomberLevel(UpgradeLevel) : UpgradeLevel;
+                    int level = weapon.IsSomber() ? Helpers.GetSomberLevel(UpgradeLevel) : UpgradeLevel;
 
                     ItemSpawnInfo info = new(item.ID, item.ItemCategory, 1, item.MaxQuantity, (int)Infusion.Standard, level);
 
@@ -89,11 +86,7 @@ namespace PvPHelper.MVVM.Commands.Items
 
             List<ItemSpawnInfo> items = new();
 
-            for (int i = 0; i < stacks; i++)
-                items.Add(new(item.ID, item.ItemCategory, item.MaxQuantity, item.MaxQuantity, (int)Infusion.Standard, 0));
-
-            if (remainder > 0)
-                items.Add(new(item.ID, item.ItemCategory, remainder, item.MaxQuantity, (int)Infusion.Standard, 0));
+            items.Add(new(item.ID, item.ItemCategory, amount, item.MaxQuantity, (int)Infusion.Standard, 0));
 
             if (items.Count == 1)
             {

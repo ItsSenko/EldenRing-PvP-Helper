@@ -34,6 +34,7 @@ namespace PvPHelper.MVVM.ViewModels
         public RelayCommand Discord { get; set; }
         public RelayCommand Kofi { get; set; }
         public RelayCommand CreditsCommand { get; set; }
+        public RelayCommand AuthorLinkCommand { get; set; }
 
         private string _versionText;
         public string VersionText
@@ -140,6 +141,15 @@ namespace PvPHelper.MVVM.ViewModels
             Kofi = new((o) =>
             {
                 var ps = new ProcessStartInfo("https://ko-fi.com/senko")
+                {
+                    UseShellExecute = true,
+                    Verb = "open"
+                };
+                Process.Start(ps);
+            });
+            AuthorLinkCommand = new((o) =>
+            {
+                var ps = new ProcessStartInfo("https://linktr.ee/senkopur")
                 {
                     UseShellExecute = true,
                     Verb = "open"

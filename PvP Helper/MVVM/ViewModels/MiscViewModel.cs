@@ -91,9 +91,6 @@ namespace PvPHelper.MVVM.ViewModels
         #endregion
         private ErdHook hook;
 
-        private int[] GestureIDs = new int[] { 60800, 60801, 60802, 60803, 60804, 60805, 60806, 60807, 60808, 60809,
-        60810,60811,60812,60813,60814,60815,60816,60817,60818,60819,60820,60821,60822,60823,60824,60826,60827,60828,
-        60829,60830,60831,60832,60833,60834,60835,60836,60837,60839,60840,60841,60842,60843,60844,60845,60846,60847,60848,60849};
 
         private bool AnimsLoaded = false;
 
@@ -121,18 +118,9 @@ namespace PvPHelper.MVVM.ViewModels
                 if (!hook.Loaded || !hook.Hooked)
                     return;
 
-                hook.SetEventFlag(60350, true);
-                hook.SetEventFlag(60360, true);
-                hook.SetEventFlag(60370, true);
-            });
-            AllGestures = new((o) => 
-            {
-                if (!hook.Loaded || !hook.Hooked)
-                    return;
-                foreach (int id in GestureIDs)
-                {
-                    hook.SetEventFlag(id, true);
-                }
+                hook.CSFD4VirtualMemoryFlag.SetEventFlag(60350, true);
+                hook.CSFD4VirtualMemoryFlag.SetEventFlag(60360, true);
+                hook.CSFD4VirtualMemoryFlag.SetEventFlag(60370, true);
             });
             FastAnims = new(hook);
             DebugLogsToggle = new();
@@ -215,6 +203,7 @@ namespace PvPHelper.MVVM.ViewModels
         }
         private void OpenMenu(string name, IntPtr address, int startId, int endId)
         {
+            return;
             bool isShop = name.ToLower().StartsWith("shop");
             string asmStr = Helpers.GetEmbededResource(isShop ? "Resources.Assembly.OpenShopMenu.asm" : "Resources.Assembly.OpenMenu.asm");
             string asm = isShop ? string.Format(asmStr, startId.ToString(), endId.ToString(), address.ToString("X")) : string.Format(asmStr, address.ToString("X"));

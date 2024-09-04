@@ -39,8 +39,8 @@ namespace PvPHelper.MVVM.ViewModels
 
 
         #endregion
-        private const string CreditsLink = "https://raw.githubusercontent.com/ItsSenko/EldenRing-PvP-Helper/dlc/credits.json";
-        private const string SupportersLink = "https://raw.githubusercontent.com/ItsSenko/EldenRing-PvP-Helper/dlc/supporters.json";
+        private const string CreditsLink = "https://raw.githubusercontent.com/ItsSenko/EldenRing-PvP-Helper/main/credits.json";
+        private const string SupportersLink = "https://raw.githubusercontent.com/ItsSenko/EldenRing-PvP-Helper/main/supporters.json";
 
         private HttpClient client;
 

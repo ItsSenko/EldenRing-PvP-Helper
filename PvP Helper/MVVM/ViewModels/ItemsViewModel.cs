@@ -346,7 +346,7 @@ namespace PvPHelper.MVVM.ViewModels
 
                 foreach (int flag in mapEventFlagIDs)
                 {
-                    _hook.SetEventFlag(flag, true);
+                    _hook.CSFD4VirtualMemoryFlag.SetEventFlag(flag, true);
                 }
 
                 foreach (Continent continent in _hook.GetContinents())
@@ -357,7 +357,7 @@ namespace PvPHelper.MVVM.ViewModels
                         {
                             foreach (Grace grace in hub.Graces)
                             {
-                                _hook.SetEventFlag(grace.EventFlagID, true);
+                                _hook.CSFD4VirtualMemoryFlag.SetEventFlag(grace.EventFlagID, true);
                             }
                         }
                     }
@@ -372,7 +372,7 @@ namespace PvPHelper.MVVM.ViewModels
                 massGib.Execute(null);
 
                 foreach(int flag in baseCookbookFlags)
-                    _hook.SetEventFlag(flag, true);
+                    _hook.CSFD4VirtualMemoryFlag.SetEventFlag(flag, true);
             }); 
             AllTools = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Tools"), this, false);
             AllMerchantItems = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "Merchant Items"), this, false);
@@ -407,7 +407,7 @@ namespace PvPHelper.MVVM.ViewModels
 
                 foreach (int flag in dlcMapIds)
                 {
-                    _hook.SetEventFlag(flag, true);
+                    _hook.CSFD4VirtualMemoryFlag.SetEventFlag(flag, true);
                 }
 
                 foreach (Continent continent in _hook.GetContinents())
@@ -418,7 +418,7 @@ namespace PvPHelper.MVVM.ViewModels
                         {
                             foreach (Grace grace in hub.Graces)
                             {
-                                _hook.SetEventFlag(grace.EventFlagID, true);
+                                _hook.CSFD4VirtualMemoryFlag.SetEventFlag(grace.EventFlagID, true);
                             }
                         }
                     }
@@ -430,7 +430,7 @@ namespace PvPHelper.MVVM.ViewModels
                 massGib.Execute(null);
 
                 foreach (int flag in dlcCookbookFlags)
-                    _hook.SetEventFlag(flag, true);
+                    _hook.CSFD4VirtualMemoryFlag.SetEventFlag(flag, true);
             }); 
             AllDLCTools = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "DLC Tools"), this, false);
             AllDLCMerchantItems = new MassGib(_hook, ItemCategory.All.FirstOrDefault(x => x.Name == "DLC Merchant Items"), this, false);
@@ -536,7 +536,7 @@ namespace PvPHelper.MVVM.ViewModels
                 _hook.GetItem(new(whetstoneKnife.ID, whetstoneKnife.ItemCategory, 1, whetstoneKnife.MaxQuantity, (int)Infusion.Standard, 0, -1, whetstoneKnife.EventID));
             }
             foreach (int whetblade in whetbladeFlags)
-                _hook.SetEventFlag(whetblade, true);
+                _hook.CSFD4VirtualMemoryFlag.SetEventFlag(whetblade, true);
         }
 
     }

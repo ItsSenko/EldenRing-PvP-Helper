@@ -113,11 +113,7 @@
                             <Setter Property="Margin" Value="0,0,30,0"/>
                         </Style>
                     </StackPanel.Resources>
-                    <TextBlock Text="Open Menu"
-                           Foreground="{DynamicResource LighterTextBrush}"
-                           FontSize="24" Width="126"/>
-                    <userControls:SimpleDropDown ItemsSource="{Binding MenuItemsSource, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                             SelectedItem="{Binding SelectedMenu, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="250"/>
+
 
                     <TextBlock
                            Foreground="{DynamicResource LighterTextBrush}"
@@ -129,6 +125,12 @@
                                                  SelectedIndex="{Binding SelectedAnimIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                                  SelectedItem="{Binding SelectedAnim, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="250" Visibility="{Binding SeamlessEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                                  Synced="True"/>
+
+                    <!--<TextBlock Text="Open Menu"
+                           Foreground="{DynamicResource LighterTextBrush}"
+                           FontSize="24" Width="126"/>
+                    <userControls:SimpleDropDown ItemsSource="{Binding MenuItemsSource, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                             SelectedItem="{Binding SelectedMenu, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="250"/>-->
                 </StackPanel>
                 
             </Grid>
