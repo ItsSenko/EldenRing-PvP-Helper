@@ -27,15 +27,17 @@ namespace PvPHelper.MVVM.Commands.Dashboard.Toggles
             var seamlessRuleBook = _hook.EquipParamGoods.Rows.FirstOrDefault(x => x.ID == (int)Helpers.SeamlessItems.GameRuleChangeItem);
             var hostItem = _hook.EquipParamGoods.Rows.FirstOrDefault(x => x.ID == (int)Helpers.SeamlessItems.HostingItem);
             var joinItem = _hook.EquipParamGoods.Rows.FirstOrDefault(x => x.ID == (int)Helpers.SeamlessItems.JoiningItem);
+            var driedFinger = _hook.EquipParamGoods.Rows.FirstOrDefault(x => x.ID == (int)Helpers.SeamlessItems.DriedFingerItem);
             var consumeOffset = seamlessRuleBook.Param.Fields[28].FieldOffset;
             
 
             seamlessRuleBook.Param.Pointer.WriteByte(hostItem.DataOffset + consumeOffset, State ? (byte)16 : (byte)6);
             seamlessRuleBook.Param.Pointer.WriteByte(seamlessRuleBook.DataOffset + consumeOffset, State ? (byte)16 : (byte)60);
             seamlessRuleBook.Param.Pointer.WriteByte(joinItem.DataOffset + consumeOffset, State ? (byte)16 : (byte)41);
+            seamlessRuleBook.Param.Pointer.WriteByte(driedFinger.DataOffset + consumeOffset, State ? (byte)16 : (byte)39);
 
 
-            CommandManager.Log($"Hosting, Joining, and RuleBook, Seamless Items are now {(State ? "Fast" : "Normal")}");
+            CommandManager.Log($"Hosting, Joining, Dried Finger, and RuleBook, Seamless Items are now {(State ? "Fast" : "Normal")}");
         }
     }
 }

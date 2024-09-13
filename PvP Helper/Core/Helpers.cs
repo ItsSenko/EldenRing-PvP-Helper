@@ -112,7 +112,7 @@ namespace PvPHelper.Core
         {
             var hook = ExtensionsCore.GetMainHook();
 
-            PHPointer pointer = hook.CreateBasePointer(hook.Process.MainModule.BaseAddress + 0xD39900);
+            PHPointer pointer = CustomPointers.GetEquipParamGoodsFunc;
             IntPtr entryPtr = hook.GetPrefferedIntPtr(16);
             PHPointer ptr = hook.CreateBasePointer(entryPtr);
 
@@ -157,6 +157,11 @@ namespace PvPHelper.Core
             if (!hook.Setup)
                 return;
 
+            if (CustomPointers.GetEquipParamGoodsFunc.Resolve() == IntPtr.Zero)
+            {
+                CommandManager.Log("Couldnt find GetEntry function for EquipParamGoods");
+                return;
+            }
 
             for(int i = 0; i < Enum.GetValues(typeof(SeamlessItems)).Length; i++)
             {
@@ -183,6 +188,7 @@ namespace PvPHelper.Core
             RotItem_03 = 8380009,
             RotItem_04 = 8380010,
             RotItem_05 = 8380011,
+            DriedFingerItem = 8380012,
         }
 
         public static ItemCategory GetCategoryByName(string name)

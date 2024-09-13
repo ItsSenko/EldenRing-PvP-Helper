@@ -82,26 +82,6 @@ namespace PvPHelper.MVVM.ViewModels
         public PHPointer LocalPlayer;
         public MainWindowViewModel()
         {
-            /*var proc = Process.GetProcesses().FirstOrDefault(x => (x.MainWindowTitle is "ELDEN RING™" or "ELDEN RING") || x.ProcessName is "eldenring");
-            if (proc == null)
-            {
-                List<DropDownObject<object>> list = new();
-                foreach (var process in Process.GetProcesses())
-                {
-                    if (!string.IsNullOrEmpty(process.MainWindowTitle))
-                        list.Add(new(process, process.MainWindowTitle));
-                }
-
-                DropDownDialog dialog = new("Select Process", list);
-                dialog.OnOk += (obj) =>
-                {
-                    if (obj != null && obj is DropDownObject<object> process)
-                    {
-                        proc = (process.Value as Process);
-                    }
-                };
-                dialog.ShowDialog();
-            }*/
             _hook = new(5000, 1000, 
                 p => p.MainWindowTitle is "ELDEN RING™" 
                      || (p.MainWindowTitle is "ELDEN RING" && p.ProcessName == "eldenring"));
@@ -212,6 +192,7 @@ namespace PvPHelper.MVVM.ViewModels
             { 
                 CommandManager.Log("Setup Hook for Elden Ring");
 
+                CustomPointers.GetEquipParamGoodsFunc = _hook.CreateBasePointer(_hook.Process.MainModule.BaseAddress + 0xD39CD0);
                 if (Helpers.GetIfModuleExists(_hook.Process, "ersc.dll"))
                     Helpers.InitializeSeamlessItems();
             });

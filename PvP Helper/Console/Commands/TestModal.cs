@@ -46,19 +46,27 @@ namespace PvPHelper.Console.Commands
         private bool state = false;
         protected override void OnTriggerCommand()
         {
-            /*state = !state;
-            var idOffset = hook.EquipParamWeapon.Fields.FirstOrDefault(x => x.InternalName == "spEffectBehaviorId1").FieldOffset;
-            var weaponTypeOffset = hook.EquipParamWeapon.Fields.FirstOrDefault(x => x.InternalName == "wepType").FieldOffset;
-            foreach (var row in hook.EquipParamWeapon.Rows)
-            {
-                if ((WeaponType)row.Param.Pointer.ReadInt16((int)row.DataOffset + weaponTypeOffset) == WeaponType.Dagger)
-                {
-                    int id = row.Param.Pointer.ReadInt32((int)row.DataOffset + idOffset);
-                    row.Param.Pointer.WriteInt32((int)row.DataOffset + idOffset, state ? 70 : -1);
-                }
-            }
-            CommandManager.Log(state.ToString());*/
+            var driedFinger = hook.EquipParamGoods.Rows.FirstOrDefault(x => x.ID == 8380012);
+            var consumeOffset = driedFinger.Param.Fields[28].FieldOffset;
+            CommandManager.Log(driedFinger.Param.Pointer.ReadByte(driedFinger.DataOffset + consumeOffset).ToString());
+            CommandManager.Log((CustomPointers.GetEquipParamGoodsFunc.Resolve().ToInt64() - hook.Process.MainModule.BaseAddress.ToInt64()).ToString("X"));
         }
+
+        public enum SeamlessItems
+        {
+            HostingItem = 8380001,
+            JoiningItem = 8380002,
+            BreakInItem = 8380003,
+            LeavingItem = 8380004,
+            GameRuleChangeItem = 8380005,
+            RuneArcItem = 8380006,
+            RotItem_01 = 8380007,
+            RotItem_02 = 8380008,
+            RotItem_03 = 8380009,
+            RotItem_04 = 8380010,
+            RotItem_05 = 8380011,
+        }
+
         protected override void OnTriggerCommandWithParameters(List<string> parameters)
         {
             if (!hook.Setup || !hook.Loaded)
@@ -67,6 +75,8 @@ namespace PvPHelper.Console.Commands
 
         public IntPtr GetEquipGoodsEntryParamPtr(int id)
         {
+            var hook = ExtensionsCore.GetMainHook();
+
             PHPointer pointer = CustomPointers.GetEquipParamGoodsFunc;
             IntPtr entryPtr = hook.GetPrefferedIntPtr(16);
             PHPointer ptr = hook.CreateBasePointer(entryPtr);
@@ -75,7 +85,12 @@ namespace PvPHelper.Console.Commands
             string formattedStr = string.Format(asmStr, entryPtr, id, pointer.Resolve());
 
             hook.AsmExecute(formattedStr);
-
+            string s = "";
+            foreach(byte b in ptr.ReadBytes(0x0, 16))
+            {
+                s = s + ", " + b.ToString("X");
+            }
+            CommandManager.Log(s);
             return ptr.ReadIntPtr(0x8);
         }
     }

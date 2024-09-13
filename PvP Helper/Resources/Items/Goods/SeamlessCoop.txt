@@ -4,3 +4,4 @@
 8380004 Separating Mist
 8380005 Judicator's Rulebook
 8380006 Rune Decanter
+8380012 Dried Finger
