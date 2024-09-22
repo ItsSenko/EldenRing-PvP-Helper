@@ -45,7 +45,7 @@ namespace PvPHelper.Core
             GlobalGameDataMan = hook.RegisterRelativeAOB(GlobalGameDataManAOB, 3, 7);
 
             CSMenuMan = hook.RegisterRelativeAOB("48 8B 05 ?? ?? ?? ?? 33 DB 48 89 74 24", 3, 7, 0);
-            
+            CustomPointers.GetEquipParamGoodsFunc = hook.RegisterAbsoluteAOB(GetEquipParamGoodsFuncAOB);
         }
     }
 }

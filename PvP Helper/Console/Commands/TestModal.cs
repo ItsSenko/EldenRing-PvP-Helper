@@ -25,6 +25,11 @@ using Keystone;
 using System.Text.RegularExpressions;
 using Kernel32 = PropertyHook.Kernel32;
 using Architecture = Keystone.Architecture;
+using System.Windows;
+using System.Windows.Input;
+using GlobalHotKey;
+using System.Diagnostics;
+
 
 namespace PvPHelper.Console.Commands
 {
@@ -33,7 +38,10 @@ namespace PvPHelper.Console.Commands
         private ErdHook hook;
 
         private MainWindowViewModel viewModel;
-        
+
+        private NetPlayer player;
+        private PHPointer Session;
+
         public TestModal(ErdHook hook, MainWindowViewModel viewModel)
         {
             CommandString = "/test";
@@ -41,57 +49,44 @@ namespace PvPHelper.Console.Commands
             HasParams = true;
             this.hook = hook;
             this.viewModel = viewModel;
-            
-        }
-        private bool state = false;
-        protected override void OnTriggerCommand()
-        {
-            var driedFinger = hook.EquipParamGoods.Rows.FirstOrDefault(x => x.ID == 8380012);
-            var consumeOffset = driedFinger.Param.Fields[28].FieldOffset;
-            CommandManager.Log(driedFinger.Param.Pointer.ReadByte(driedFinger.DataOffset + consumeOffset).ToString());
-            CommandManager.Log((CustomPointers.GetEquipParamGoodsFunc.Resolve().ToInt64() - hook.Process.MainModule.BaseAddress.ToInt64()).ToString("X"));
+
+            Session = hook.CreateChildPointer(hook.WorldChrMan, new int[] { 0x10EF8 });
+            player = new(hook, Session, 0x0 * 10);
         }
 
-        public enum SeamlessItems
+        private void HotKeyTest_HotKeyPressed(object? sender, KeyPressedEventArgs e)
         {
-            HostingItem = 8380001,
-            JoiningItem = 8380002,
-            BreakInItem = 8380003,
-            LeavingItem = 8380004,
-            GameRuleChangeItem = 8380005,
-            RuneArcItem = 8380006,
-            RotItem_01 = 8380007,
-            RotItem_02 = 8380008,
-            RotItem_03 = 8380009,
-            RotItem_04 = 8380010,
-            RotItem_05 = 8380011,
+            CommandManager.Log("Resetting");
+
+            /*player.Hp = player.HpMax;
+            player.Fp = player.FpMax;
+
+            player.AddSpecialEffect(101);
+            player.AddSpecialEffect(1673000);
+            player.AddSpecialEffect(1673014);
+
+            player.Poison = player.PoisonMax;
+            player.Rot = player.RotMax;
+            player.Bleed = player.BleedMax;
+            player.Blight = player.BlightMax;
+            player.Frost = player.FrostMax;
+            player.Sleep = player.SleepMax;
+            player.Madness = player.MadnessMax;*/
+        }
+
+        protected override void OnTriggerCommand()
+        {
+            //LeaveLobby();
+            //player.Kick();
+            
         }
 
         protected override void OnTriggerCommandWithParameters(List<string> parameters)
         {
             if (!hook.Setup || !hook.Loaded)
                 throw new InvalidCommandException("Not hooked or loaded");
-        }
 
-        public IntPtr GetEquipGoodsEntryParamPtr(int id)
-        {
-            var hook = ExtensionsCore.GetMainHook();
-
-            PHPointer pointer = CustomPointers.GetEquipParamGoodsFunc;
-            IntPtr entryPtr = hook.GetPrefferedIntPtr(16);
-            PHPointer ptr = hook.CreateBasePointer(entryPtr);
-
-            string asmStr = Helpers.GetEmbededResource("Resources.Assembly.GetEquipParamGoodsEntry.asm");
-            string formattedStr = string.Format(asmStr, entryPtr, id, pointer.Resolve());
-
-            hook.AsmExecute(formattedStr);
-            string s = "";
-            foreach(byte b in ptr.ReadBytes(0x0, 16))
-            {
-                s = s + ", " + b.ToString("X");
-            }
-            CommandManager.Log(s);
-            return ptr.ReadIntPtr(0x8);
+            hook.Warp(int.Parse(parameters[0]));
         }
     }
 }

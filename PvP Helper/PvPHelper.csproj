@@ -14,6 +14,8 @@
 
     <None Remove="Resources\Assembly\AddRunes.asm" />
 
+    <None Remove="Resources\Assembly\AddSpEffect.asm" />
+
     <None Remove="Resources\Assembly\FreeCamCode.asm" />
 
     <None Remove="Resources\Assembly\FreeCamInject.asm" />
@@ -30,9 +32,13 @@
 
     <None Remove="Resources\Assembly\KickOutFunction.asm" />
 
+    <None Remove="Resources\Assembly\LeaveLobby.asm" />
+
     <None Remove="Resources\Assembly\OpenMenu.asm" />
 
     <None Remove="Resources\Assembly\OpenShopMenu.asm" />
+
+    <None Remove="Resources\Assembly\RemoveSpEffect.asm" />
 
     <None Remove="Resources\Images\arrowleft.png" />
 
@@ -112,6 +118,7 @@
     <Resource Include="Resources\Images\shunter.ico" />
     <Resource Include="Resources\Images\shunter.png" />
     <EmbeddedResource Include="Resources\Assembly\AddRunes.asm" />
+    <EmbeddedResource Include="Resources\Assembly\LeaveLobby.asm" />
     <EmbeddedResource Include="Resources\Assembly\FreeCamCode.asm" />
     <EmbeddedResource Include="Resources\Assembly\FreeCamInject.asm" />
     <EmbeddedResource Include="Resources\Assembly\GetEquipParamGoodsEntry.asm" />
@@ -120,8 +127,10 @@
     <EmbeddedResource Include="Resources\Assembly\ItemGibDisable\ItemGibDisable.asm" />
     <EmbeddedResource Include="Resources\Assembly\ItemGibDisable\ItemGibDisableInject.asm" />
     <EmbeddedResource Include="Resources\Assembly\KickOutFunction.asm" />
+    <EmbeddedResource Include="Resources\Assembly\AddSpEffect.asm" />
     <EmbeddedResource Include="Resources\Assembly\OpenMenu.asm" />
     <EmbeddedResource Include="Resources\Assembly\OpenShopMenu.asm" />
+    <EmbeddedResource Include="Resources\Assembly\RemoveSpEffect.asm" />
 
     <Resource Include="Resources\Images\grave_scythe.png" />
     
@@ -176,6 +185,7 @@
   <ItemGroup>
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.1" />
     <PackageReference Include="Extended.Wpf.Toolkit" Version="4.5.0" />
+    <PackageReference Include="GlobalHotKey" Version="1.1.0" />
     <PackageReference Include="gong-wpf-dragdrop" Version="3.2.1" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="PixiEditor.ColorPicker" Version="3.3.1" />
@@ -3528,11 +3538,13 @@
 	
 	<ItemGroup>
 	  <ResourceFiles Remove="Resources\Assembly\AddRunes.asm" />
+	  <ResourceFiles Remove="Resources\Assembly\AddSpEffect.asm" />
 	  <ResourceFiles Remove="Resources\Assembly\GetEquipParamGoodsEntry.asm" />
 	  <ResourceFiles Remove="Resources\Assembly\GetQuantity.asm" />
 	  <ResourceFiles Remove="Resources\Assembly\ItemGibDisable.asm" />
 	  <ResourceFiles Remove="Resources\Assembly\ItemGibDisable\ItemGibDisable.asm" />
 	  <ResourceFiles Remove="Resources\Assembly\ItemGibDisable\ItemGibDisableInject.asm" />
+	  <ResourceFiles Remove="Resources\Assembly\LeaveLobby.asm" />
 	  <ResourceFiles Remove="Resources\Assembly\OpenMenu.asm" />
 	  <ResourceFiles Remove="Resources\DLCPlayRegions.json" />
 	  <ResourceFiles Remove="Resources\Images\format-list-text.svg" />

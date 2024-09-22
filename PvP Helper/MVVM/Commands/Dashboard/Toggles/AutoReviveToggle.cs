@@ -9,6 +9,7 @@ using CommandBase = PvPHelper.Core.CommandBase;
 
 namespace PvPHelper.MVVM.Commands.Dashboard.Toggles
 {
+    //Original code author: Jouta Kujo
     internal class AutoReviveToggle : CommandBase, IToggleable
     {
         private bool _state;

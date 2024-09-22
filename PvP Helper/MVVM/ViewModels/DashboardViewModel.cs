@@ -31,7 +31,7 @@ namespace PvPHelper.MVVM.ViewModels
         public ICommand NoFPLossToggle { get; set; }
 
         public ICommand AutoReviveToggle { get; set; }
-        public ICommand MadHealToggle { get; set; }
+        public ICommand ResetItemToggle { get; set; }
 
         public ICommand InfConsumeablesToggle { get; set; }
         public ICommand BSI { get; set; }
@@ -148,7 +148,7 @@ namespace PvPHelper.MVVM.ViewModels
             NoFPLossToggle = new NoFPLossToggle(hook);
 
             AutoReviveToggle = new AutoReviveToggle(hook, player);
-            MadHealToggle = new MadHealToggle(hook);
+            ResetItemToggle = new ResetItemToggle(hook);
 
             InfConsumeablesToggle = new InfiniteConsumeablesToggle(hook);
             BSI = new BetterSeamlessInvasionsToggle(hook);

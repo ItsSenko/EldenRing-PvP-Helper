@@ -64,23 +64,42 @@ namespace PvPHelper.Console.Commands
             if (!hook.Hooked || !hook.Loaded)
                 throw new InvalidCommandException("Not hooked or loaded.");
 
-            if (parameters[0].ToLower() == "list" && parameters.Count == 1)
+            switch (parameters[0].ToLower())
             {
-                CommandManager.Log("All NetPlayers in Current Session");
-                foreach(NetPlayer netPlayer in NetPlayerList)
-                {
-                    if (netPlayer == LocalNetPlayer)
-                        continue;
-
-                    string name = netPlayer.Name;
-                    int level = netPlayer.Level;
-
-                    if (!string.IsNullOrEmpty(name))
+                case "list":
                     {
-                        CommandManager.Log($"Name: {name}, Level: {level}");
+                        CommandManager.Log("All NetPlayers in Current Session");
+                        foreach (NetPlayer netPlayer in NetPlayerList)
+                        {
+                            if (netPlayer == LocalNetPlayer)
+                                continue;
+
+                            string name = netPlayer.Name;
+                            int level = netPlayer.Level;
+
+                            if (!string.IsNullOrEmpty(name))
+                            {
+                                CommandManager.Log($"Name: {name}, Level: {level}");
+                            }
+                        }
+                        return;
+                        break;
                     }
-                }
-                return;
+                case "dc":
+                    {
+                        Disconnect();
+                        break;
+                    }
+                case "disconnect":
+                    {
+                        Disconnect();
+                        break;
+                    }
+                case "leave":
+                    {
+                        Disconnect();
+                        break;
+                    }
             }
 
             if (string.IsNullOrEmpty(parameters[0]))
@@ -247,6 +266,11 @@ namespace PvPHelper.Console.Commands
                     }
                 }
             }
+        }
+
+        private void Disconnect()
+        {
+            hook.Warp(11101950);
         }
 
         public Param PhantomParam => hook.Params.FirstOrDefault(x => x.Name == "PhantomParam");

@@ -13,6 +13,7 @@ using CommandBase = PvPHelper.Core.CommandBase;
 
 namespace PvPHelper.MVVM.Commands.Misc
 {
+    //Original code author: Pav
     public class FreeCamToggle : CommandBase, IToggleable
     {
         private bool _state;

@@ -116,7 +116,8 @@ namespace PvPHelper.MVVM.Dialogs
                 Item item = category.Items.FirstOrDefault(x => x.ID == Prefab.ID);
                 if (item is Weapon wpn)
                 {
-                    if (!wpn.Unique)
+                    UpgradeBox.Max = wpn.MaxUpgrade;
+                    if (wpn.GemAttachType == GemMountType.Any)
                     {
                         foreach (Gem gem in Gem.All)
                         {
@@ -126,23 +127,24 @@ namespace PvPHelper.MVVM.Dialogs
                             }
                         }
                         gemSearch.Items = gemOptions;
-                        UpgradeBox.Max = 25;
                     }
-                    else
-                        UpgradeBox.Max = 10;
+                        
+
+                    Gem option = AshOfWarBox.SelectedItem as Gem;
+                    if (option != null && wpn.GemAttachType == GemMountType.Any)
+                    {
+                        List<NamedObject<Infusion>> infusionOptions = new();
+                        foreach (Infusion infusion in option.Infusions)
+                            infusionOptions.Add(new(infusion, infusion.ToString()));
+                        infusionSearch.Items = infusionOptions;
+                        InfusionBox.SelectedIndex = infusionOptions.IndexOf(infusionOptions.FirstOrDefault(inf => (int)inf.Value == Prefab.Infusion));
+                    }
+                    AshOfWarBox.SelectedIndex = gemOptions.IndexOf(gemOptions.FirstOrDefault(gem => gem.ID == Prefab.SwordArtID));
                 }
             }
-            AshOfWarBox.SelectedIndex = gemOptions.IndexOf(gemOptions.FirstOrDefault(gem => gem.ID == Prefab.SwordArtID));
+            
 
-            Gem option = AshOfWarBox.SelectedItem as Gem;
-            if (option != null)
-            {
-                List<NamedObject<Infusion>> infusionOptions = new();
-                foreach (Infusion infusion in option.Infusions)
-                    infusionOptions.Add(new(infusion, infusion.ToString()));
-                infusionSearch.Items = infusionOptions;
-                InfusionBox.SelectedIndex = infusionOptions.IndexOf(infusionOptions.FirstOrDefault(inf => (int)inf.Value == Prefab.Infusion));
-            }
+            
             //AshOfWarBox.OnSelectedItemChanged += AshOfWarBox_OnSelectedItemChanged;
         }
 

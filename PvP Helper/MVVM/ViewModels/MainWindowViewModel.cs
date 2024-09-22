@@ -192,7 +192,7 @@ namespace PvPHelper.MVVM.ViewModels
             { 
                 CommandManager.Log("Setup Hook for Elden Ring");
 
-                CustomPointers.GetEquipParamGoodsFunc = _hook.CreateBasePointer(_hook.Process.MainModule.BaseAddress + 0xD39CD0);
+                //CustomPointers.GetEquipParamGoodsFunc = _hook.CreateBasePointer(_hook.Process.MainModule.BaseAddress + 0xD39CD0);
                 if (Helpers.GetIfModuleExists(_hook.Process, "ersc.dll"))
                     Helpers.InitializeSeamlessItems();
             });
@@ -270,6 +270,7 @@ namespace PvPHelper.MVVM.ViewModels
             commandManager.RegisterCommand(new UpdateBuildCommand(_hook));
             //commandManager.RegisterCommand(new BetterSeamlessInvasionsCommand(_hook));
             commandManager.RegisterCommand(new SettingsCommand());
+            commandManager.RegisterCommand(new SpecialEffectsCommand(_hook));
         }
     }
 }

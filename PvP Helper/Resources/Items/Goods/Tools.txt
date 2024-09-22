@@ -1,3 +1,5 @@
+2040 Telescope
+2070 Lantern
 2140 Margit's Shackle
 2150 Mohg's Shackle
 2160 Pureblood Knight's Medal
