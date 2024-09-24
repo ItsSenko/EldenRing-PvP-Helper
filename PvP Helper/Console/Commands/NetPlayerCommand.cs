@@ -10,6 +10,8 @@ using PropertyHook;
 using PvPHelper.Core;
 using PvPHelper.MVVM.Dialogs;
 using static Erd_Tools.Models.Param;
+using PvPHelper.Core.Hotkeys;
+using System.Windows.Input;
 
 namespace PvPHelper.Console.Commands
 {
@@ -57,6 +59,17 @@ namespace PvPHelper.Console.Commands
 
             ArmorCat = ItemCategory.All.FirstOrDefault(x => x.Name == "Armor");
             TalismansCat = ItemCategory.All.FirstOrDefault(x => x.Name == "Talismans");
+
+            Hotkeys.Instance.GetSavedHotKey("Emergency Disconnect", new(Key.L, ModifierKeys.Control)).OnPressed += NetPlayerCommand_OnPressed; ;
+        }
+
+        private void NetPlayerCommand_OnPressed()
+        {
+            if (!hook.Loaded)
+                return;
+
+            Disconnect();
+            CommandManager.Log("Attempted to disconnect.");
         }
 
         protected override void OnTriggerCommandWithParameters(List<string> parameters)

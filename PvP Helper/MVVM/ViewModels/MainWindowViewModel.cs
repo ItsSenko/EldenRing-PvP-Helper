@@ -5,6 +5,7 @@ using PvPHelper.Console;
 using PvPHelper.Console.Commands;
 using PvPHelper.Core;
 using PvPHelper.Core.Extensions;
+using PvPHelper.Core.Hotkeys;
 using PvPHelper.MVVM.Dialogs;
 using PvPHelper.MVVM.Models;
 using PvPHelper.MVVM.Views;

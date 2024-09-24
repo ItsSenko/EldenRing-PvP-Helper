@@ -1,6 +1,7 @@
 ﻿using Erd_Tools;
 using Erd_Tools.Models.Entities;
 using PvPHelper.Core;
+using PvPHelper.Core.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,27 +30,50 @@ namespace PvPHelper.Console.Commands
 
         protected override void OnTriggerCommandWithParameters(List<string> parameters)
         {
-            if (parameters.Count < 2)
+            if (parameters.Count < 1)
                 throw new InvalidCommandException("Missing Parameters.");
 
             if (!hook.Hooked || !hook.Setup)
                 throw new InvalidCommandException("Not hooked or setup.");
 
-            if (!int.TryParse(parameters[1], out int ID))
-                throw new InvalidCommandException($"'{parameters[1]}' is not a proper ID.");
+            switch (parameters[0].ToLower())
+            {
+                case "list":
+                    {
+                        CommandManager.Log("Active Effects");
 
-            if (parameters[0].ToLower() == "add")
-            {
-                player.AddSpecialEffect(ID);
-                CommandManager.Log("Added special effect at ID: " + parameters[1]);
+                        foreach(int sfx in player.GetAllSpecialEffects())
+                        {
+                            CommandManager.Log("ID: " + sfx.ToString());
+                        }
+
+                        break;
+                    }
+                case "add":
+                    {
+                        if (!int.TryParse(parameters[1], out int ID))
+                            throw new InvalidCommandException($"'{parameters[1]}' is not a proper ID.");
+
+                        player.AddSpecialEffect(ID);
+                        CommandManager.Log("Added special effect at ID: " + parameters[1]);
+
+                        break;
+                    }
+                case "del":
+                    {
+                        if (!int.TryParse(parameters[1], out int ID))
+                            throw new InvalidCommandException($"'{parameters[1]}' is not a proper ID.");
+
+                        player.RemoveSpecialEffect(ID);
+                        CommandManager.Log("Removed special effect at ID: " + parameters[1]);
+
+                        break;
+                    }
+                default:
+                    {
+                        throw new InvalidCommandException("Invalid command. You can only do add or del.");
+                    }
             }
-            else if (parameters[0].ToLower() == "del")
-            {
-                player.RemoveSpecialEffect(ID);
-                CommandManager.Log("Removed special effect at ID: " + parameters[1]);
-            }
-            else
-                throw new InvalidCommandException("Invalid command. You can only do add or del.");
         }
     }
 }

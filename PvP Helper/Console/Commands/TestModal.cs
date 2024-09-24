@@ -29,7 +29,8 @@ using System.Windows;
 using System.Windows.Input;
 using GlobalHotKey;
 using System.Diagnostics;
-
+using Erd_Tools.Models.Items;
+using PvPHelper.Core.Hotkeys;
 
 namespace PvPHelper.Console.Commands
 {
@@ -39,8 +40,9 @@ namespace PvPHelper.Console.Commands
 
         private MainWindowViewModel viewModel;
 
-        private NetPlayer player;
-        private PHPointer Session;
+        private Player player;
+
+        private Hotkey hotkey;
 
         public TestModal(ErdHook hook, MainWindowViewModel viewModel)
         {
@@ -50,20 +52,28 @@ namespace PvPHelper.Console.Commands
             this.hook = hook;
             this.viewModel = viewModel;
 
-            Session = hook.CreateChildPointer(hook.WorldChrMan, new int[] { 0x10EF8 });
-            player = new(hook, Session, 0x0 * 10);
-        }
+            player = new(hook.PlayerIns, hook);
 
-        private void HotKeyTest_HotKeyPressed(object? sender, KeyPressedEventArgs e)
+            hotkey = Hotkeys.Instance.GetSavedHotKey("Reset Player", new(Key.NumPad0, ModifierKeys.None));
+
+            hotkey.OnPressed += HotKeyPressed;
+        }
+        private void HotKeyPressed()
         {
+            if (!hook.Loaded)
+            {
+                CommandManager.Log("Not Loaded.");
+                return;
+            }
+
             CommandManager.Log("Resetting");
 
-            /*player.Hp = player.HpMax;
+            player.Hp = player.HpMax;
             player.Fp = player.FpMax;
 
-            player.AddSpecialEffect(101);
-            player.AddSpecialEffect(1673000);
-            player.AddSpecialEffect(1673014);
+            player.AddSpecialEffect(101); // Grace Reset
+            player.AddSpecialEffect(1673000); // Law of Regression visual effect
+            player.AddSpecialEffect(1673014); // Law of Regression (Remove buffs and debuffs)
 
             player.Poison = player.PoisonMax;
             player.Rot = player.RotMax;
@@ -71,14 +81,15 @@ namespace PvPHelper.Console.Commands
             player.Blight = player.BlightMax;
             player.Frost = player.FrostMax;
             player.Sleep = player.SleepMax;
-            player.Madness = player.MadnessMax;*/
+            player.Madness = player.MadnessMax;
         }
 
         protected override void OnTriggerCommand()
         {
-            //LeaveLobby();
-            //player.Kick();
-            
+            foreach(int i in player.GetAllSpecialEffects())
+            {
+                CommandManager.Log(i.ToString());
+            }
         }
 
         protected override void OnTriggerCommandWithParameters(List<string> parameters)

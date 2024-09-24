@@ -1,4 +1,7 @@
-﻿using Erd_Tools.Models.Entities;
+﻿using Erd_Tools;
+using Erd_Tools.Models.Entities;
+using PropertyHook;
+using PvPHelper.Console;
 using PvPHelper.MVVM.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -42,6 +45,32 @@ namespace PvPHelper.Core.Extensions
             Arcane = 0x58,
             Soul = 0x6C,
             TotalGetSoul = 0x70
+        }
+
+        public static int[] GetAllSpecialEffects(this Player player)
+        {
+            ErdHook hook = ExtensionsCore.GetMainHook();
+
+            if (!hook.Loaded)
+                return null;
+
+            PHPointer sfx = player._chrSpecialEffects;
+
+            bool searching = true;
+            PHPointer index = hook.CreateChildPointer(sfx, 0x8);
+
+            List<int> ids = new();
+            while (searching)
+            {
+                int id = index.ReadInt32(0x8);
+                ids.Add(id);
+
+                index = hook.CreateChildPointer(index, 0x30);
+                if (index.ReadInt32(0x8) == 0)
+                    searching = false;
+            }
+
+            return ids.ToArray();
         }
     }
 }

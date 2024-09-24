@@ -81,24 +81,6 @@ namespace PvPHelper.Core.Extensions
             InventoryEntry invEntry = invEntries.FirstOrDefault(x => x.RawItemId == (int)item.ItemCategory + item.ID);
             InventoryEntry storEntry = storEntries.FirstOrDefault(x => x.RawItemId == (int)item.ItemCategory + item.ID);
 
-            /*if (storEntry == null && invEntry == null)
-            {
-                int rawItemID = item.ID + (int)item.ItemCategory;
-
-                string asm = Helpers.GetEmbededResource("Resources.Assembly.GetQuantity.asm");
-
-                IntPtr idPtr = hook.GetPrefferedIntPtr(sizeof(int));
-                Kernel32.WriteBytes(hook.Handle, idPtr, BitConverter.GetBytes(rawItemID));
-
-                IntPtr returnPtr = hook.GetPrefferedIntPtr(sizeof(int));
-
-                string format = string.Format(asm, idPtr, GetQuantityFunc.Resolve() - 0x14, returnPtr);
-
-                hook.AsmExecute(format);
-
-                return Kernel32.ReadInt32(hook.Handle, returnPtr);
-            }*/
-
             if (invEntry != null)
                 quantity += invEntry.Quantity;
 
@@ -120,6 +102,44 @@ namespace PvPHelper.Core.Extensions
         public static bool IsSomber(this Weapon weapon)
         {
             return weapon.MaxUpgrade == 10;
+        }
+
+        public static int GetMaxStorageAmount(this Item item, ErdHook hook)
+        {
+            if (item is Weapon weapon)
+            {
+                if ((int)weapon.Type is 81 or 83 or 85 or 86)
+                    return item.MaxQuantity + 600;
+                return 1;
+            }
+
+
+            var maxRepositoryNumOffset = hook.EquipParamGoods.Fields.FirstOrDefault(x => x.InternalName == "maxRepositoryNum").FieldOffset;
+            var potGroupIdOffset = hook.EquipParamGoods.Fields.FirstOrDefault(x => x.InternalName == "potGroupId").FieldOffset;
+
+            var row = hook.EquipParamGoods.Rows.FirstOrDefault(x => x.ID == item.ID);
+
+            if (row == null)
+                return item.MaxQuantity;
+
+            int maxInStorage = row.Param.Pointer.ReadInt16((int)row.DataOffset + maxRepositoryNumOffset);
+            int potGroupId = row.Param.Pointer.ReadInt16((int)row.DataOffset + potGroupIdOffset);
+
+            if (potGroupId < 255)
+                return maxInStorage;
+
+            return maxInStorage + item.MaxQuantity;
+        }
+
+        public static bool HasItem(this Item item, ErdHook hook)
+        {
+            List<InventoryEntry>? storageEntries = (List<InventoryEntry>)hook.PlayerGameData.Inventory.NormalItems.GetInventoryList();
+            List<InventoryEntry>? inventoryEntries = (List<InventoryEntry>)hook.PlayerGameData.Inventory.KeyItems.GetInventoryList();
+
+            var invEntry = inventoryEntries.FirstOrDefault(x => (x.Name == item.Name) || (x.ItemID == item.ID));
+            var storEntry = storageEntries.FirstOrDefault(x => (x.Name == item.Name) || (x.ItemID == item.ID));
+
+            return invEntry != null || storEntry != null;
         }
     }
 }

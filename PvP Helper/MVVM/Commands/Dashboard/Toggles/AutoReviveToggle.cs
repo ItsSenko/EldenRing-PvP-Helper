@@ -2,7 +2,9 @@
 using Erd_Tools.Models.Entities;
 using PvPHelper.Console;
 using PvPHelper.Core;
+using PvPHelper.Core.Extensions;
 using System;
+using System.Linq;
 using System.Threading;
 using System.Windows.Threading;
 using CommandBase = PvPHelper.Core.CommandBase;
@@ -17,40 +19,57 @@ namespace PvPHelper.MVVM.Commands.Dashboard.Toggles
         private ErdHook _hook;
         private Player _player;
         private DispatcherTimer autoReviveTimer;
+        private DispatcherTimer noDeadTimer;
         public AutoReviveToggle(ErdHook hook, Player player)
         {
             _hook = hook;
             _player = player;
 
             autoReviveTimer = new DispatcherTimer();
-            autoReviveTimer.Interval = TimeSpan.FromMilliseconds(10);
+            autoReviveTimer.Interval = TimeSpan.FromMilliseconds(1);
             autoReviveTimer.Tick += AutoReviveTimer_Tick;
+            noDeadTimer = new();
+            noDeadTimer.Interval = TimeSpan.FromMilliseconds(1);
+            noDeadTimer.Tick += noDeadTick;
         }
+        private void noDeadTick(object? sender, EventArgs e)
+        {
+            byte b = CustomPointers.ChrFlags.ReadByte(0x19B);
 
+            float currentHealthPercent = ((float)_player.Hp / (float)_player.HpMax) * 100;
+
+            if (currentHealthPercent < 21)
+            {
+                bool hasTear = _player.GetAllSpecialEffects().Contains(3512);
+                if (hasTear)
+                    CustomPointers.ChrFlags.WriteByte(0x19B, Helpers.SetBit(b, 0, false));
+                else
+                    CustomPointers.ChrFlags.WriteByte(0x19B, Helpers.SetBit(b, 0, true));
+            }
+            else
+                CustomPointers.ChrFlags.WriteByte(0x19B, Helpers.SetBit(b, 0, true));
+        }
         private void AutoReviveTimer_Tick(object? sender, EventArgs e)
         {
+            byte b = CustomPointers.ChrFlags.ReadByte(0x19B);
             int anim = CustomPointers.animPointer.ReadInt32(0x90);
+
+            // Check for throw
             if (anim == 70000 || anim == 70010)
             {
-                byte b = CustomPointers.ChrFlags.ReadByte(0x19B);
-
                 CustomPointers.ChrFlags.WriteByte(0x19B, Helpers.SetBit(b, 0, true));
                 if (_player.Hp <= 1)
                 {
-                    Thread.Sleep(1000);
+                    CustomPointers.idleAnimation.WriteInt32(0x18, 60502);
+                    Thread.Sleep(500);
                     Revive();
                 }
             }
-            else
-            {
-                byte b = CustomPointers.ChrFlags.ReadByte(0x19B);
 
-                CustomPointers.ChrFlags.WriteByte(0x19B, Helpers.SetBit(b, 0, false));
-            }
-
-            if (_player.Hp == 0)
+            if (_player.Hp == 1)
             {
-                Thread.Sleep(1000);
+                CustomPointers.idleAnimation.WriteInt32(0x18, 60502);
+                Thread.Sleep(500);
                 Revive();
                 CommandManager.Log("Revived Player.");
             }
@@ -65,9 +84,18 @@ namespace PvPHelper.MVVM.Commands.Dashboard.Toggles
             }
 
             if (State)
+            {
                 autoReviveTimer.Start();
+                noDeadTimer.Start();
+            }
             else
+            {
                 autoReviveTimer.Stop();
+                noDeadTimer.Stop();
+
+                byte b = CustomPointers.ChrFlags.ReadByte(0x19B);
+                CustomPointers.ChrFlags.WriteByte(0x19B, Helpers.SetBit(b, 0, false));
+            }
 
             CommandManager.Log($"Toggled AutoRevived to {State}");
         }
