@@ -102,8 +102,7 @@ namespace PvPHelper.MVVM.Commands.Dashboard.Toggles
 
         private void Revive()
         {
-            _player.Hp = _player.HpMax;
-            _player.Fp = _player.FpMax;
+            _player.ResetPlayerToDefault(_hook);
             CustomPointers.idleAnimation.WriteInt32(0x18, 0);
         }
     }

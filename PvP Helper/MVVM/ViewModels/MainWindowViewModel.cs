@@ -4,6 +4,7 @@ using PropertyHook;
 using PvPHelper.Console;
 using PvPHelper.Console.Commands;
 using PvPHelper.Core;
+using PvPHelper.Core.Achievements;
 using PvPHelper.Core.Extensions;
 using PvPHelper.Core.Hotkeys;
 using PvPHelper.MVVM.Dialogs;
@@ -144,6 +145,7 @@ namespace PvPHelper.MVVM.ViewModels
             RegisterCommands();
             Blacklist.Initialize();
             //Helpers.LoadImages();
+            Achievements.Initialize(_hook);
 
             DashboardView.OnLoaded += () =>
             {
@@ -272,6 +274,7 @@ namespace PvPHelper.MVVM.ViewModels
             //commandManager.RegisterCommand(new BetterSeamlessInvasionsCommand(_hook));
             commandManager.RegisterCommand(new SettingsCommand());
             commandManager.RegisterCommand(new SpecialEffectsCommand(_hook));
+            commandManager.RegisterCommand(new AchievementCommand());
         }
     }
 }

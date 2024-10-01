@@ -20,7 +20,7 @@ namespace PvPHelper.Console.Commands
             RequiresParamsString = new string[] { "settingName", "value" };
         }
 
-        private string[] settingNames = { "AutoUpdate", "AllowUnsafe", "SpawnAnimation", "DebugLogs", "InvasionPhantomID", "ItemGibSingle" };
+        private string[] settingNames = { "AutoUpdate", "AllowUnsafe", "SpawnAnimation", "DebugLogs", "InvasionPhantomID", "ItemGibSingle", "enableachievements" };
 
         protected override void OnTriggerCommandWithParameters(List<string> parameters)
         {
@@ -39,7 +39,7 @@ namespace PvPHelper.Console.Commands
             if (string.IsNullOrEmpty(setting))
                 throw new InvalidCommandException($"The setting '{parameters[0]}' does not exist.");
 
-            if (parameters.Count < 1)
+            if (parameters.Count < 2)
                 throw new InvalidCommandException("Missing parameter: value");
 
 
@@ -110,6 +110,16 @@ namespace PvPHelper.Console.Commands
                         Settings.Default.Save();
 
                         CommandManager.Log($"Saved ItemGibSingle state to: {state}");
+                        break;
+                    }
+                case "enableachievements":
+                    {
+                        bool state = value.ToLower() is "true" or "1" ? true : false;
+
+                        Settings.Default.EnableAchievements = state;
+                        Settings.Default.Save();
+
+                        CommandManager.Log($"Saved EnableAchievements state to: {state}");
                         break;
                     }
             }

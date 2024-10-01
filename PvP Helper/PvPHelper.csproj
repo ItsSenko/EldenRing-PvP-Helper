@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net6.0-windows</TargetFramework>
+    <TargetFramework>net6.0-windows10.0.17763.0</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
 	  <IncludeAllContentForSelfExtract>true</IncludeAllContentForSelfExtract>
@@ -187,6 +187,7 @@
     <PackageReference Include="Extended.Wpf.Toolkit" Version="4.5.0" />
     <PackageReference Include="GlobalHotKey" Version="1.1.0" />
     <PackageReference Include="gong-wpf-dragdrop" Version="3.2.1" />
+    <PackageReference Include="Microsoft.Toolkit.Uwp.Notifications" Version="7.1.3" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="PixiEditor.ColorPicker" Version="3.3.1" />
     <PackageReference Include="SharpVectors" Version="1.8.1" />
@@ -194,6 +195,12 @@
   </ItemGroup>
 
   <ItemGroup>
+
+    <Compile Update="Core\Achievements\AchievementList.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>AchievementList.settings</DependentUpon>
+    </Compile>
 
     <Compile Update="Core\Settings.Designer.cs">
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
@@ -252,6 +259,10 @@
 	<ItemGroup>
 		<None Update="C:\Users\Nord\.nuget\packages\keystoneengine.csharp\0.9.1.1\build\x86\keystone.dll">
 			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="Core\Achievements\AchievementList.settings">
+		  <Generator>SettingsSingleFileGenerator</Generator>
+		  <LastGenOutput>AchievementList.Designer.cs</LastGenOutput>
 		</None>
 		<None Update="Core\Settings.settings">
 		  <Generator>SettingsSingleFileGenerator</Generator>

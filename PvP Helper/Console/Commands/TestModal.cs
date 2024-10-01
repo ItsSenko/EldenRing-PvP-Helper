@@ -31,6 +31,8 @@ using GlobalHotKey;
 using System.Diagnostics;
 using Erd_Tools.Models.Items;
 using PvPHelper.Core.Hotkeys;
+using Microsoft.Toolkit.Uwp.Notifications;
+using PvPHelper.Core.Achievements;
 
 namespace PvPHelper.Console.Commands
 {
@@ -43,6 +45,9 @@ namespace PvPHelper.Console.Commands
         private Player player;
 
         private Hotkey hotkey;
+        private PHPointer Session;
+        private NetPlayer LocalNetPlayer;
+        private NetPlayer NetPlayer1;
 
         public TestModal(ErdHook hook, MainWindowViewModel viewModel)
         {
@@ -57,39 +62,29 @@ namespace PvPHelper.Console.Commands
             hotkey = Hotkeys.Instance.GetSavedHotKey("Reset Player", new(Key.NumPad0, ModifierKeys.None));
 
             hotkey.OnPressed += HotKeyPressed;
+            Session = hook.CreateChildPointer(hook.WorldChrMan, new int[] { 0x10EF8 });
+            LocalNetPlayer = new(hook, Session, 0x0 * 10);
+            NetPlayer1 = new(hook, Session, 0x10);
         }
+        
         private void HotKeyPressed()
         {
-            if (!hook.Loaded)
-            {
-                CommandManager.Log("Not Loaded.");
+            if (!hook.Hooked)
                 return;
-            }
 
-            CommandManager.Log("Resetting");
-
-            player.Hp = player.HpMax;
-            player.Fp = player.FpMax;
-
-            player.AddSpecialEffect(101); // Grace Reset
-            player.AddSpecialEffect(1673000); // Law of Regression visual effect
-            player.AddSpecialEffect(1673014); // Law of Regression (Remove buffs and debuffs)
-
-            player.Poison = player.PoisonMax;
-            player.Rot = player.RotMax;
-            player.Bleed = player.BleedMax;
-            player.Blight = player.BlightMax;
-            player.Frost = player.FrostMax;
-            player.Sleep = player.SleepMax;
-            player.Madness = player.MadnessMax;
+            player.ResetPlayerToDefault(hook);
         }
 
         protected override void OnTriggerCommand()
         {
-            foreach(int i in player.GetAllSpecialEffects())
-            {
-                CommandManager.Log(i.ToString());
-            }
+            /*new ToastContentBuilder()
+                .AddAppLogoOverride(new(Path.Combine(Directory.GetCurrentDirectory(), "Resources/Images/shunter.png")))
+                .AddText("test")
+                .AddText("test")
+                .AddArgument("action", "focusApp")
+                .Show();
+            AchievementList.Default.WildSenko = false;
+            AchievementList.Default.Save();*/
         }
 
         protected override void OnTriggerCommandWithParameters(List<string> parameters)

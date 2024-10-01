@@ -72,5 +72,69 @@ namespace PvPHelper.Core.Extensions
 
             return ids.ToArray();
         }
+        static int[] ailmentSpIDS = { 
+            /*503045,
+            20381200,*/
+            20381201,// below all safe
+            20381203, 
+            20381205,
+            20381207,
+            20381211,
+            20381212,
+            20381213,
+            20381214,
+            20381215,
+            20381216,
+            20381221,
+            20381222,
+            20381223,
+            20381224,
+            20381225,
+            20381226,
+            20381231,
+            20381233,
+            20381235,
+            20381242,
+            20381243,
+            20381244,
+            20381245,
+            20381246,
+            20381281 };
+
+        public static void ResetPlayerToDefault(this Player player, ErdHook hook)
+        {
+            if (!hook.Loaded)
+            {
+                CommandManager.Log("Not Loaded.");
+                return;
+            }
+
+            CommandManager.Log("Resetting");
+
+            player.Hp = player.HpMax;
+            player.Fp = player.FpMax;
+
+            player.AddSpecialEffect(101); // Grace Reset
+            player.AddSpecialEffect(1673000); // Law of Regression visual effect
+            player.AddSpecialEffect(1673014); // Law of Regression (Remove buffs and debuffs)
+
+            player.Poison = player.PoisonMax;
+            player.Rot = player.RotMax;
+            player.Bleed = player.BleedMax;
+            player.Blight = player.BlightMax;
+            player.Frost = player.FrostMax;
+            player.Sleep = player.SleepMax;
+            player.Madness = player.MadnessMax;
+
+            int[] currentSpEffects = player.GetAllSpecialEffects();
+
+            
+
+            foreach (int id in ailmentSpIDS)
+            {
+                if (currentSpEffects.Contains(id))
+                    player.RemoveSpecialEffect(id);
+            }
+        }
     }
 }
