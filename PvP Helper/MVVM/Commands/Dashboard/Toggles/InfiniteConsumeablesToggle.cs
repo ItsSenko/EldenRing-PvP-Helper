@@ -1,4 +1,5 @@
 ﻿using Erd_Tools;
+using PropertyHook;
 using PvPHelper.Console;
 using PvPHelper.Core;
 using System;
@@ -6,6 +7,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Threading;
+using System.Windows.Threading;
 using CommandBase = PvPHelper.Core.CommandBase;
 
 namespace PvPHelper.MVVM.Commands.Dashboard.Toggles
@@ -16,6 +19,8 @@ namespace PvPHelper.MVVM.Commands.Dashboard.Toggles
         public bool State { get => _state; set => SetField(ref _state, value); }
         private ErdHook _hook;
         private List<int> consumableIds = new();
+        private DispatcherTimer _timer;
+        private NetPlayer localPlayer;
 
         public InfiniteConsumeablesToggle(ErdHook hook)
         {
@@ -28,7 +33,25 @@ namespace PvPHelper.MVVM.Commands.Dashboard.Toggles
             {
                 consumableIds = Helpers.EnumerateLines(reader).Select(x => Convert.ToInt32(x)).ToList();
             }
+            _timer = new();
+            _timer.Interval = TimeSpan.FromSeconds(1);
+            _timer.Tick += CheckDebugFlag;
+
+            PHPointer session = hook.CreateChildPointer(hook.WorldChrMan, 0x10EF8);
+
+            localPlayer = new(hook, session, 0x0*10);
         }
+
+        private void CheckDebugFlag(object? sender, EventArgs e)
+        {
+            if (!State || !_hook.Loaded)
+                return;
+
+            if (!GetConsumableFlag())
+                SetConsumableFlag(true);
+
+        }
+
         public override void Execute(object? parameter)
         {
             if (!_hook.Hooked || !_hook.Loaded)
@@ -54,7 +77,27 @@ namespace PvPHelper.MVVM.Commands.Dashboard.Toggles
             }
 
             CustomPointers.ChrDbgFlags.WriteByte(0x6, State ? (byte)1 : (byte)0);
+
+            if (State)
+                _timer.Start();
+            else
+                _timer.Stop();
+
+            SetConsumableFlag(State);
+
             CommandManager.Log($"Infinite Consumables Toggled {State}.");
+        }
+
+        void SetConsumableFlag(bool state)
+        {
+            byte debugFlags = localPlayer.NetPlayerData.ReadByte(0x532);
+            localPlayer.NetPlayerData.WriteByte(0x532, Helpers.SetBit(debugFlags, 0, state));
+        }
+
+        bool GetConsumableFlag()
+        {
+            byte debugFlags = localPlayer.NetPlayerData.ReadByte(0x532);
+            return Helpers.IsBitSet(debugFlags, 0);
         }
     }
 }

@@ -35,12 +35,12 @@ namespace PvPHelper.Console.Commands
                 return;
             }
 
-            string setting = settingNames.FirstOrDefault(x => x.ToLower() == parameters[0]);
-            if (string.IsNullOrEmpty(setting))
-                throw new InvalidCommandException($"The setting '{parameters[0]}' does not exist.");
-
             if (parameters.Count < 2)
                 throw new InvalidCommandException("Missing parameter: value");
+
+            string setting = settingNames.FirstOrDefault(x => x.ToLower() == parameters[0].ToLower());
+            if (string.IsNullOrEmpty(setting))
+                throw new InvalidCommandException($"The setting '{parameters[0]}' does not exist.");
 
 
             string value = parameters[1];

@@ -103,7 +103,7 @@ namespace PvPHelper.MVVM.Commands.Dashboard.Toggles
         private void Revive()
         {
             _player.ResetPlayerToDefault(_hook);
-            CustomPointers.idleAnimation.WriteInt32(0x18, 0);
+            //CustomPointers.idleAnimation.WriteInt32(0x18, 0);
         }
     }
 }

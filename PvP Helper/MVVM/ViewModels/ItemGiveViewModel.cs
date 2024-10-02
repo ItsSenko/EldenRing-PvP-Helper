@@ -24,6 +24,7 @@ using PvPHelper.MVVM.Models.Database.ItemsBases;
 using System.Windows.Data;
 using PvPHelper.Core.Extensions;
 using Erd_Tools.Models.System.Dlc;
+using CommandManager = PvPHelper.Console.CommandManager;
 
 namespace PvPHelper.MVVM.ViewModels
 {
@@ -490,6 +491,14 @@ namespace PvPHelper.MVVM.ViewModels
 
                 IconSource = Helpers.GetImageSource(Helpers.GetFullIconID(item.IconID));
             }
+
+            if (Settings.Default.DebugLogs)
+            {
+                CommandManager.Log($"Name: {item.Name}");
+                CommandManager.Log($"ID: {item.ID}");
+                CommandManager.Log($"Category: {item.ItemCategory}");
+                CommandManager.Log($"IconID: {item.IconID}");
+            }
         }
         BackgroundWorker ashWorker = new();
         List<List<Gem>> ashQueue = new();
@@ -543,11 +552,12 @@ namespace PvPHelper.MVVM.ViewModels
         {
             if (item is Gem gem)
             {
-                FinalInfo = new(FinalInfo.ID, FinalInfo.Category, FinalInfo.Quantity, FinalInfo.MaxQuantity, FinalInfo.Infusion, FinalInfo.Upgrade, gem.ID, FinalInfo.EventID);
+                FinalInfo = new(FinalInfo.ID, FinalInfo.Category, FinalInfo.Quantity, FinalInfo.MaxQuantity, (int)Infusion.Standard, FinalInfo.Upgrade, gem.ID, FinalInfo.EventID);
 
                 AshIconSource = Helpers.GetImageSource(Helpers.GetFullIconID(gem.IconID));
 
                 InfusionItems.Clear();
+                InfusionIconSource = null;
 
                 foreach(Infusion inf in gem.Infusions)
                 {
@@ -555,6 +565,8 @@ namespace PvPHelper.MVVM.ViewModels
                     newModel.OnLeftClick += OnInfusionClicked;
                     InfusionItems.Add(newModel);
                 }
+
+                
             }
         }
 

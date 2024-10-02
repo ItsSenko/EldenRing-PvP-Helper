@@ -1,42 +1,42 @@
-2004300 Miriam's Vanishing
-2004310 Glintblade Trio
-2004320 Rellana's Twin Moons
-2004500 Glintstone Nail
-2004510 Glintstone Nails
-2004700 Blades of Stone
-2004710 Gravitational Missile
-2004900 Mantle of Thorns
-2004910 Impenetrable Thorns
-2005000 Rings of Spectral Light
-2006200 Vortex of Putrescence
-2006210 Mass of Putrescence
-2006300 Furious Blade of Ansbach
-2006400 Heal from Afar
-2006650 Aspects of the Crucible: Thorns
-2006660 Aspects of the Crucible: Bloom
-2006670 Minor Erdtree
-2006680 Land of Shadow
-2006690 Wrath from Afar
-2006700 Light of Miquella
-2006710 Multilayered Ring of Light
-2006800 Roar of Rugalea
-2006900 Knight's Lightning Spear
-2006910 Dragonbolt of Florissax
-2006920 Electrocharge
-2007000 Bayle's Tyranny
-2007010 Bayle's Flame Lightning
-2007020 Ghostflame Breath
-2007200 Rotten Butterflies
-2007210 Pest-Thread Spears
-2007300 Midra's Flame of Frenzy
-2007410 Fleeting Microcosm
-2007420 Cherishing Fingers
-2007600 Watchful Spirit
-2007700 Golden Arcs
-2007710 Giant Golden Arc
-2007720 Spira
-2007730 Divine Beast Tornado
-2007740 Divine Bird Feathers
-2007800 Fire Serpent
-2007810 Rain of Fire
-2007820 Messmer's Orb
+2004300 [Sorcery] Miriam's Vanishing
+2004310 [Sorcery] Glintblade Trio
+2004320 [Sorcery] Rellana's Twin Moons
+2004500 [Sorcery] Glintstone Nail
+2004510 [Sorcery] Glintstone Nails
+2004700 [Sorcery] Blades of Stone
+2004710 [Sorcery] Gravitational Missile
+2004900 [Sorcery] Mantle of Thorns
+2004910 [Sorcery] Impenetrable Thorns
+2005000 [Sorcery] Rings of Spectral Light
+2006200 [Sorcery] Vortex of Putrescence
+2006210 [Sorcery] Mass of Putrescence
+2006300 [Incantation] Furious Blade of Ansbach
+2006400 [Incantation] Heal from Afar
+2006650 [Incantation] Aspects of the Crucible: Thorns
+2006660 [Incantation] Aspects of the Crucible: Bloom
+2006670 [Incantation] Minor Erdtree
+2006680 [Incantation] Land of Shadow
+2006690 [Incantation] Wrath from Afar
+2006700 [Incantation] Light of Miquella
+2006710 [Incantation] Multilayered Ring of Light
+2006800 [Incantation] Roar of Rugalea
+2006900 [Incantation] Knight's Lightning Spear
+2006910 [Incantation] Dragonbolt of Florissax
+2006920 [Incantation] Electrocharge
+2007000 [Incantation] Bayle's Tyranny
+2007010 [Incantation] Bayle's Flame Lightning
+2007020 [Incantation] Ghostflame Breath
+2007200 [Incantation] Rotten Butterflies
+2007210 [Incantation] Pest-Thread Spears
+2007300 [Incantation] Midra's Flame of Frenzy
+2007410 [Sorcery] Fleeting Microcosm
+2007420 [Sorcery] Cherishing Fingers
+2007600 [Incantation] Watchful Spirit
+2007700 [Incantation] Golden Arcs
+2007710 [Incantation] Giant Golden Arc
+2007720 [Incantation] Spira
+2007730 [Incantation] Divine Beast Tornado
+2007740 [Incantation] Divine Bird Feathers
+2007800 [Incantation] Fire Serpent
+2007810 [Incantation] Rain of Fire
+2007820 [Incantation] Messmer's Orb

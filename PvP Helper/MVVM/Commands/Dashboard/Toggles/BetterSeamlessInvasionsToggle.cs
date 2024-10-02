@@ -106,8 +106,6 @@ namespace PvPHelper.MVVM.Commands.Dashboard.Toggles
                         {
                             localPlayer.PhantomID = Settings.Default.InvasionPhantomID;
 
-                            SetInvasionState(false);
-
                             if (Settings.Default.CustomInvasionSpawn)
                             {
                                 Thread.Sleep(1000);
@@ -122,7 +120,6 @@ namespace PvPHelper.MVVM.Commands.Dashboard.Toggles
             else
             {
                 isNewSession = false;
-                SetInvasionState(true);
             }
 
         }
@@ -146,65 +143,12 @@ namespace PvPHelper.MVVM.Commands.Dashboard.Toggles
             if (!setup)
                 Setup();
 
-            Row leaveItem = hook.EquipParamGoods.Rows.FirstOrDefault(x => x.ID == (int)Helpers.SeamlessItems.LeavingItem);
-            if (leaveItem == null)
-                CommandManager.Log("Seamless Items Are Null.");
-            else
-            {
-                SetInvasionState(State);
-                var fieldOffset = hook.EquipParamGoods.Fields.FirstOrDefault(x => x.InternalName == "goodsUseAnim");
-                leaveItem.Param.Pointer.WriteByte(leaveItem.DataOffset + fieldOffset.FieldOffset, State ? (byte)16 : (byte)9);
-            }
-
             byte[] bytes = State ? newBytes : backupBytes;
 
             Kernel32.WriteBytes(hook.Handle, ItemGibCall.Resolve() - 0x52, bytes);
 
             isNewSession = _state;
         }
-
-        private void SetInvasionState(bool state)
-        {
-            Row invasionItem = hook.EquipParamGoods.Rows.FirstOrDefault(x => x.ID == (int)Helpers.SeamlessItems.BreakInItem);
-            Row runeArc = hook.EquipParamGoods.Rows.FirstOrDefault(x => x.ID == 190);
-
-            if (invasionItem == null)
-                return;
-
-            var fieldOffset = hook.EquipParamGoods.Fields.FirstOrDefault(x => x.InternalName == "goodsUseAnim");
-
-            invasionItem.Param.Pointer.WriteByte(invasionItem.DataOffset + fieldOffset.FieldOffset, state ? (byte)16 : (byte)66);
-            runeArc.Param.Pointer.WriteByte(runeArc.DataOffset + fieldOffset.FieldOffset, state ? (byte)16 : (byte)65);
-        }
-
-        // Credit to Indura for the original script: https://github.com/lndura/SeamlessRespawnScript/blob/main/script 
-        /*public static void RespawnPlayer(NetPlayer teleportingPlayer)
-        {
-            SetFlags(true); // stop everything
-            Thread.Sleep(5000); // Load in delay, prevents void out
-
-            inputData2.WriteByte(0x531, Helpers.SetBit(inputData2.ReadByte(0x531), 0, false)); //resume updating
-
-            localPlayer.TeleportToPlayer(teleportingPlayer); //Teleport to specified player
-            animationData.WriteInt32(0x18, Settings.Default.SpawnAnimation); //spawn animation
-            currPlayer.Hp = currPlayer.HpMax; //Reset health incase damage was taken at some point
-
-            CommandManager.Log($"Teleported to host: {teleportingPlayer.Name}");
-
-            Thread.Sleep(2000);
-
-            SetFlags(false); //resume everything
-        }
-
-        private static void SetFlags(bool state)
-        {
-            int i = state? 1 : 0;
-            PlayerData1.WriteByte(0x1D3, (byte)i);
-            
-            inputData.WriteByte(0x19B, Helpers.SetBit(inputData.ReadByte(0x19B), 0, state));
-            inputData.WriteByte(0x19B, Helpers.SetBit(inputData.ReadByte(0x19B), 1, state));
-            inputData2.WriteByte(0x530, Helpers.SetBit(inputData2.ReadByte(0x530), 5, state));
-        }*/
 
         private bool setup = false;
         private void Setup()

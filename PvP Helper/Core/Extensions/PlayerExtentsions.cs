@@ -114,9 +114,14 @@ namespace PvPHelper.Core.Extensions
             player.Hp = player.HpMax;
             player.Fp = player.FpMax;
 
+            player.Stamina = player.StaminaMax;
+            player.Toughness = player.ToughnessMax;
+            player.RecoverTime = 0f;
+
             player.AddSpecialEffect(101); // Grace Reset
             player.AddSpecialEffect(1673000); // Law of Regression visual effect
             player.AddSpecialEffect(1673014); // Law of Regression (Remove buffs and debuffs)
+            player.AddSpecialEffect(502120); // Soap Effect
 
             player.Poison = player.PoisonMax;
             player.Rot = player.RotMax;
@@ -127,8 +132,6 @@ namespace PvPHelper.Core.Extensions
             player.Madness = player.MadnessMax;
 
             int[] currentSpEffects = player.GetAllSpecialEffects();
-
-            
 
             foreach (int id in ailmentSpIDS)
             {
