@@ -121,7 +121,7 @@ namespace PvPHelper.Core.Extensions
             player.AddSpecialEffect(101); // Grace Reset
             player.AddSpecialEffect(1673000); // Law of Regression visual effect
             player.AddSpecialEffect(1673014); // Law of Regression (Remove buffs and debuffs)
-            player.AddSpecialEffect(502120); // Soap Effect
+            player.AddSpecialEffect(502120); // Soap Effect (Removes blood)
 
             player.Poison = player.PoisonMax;
             player.Rot = player.RotMax;

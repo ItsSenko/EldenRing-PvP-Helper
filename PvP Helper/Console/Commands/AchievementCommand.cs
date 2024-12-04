@@ -20,7 +20,7 @@ namespace PvPHelper.Console.Commands
 
         protected override void OnTriggerCommand()
         {
-            foreach(IAchievement achievement in Achievements.Instance.AllAchievements)
+            foreach(Achievement achievement in Achievements.Instance.AllAchievements)
             {
                 CommandManager.Log("Achievement: " + achievement.Name);
                 CommandManager.Log("Description: " + achievement.Description);

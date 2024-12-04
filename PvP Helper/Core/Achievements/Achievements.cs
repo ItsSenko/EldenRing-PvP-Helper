@@ -1,13 +1,10 @@
 ﻿using Erd_Tools;
-using PvPHelper.Core.Achievements.Achievement;
+using PvPHelper.Core.Achievements.AllAchievements;
 using PvPHelper.Core.Extensions;
-using PvPHelper.Console;
 using System.Collections.Generic;
 using Microsoft.Toolkit.Uwp.Notifications;
 using System.IO;
-using System.Drawing;
 using System.Windows;
-using System.Windows.Input;
 using CommandManager = PvPHelper.Console.CommandManager;
 
 namespace PvPHelper.Core.Achievements
@@ -24,17 +21,17 @@ namespace PvPHelper.Core.Achievements
                 return _instance;
             } 
         }
-        public List<IAchievement> AllAchievements { get; private set; }
+        public List<Achievement> AllAchievements { get; private set; }
         private ErdHook _hook;
 
         public static void Initialize(ErdHook hook)
         {
             Instance._hook = hook;
 
-            Instance.AllAchievements = new List<IAchievement>();
-            Instance.AllAchievements.Add(new WildSenko());
+            Instance.AllAchievements = new List<Achievement>();
+            Instance.AllAchievements.Add(new PlayerMetAchievement("Wild Senko", "Find Senko in a seamless session.", 76561198802512406)); // Senko's SteamID
 
-            foreach (IAchievement achievement in Instance.AllAchievements)
+            foreach (Achievement achievement in Instance.AllAchievements)
             {
                 achievement.Initialize(hook);
                 achievement.OnAchieved += Instance.OnAchieved;
@@ -44,13 +41,10 @@ namespace PvPHelper.Core.Achievements
 
         private static void OnNotificationClicked(ToastNotificationActivatedEventArgsCompat e)
         {
-            // Parse the arguments
             var args = ToastArguments.Parse(e.Argument);
 
-            // Check if the action is to focus the app
             if (args["action"] == "focusApp")
             {
-                // Bring the main window to the foreground
                 Application.Current.Dispatcher.Invoke(() =>
                 {
                     var mainWindow = Application.Current.MainWindow;
@@ -61,15 +55,15 @@ namespace PvPHelper.Core.Achievements
                             mainWindow.WindowState = WindowState.Normal;
                         }
                         mainWindow.Activate();
-                        mainWindow.Topmost = true;  // Ensure it's on top
-                        mainWindow.Topmost = false; // Reset the topmost property
-                        mainWindow.Focus();         // Set focus
+                        mainWindow.Topmost = true;
+                        mainWindow.Topmost = false;
+                        mainWindow.Focus();
                     }
                 });
             }
         }
 
-        private void OnAchieved(IAchievement achievment)
+        private void OnAchieved(Achievement achievment)
         {
             SetAchievementInList(achievment);
 
@@ -93,7 +87,7 @@ namespace PvPHelper.Core.Achievements
                 .Show();
         }
 
-        public static bool GetAchievementInList(IAchievement achievement)
+        public static bool GetAchievementInList(Achievement achievement)
         {
             switch (achievement.Name.ToLower().RemoveSpaces())
             {
@@ -107,7 +101,7 @@ namespace PvPHelper.Core.Achievements
                     }
             }
         }
-        public static void SetAchievementInList(IAchievement achievement)
+        public static void SetAchievementInList(Achievement achievement)
         {
             switch (achievement.Name.ToLower().RemoveSpaces())
             {
